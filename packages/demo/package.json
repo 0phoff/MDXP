@@ -1,0 +1,21 @@
+{
+  "name": "@mdx-presenter/demo",
+  "version": "0.0.0",
+  "private": true,
+  "browser": "dist/index.html",
+  "scripts": {
+    "start": "parcel serve src/index.html",
+    "build": "parcel build src/index.html --public-url ./",
+    "clean": "rm -rf dist/"
+  },
+  "dependencies": {
+    "@mdx-js/parcel-plugin-mdx": "^1.5.8",
+    "@mdx-js/react": "^1.0.0-rc.5",
+    "@mdx-presenter/core": "^0.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}

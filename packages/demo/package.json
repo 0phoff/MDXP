@@ -9,13 +9,14 @@
     "clean": "rm -rf dist/"
   },
   "dependencies": {
-    "@mdx-js/parcel-plugin-mdx": "^1.5.8",
-    "@mdx-js/react": "^1.0.0-rc.5",
     "@mdx-presenter/core": "^0.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@mdx-js/parcel-plugin-mdx": "^1.5.8",
+    "@mdx-js/react": "^1.0.0-rc.5",
     "parcel-bundler": "^1.12.4"
   }
 }

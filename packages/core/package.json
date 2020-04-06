@@ -1,20 +1,23 @@
 {
   "name": "@mdx-presenter/core",
   "version": "0.0.0",
-  "main": "dist/index.js",
-  "module": "src/index.js",
+  "source": "src/index.jsx",
+  "main": "dist/core.umd.js",
+  "module": "dist/core.m.js",
   "scripts": {
-    "start": "parcel watch src/index.js",
-    "build": "parcel build src/index.js --global @mdx-presenter/core",
+    "start": "microbundle watch --jsx React.createElement --external react -o dist",
+    "build": "microbundle build --jsx React.createElement --external react -o dist",
     "clean": "rm -rf dist/"
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.13.1"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@babel/core": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "microbundle": "^0.11.0"
+  },
+  "dependencies": {
+    "react": "^16.13.1"
   }
 }

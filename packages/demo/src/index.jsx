@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Hello } from '@mdx-presenter/core';
+import Deck from '@mdx-presenter/core';
+import MDXPresentation from './presentation.mdx';
 
-const Greeting = () => (
-  <div>
-    <h1>Hello World!</h1>
-    <Hello />
-  </div>);
+
+import DummyLayout from './dummyLayout.jsx';
+
 
 ReactDOM.render(
-  <Greeting />,
+  <Deck Layout={DummyLayout}>
+    <MDXPresentation />
+  </Deck>,
   document.getElementById('root')
 );

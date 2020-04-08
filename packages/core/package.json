@@ -5,19 +5,16 @@
   "main": "dist/core.umd.js",
   "module": "dist/core.m.js",
   "scripts": {
-    "start": "microbundle watch --jsx React.createElement --external react -o dist",
-    "build": "microbundle build --jsx React.createElement --external react -o dist",
+    "start": "microbundle watch --jsx React.createElement -o dist",
+    "build": "microbundle build --jsx React.createElement -o dist",
     "clean": "rm -rf dist/"
   },
   "peerDependencies": {
-    "react": "^16.13.1"
+    "@mdx-js/react": "^1.5.8",
+    "react": "^16.13.1",
+    "theme-ui": "^0.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-react": "^7.9.4",
-    "microbundle": "^0.11.0"
-  },
-  "dependencies": {
-    "react": "^16.13.1"
+    "microbundle": "^0.12.0-next.8"
   }
 }

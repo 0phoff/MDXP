@@ -28,10 +28,10 @@ const wrapper = (DefaultLayout) => {
     const slides = [];
     let previousSplit = 0;
     splits.forEach(i => {
-      slides.push(wrapLayout(children.slice(previousSplit, i), slides.length));
+      slides.push(wrapLayout(children.slice(previousSplit, i), `layout_${slides.length}`));
       previousSplit = i + 1;
     });
-    slides.push(wrapLayout(children.slice(previousSplit), slides.length));
+    slides.push(wrapLayout(children.slice(previousSplit), `layout_${slides.length}`));
 
     return slides;
   };

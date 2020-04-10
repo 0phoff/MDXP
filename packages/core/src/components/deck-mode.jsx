@@ -8,14 +8,9 @@ const DeckMode = ({children, ...props}) => {
   const ModeComponent = deckModes.properties[deck.mode].component
 
   return (
-    <section {...props}>
-    {
-      React.Children.map(
-        children,
-        (child, i) => (React.cloneElement(child, {key: i}))
-      )
-    }
-    </section>
+    <ModeComponent {...props}>
+      {children}
+    </ModeComponent>
   );
 };
 export default DeckMode;

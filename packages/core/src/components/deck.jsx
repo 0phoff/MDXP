@@ -8,23 +8,21 @@ import DefaultLayout from './layouts/default.jsx';
 import defaultComponents from './default-components.js';
 
 
-
-const Deck = ({children, theme=defaultTheme, Layout=DefaultLayout, components={}, ...props}) => (
-  <DeckState>
-    <ThemeProvider
-      theme={theme}
-      components={{
-        ...components,
-        ...defaultComponents,
-        DefaultLayout: Layout,
-        wrapper: wrapper(Layout),
-      }}
-    >
-      <DeckMode {...props}>
+const Deck = ({children, theme=defaultTheme, Layout=DefaultLayout, components={}, ...props}) => {
+  return (
+    <DeckState>
+      <ThemeProvider
+        theme={theme}
+        components={{
+          ...components,
+          ...defaultComponents,
+          DefaultLayout: Layout,
+          wrapper: wrapper(Layout, props),
+        }}
+      >
         {children}
-      </DeckMode>
-    </ThemeProvider>
-  </DeckState>
-);
-
+      </ThemeProvider>
+    </DeckState>
+  );
+};
 export default Deck;

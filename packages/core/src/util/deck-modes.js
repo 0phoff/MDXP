@@ -1,3 +1,6 @@
+import PrintMode from '../components/deck-mode-print.jsx';
+
+
 const deckModes = {
   NORMAL:     0,
   PRESENTER:  1,
@@ -10,7 +13,7 @@ const deckModes = {
     {component: null},
     {component: null},
     {component: null},
-    {component: null},
+    {component: PrintMode},
   ]
 };
 export default deckModes;

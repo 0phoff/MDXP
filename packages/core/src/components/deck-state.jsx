@@ -1,20 +1,15 @@
 import React from 'react';
 import useDeckState from '../hooks/use-deck-state.js';
-import deckModes from '../util/deck-modes.js';
+import useDeck from '../hooks/use-deck.js';
 
 
-export const DeckContext = React.createContext([{}, () => {}]);
+export const DeckContext = React.createContext(undefined);
 DeckContext.displayName = 'MDXPresenter/DeckContext';
 
 
-const DeckState = ({children}) => {
-  const [state, setState] = useDeckState({
-    slideIndex: 0,
-    slideLength: 0,
-    stepIndex: 0,
-    stepLength: 0,
-    mode: deckModes.PRINT
-  });
+const DeckState = ({children, value}) => {
+  const context = useDeck();
+  const [state, setState] = useDeckState(value, context);
 
   return (
     <DeckContext.Provider value={[state, setState]}>

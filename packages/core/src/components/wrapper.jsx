@@ -19,7 +19,7 @@ const wrapper = (DefaultLayout, passedProps) => {
 
     // Get split indices
     const splits = [];
-    React.Children.forEach(children, (child, i) => {
+    children.forEach((child, i) => {
       if (child.props.mdxType === 'hr') {
         splits.push(i);
       }

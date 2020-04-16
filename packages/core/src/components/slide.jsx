@@ -3,14 +3,16 @@ import {jsx} from 'theme-ui';
 import React from 'react';
 import useRoot from '../hooks/use-root.js';
 import useMerger from '../hooks/use-merger.js';
+import useKeyboard from '../hooks/use-keyboard.js';
 import useIndex from '../hooks/use-index.js';
 
 
-export const DeckContext = React.createContext(undefined);
+export const DeckContext = React.createContext(null);
 DeckContext.displayName = 'MDXP/DeckContext';
 
 
-const Slide = ({children, slide, step=0, preview=false, sx={}}) => {
+const Slide = ({children, slide, reference, step=0, preview=false, sx={}}) => {
+  // Data
   const rootContext = useRoot();
   const slideIndex = useIndex(slide);
   const [state, setState] = useMerger({
@@ -24,6 +26,9 @@ const Slide = ({children, slide, step=0, preview=false, sx={}}) => {
   });
   const slideElement = React.Children.count(children) == 1 ?
     React.Children.only(children).props.children[slideIndex] : children[slideIndex];
+
+  // Keyboard
+  useKeyboard(reference, state, setState);
 
   return (
     <DeckContext.Provider value={[state, setState]}>

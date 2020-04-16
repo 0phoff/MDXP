@@ -1,23 +1,22 @@
 const componentTypes = {
   NONE: 0,
   LAYOUT: 1,
-
 };
 export default componentTypes;
 
 
 export const getComponentType = (Component) => {
-  if (('props' in Component) && ('originalType' in Component.props)) {
-    return 'mdxPresenterType' in Component.props.originalType ? Component.props.originalType.mdxPresenterType : componentTypes.NONE;
+  if (Component.hasOwnProperty('props') &&  Component.props.hasOwnProperty('originalType')) {
+    return Component.props.originalType.hasOwnProperty('MDXPType') ? Component.props.originalType.MDXPType : componentTypes.NONE;
   }
   else {
-    return 'mdxPresenterType' in Component ? Component.mdxPresenterType : componentTypes.NONE;
+    return Component.hasOwnProperty('MDXPType') ? Component.MDXPType : componentTypes.NONE;
   }
 };
 
 
 export const setComponentType = (Component, componentType) => {
-  Component.mdxPresenterType = componentType;
+  Component.MDXPType = componentType;
   return Component;
 }
 

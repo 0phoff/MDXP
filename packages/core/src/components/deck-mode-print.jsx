@@ -13,7 +13,7 @@ const PrintMode = ({children, ...props}) => {
   });
 
   return (
-    <RootContext.Provider value={state}>
+    <RootContext.Provider value={[state, setState]}>
       <section>
         {
           slides.map((child, i) => (

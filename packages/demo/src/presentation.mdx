@@ -1,4 +1,5 @@
 import DummyLayout from './dummyLayout.jsx'
+import Appear from './appear.jsx'
 
 # Testing MDX components
 
@@ -15,3 +16,46 @@ and _this_ ?
   2. Should work as well right ?
 
 </DummyLayout>
+
+---
+
+# Testing Appear
+
+<Appear>
+
+Paragraph 1
+
+1. numbered list
+2. enumerate
+
+Paragraph 3
+
+</Appear>
+
+---
+
+# Double Appear ?
+
+<Appear>
+
+Paragraph 1
+
+1. numbered list
+2. enumerate
+
+Paragraph 3
+
+</Appear>
+
+<Appear>
+
+* Dotted list
+* Itemize
+
+Paragraph 1
+
+Paragraph 2
+
+Paragraph 3
+
+</Appear>

@@ -11,6 +11,7 @@ export {
 
 // HOOKS
 export {default as useDeck} from './hooks/use-deck.js';
+export {default as useStep} from './hooks/use-step.js';
 
 // COMPONENTS
 

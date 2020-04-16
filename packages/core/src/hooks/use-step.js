@@ -1,18 +1,26 @@
-import useDeck from './use-deck.js';
+import {useEffect} from 'react';
+import useRoot from './use-root';
+import {useDeckWithSetter} from './use-deck.js';
+
 
 const useStep = (length) => {
-  const [context, setContext] = useDeck();
-  const {slideIndex} = context;
-  const {stepLengths} = context._internal;
+  const [deck, setDeck] = useDeckWithSetter();
 
-  if (length > stepLengths[slideIndex]) {
-    const internal = {
-      ...context._internal,
-      stepLengths: [...stepLengths.slice(0, slideIndex), length, ...s.slice(slideIndex+1)],
+  let newDeck = {};
+  if (length > deck.stepLength) {
+    let stepIndex = deck.rawStepIndex;
+    if (stepIndex >= length) {
+      stepIndex = length - 1;
     }
-    setContext({_internal: internal});
+    else if (stepIndex < 0) {
+      stepIndex = Math.max(0, length + stepIndex);
+    }
+
+    newDeck.stepLength = length;
+    newDeck.stepIndex = stepIndex;
   }
 
-  return (context.preview) ? length : context.stepIndex;
-}; 
+  useEffect(() => {setDeck(newDeck)}, []);
+  return deck.preview ? length : newDeck.stepIndex || deck.stepIndex;
+};
 export default useStep;

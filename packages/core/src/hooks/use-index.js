@@ -1,13 +1,12 @@
-import useDeck from './use-deck.js';
+import {useEffect} from 'react';
+import useRoot from './use-root.js';
 
 
-const useIndex = (slide, step) => {
-  const [context] = useDeck();
+const useIndex = (slide) => {
+  const {slideLength} = useRoot();
   slide = parseInt(slide);
-  step = parseInt(step);
 
   // Get slide index
-  const {slideLength} = context;
   if (slide >= slideLength) {
     slide = slideLength - 1;
   }
@@ -15,15 +14,6 @@ const useIndex = (slide, step) => {
     slide = Math.max(0, slideLength + slide);
   }
 
-  // Get step index
-  const stepLength = context._internal.stepLengths[slide];
-  if (step >= stepLength) {
-    step = stepLength - 1;
-  }
-  else if (step < 0) {
-    step = Math.max(0, stepLength + step);
-  }
-
-  return [slide, step];
+  return slide;
 };
 export default useIndex;

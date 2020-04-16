@@ -1,5 +1,9 @@
 import {useContext} from 'react';
-import {DeckContext} from '../components/deck-state.jsx'
+import {DeckContext} from '../components/slide.jsx';
 
-export const useDeck = () => useContext(DeckContext);
+
+export const useDeckWithSetter = () => useContext(DeckContext)
+
+
+const useDeck = () => useContext(DeckContext)[0];
 export default useDeck;

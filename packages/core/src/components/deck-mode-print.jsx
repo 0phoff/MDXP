@@ -1,17 +1,19 @@
-import React from 'react';
-import DeckState from './deck-state.jsx';
+import React, {useEffect} from 'react';
 import Slide from './slide.jsx';
+import RootContext from '../root-context.js';
+import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 
 
 const PrintMode = ({children, ...props}) => {
   const slides = React.Children.only(children).props.children;
-  const state = {
+  const [state, setState] = useMerger({
+    slideLength: slides.length,
     mode: deckModes.PRINT,
-  };
+  });
 
   return (
-    <DeckState value={state}>
+    <RootContext.Provider value={state}>
       <section>
         {
           slides.map((child, i) => (
@@ -26,7 +28,7 @@ const PrintMode = ({children, ...props}) => {
           ))
         }
       </section>
-    </DeckState>
+    </RootContext.Provider>
   );
 };
 export default PrintMode;

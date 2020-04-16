@@ -1,27 +1,32 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import React from 'react';
-import DeckState from './deck-state.jsx';
-import useDeck from '../hooks/use-deck.js';
+import useRoot from '../hooks/use-root.js';
+import useMerger from '../hooks/use-merger.js';
 import useIndex from '../hooks/use-index.js';
 
 
-const Slide = ({children, slide, step=0, preview=false, sx={}}) => {
-  const [deckContext, setDeckContext] = useDeck();
-  const [slideIndex, stepIndex] = useIndex(slide, step);
+export const DeckContext = React.createContext(undefined);
+DeckContext.displayName = 'MDXP/DeckContext';
 
-  // Get Content
+
+const Slide = ({children, slide, step=0, preview=false, sx={}}) => {
+  const rootContext = useRoot();
+  const slideIndex = useIndex(slide);
+  const [state, setState] = useMerger({
+    mode: rootContext.mode,
+    slideLength: rootContext.slideLength,
+    slideIndex,
+    stepLength: 1,
+    stepIndex: 0,
+    rawStepIndex: parseInt(step),
+    preview,
+  });
   const slideElement = React.Children.count(children) == 1 ?
     React.Children.only(children).props.children[slideIndex] : children[slideIndex];
-  const state = {
-    slideIndex,
-    stepIndex,
-    stepLength: deckContext._internal.stepLengths[slideIndex],
-    preview,
-  };
 
   return (
-    <DeckState value={state}>
+    <DeckContext.Provider value={[state, setState]}>
       <article
         sx={{
           width: '100%',
@@ -34,7 +39,7 @@ const Slide = ({children, slide, step=0, preview=false, sx={}}) => {
       >
         {slideElement}
       </article>
-    </DeckState>
+    </DeckContext.Provider>
   );
 };
 export default Slide;

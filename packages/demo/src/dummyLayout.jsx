@@ -18,11 +18,12 @@ const DummyLayout = ({children, sx={}, ...props}) => (
       justifyContent: 'center',
       color: 'text',
       bg: 'background',
+      '& > p': {textAlign: 'center'},
       ...sx
     }}
     {...props}
   >
-    <div sx={{height: '10vh', width: '100vw', bg: 'rgba(255, 0, 0, 0.5)'}}></div>
+    <div sx={{height: '10vh', width: '100vw', bg: 'red'}}></div>
     {children}
   </div>
 );

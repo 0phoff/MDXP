@@ -1,19 +1,25 @@
 import DummyLayout from './dummyLayout.jsx'
-import Appear from './appear.jsx'
 
 # Testing MDX components
 
-Does this __work__  ?  
-and _this_ ?
+Does this __bold text__ work  ?  
+and _italics_ as well ?
+
+- Unordered list
+- Also called Itemize in LaTeX
+
+1. Ordered list
+2. Also called Enumerate in LaTeX
 
 ---
 
-<DummyLayout sx={{bg: 'tomato'}}>
+<DummyLayout sx={{bg: 'salmon'}}>
 
-  # Testing new slides
+  # Testing custom Layouts
   
-  1. Numered lists
-  2. Should work as well right ?
+  1. We should only see one red banner
+  2. This is because our custom layout has overwritten the default one (we just happen to use the same layout)
+  2. We changed the background color of our layout to salmon, to show we do in fact use this new layout
 
 </DummyLayout>
 
@@ -21,22 +27,25 @@ and _this_ ?
 
 # Testing Steps
 
-<Appear>
+<Step>
 
 Paragraph 1
 
-1. numbered list
-2. enumerate
+1. Steps work with different kind of children
+2. Like ordered lists
 
-Paragraph 3
+Paragraph 2
 
-</Appear>
+- Unordered lists should also work
+- Because in the end, they are all just child components
+
+</Step>
 
 ---
 
 # Double Steps ?
 
-<Appear>
+<Step>
 
 Paragraph 1
 
@@ -44,9 +53,9 @@ Paragraph 2
 
 Paragraph 3
 
-</Appear>
+</Step>
 
-<Appear>
+<Step>
 
 Paragraph 1
 
@@ -56,13 +65,13 @@ Paragraph 3
 
 Paragraph 4
 
-</Appear>
+</Step>
 
 ---
 
 # Double Steps Inverted ?
 
-<Appear>
+<Step>
 
 Paragraph 1
 
@@ -70,11 +79,13 @@ Paragraph 2
 
 Paragraph 3
 
-Paragraph 4
+Paragraph 4 : The first Step component has the highest number of elements  
+and it still works, because the stepLength did not get overwritten.  
+How cool is that! (Seriously, it took me way too long to figure this one out...)
 
-</Appear>
+</Step>
 
-<Appear>
+<Step>
 
 Paragraph 1
 
@@ -82,9 +93,10 @@ Paragraph 2
 
 Paragraph 3
 
-</Appear>
+</Step>
 
 ---
 
 # Nested Steps ?
 
+__[TODO]__ Nested steps dont work yet!

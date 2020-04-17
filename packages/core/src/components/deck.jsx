@@ -11,9 +11,9 @@ const Deck = ({children, theme=defaultTheme, Layout=DefaultLayout, components={}
     <ThemeProvider
       theme={theme}
       components={{
-        ...components,
         ...defaultComponents,
         DefaultLayout: Layout,
+        ...components,
         wrapper: wrapper(Layout, props),
       }}
     >

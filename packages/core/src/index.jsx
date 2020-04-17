@@ -16,3 +16,4 @@ export {default as useNavigation} from './hooks/use-navigation.js';
 
 // COMPONENTS
 export {default as DefaultLayout} from './components/default-layout.jsx';
+export {default as Step} from './components/step.jsx';

@@ -3,7 +3,8 @@ import {useReducer} from 'react';
 
 /**
  * Merging Reducer
- * It takes a new state object and merges it with the old state, overwriting any properties with the new state values.
+ * It takes a new state and merges it with the old state, overwriting any properties with the new state values.
+ * The new state can also be a function, which computes the new state from the old state.
  *
  * @param   {object} defaultState
  *          Default state the reducer starts with
@@ -13,6 +14,9 @@ import {useReducer} from 'react';
 const useMerger = (defaultState) => {
   return useReducer(
     (state, next) => {
+      if (typeof next === 'function') {
+        next = next(state);
+      }
       return {
         ...state,
         ...next,

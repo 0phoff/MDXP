@@ -25,4 +25,4 @@ export default useRoot;
  * @return  {newState => void} context[1]
  *          Root context setter, generated with useMerger()
  */
-export const useSetRoot = () => useContext(RootContext)
+export const useSetRoot = () => useContext(RootContext);

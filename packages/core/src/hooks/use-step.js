@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {useSetStep} from './use-deck.js';
+import {useSetDeck} from './use-deck.js';
 
 
 /**
@@ -13,8 +13,25 @@ import {useSetStep} from './use-deck.js';
  *          The current stepIndex you should follow
  */
 const useStep = (length) => {
-  const [deck, setStep] = useSetStep();
-  useEffect(() => {setStep(length)}, [length]);
+  const [deck, setDeck] = useSetDeck();
+
+  const stepUpdater = (state) => {
+    if (length > state.stepLength) {
+      let stepIndex = state.rawStepIndex;
+      if (stepIndex >= length) {
+        stepIndex = length - 1;
+      }
+      else if (stepIndex < 0) {
+        stepIndex = Math.max(0, length + stepIndex);
+      }
+
+      return {
+        stepLength: length,
+        stepIndex: stepIndex,
+      };
+    }
+  };
+  useEffect(() => {setDeck(stepUpdater)}, [length]);
 
   return deck.preview ? length : deck.stepIndex;
 };

@@ -1,26 +1,21 @@
 import {useEffect} from 'react';
-import useRoot from './use-root';
-import {useDeckWithSetter} from './use-deck.js';
+import {useSetStep} from './use-deck.js';
 
 
+/**
+ * Use Steps
+ * This hook requests a number of steps for the current slide.
+ * After running this hook, the stepLength of the slide should be at least what you requested (but can be more).
+ *
+ * @param   {Integer > 0} length
+ *          Number of steps you require
+ * @return  {Integer > 0}
+ *          The current stepIndex you should follow
+ */
 const useStep = (length) => {
-  const [deck, setDeck] = useDeckWithSetter();
+  const [deck, setStep] = useSetStep();
+  useEffect(() => {setStep(length)}, [length]);
 
-  let newDeck = {};
-  if (length > deck.stepLength) {
-    let stepIndex = deck.rawStepIndex;
-    if (stepIndex >= length) {
-      stepIndex = length - 1;
-    }
-    else if (stepIndex < 0) {
-      stepIndex = Math.max(0, length + stepIndex);
-    }
-
-    newDeck.stepLength = length;
-    newDeck.stepIndex = stepIndex;
-  }
-
-  useEffect(() => {setDeck(newDeck)}, []);
-  return deck.preview ? length : newDeck.stepIndex || deck.stepIndex;
+  return deck.preview ? length : deck.stepIndex;
 };
 export default useStep;

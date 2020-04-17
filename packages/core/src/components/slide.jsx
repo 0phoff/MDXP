@@ -38,11 +38,28 @@ const Slide = ({children, slide, reference, step=0, preview=false, sx={}}) => {
     preview,
   });
 
-  // Keyboard
+  // Functionality
+  const setStepLength = (length) => {
+    if (length > state.stepLength) {
+      let stepIndex = state.rawStepIndex;
+      if (stepIndex >= length) {
+        stepIndex = length - 1;
+      }
+      else if (stepIndex < 0) {
+        stepIndex = Math.max(0, length + stepIndex);
+      }
+
+      setState({
+        stepLength: length,
+        stepIndex: stepIndex,
+      });
+    }
+  };
+
   useKeyboard(reference, [state, setState]);
 
   return (
-    <DeckContext.Provider value={[state, setState]}>
+    <DeckContext.Provider value={[state, setState, setStepLength]}>
       <article
         sx={{
           width: '100%',

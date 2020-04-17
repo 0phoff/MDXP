@@ -56,7 +56,7 @@ const Slide = ({children, slide, reference, step=0, preview=false, sx={}}) => {
     }
   };
 
-  useKeyboard(reference, [state, setState]);
+  useKeyboard(reference, state, setState);
 
   return (
     <DeckContext.Provider value={[state, setState, setStepLength]}>

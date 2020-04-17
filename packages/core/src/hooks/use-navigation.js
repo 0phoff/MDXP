@@ -1,4 +1,4 @@
-import {useRootWithSetter} from './use-root.js';
+import {useSetRoot} from './use-root.js';
 import {useSetDeck} from './use-deck.js';
 import {
   next,
@@ -31,7 +31,7 @@ import {
  *          Set the display mode the presentation
  */
 const useNavigation = () => {
-  const [root, setRoot] = useRootWithSetter();
+  const [root, setRoot] = useSetRoot();
   const [deck, setDeck] = useSetDeck();
 
   return {

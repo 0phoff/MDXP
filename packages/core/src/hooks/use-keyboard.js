@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {useRootWithSetter} from './use-root.js';
+import {useSetRoot} from './use-root.js';
 import {
   next,
   nextSlide,
@@ -24,9 +24,20 @@ const keys = {
 }
 
 
-const useKeyboard = (target, deckContext) => {
-  const [root, setRoot] = useRootWithSetter();
-  const [deck, setDeck] = deckContext;
+/**
+ * Use Keyboard
+ * This hook enables the use of the keyboard to navigate the slide deck.
+ *
+ * @param   {DOM element} target
+ *          DOM element to attach the eventListener
+ * @param   {object} deck 
+ *          Deck context
+ * @param   {newState => void} setDeck
+ *          Deck context setter
+ * @return  {void}
+ */
+const useKeyboard = (target, deck, setDeck) => {
+  const [root, setRoot] = useSetRoot();
   
   const handleKeyboard = (e) => {
     const { metaKey, ctrlKey, shiftKey, altKey } = e;

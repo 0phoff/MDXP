@@ -24,8 +24,9 @@ const keys = {
 }
 
 
-const useKeyboard = (target, deck, setDeck) => {
+const useKeyboard = (target, deckContext) => {
   const [root, setRoot] = useRootWithSetter();
+  const [deck, setDeck] = deckContext;
   
   const handleKeyboard = (e) => {
     const { metaKey, ctrlKey, shiftKey, altKey } = e;

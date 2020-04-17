@@ -26,6 +26,8 @@ const Slide = ({children, slide, reference, step=0, preview=false, sx={}}) => {
   // Data
   const rootContext = useRoot();
   const slideIndex = getIndex(parseInt(slide), rootContext.slideLength);
+  const slideElement = React.Children.count(children) == 1 ?
+    React.Children.only(children).props.children[slideIndex] : children[slideIndex];
   const [state, setState] = useMerger({
     mode: rootContext.mode,
     slideLength: rootContext.slideLength,
@@ -35,11 +37,9 @@ const Slide = ({children, slide, reference, step=0, preview=false, sx={}}) => {
     rawStepIndex: parseInt(step),
     preview,
   });
-  const slideElement = React.Children.count(children) == 1 ?
-    React.Children.only(children).props.children[slideIndex] : children[slideIndex];
 
   // Keyboard
-  useKeyboard(reference, state, setState);
+  useKeyboard(reference, [state, setState]);
 
   return (
     <DeckContext.Provider value={[state, setState]}>

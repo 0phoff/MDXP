@@ -1,5 +1,5 @@
 {
-  "name": "@mdx-presenter/core",
+  "name": "@MDXP/core",
   "version": "0.0.0",
   "source": "src/index.jsx",
   "main": "dist/core.umd.js",

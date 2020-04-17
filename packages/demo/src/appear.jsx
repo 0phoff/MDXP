@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStep, useDeck} from '@mdx-presenter/core';
+import {useStep, useDeck} from '@MDXP/core';
 
 
 const Appear = ({children, ...props}) => {

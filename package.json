@@ -1,7 +1,7 @@
 {
-  "name": "mdx-presenter",
+  "name": "MDXP",
   "description": "Build your slides easily with MDX and Present them without any hassle",
-  "repository": "https://github.com/0phoff/mdx-presenter",
+  "repository": "https://github.com/0phoff/MDXPresenter",
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
   "private": true,

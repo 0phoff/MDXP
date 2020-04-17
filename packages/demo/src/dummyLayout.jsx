@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import React from 'react';
-import {setLayoutComponent} from '@mdx-presenter/core';
+import {setLayoutComponent} from '@MDXP/core';
 
 
 const DummyLayout = ({children, sx={}, ...props}) => (

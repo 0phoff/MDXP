@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Deck from '@mdx-presenter/core';
+import Deck from '@MDXP/core';
 import MDXPresentation from './presentation.mdx';
 
 

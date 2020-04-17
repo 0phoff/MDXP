@@ -6,7 +6,7 @@ import {
   previous,
   previousSlide,
   setMode,
-} from '../navigation.js';
+} from '../util/navigation.js';
 
 
 const keys = {

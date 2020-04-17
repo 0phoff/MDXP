@@ -1,8 +1,8 @@
 import React  from 'react';
 import {ThemeProvider} from 'theme-ui';
 import wrapper from './wrapper.jsx';
-import defaultTheme from '../theme.js';
-import DefaultLayout from './layouts/default.jsx';
+import defaultTheme from '../util/theme.js';
+import DefaultLayout from './default-layout.jsx';
 import defaultComponents from './default-components.js';
 
 

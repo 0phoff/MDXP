@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import React from 'react';
-import {setLayoutComponent} from '../../util/component-types.jsx';
+import {setLayoutComponent} from '../util/component-types.jsx';
 
 
 const DefaultLayout = ({children, sx={}, ...props}) => (

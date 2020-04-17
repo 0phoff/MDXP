@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import RootContext from '../root-context.js';
+import RootContext from '../util/root-context.js';
 
 
 export const useRootWithSetter = () => useContext(RootContext)

@@ -7,10 +7,10 @@ import {
   previousSlide,
   navigate,
   setMode,
-} from '../navigation.js';
+} from '../util/navigation.js';
 
 
-const useNavigation() => {
+const useNavigation = () => {
   const [root, setRoot] = useRootWithSetter();
   const [deck, setDeck] = useDeckWithSetter();
 

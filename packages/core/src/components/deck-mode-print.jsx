@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Slide from './slide.jsx';
-import RootContext from '../root-context.js';
+import RootContext from '../util/root-context.js';
 import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 

@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Router, Redirect} from '@reach/router';
 import Slide from './slide.jsx';
-import RootContext from '../root-context.js';
+import RootContext from '../util/root-context.js';
 import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 

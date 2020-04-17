@@ -1,6 +1,5 @@
 import {navigate as reachNavigate} from '@reach/router';
-
-import deckModes from './util/deck-modes.js';
+import deckModes from './deck-modes.js';
 
 
 export const navigate = (root, deck, setDeckContext, slide, step=0, replace=false) => {

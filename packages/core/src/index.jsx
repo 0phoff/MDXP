@@ -1,7 +1,7 @@
 export {default} from './components/deck.jsx';
 
 // UTIL
-export {default as defaultTheme} from './theme.js';
+export {default as defaultTheme} from './util/theme.js';
 export {default as deckModes} from './util/deck-modes.js';
 export {
   default as componentTypes,
@@ -12,9 +12,7 @@ export {
 // HOOKS
 export {default as useDeck} from './hooks/use-deck.js';
 export {default as useStep} from './hooks/use-step.js';
+export {default as useNavigation} from './hooks/use-navigation.js';
 
 // COMPONENTS
-
-
-// LAYOUTS
-export {default as DefaultLayout} from './components/layouts/default.jsx';
+export {default as DefaultLayout} from './components/default-layout.jsx';

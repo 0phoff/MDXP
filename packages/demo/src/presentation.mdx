@@ -109,9 +109,20 @@ Paragraph 3
 
 ---
 
+# Nested Steps
+
+__[TODO]__ Nested steps dont work yet!
+
+---
+
 # List Steps 
 
-<Step>
+<Step styles={{
+  base:     {transition: 'opacity 0.5s ease-in-out'},
+  before:   {opacity: 0},
+  after:    {opacity: 1},
+  current:  {opacity: 1, color: 'red'},
+}}>
 
 - If the Step component only has one child
 - Like in this example there is only an unordered list
@@ -122,6 +133,26 @@ Paragraph 3
 
 ---
 
-# Nested Steps
+# Table Steps
 
-__[TODO]__ Nested steps dont work yet!
+<Step>
+
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Row 1.1  | Row 1.2  | Row 1.3  |
+| Row 2.1  | Row 2.2  | Row 2.3  |
+| Row 3.1  | Row 3.2  | Row 3.3  |
+
+</Step>
+
+<br/>
+
+<Step useColumns>
+
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Row 1.1  | Row 1.2  | Row 1.3  |
+| Row 2.1  | Row 2.2  | Row 2.3  |
+| Row 3.1  | Row 3.2  | Row 3.3  |
+
+</Step>

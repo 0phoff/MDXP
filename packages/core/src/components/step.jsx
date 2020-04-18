@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import {jsx} from 'theme-ui';
 import React, {useContext, useEffect, useReducer} from 'react';
 import useStep from '../hooks/use-step.js';
 
@@ -11,9 +13,7 @@ StepContext.displayName = 'MDXP/StepContext';
  * This component generates a step for each of its direct children
  * and can style them depending on their respective order and the current stepIndex.
  * The most common use case is to make items appear or disappear in order.
- *
- * This component behaves differently when it has only one child and that child is one of ol, ul or table.
- * It will then take the list items or table rows (or columns, see paramters) and apply its steps to those elements.
+ * If this component only has one child, it will implement the stepping behaviour on it's children.
  *
  * TODO : add params
  * TODO : add examples
@@ -23,10 +23,21 @@ const Step = ({
   offset=1,
   styles={before: {'visibility': 'hidden'}, after: {'visibility': 'visible'}},
   useSx=false,
-  useColumns=false,
 }) => {
-  const length = React.Children.count(children);
+  // Figure out children
+  let rootChild;
+  length = React.Children.count(children);
+  if (length == 1 && children.props && children.props.hasOwnProperty('children')) {
+    rootChild = React.Children.only(children);
+    children = rootChild.props.children;
+    length = React.Children.count(children);
+  }
+
+  // Setup steps
+  offset = parseInt(offset);
   const step = useStep(length + offset) - offset;
+
+  // Functions
   const createStyledElement = (child, i, props) => {
     let style = child.props.style;
     if (i > step) {
@@ -62,10 +73,17 @@ const Step = ({
     return React.cloneElement(child, childProps);
   };
 
-  return (
-    <React.Fragment>
-      {React.Children.map(children, (child, i) => createStyledElement(child, i, {key: i}))}
-    </React.Fragment>
-  );
+  if (rootChild) {
+    return (React.cloneElement(rootChild, null,
+      React.Children.map(children, (child, i) => createStyledElement(child, i, {key: i}))
+    ));
+  }
+  else {
+    return (
+      <React.Fragment>
+        {React.Children.map(children, (child, i) => createStyledElement(child, i, {key: i}))}
+      </React.Fragment>
+    );
+  }
 };
 export default Step;

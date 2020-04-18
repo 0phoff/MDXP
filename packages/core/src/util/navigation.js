@@ -64,7 +64,7 @@ export const previous = (root, deck, setDeckContext) => {
 };
 
 
-export const previousSlide = (root, deck, setDeckContext, step=-1) => {
+export const previousSlide = (root, deck, setDeckContext, step=0) => {
   const {slideIndex} = deck;
   
   if (slideIndex > 0) {

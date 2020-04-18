@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import React from 'react';
-import {setLayoutComponent} from '../util/component-types.jsx';
+import {setLayoutType} from '../util/mdxp-types.jsx';
 
 
 const DefaultLayout = ({children, sx={}, ...props}) => (
@@ -25,4 +25,4 @@ const DefaultLayout = ({children, sx={}, ...props}) => (
     {children}
   </div>
 );
-export default setLayoutComponent(DefaultLayout);
+export default setLayoutType(DefaultLayout);

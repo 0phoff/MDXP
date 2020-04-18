@@ -4,10 +4,10 @@ export {default} from './components/deck.jsx';
 export {default as defaultTheme} from './util/theme.js';
 export {default as deckModes} from './util/deck-modes.js';
 export {
-  default as componentTypes,
-  getComponentType,
-  setLayoutComponent
-} from './util/component-types.jsx';
+  default as MDXPTypes,
+  getMdxpType,
+  setLayoutType
+} from './util/mdxp-types.jsx';
 
 // HOOKS
 export {default as useDeck} from './hooks/use-deck.js';

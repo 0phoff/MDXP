@@ -1,10 +1,10 @@
 import React from 'react';
 import DeckMode from './deck-mode.jsx';
-import componentTypes, {getComponentType} from '../util/component-types.jsx';
+import MDXPTypes, {getMDXPType} from '../util/mdxp-types.jsx';
 
 const wrapper = (DefaultLayout, passedProps) => {
   const wrapLayout = (elements, key) => {
-    if ((elements.length === 1) && (getComponentType(elements[0]) == componentTypes.LAYOUT)) {
+    if ((elements.length === 1) && (getMDXPType(elements[0]) == MDXPTypes.LAYOUT)) {
       return React.cloneElement(elements[0], {key: key});
     }
     else {

@@ -1,4 +1,5 @@
 import DummyLayout from './dummyLayout.jsx'
+import logoImage from './logo-material-rect.png'
 
 # Testing MDX components
 
@@ -13,13 +14,19 @@ and _italics_ as well ?
 
 ---
 
+# Images
+
+<img src={logoImage} width='auto' height='80%' />
+
+---
+
 <DummyLayout sx={{bg: 'salmon'}}>
 
-  # Testing custom Layouts
-  
-  1. We should only see one red banner
-  2. This is because our custom layout has overwritten the default one (we just happen to use the same layout)
-  2. We changed the background color of our layout to salmon, to show we do in fact use this new layout
+# Testing custom Layouts
+
+1. We should only see one red banner
+2. This is because our custom layout has overwritten the default one (we just happen to use the same layout)
+2. We changed the background color of our layout to salmon, to show we do in fact use this new layout
 
 </DummyLayout>
 
@@ -27,7 +34,12 @@ and _italics_ as well ?
 
 # Testing Steps
 
-<Step>
+<!--
+  The offset adds an offset to the number of steps and is set to 1 by default.
+  Setting this to zero allows to show the first element straight away.
+  In this case, we could have achieved the same thing, by moving the "Paragraph 1" outside of the Step.
+-->
+<Step offset='0'>
 
 Paragraph 1
 
@@ -43,7 +55,7 @@ Paragraph 2
 
 ---
 
-# Double Steps ?
+# Double Steps
 
 <Step>
 
@@ -69,7 +81,7 @@ Paragraph 4
 
 ---
 
-# Double Steps Inverted ?
+# Double Steps Inverted
 
 <Step>
 
@@ -97,6 +109,19 @@ Paragraph 3
 
 ---
 
-# Nested Steps ?
+# List Steps 
+
+<Step>
+
+- If the Step component only has one child
+- Like in this example there is only an unordered list
+- Then it will step through it's children
+- Instead of showing that element in one go!
+
+</Step>
+
+---
+
+# Nested Steps
 
 __[TODO]__ Nested steps dont work yet!

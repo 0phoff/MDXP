@@ -18,7 +18,7 @@ const DummyLayout = ({children, sx={}, ...props}) => (
       justifyContent: 'center',
       color: 'text',
       bg: 'background',
-      '& > p': {textAlign: 'center'},
+      '& p': {textAlign: 'center'},
       ...sx
     }}
     {...props}

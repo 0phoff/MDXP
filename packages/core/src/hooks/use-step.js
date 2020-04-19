@@ -10,9 +10,10 @@ import {StepContext} from '../components/step.jsx';
  *
  * @param   {Integer > 0} length
  *          Number of steps you require
- * @return  {Integer ∈ [-1, length]}
- *          The current stepIndex you should follow; When used inside a `Step` component,
- *          the stepIndex could be -1 if your component is not stepped through yet.
+ * @return  {Integer ∈ [-1,length[}
+ *          The current stepIndex you should follow;
+ *          Note that if you use this hook in a component that is nested inside a `Step` component,
+ *          the index could be -1 if your component has not been "stepped" through,
  */
 const useStep = (length) => {
   const [deck, setDeck] = useSetDeck();
@@ -40,9 +41,9 @@ const useStep = (length) => {
   const newStep = {
     innerLength: length
   }
-  useEffect(() => {if (setStep) {setStep(newStep)}}, []);
+  useEffect(() => {if (setStep) {setStep(newStep)}}, [length]);
 
   return deck.preview ?
-    length-1 : Math.max(-1, Math.min(length-1, deck.stepIndex - step.start));
+    length-1 : Math.max(-1, Math.min(length - 1, deck.stepIndex - step.start));
 };
 export default useStep;

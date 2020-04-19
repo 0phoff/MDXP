@@ -161,29 +161,29 @@ const Step = ({
   const [length, render] = getStepableChildren(children, {useColumns});
   const [_, setStep] = useContext(StepContext);
   offset = parseInt(offset) || (setStep ? 0 : 1);
-  const step = useStep(length + offset);
-  
   const [state, setState] = useHOReducer(Array.from({length}, (_, i) => ({
     start: i + offset,
     length: length + offset,
     innerLength: 1,
   })));
+  const step = useStep(Math.max(...state.map(s => s.length)));
+
   const setNthState = (n) => (newChildState) => {
     setState((oldState) => {
-      const prevInnerLength = oldState[n].innerLength;
-      const length = oldState[n].length - prevInnerLength + newChildState.innerLength;
+      const diffInnerLength = newChildState.innerLength - oldState[n].innerLength
+      const length = oldState[n].length + diffInnerLength;
 
       return oldState.map((childState, i) => {
         if (i < n) {
           return {...childState, length};
         }
         else if (i == n) {
-          return {...childState, ...newChildState};
+          return {...childState, ...newChildState, length};
         }
         else {
-          return {...childState, length, start: childState.start - prevInnerLength + newChildState.innerLength};
+          return {...childState, length, start: childState.start + diffInnerLength};
         }
-      })
+      });
     });
   };
   const createStyledElement = (child, i, props) => {

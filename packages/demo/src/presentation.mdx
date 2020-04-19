@@ -66,32 +66,6 @@ Paragraph 2
 
 Paragraph 3
 
-</Step>
-
-<Step>
-
-Paragraph 1
-
-Paragraph 2
-
-Paragraph 3
-
-Paragraph 4
-
-</Step>
-
----
-
-# Double Steps Inverted
-
-<Step>
-
-Paragraph 1
-
-Paragraph 2
-
-Paragraph 3
-
 Paragraph 4 : The first Step component has the highest number of elements  
 and it still works, because the stepLength did not get overwritten.  
 How cool is that! (Seriously, it took me way too long to figure this one out...)
@@ -110,33 +84,6 @@ Paragraph 3
 
 ---
 
-# Nested Steps
-
-<Step>
-
-Paragraph 1
-
-Paragraph 2
-
-<SteppingComponent>
-
-I'm Changing Color!
-
-</SteppingComponent>
-
-<Step debug>
-
-1. We can also nest Step Components
-2. Into other Step Components
-3. #StepCeption
-4. How many levels do you dare to go down ?
-
-</Step>
-
-</Step>
-
----
-
 # List Steps 
 
 <Step styles={{
@@ -150,12 +97,15 @@ I'm Changing Color!
 - Like in this example there is only an unordered list
 - Then it will step through it's children
 - Instead of showing that element in one go!
+- Do you like the custom styling ?
 
 </Step>
 
 ---
 
 # Table Steps
+
+<Step>
 
 <Step>
 
@@ -167,8 +117,6 @@ I'm Changing Color!
 
 </Step>
 
-<br/>
-
 <Step useColumns>
 
 | Header 1 | Header 2 | Header 3 |
@@ -176,5 +124,35 @@ I'm Changing Color!
 | Row 1.1  | Row 1.2  | Row 1.3  |
 | Row 2.1  | Row 2.2  | Row 2.3  |
 | Row 3.1  | Row 3.2  | Row 3.3  |
+
+</Step>
+
+</Step>
+
+---
+
+# Nested Steps
+
+<Step>
+
+Paragraph 1
+
+Paragraph 2
+
+<Step>
+
+1. We can also nest Step Components
+2. Into other Step Components
+3. #StepCeption
+4. How many levels do you dare to go down ?
+
+</Step>
+
+<SteppingComponent>
+
+I'm a custom component that uses steps to change color!
+
+</SteppingComponent>
+
 
 </Step>

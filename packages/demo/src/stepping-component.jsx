@@ -9,4 +9,4 @@ const SteppingComponent = ({children, style}) => {
 
   return React.cloneElement(React.Children.only(children), {style: {...style, color: col}});
 }
-export default SteppingComponent;
+export default SteppingComponent

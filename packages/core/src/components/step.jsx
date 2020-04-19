@@ -2,10 +2,11 @@
 import {jsx} from 'theme-ui';
 import React, {useContext, useEffect, useReducer} from 'react';
 import useStep from '../hooks/use-step.js';
+import useHOReducer from '../hooks/use-ho-reducer.js';
 import getComponentType from '../util/component-type.js';
 
 
-export const StepContext = React.createContext([{start: 0, length: 0}]);
+export const StepContext = React.createContext([{start: 0, length: 1, innerLength: 1}]);
 StepContext.displayName = 'MDXP/StepContext';
 
 
@@ -131,7 +132,7 @@ const getStepableChildren = (children, {useColumns}) => {
  * depending on the `useColumns` parameter.
  *
  * @param   {Integer} offset
- *          Offset to the stepping algorithm; Usually the number of elements you want to show at start (default: 1)
+ *          Offset to the stepping algorithm; Usually the number of elements you want to show at start (default: nestedStep ? 0 : 1)
  * @param   {Boolean} useSx
  *          Whether to apply the styles as a `style` or `sx` property (default: false)
  * @param   {Boolean} useColumns
@@ -151,25 +152,51 @@ const getStepableChildren = (children, {useColumns}) => {
  */
 const Step = ({
   children,
-  offset=1,
+  offset=null,
   useSx=false,
   useColumns=false,
   styles={before: {visibility: 'hidden'}, after: {visibility: 'visible'}},
+  ...props
 }) => {
-  // Figure out children
   const [length, render] = getStepableChildren(children, {useColumns});
-  offset = parseInt(offset);
-  const step = useStep(length + offset) - offset;
+  const [_, setStep] = useContext(StepContext);
+  offset = parseInt(offset) || (setStep ? 0 : 1);
+  const step = useStep(length + offset);
+  
+  const [state, setState] = useHOReducer(Array.from({length}, (_, i) => ({
+    start: i + offset,
+    length: length + offset,
+    innerLength: 1,
+  })));
+  const setNthState = (n) => (newChildState) => {
+    setState((oldState) => {
+      const prevInnerLength = oldState[n].innerLength;
+      const length = oldState[n].length - prevInnerLength + newChildState.innerLength;
+
+      return oldState.map((childState, i) => {
+        if (i < n) {
+          return {...childState, length};
+        }
+        else if (i == n) {
+          return {...childState, ...newChildState};
+        }
+        else {
+          return {...childState, length, start: childState.start - prevInnerLength + newChildState.innerLength};
+        }
+      })
+    });
+  };
   const createStyledElement = (child, i, props) => {
+    const startIndex = state[i].start;
     let style = useSx ? child.props.sx : child.props.style;
-    if (i > step) {
+    if (startIndex > step) {
       style = {
         ...style,
         ...styles.base,
         ...styles.before,
       }
     }
-    else if (i == step) {
+    else if (startIndex == step) {
       style = {
         ...style,
         ...styles.base,
@@ -192,9 +219,17 @@ const Step = ({
       childProps.style = style;
     }
 
-    return React.cloneElement(child, childProps);
+    return (
+      <StepContext.Provider value={[state[i], setNthState(i)]}>
+        {React.cloneElement(child, childProps)}
+      </StepContext.Provider>
+    );
   };
 
-  return render(children, createStyledElement, {useColumns});
+  return (
+    <div {...props}>
+      {render(children, createStyledElement, {useColumns})}
+    </div>
+  );
 };
 export default Step;

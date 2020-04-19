@@ -19,4 +19,4 @@ const useHOReducer = (defaultState) => {
     defaultState
   );
 };
-
+export default useHOReducer;

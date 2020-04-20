@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import {jsx} from 'theme-ui';
 import React, {useContext, useEffect, useReducer} from 'react';
 import useStep from '../hooks/use-step.js';
 import useHOReducer from '../hooks/use-ho-reducer.js';
@@ -133,8 +131,6 @@ const getStepableChildren = (children, {useColumns}) => {
  *
  * @param   {Integer} offset
  *          Offset to the stepping algorithm; Usually the number of elements you want to show at start (default: nestedStep ? 0 : 1)
- * @param   {Boolean} useSx
- *          Whether to apply the styles as a `style` or `sx` property (default: false)
  * @param   {Boolean} useColumns
  *          [Tables only] Whether to step through rows or columns of a table (default: false)
  * @param   {object} styles
@@ -153,7 +149,6 @@ const getStepableChildren = (children, {useColumns}) => {
 const Step = ({
   children,
   offset=null,
-  useSx=false,
   useColumns=false,
   styles={before: {visibility: 'hidden'}, after: {visibility: 'visible'}},
   ...props
@@ -188,7 +183,7 @@ const Step = ({
   };
   const createStyledElement = (child, i, props) => {
     const startIndex = state[i].start;
-    let style = useSx ? child.props.sx : child.props.style;
+    let style = child.props.style;
     if (startIndex > step) {
       style = {
         ...style,
@@ -211,14 +206,7 @@ const Step = ({
       }
     }
 
-    const childProps = {...props};
-    if (useSx) {
-      childProps.sx = style;
-    }
-    else {
-      childProps.style = style;
-    }
-
+    const childProps = {...props, style};
     return (
       <StepContext.Provider value={[state[i], setNthState(i)]}>
         {React.cloneElement(child, childProps)}

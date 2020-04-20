@@ -2,10 +2,9 @@
 Release TODO lists for MDXP
 
 ## V0.1
-  - [ ] Default theme
-  - [ ] Base theme
-  - [ ] mergeThemes()
-  - [ ] WebPack demo
+  - [X] GoogleFont
+  - [X] Theming: baseTheme, defaultTheme, mergeThemes()
   - [ ] Documentation
   - [ ] Readme
+  - [ ] Change demo to webpack
 

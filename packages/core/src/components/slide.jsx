@@ -60,18 +60,19 @@ const Slide = ({children, slide, reference, step=0, preview=false, sx={}}) => {
 
   return (
     <DeckContext.Provider value={[state, setState]}>
-      <article
+      <div
         sx={{
           width: '100%',
           height: '100%',
           overflow: 'hidden',
           position: 'relative',
           boxSizing: 'border-box',
+          variant: 'styles.Slide',
           ...sx
         }}
       >
         {slideElement}
-      </article>
+      </div>
     </DeckContext.Provider>
   );
 };

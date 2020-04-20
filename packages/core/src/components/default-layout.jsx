@@ -4,6 +4,12 @@ import React from 'react';
 import {setLayoutType} from '../util/mdxp-types.jsx';
 
 
+/**
+ * Default Layout Component
+ * This is the component that is used as default layout,
+ * if you do not choose your own Layout component option in your `Deck`.
+ * See `Deck` for more information about the Layout option.
+ */
 const DefaultLayout = ({children, sx={}, ...props}) => (
   <div
     sx={{
@@ -18,6 +24,7 @@ const DefaultLayout = ({children, sx={}, ...props}) => (
       justifyContent: 'center',
       color: 'text',
       bg: 'background',
+      '& p': {textAlign: 'center'},
       ...sx
     }}
     {...props}

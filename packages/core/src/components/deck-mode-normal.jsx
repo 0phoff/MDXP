@@ -20,7 +20,7 @@ const NormalMode = ({children, basepath, ...props}) => {
 
   return (
     <RootContext.Provider value={[state, setState]}>
-      <section ref={element}>
+      <div ref={element}>
         <Router>
           <Redirect from='/' to={modepath + '0'} noThrow />
           <Redirect from='/:slide' to={modepath + ':slide/0'} noThrow />
@@ -29,7 +29,7 @@ const NormalMode = ({children, basepath, ...props}) => {
             {slides}
           </Slide>
         </Router>
-      </section>
+      </div>
     </RootContext.Provider>
   );
 };

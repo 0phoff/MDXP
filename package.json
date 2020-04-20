@@ -11,9 +11,14 @@
   "scripts": {
     "start": "lerna run --parallel start",
     "build": "lerna run build",
-    "clean": "lerna run clean"
+    "clean": "lerna run clean",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:serve": "docz serve",
+    "docz:clean": "rm -rf .docz"
   },
   "devDependencies": {
+    "docz": "^2.3.1",
     "lerna": "^3.20.2",
     "parcel-bundler": "^1.12.4",
     "react": "^16.13.1",

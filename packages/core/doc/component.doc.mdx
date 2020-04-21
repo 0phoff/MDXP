@@ -1,0 +1,122 @@
+---
+name: Components
+menu: MDXP/core
+route: core-components
+---
+
+import { Props } from 'docz'
+import Deck from '../src/components/deck.jsx'
+import Step from '../src/components/step.jsx'
+import MDXPDefaultLayout from '../src/components/default-layout.jsx'
+
+
+## Deck
+This is the main component, which creates the slide deck on your page.
+
+### Properties
+
+<Props of={Deck} />
+
+### Examples
+
+```jsx
+import Presentation from 'my-presentation.mdx'
+
+ReactDOM.render(
+  <Deck>
+    <Presentation />
+  </Deck>,
+  document.getElementById('root')
+);
+```
+
+---
+
+
+## Step
+This component can be used inside your slides, to step through certain items.
+It generates a step for each of its direct children and can style them depending on their respective order and the current `stepIndex`.
+The most common use case is to make items appear or disappear in order.
+
+If this component only has one child, it will implement the stepping behaviour on it's children.
+If the child component happens to be a table, it will step through its rows or columns,
+depending on the `useColumns` property.
+
+### Properties
+
+<Props of={Step} />
+
+> __NOTE__  
+> The styles are applied to the children according to the following rules:  
+>
+>   1. All children elements get `base` styles.
+>   2. Children whose index is greater than the stepIndex (aka they have not been stepped through), get styled with `before`.
+>   3. Children whose index is equal to the stepIndex, get styled with `current` if it exists.
+>   4. Children whose index is smaller or equal to the stepIndex (aka they have been stepped through), get styled with `after`.
+>
+> When different styles get applied to a child element, they get combined using spread operators, in the following order:
+>
+>   1. `styles.base`
+>   2. `styles.before`
+>   3. `styles.after`
+>   4. `styles.current`
+
+### Examples
+
+```md
+---
+
+# My awesome slide
+
+<!-- This will uncover the items from the list one after the other with a nice opacity transition,
+     and will highlight the current item in red. -->
+<Step styles={{
+  base:     {transition: 'opacity 0.5s ease-in-out'},
+  before:   {opacity: 0},
+  after:    {opacity: 1},
+  current:  {color: 'red'},
+}}>
+
+- Item 1
+- Item 2
+- Item 3
+- Item 4
+- Item 5
+
+</Step>
+
+---
+```
+
+---
+
+
+## DefaultLayout
+This is the default DefaultLayout that is used for your presentation,
+if you do not give one to the [Step](#step) component.
+
+It creates a div to contain all your elements, with the following default style:
+```css
+.DefaultLayout {
+  width: '100%';
+  height: '100%';
+  boxSizing: 'border-box';
+  position: 'relative';
+  overflow: 'hidden';
+  display: 'flex';
+  flexDirection: 'column';
+  alignItems: 'center';
+  justifyContent: 'center';
+  color: {theme.colors.text};
+  backgroundColor: {theme.colors.background};
+}
+
+.DefaultLayout p {
+  textAlign: 'center';
+}
+```
+
+
+### Properties
+
+<Props of={MDXPDefaultLayout} />

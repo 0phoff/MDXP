@@ -3,18 +3,6 @@ import {useSetDeck} from './use-deck.js';
 import {StepContext} from '../components/step.jsx';
 
 
-/**
- * Use Steps
- * This hook requests a number of steps for the current slide.
- * After running this hook, the stepLength of the slide should be at least what you requested (but can be more).
- *
- * @param   {Integer > 0} length
- *          Number of steps you require
- * @return  {Integer ∈ [-1,length[}
- *          The current stepIndex you should follow;
- *          Note that if you use this hook in a component that is nested inside a `Step` component,
- *          the index could be -1 if your component has not been "stepped" through,
- */
 const useStep = (length) => {
   const [deck, setDeck] = useSetDeck();
   const [step, setStep] = useContext(StepContext);

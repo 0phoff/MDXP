@@ -22,4 +22,4 @@ export const setMDXPType = (Component, MDXPType) => {
 }
 
 
-export const setLayoutType = (Component) => setMDXPType(Component, MDXPTypes.LAYOUT);
+export const setMDXPLayoutType = (Component) => setMDXPType(Component, MDXPTypes.LAYOUT);

@@ -1,0 +1,102 @@
+---
+name: Hooks
+menu: MDXP/core
+route: core-hooks
+---
+import {Arg, Return} from 'gatsby-theme-docz/src/components/tables.jsx'
+
+
+## useDeck
+This hook returns the deck context, which is an object with useful information about the state of the deck.
+
+<Return nameCol='Key' values={[
+['mode', ['deckModes', '/core-util#deckmodes'], 'The mode that the slide deck is currently displayed as.'],
+['slideLength', 'number > 0', 'Number of slides in the deck.'],
+['slideIndex', 'number ∈ [0, slideLength[', 'Index of the current slide.'],
+['stepLength', 'number > 0', 'Number of steps that the current slide contains.'],
+['stepIndex', 'number ∈ [0, stepLength[', 'Index of the current step.'],
+['rawStepIndex', 'string', 'Raw step value, as seen in the URL.'],
+['preview', 'bool', 'Whether the slide should be rendered in a static preview mode (mainly used for printing to pdf).'],
+]}/>
+
+### Examples
+
+```jsx
+import {useDeck} from '@MDXP/core'
+
+const Footer = (props) => {
+  const deck = useDeck();
+
+  return (
+    <span>
+      {deck.slideIndex} / {deck.slideLength}
+    </span>
+  );
+}
+```
+
+---
+
+## useStep
+This hook allows to allocate a certain number of steps for your component.
+
+<Arg values={[
+['length', 'number > 0', 'The number of steps you need to allocate.']
+]} />
+
+<Return values={[
+['stepIndex', 'number ∈ [-1,length[', 'The current stepIndex your component should follow.'] 
+]} />
+
+
+> __NOTE__  
+> If your component is being used in a [Step](/core-components#Step),
+> the returned stepIndex might be -1 to indicate that your component has not been "stepped" through yet.
+
+
+### Examples
+
+```jsx
+import {useStep} from '@MDXP/core'
+
+const ChangeColor = ({children}) => {
+  const colors = ['red', 'green', 'blue'];
+  const stepIndex = useStep(colors.length);
+
+  return (
+    <div style={{color: colors[stepIndex]}}>
+      {children}
+    </div>
+  );
+}
+```
+
+---
+
+## useNavigation
+This hooks returns an object with a number of useful navigation functions.
+
+<Return nameCol='Key' values={[
+['next', '() => void', 'Navigate to the next step or slide.'],
+['previous', '() => void', 'Navigate to the previous step or slide.'],
+['nextSlide', '(step=0:number) => void', 'Navigate to the next slide and specified step.'],
+['previousSlide', '(step=0:number) => void', 'Navigate to the previous slide and specified step.'],
+['navigate', '(slide:number, step=0:Integer, replace=false:Boolean) => void', 'Navigate to the specified slide and step, deciding whether to replace history or add a new page to it.'],
+['setMode', '(mode:deckMode) => void', 'Set the display mode the presentation'],
+]} />
+
+### Examples
+
+```jsx
+import {useNavigation} from '@MDXP/core'
+
+const LinkSlide = ({slide, step, text}) => {
+  const {navigate} = useNavigation();   // Destructure object to extract only navigate
+
+  return (
+    <button onClick={() => {navigate(slide, step)}}>
+      {text}
+    </button>
+  );
+}
+```

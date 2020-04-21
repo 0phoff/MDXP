@@ -10,26 +10,6 @@ import {
 } from '../util/navigation.js';
 
 
-/**
- * Use Navigation functions
- * This hooks returns a number of usefull navigation functions.
- * You can use negative numbers for the slide/step numbers
- * and these functions will compute the correct slide/step numbers, relative to the maximum.
- *
- * @return  {object} navigation
- * @return  {() => void} navigation.next
- *          Navigate to the next step or slide
- * @return  {() => void} navigation.previous
- *          Navigate to the previous step or slide
- * @return  {(step=0:Integer) => void} navigation.nextSlide
- *          Navigate to the next slide and specified step
- * @return  {(step=0:Integer) => void} navigation.previousSlide
- *          Navigate to the previous slide and specified step
- * @return  {(slide:Integer, step=0:Integer, replace:Boolean) => void} navigation.navigate
- *          Navigate to the specified slide and step, deciding whether to replace history or add a new page to it
- * @return  {(mode:deckMode) => void} navigation.setMode
- *          Set the display mode the presentation
- */
 const useNavigation = () => {
   const [root, setRoot] = useSetRoot();
   const [deck, setDeck] = useSetDeck();

@@ -1,0 +1,203 @@
+---
+name: Util
+menu: MDXP/core
+route: core-util
+---
+import {Arg, Return} from 'gatsby-theme-docz/src/components/tables.jsx'
+
+
+## deckModes
+Enum object which contains the different modes for the deck to be in.
+It can be used for with the `setMode()` function from the [useNavigation](/core-hooks#usenavigation) hook.
+
+```js
+const deckModes = {
+  NORMAL:     0,
+  PRESENTER:  1,
+  OVERVIEW:   2,
+  GRID:       3,
+  PRINT:      4,
+}
+```
+
+---
+
+
+## baseTheme
+Base theme object that is always being merged into the given theme, to provide sane defaults for some things.
+You can overwrite any of its properties by providing your own values in your theme.
+
+```js
+export const baseTheme = {
+  colors: {
+    text: '#000',
+    background: '#FFF',
+  },
+  fonts: {
+    body: 'system-ui, sans-serif',
+    monospace: 'Menlo, monospace',
+  },
+  fontWeights: {
+    body: 400,
+  },
+  lineHeights: {
+    body: 1.5,
+  },
+  styles: {
+    root: {
+      fontFamily: 'system-ui, sans-serif',
+    },
+    img: {
+      width: '100vw',
+      maxWidth: '100%',
+      height: '100vh',
+      objectFit: 'contain',
+    },
+    code: {
+      fontFamily: 'monospace',
+    },
+    pre: {
+      fontFamily: 'monospace',
+    },
+    Slide: {
+      fontFamily: 'body',
+      fontSize: '1.5rem',
+    },
+  }
+};
+```
+
+---
+
+
+## defaultTheme
+This is the default theme that is used for your presentation,
+if you do not give one to the [Deck](/core-components#deck) component.
+
+```js
+const defaultTheme = {
+  colors: {
+    text: '#000',
+    background: '#FFF',
+    primary: '#CCC',
+    secondary: '#555',
+    accent: '#F9AC00',
+    muted: '#888',
+  },
+  fonts: {
+    heading: 'inherit',
+  },
+  fontWeights: {
+    heading: 700,
+  },
+  lineHeights: {
+    heading: 1.125,
+  },
+  text: {
+    heading: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+    },
+  },
+  styles: {
+    h1: {
+      variant: 'text.heading',
+      textTransform: 'uppercase',
+    },
+    h2: {
+      variant: 'text.heading',
+    },
+    h3: {
+      variant: 'text.heading',
+    },
+    h4: {
+      variant: 'text.heading',
+    },
+    h5: {
+      variant: 'text.heading',
+    },
+    h6: {
+      variant: 'text.heading',
+    },
+  }
+};
+```
+
+---
+
+
+## mergeThemes
+This function can be used to merge different theme objects together, overwriting with the latest theme given.
+
+<Arg values={[
+['...themes', 'Object', 'The theme objects you want to merge together.']
+]} />
+
+<Return values={[
+['combinedTheme', 'Object', 'New Theme-UI theme object, which is the result of merging all passed themes together.']
+]} />
+
+---
+
+
+## MDXPTypes
+Some components hold a special meaning for the MDXP code and will be handled specially.  
+This is the enum object which contains the different types of special MDXP components.
+
+```js
+const MDXPTypes = {
+  NONE: 0,
+  LAYOUT: 1,
+};
+```
+
+---
+
+
+## getMDXPType
+This function can be used to retrieve the MDXP type of a component.
+
+<Arg values={[
+['component', 'componentType', 'Component of which you would like to know the MDXP type of.'] 
+]} />
+
+<Return values={[
+['type', ['MDXPTypes', '#mdxptypes'], 'Type of the component (default: NONE).']
+]} />
+
+---
+
+
+## setMDXPLayoutType
+This is a higher-order component, which turns your component into a MDXP layout component.
+
+<Arg values={[
+['component', 'componentType', 'Component of which you would like to be a layout component.'] 
+]} />
+
+<Return values={[
+['component', 'componentType', 'MDXP Layout component of your component']
+]} />
+
+### Examples
+
+```jsx
+import {setMDXPLayoutType} from '@MDXP/core'
+
+const TomatoLayout = ({children, ...props}) => (
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+      backgroundColor: 'tomato',
+      color: 'white'
+    }}
+  >
+    {children}
+  </div>
+)
+
+export default setMDXPLayoutType(TomatoLayout);
+```

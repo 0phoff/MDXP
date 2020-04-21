@@ -5,7 +5,7 @@ Release TODO lists for MDXP
   - [X] GoogleFont
   - [X] Theming: baseTheme, defaultTheme, mergeThemes()
   - [X] Documentation website
-  - [ ] Documentation: API
+  - [X] Documentation: API
   - [ ] Documentation: Guides
   - [ ] Readme
   - [ ] Change demo to webpack

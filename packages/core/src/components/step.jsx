@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useReducer} from 'react';
+import PropTypes from 'prop-types';
 import useStep from '../hooks/use-step.js';
 import useHOReducer from '../hooks/use-ho-reducer.js';
 import getComponentType from '../util/component-type.js';
@@ -119,33 +120,6 @@ const getStepableChildren = (children, {useColumns}) => {
 };
 
 
-/**
- * Step Component
- * This component generates a step for each of its direct children
- * and can style them depending on their respective order and the current stepIndex.
- * The most common use case is to make items appear or disappear in order.
- *
- * If this component only has one child, it will implement the stepping behaviour on it's children.
- * If the child component happens to be a table, it will step through its rows or columns,
- * depending on the `useColumns` parameter.
- *
- * @param   {Integer} offset
- *          Offset to the stepping algorithm; Usually the number of elements you want to show at start (default: nestedStep ? 0 : 1)
- * @param   {Boolean} useColumns
- *          [Tables only] Whether to step through rows or columns of a table (default: false)
- * @param   {object} styles
- *          styles to apply to the child elements
- * @param   {object} styles.before
- *          styles to apply to the child elements before the step reaches them (default: {visibility: 'hidden'})
- * @param   {object} styles.after
- *          styles to apply to the child elements after the step has reached them (default: {visibility: 'visible'})
- * @param   {object} styles.current
- *          styles to apply to the child elements when the step reaches them (default: same as `styles.after`)
- * @param   {object} styles.base
- *          styles to apply to all child elements
- *
- * TODO : add examples
- */
 const Step = ({
   children,
   offset=null,
@@ -195,7 +169,8 @@ const Step = ({
       style = {
         ...style,
         ...styles.base,
-        ...(styles.current || styles.after),
+        ...styles.after,
+        ...styles.current,
       }
     }
     else {
@@ -220,4 +195,24 @@ const Step = ({
     </div>
   );
 };
+
+Step.propTypes = {
+  /** The number of elements you want to show at start. */
+  offset: PropTypes.number,
+
+  /** Whether to step through rows or columns of a table. This property is only used if the component has a single table child. */
+  useColumns: PropTypes.bool,
+
+  /** Styles that will be applied to the children (see note below).*/
+  styles: PropTypes.shape({
+    before: PropTypes.object,
+    after: PropTypes.object,
+    current: PropTypes.object,
+    base: PropTypes.object,
+  }),
+
+  /** Additional props which will be set to a surrounding div. */
+  props: PropTypes.object,
+};
+
 export default Step;

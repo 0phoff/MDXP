@@ -3,10 +3,14 @@ export default {
   dest: '/docs',
   base: '/MDXPresenter',
   title: 'MDXP',
-  description: 'Build your slides easily with MDX and Present them without any hassle',
+  description: 'Web Slides Made Easy',
   files: '**/*.doc.mdx',
   menu: [
     'Introduction',
     'Getting Started',
   ],
+  themeConfig: {
+    showDarkModeSwitch: false,
+    showMarkdownEditButton: false,
+  },
 }

@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import {Link} from 'gatsby';
 
+
 export const Logo = () => {
   const [hover, setHover] = useState(false);
   const textStyle = hover ?
     {fill: '#000000', fillOpacity: 1, transition: 'fill-opacity 0.3s ease-in 0.5s'} :
     {fill: '#000000', fillOpacity: 0};
   const arrowStyleUp = hover ?
-    {fill: '#f9ac00', fillOpacity: 0, transform: 'translate(0, -15px)', transition: 'all 0.5s ease-out'} :
+    {fill: '#f9ac00', fillOpacity: 0, transform: 'translate(0, -175%)', transition: 'all 0.5s ease-out'} :
     {fill: '#f9ac00', fillOpacity: 1,};
   const arrowStyleDown = hover ?
-    {fill: '#f9ac00', fillOpacity: 0, transform: 'translate(0, 15px)', transition: 'all 0.5s ease-out'} :
+    {fill: '#f9ac00', fillOpacity: 0, transform: 'translate(0, 175%)', transition: 'all 0.5s ease-out'} :
     {fill: '#f9ac00', fillOpacity: 1,};
 
   return (

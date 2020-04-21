@@ -1,12 +1,16 @@
 {
   "name": "MDXP",
-  "description": "Build your slides easily with MDX and Present them without any hassle",
+  "description": "Web Slides Made Easy",
   "repository": "https://github.com/0phoff/MDXPresenter",
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
+  ],
+  "nohoist": [
+    "examples/*"
   ],
   "scripts": {
     "start": "lerna run --parallel start",
@@ -15,7 +19,7 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz serve",
-    "docz:clean": "rm -rf .docz"
+    "docz:clean": "docz clean && rm -rf .docz"
   },
   "devDependencies": {
     "docz": "^2.3.1",

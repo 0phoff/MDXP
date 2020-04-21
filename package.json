@@ -19,7 +19,7 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz serve",
-    "docz:clean": "docz clean && rm -rf .docz"
+    "docz:clean": "docz clean && rm -rf .docz && rm -rf docs"
   },
   "devDependencies": {
     "docz": "^2.3.1",

@@ -7,7 +7,6 @@ route: core-components
 import { Props } from 'docz'
 import Deck from '../src/components/deck.jsx'
 import Step from '../src/components/step.jsx'
-import MDXPDefaultLayout from '../src/components/default-layout.jsx'
 
 
 ## Deck
@@ -87,36 +86,3 @@ depending on the `useColumns` property.
 
 ---
 ```
-
----
-
-
-## DefaultLayout
-This is the default DefaultLayout that is used for your presentation,
-if you do not give one to the [Step](#step) component.
-
-It creates a div to contain all your elements, with the following default style:
-```css
-.DefaultLayout {
-  width: '100%';
-  height: '100%';
-  boxSizing: 'border-box';
-  position: 'relative';
-  overflow: 'hidden';
-  display: 'flex';
-  flexDirection: 'column';
-  alignItems: 'center';
-  justifyContent: 'center';
-  color: {theme.colors.text};
-  backgroundColor: {theme.colors.background};
-}
-
-.DefaultLayout p {
-  textAlign: 'center';
-}
-```
-
-
-### Properties
-
-<Props of={MDXPDefaultLayout} />

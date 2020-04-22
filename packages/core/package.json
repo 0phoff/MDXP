@@ -23,8 +23,8 @@
   },
 
   "scripts": {
-    "start": "microbundle watch --jsx React.createElement -o dist",
-    "build": "microbundle build --jsx React.createElement -o dist",
+    "start": "microbundle watch --no-compress --jsx React.createElement -o dist",
+    "build": "microbundle build --no-compress --jsx React.createElement -o dist",
     "clean": "rm -rf dist/*"
   },
 

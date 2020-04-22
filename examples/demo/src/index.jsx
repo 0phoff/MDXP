@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import Deck from '@MDXP/core';
 
 import MDXPresentation from './presentation.mdx';
-import DummyLayout from './dummyLayout.jsx';
 
 
 ReactDOM.render(
-  <Deck Layout={DummyLayout}>
+  <Deck>
     <MDXPresentation />
   </Deck>,
   document.getElementById('root')

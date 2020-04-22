@@ -14,9 +14,6 @@ const mergeObjectOrArray = (a, b) => {
   return b ? b : a;
 };
 
-/**
- * TODO
- */
 export const mergeThemes = (...themes) => (
   themes.reduce(
     (accTheme, newTheme) => {
@@ -33,9 +30,6 @@ export const mergeThemes = (...themes) => (
   )
 );
 
-/**
- * TODO
- */
 export const baseTheme = {
   colors: {
     text: '#000',
@@ -56,9 +50,8 @@ export const baseTheme = {
       fontFamily: 'system-ui, sans-serif'
     },
     img: {
-      width: '100vw',
-      maxWidth: '100%',
-      height: '100vh',
+      width: '100%',
+      maxHeight: '100%',
       objectFit: 'contain'
     },
     code: {
@@ -74,9 +67,6 @@ export const baseTheme = {
   }
 };
 
-/**
- * TODO
- */
 export const defaultTheme = {
   colors: {
     text: '#000',

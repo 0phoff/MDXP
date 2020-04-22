@@ -1,14 +1,33 @@
 {
   "name": "@MDXP/core",
   "version": "0.0.0",
+  "description": "Web Slides Made Easy",
+  "repository": "https://github.com/0phoff/MDXPresenter",
+  "author": "0phoff <0phoff@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+
   "source": "src/index.jsx",
-  "main": "dist/core.umd.js",
-  "module": "dist/core.m.js",
+  "module": "dist/core.module.js",
+  "main": "dist/core.js",
+  "umd:main": "dist/core.umd.js",
+  "jsnext:main": "dist/core.modern.js",
+  "unpkg": "dist/core.umd.js",
+  "exports": {
+    ".": {
+      "browser": "./dist/core.module.js",
+      "umd": "./dist/core.umd.js",
+      "import": "./dist/core.module.js",
+      "require": "./dist/core.js"
+    }
+  },
+
   "scripts": {
     "start": "microbundle watch --jsx React.createElement -o dist",
     "build": "microbundle build --jsx React.createElement -o dist",
-    "clean": "rm -rf dist/"
+    "clean": "rm -rf dist/*"
   },
+
   "peerDependencies": {
     "@mdx-js/react": "^1.5.8",
     "react": "^16.13.1",

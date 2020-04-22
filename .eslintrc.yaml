@@ -1,0 +1,57 @@
+root: true
+
+parserOptions:
+  ecmaVersion: 9
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+
+env:
+  es6: true
+  node: true
+
+plugins:
+  - import
+
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+  - plugin:import/errors
+  - xo
+
+rules:
+  no-eq-null: off
+  no-negated-condition: off
+  no-unused-vars:
+    - error
+    - args: after-used
+      argsIgnorePattern: '^_'
+  no-var: error
+  import/no-extraneous-dependencies: error
+  no-console: off
+  no-prototype-builtins: off
+  react/prop-types: off
+  react/display-name: off
+  react/no-children-prop: off
+  react/react-in-jsx-scope: warn
+  indent:
+    - warn
+    - 2
+
+settings:
+  react:
+    version: 16.3.1
+
+overrides:
+  - files: '*.mdx'
+    extends:
+      - plugin:mdx/recommended
+      - plugin:mdx/overrides
+    rules:
+      import/no-extraneous-dependencies: 0
+
+  - files:
+      - 'examples/**/*.js'
+    rules:
+      import/no-unresolved: off
+      import/no-extraneous-dependencies: off

@@ -1,0 +1,9 @@
+dist
+build
+node_modules
+public
+.docz
+docs
+*.min.js
+
+/src

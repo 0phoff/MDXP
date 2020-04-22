@@ -1,7 +1,6 @@
 import {useReducer} from 'react';
 
-
-const useHOReducer = (defaultState) => {
+const useHOReducer = defaultState => {
   return useReducer(
     (state, newState) => {
       return newState(state);
@@ -9,4 +8,5 @@ const useHOReducer = (defaultState) => {
     defaultState
   );
 };
+
 export default useHOReducer;

@@ -16,15 +16,22 @@
     "start": "lerna run --parallel start",
     "build": "lerna run build",
     "clean": "lerna run clean",
+    "lint": "eslint . --cache --ext js -f friendly",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz serve",
     "docz:clean": "docz clean && rm -rf .docz && rm -rf docs"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
     "docz": "^2.3.1",
+    "eslint": "^6.8.0",
+    "eslint-config-xo": "^0.29.1",
+    "eslint-formatter-friendly": "^7.0.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-mdx": "^1.6.9",
+    "eslint-plugin-react": "^7.19.0",
     "lerna": "^3.20.2",
-    "parcel-bundler": "^1.12.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

@@ -5,9 +5,8 @@ import {
   nextSlide,
   previous,
   previousSlide,
-  setMode,
+  setMode
 } from '../util/navigation.js';
-
 
 const keys = {
   right: 39,
@@ -20,60 +19,67 @@ const keys = {
   g: 71,
   esc: 27,
   pageUp: 33,
-  pageDown: 34,
-}
-
+  pageDown: 34
+};
 
 const useKeyboard = (target, deck, setDeck) => {
   const [root, setRoot] = useSetRoot();
-  
-  const handleKeyboard = (e) => {
-    const { metaKey, ctrlKey, shiftKey, altKey } = e;
-    if (metaKey || ctrlKey) return
+
+  const handleKeyboard = e => {
+    const {metaKey, ctrlKey, shiftKey, altKey} = e;
+    if (metaKey || ctrlKey) {
+      return;
+    }
 
     switch (e.keyCode) {
-      case keys.left:
-      case keys.up:
-      case keys.pageUp:
-        if (shiftKey) {
-          previousSlide(root, deck, setDeck);
-        }
-        else {
-          previous(root, deck, setDeck);
-        }
-        break;
+    case keys.left:
+    case keys.up:
+    case keys.pageUp:
+      if (shiftKey) {
+        previousSlide(root, deck, setDeck);
+      } else {
+        previous(root, deck, setDeck);
+      }
 
-      case keys.right:
-      case keys.down:
-      case keys.pageDown:
-        if (shiftKey) {
-          nextSlide(root, deck, setDeck);
-        }
-        else {
-          next(root, deck, setDeck);
-        }
-        break;
+      break;
 
-      case keys.space:
-        if (shiftKey) {
-          previous(root, deck, setDeck);
-        }
-        else {
-          next(root, deck, setDeck);
-        }
-        break;
+    case keys.right:
+    case keys.down:
+    case keys.pageDown:
+      if (shiftKey) {
+        nextSlide(root, deck, setDeck);
+      } else {
+        next(root, deck, setDeck);
+      }
+
+      break;
+
+    case keys.space:
+      if (shiftKey) {
+        previous(root, deck, setDeck);
+      } else {
+        next(root, deck, setDeck);
+      }
+
+      break;
+
+    default:
+      break;
     }
   };
 
   useEffect(() => {
-    const currentTarget = (target && target.hasOwnProperty("current")) ? target.current : target;
-    if (currentTarget)
+    const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
+    if (currentTarget) {
       currentTarget.addEventListener('keydown', handleKeyboard);
+    }
 
     return () => {
-      if (currentTarget)
+      if (currentTarget) {
         currentTarget.removeEventListener('keydown', handleKeyboard);
-    }
+      }
+    };
   }, [root, deck]);
-}
+};
+
 export default useKeyboard;

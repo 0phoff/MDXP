@@ -1,18 +1,19 @@
 import {useReducer} from 'react';
 
-
-const useMerger = (defaultState) => {
+const useMerger = defaultState => {
   return useReducer(
     (state, next) => {
       if (typeof next === 'function') {
         next = next(state);
       }
+
       return {
         ...state,
-        ...next,
-      }
+        ...next
+      };
     },
     defaultState
   );
 };
+
 export default useMerger;

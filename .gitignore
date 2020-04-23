@@ -4,3 +4,4 @@ dist
 .docz
 public/.original
 .eslintcache
+yarn-error.log

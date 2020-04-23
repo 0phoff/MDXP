@@ -1,10 +1,11 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 
 module.exports = {
   entry: "./src/index.jsx",
   output: {
-    path: path.resolve(__dirname, "dist/web"),
+    path: path.resolve(__dirname, "dist/onepage"),
     filename: "main.js",
     publicPath: "/"
   },
@@ -39,7 +40,7 @@ module.exports = {
               {
                 loader: "url-loader",
                 options: {
-                  limit: 8192
+                  limit: 10485760   // 10 Mb limit -> aim is to present and have single file if possible
                 }
               }
             ]
@@ -57,6 +58,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, "src/index.html"),
       filename: "./index.html",
-    })
+    }),
+    new InlineChunkHtmlPlugin(HtmlWebPackPlugin, [/.(js|css)$/]),
   ]
 };

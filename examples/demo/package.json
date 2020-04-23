@@ -5,7 +5,11 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "clean": "rm -rf dist/*"
+    "build:web": "webpack --mode production",
+    "build:onepage": "webpack --config webpack.onepage.js --mode production && rm -f dist/onepage/*.js && rm -f dist/onepage/*.css",
+    "clean": "rm -rf dist/**/*",
+    "clean:web": "rm -rf dist/web/*",
+    "clean:onepage": "rm -rf dist/onepage/*"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -17,6 +21,8 @@
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.2.0",
+    "react-dev-utils": "^10.2.1",
+    "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"

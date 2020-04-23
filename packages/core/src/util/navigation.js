@@ -3,7 +3,7 @@ import deckModes from './deck-modes.js';
 export const navigate = (history, root, deck, setDeckContext, slide, step = 0, replace = false) => {
   const {mode} = root;
   const {slideIndex, stepLength} = deck;
-  const modepath = deckModes.properties[mode].path
+  const modepath = deckModes.properties[mode].path;
 
   const newDeckContext = {
     slideIndex: slide,
@@ -27,6 +27,7 @@ export const navigate = (history, root, deck, setDeckContext, slide, step = 0, r
   } else {
     history.push(`/${modepath}/${slide}/${step}`);
   }
+
   setDeckContext(newDeckContext);
 };
 

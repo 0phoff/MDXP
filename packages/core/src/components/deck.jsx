@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {ThemeProvider} from 'theme-ui';
 import {Helmet} from 'react-helmet';
@@ -6,7 +6,6 @@ import wrapper from './wrapper.jsx';
 import defaultTheme, {baseTheme, mergeThemes} from '../util/theme.js';
 import DefaultLayout from './default-layout.jsx';
 import defaultComponents from './default-components.js';
-
 
 const GoogleFont = ({theme}) => {
   if (!theme.googleFont) {
@@ -17,25 +16,22 @@ const GoogleFont = ({theme}) => {
   if (Array.isArray(googleFont)) {
     return (
       <Helmet>
-        {googleFont.map((font) => (<link rel="stylesheet" href={font} />))}
+        {googleFont.map((font, i) => (<link rel="stylesheet" href={font} key={i} />))}
       </Helmet>
     );
   }
-  else {
-    return (
-      <Helmet>
-        <link rel="stylesheet" href={googleFont} />
-      </Helmet>
-    );
-  }
-}
 
+  return (
+    <Helmet>
+      <link rel="stylesheet" href={googleFont} />
+    </Helmet>
+  );
+};
 
-const Deck = ({children, theme=defaultTheme, Layout=DefaultLayout, components={}, ...props}) => {
+const Deck = ({children, theme = defaultTheme, Layout = DefaultLayout, components = {}, ...props}) => {
   if (Array.isArray(theme)) {
     theme = mergeThemes(baseTheme, ...theme);
-  }
-  else {
+  } else {
     theme = mergeThemes(baseTheme, theme);
   }
 
@@ -49,7 +45,7 @@ const Deck = ({children, theme=defaultTheme, Layout=DefaultLayout, components={}
           ...defaultComponents,
           DefaultLayout: Layout,
           ...components,
-          wrapper: wrapper(Layout, props),
+          wrapper: wrapper(Layout, props)
         }}
       >
         {children}
@@ -67,9 +63,9 @@ Deck.propTypes = {
 
   /** The elements inside this object get passed to MDXProvider and allow you to specify components, so that you do not need to import them in your presentations. */
   components: PropTypes.objectOf(PropTypes.elementType),
-  
+
   /** Additional props which will be passed to the main Router of the Deck. */
-  props: PropTypes.object,
+  props: PropTypes.object
 };
 
 export default Deck;

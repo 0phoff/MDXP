@@ -6,29 +6,25 @@ import useRoot from '../hooks/use-root.js';
 import useMerger from '../hooks/use-merger.js';
 import useKeyboard from '../hooks/use-keyboard.js';
 
-
 export const DeckContext = React.createContext(null);
 DeckContext.displayName = 'MDXP/DeckContext';
-
 
 const getIndex = (slide, slideLength) => {
   if (slide >= slideLength) {
     slide = slideLength - 1;
-  }
-  else if (slide < 0) {
+  } else if (slide < 0) {
     slide = Math.max(0, slideLength + slide);
   }
 
   return slide;
 };
 
-
-const Slide = ({children, reference, preview=false, sx={}}) => {
+const Slide = ({children, reference, preview = false, sx = {}}) => {
   // Data
-  const {slide, step=0} = useParams();
+  const {slide, step = 0} = useParams();
   const rootContext = useRoot();
   const slideIndex = getIndex(parseInt(slide), rootContext.slideLength);
-  const slideElement = React.Children.count(children) == 1 ?
+  const slideElement = React.Children.count(children) === 1 ?
     React.Children.only(children).props.children[slideIndex] : children[slideIndex];
   const [state, setState] = useMerger({
     mode: rootContext.mode,
@@ -37,26 +33,8 @@ const Slide = ({children, reference, preview=false, sx={}}) => {
     stepLength: 1,
     stepIndex: 0,
     rawStepIndex: parseInt(step),
-    preview,
+    preview
   });
-
-  // Functionality
-  const setStepLength = (length) => {
-    if (length > state.stepLength) {
-      let stepIndex = state.rawStepIndex;
-      if (stepIndex >= length) {
-        stepIndex = length - 1;
-      }
-      else if (stepIndex < 0) {
-        stepIndex = Math.max(0, length + stepIndex);
-      }
-
-      setState({
-        stepLength: length,
-        stepIndex: stepIndex,
-      });
-    }
-  };
 
   useKeyboard(reference, state, setState);
 
@@ -78,4 +56,5 @@ const Slide = ({children, reference, preview=false, sx={}}) => {
     </DeckContext.Provider>
   );
 };
+
 export default Slide;

@@ -16,7 +16,8 @@
     "start": "lerna run --parallel start",
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "lint": "eslint . --cache --ext js -f friendly",
+    "lint": "eslint . --cache --ext js,jsx -f friendly",
+    "lint:fix": "eslint . --cache --ext js,jsx -f friendly --fix",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:serve": "docz serve",
@@ -31,8 +32,18 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-mdx": "^1.6.9",
     "eslint-plugin-react": "^7.19.0",
+    "husky": "^4.2.5",
     "lerna": "^3.20.2",
+    "lint-staged": "^10.1.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "yarn lint:fix"
   }
 }

@@ -5,15 +5,14 @@ import RootContext from '../util/root-context.js';
 import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 
-
-const NormalMode = ({children, basepath, ...props}) => {
+const NormalMode = ({children, basepath}) => {
   // Data
   const element = useRef(null);
   const {path, url} = useRouteMatch();
   const [state, setState] = useMerger({
     basepath,
     mode: deckModes.NORMAL,
-    slideLength: children.length,
+    slideLength: children.length
   });
 
   return (
@@ -32,4 +31,5 @@ const NormalMode = ({children, basepath, ...props}) => {
     </RootContext.Provider>
   );
 };
+
 export default NormalMode;

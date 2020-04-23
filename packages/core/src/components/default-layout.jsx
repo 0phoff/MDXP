@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
-import React from 'react';
 import PropTypes from 'prop-types';
 import {setMDXPLayoutType} from '../util/mdxp-types.jsx';
-
 
 /**
  * Default Layout Component
@@ -11,7 +9,7 @@ import {setMDXPLayoutType} from '../util/mdxp-types.jsx';
  * if you do not choose your own Layout component option in your `Deck`.
  * See `Deck` for more information about the Layout option.
  */
-const DefaultLayout = ({children, sx={}, ...props}) => (
+const DefaultLayout = ({children, sx = {}, ...props}) => (
   <div
     sx={{
       width: '100%',
@@ -39,7 +37,7 @@ DefaultLayout.propTypes = {
   sx: PropTypes.object,
 
   /** Additional props which will be added to the layout div */
-  props: PropTypes.object,
+  props: PropTypes.object
 };
 
 export default setMDXPLayoutType(DefaultLayout);

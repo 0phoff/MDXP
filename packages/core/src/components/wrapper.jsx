@@ -4,17 +4,16 @@ import MDXPTypes, {getMDXPType} from '../util/mdxp-types.jsx';
 
 const wrapper = (DefaultLayout, passedProps) => {
   const wrapLayout = (elements, key) => {
-    if ((elements.length === 1) && (getMDXPType(elements[0]) == MDXPTypes.LAYOUT)) {
+    if ((elements.length === 1) && (getMDXPType(elements[0]) === MDXPTypes.LAYOUT)) {
       return React.cloneElement(elements[0], {key: key});
     }
-    else {
-      return (
-        <DefaultLayout key={key}>{elements}</DefaultLayout>
-      );
-    }
+
+    return (
+      <DefaultLayout key={key}>{elements}</DefaultLayout>
+    );
   };
 
-  const Wrapper = (props) => {
+  const Wrapper = props => {
     const children = React.Children.toArray(props.children);
 
     // Get split indices
@@ -37,7 +36,7 @@ const wrapper = (DefaultLayout, passedProps) => {
     return (<DeckMode {...passedProps}>{slides}</DeckMode>);
   };
 
-  return Wrapper
+  return Wrapper;
 };
 
 export default wrapper;

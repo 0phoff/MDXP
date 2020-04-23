@@ -4,7 +4,6 @@ import Deck from '@MDXP/core';
 
 import MDXPresentation from './presentation.mdx';
 
-
 ReactDOM.render(
   <Deck>
     <MDXPresentation />

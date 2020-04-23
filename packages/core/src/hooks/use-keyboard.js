@@ -6,7 +6,7 @@ import {
   nextSlide,
   previous,
   previousSlide,
-  setMode
+  setMode as _setMode
 } from '../util/navigation.js';
 
 const keys = {
@@ -25,10 +25,10 @@ const keys = {
 
 const useKeyboard = (target, deck, setDeck) => {
   const history = useHistory();
-  const [root, setRoot] = useSetRoot();
+  const [root, _setRoot] = useSetRoot();
 
   const handleKeyboard = e => {
-    const {metaKey, ctrlKey, shiftKey, altKey} = e;
+    const {metaKey, ctrlKey, shiftKey, _altKey} = e;
     if (metaKey || ctrlKey) {
       return;
     }

@@ -6,7 +6,6 @@
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
   "private": false,
-
   "source": "src/index.jsx",
   "module": "dist/core.module.js",
   "main": "dist/core.js",
@@ -21,13 +20,11 @@
       "require": "./dist/core.js"
     }
   },
-
   "scripts": {
     "start": "microbundle watch --no-compress --jsx React.createElement -o dist",
     "build": "microbundle build --no-compress --jsx React.createElement -o dist",
     "clean": "rm -rf dist/*"
   },
-
   "peerDependencies": {
     "@mdx-js/react": "^1.5.8",
     "react": "^16.13.1",
@@ -37,8 +34,8 @@
     "microbundle": "^0.12.0-next.8"
   },
   "dependencies": {
-    "@reach/router": "^1.3.3",
     "prop-types": "^15.7.2",
-    "react-helmet": "^6.0.0"
+    "react-helmet": "^6.0.0",
+    "react-router-dom": "^5.1.2"
   }
 }

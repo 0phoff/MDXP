@@ -89,7 +89,8 @@ export const defaultTheme = {
     heading: {
       fontFamily: 'heading',
       fontWeight: 'heading',
-      lineHeight: 'heading'
+      lineHeight: 'heading',
+      textAlign: 'center'
     }
   },
   styles: {

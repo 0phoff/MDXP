@@ -1,9 +1,9 @@
-import {navigate as reachNavigate} from '@reach/router';
 import deckModes from './deck-modes.js';
 
-export const navigate = (root, deck, setDeckContext, slide, step = 0, replace = false) => {
-  const {modepath} = root;
+export const navigate = (history, root, deck, setDeckContext, slide, step = 0, replace = false) => {
+  const {mode} = root;
   const {slideIndex, stepLength} = deck;
+  const modepath = deckModes.properties[mode].path
 
   const newDeckContext = {
     slideIndex: slide,
@@ -22,50 +22,59 @@ export const navigate = (root, deck, setDeckContext, slide, step = 0, replace = 
     newDeckContext.stepLength = 1;
   }
 
-  reachNavigate(`${modepath}${slide}/${step}`, {replace});
+  if (replace) {
+    history.replace(`/${modepath}/${slide}/${step}`);
+  } else {
+    history.push(`/${modepath}/${slide}/${step}`);
+  }
   setDeckContext(newDeckContext);
 };
 
-export const next = (root, deck, setDeckContext) => {
+export const next = (history, root, deck, setDeckContext) => {
   const {slideIndex, slideLength, stepIndex, stepLength} = deck;
 
   if (stepIndex < stepLength - 1) {
-    navigate(root, deck, setDeckContext, slideIndex, stepIndex + 1, true);
+    navigate(history, root, deck, setDeckContext, slideIndex, stepIndex + 1, true);
   } else if (slideIndex < slideLength - 1) {
-    navigate(root, deck, setDeckContext, slideIndex + 1, 0);
+    navigate(history, root, deck, setDeckContext, slideIndex + 1, 0);
   }
 };
 
-export const nextSlide = (root, deck, setDeckContext, step = 0) => {
+export const nextSlide = (history, root, deck, setDeckContext, step = 0) => {
   const {slideIndex, slideLength} = deck;
 
   if (slideIndex < slideLength - 1) {
-    navigate(root, deck, setDeckContext, slideIndex + 1, step);
+    navigate(history, root, deck, setDeckContext, slideIndex + 1, step);
   }
 };
 
-export const previous = (root, deck, setDeckContext) => {
+export const previous = (history, root, deck, setDeckContext) => {
   const {slideIndex, stepIndex} = deck;
 
   if (stepIndex > 0) {
-    navigate(root, deck, setDeckContext, slideIndex, stepIndex - 1, true);
+    navigate(history, root, deck, setDeckContext, slideIndex, stepIndex - 1, true);
   } else if (slideIndex > 0) {
-    navigate(root, deck, setDeckContext, slideIndex - 1, -1);
+    navigate(history, root, deck, setDeckContext, slideIndex - 1, -1);
   }
 };
 
-export const previousSlide = (root, deck, setDeckContext, step = 0) => {
+export const previousSlide = (history, root, deck, setDeckContext, step = 0) => {
   const {slideIndex} = deck;
 
   if (slideIndex > 0) {
-    navigate(root, deck, setDeckContext, slideIndex - 1, step);
+    navigate(history, root, deck, setDeckContext, slideIndex - 1, step);
   }
 };
 
-export const setMode = (root, deck, setRootContext, mode) => {
-  const {slideIndex, stepIndex} = deck;
-  const {basepath} = root;
+export const setMode = (history, root, deck, setRootContext, mode) => {
+  const {mode: oldMode} = root;
+  if (oldMode === mode) {
+    return;
+  }
+
   const modepath = deckModes.properties[mode].path || deckModes.properties[deckModes.NORMAL].path;
-  reachNavigate(`${basepath}/${modepath}/${slideIndex}/${stepIndex}`);
-  setRootContext({mode, modepath: `/${modepath}/`});
+  const {slideIndex, stepIndex} = deck;
+
+  history.push(`/${modepath}/${slideIndex}/${stepIndex}`);
+  setRootContext({mode});
 };

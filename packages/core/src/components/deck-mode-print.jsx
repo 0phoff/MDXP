@@ -6,9 +6,8 @@ import deckModes from '../util/deck-modes.js';
 
 
 const PrintMode = ({children, ...props}) => {
-  const slides = React.Children.only(children).props.children;
   const [state, setState] = useMerger({
-    slideLength: slides.length,
+    slideLength: children.length,
     mode: deckModes.PRINT,
   });
 
@@ -16,14 +15,14 @@ const PrintMode = ({children, ...props}) => {
     <RootContext.Provider value={[state, setState]}>
       <div>
         {
-          slides.map((child, i) => (
+          children.map((_, i) => (
             <Slide
               slide={i}
               preview
               sx={{width: '100vw', height: '100vh'}}
               key={`slide_${i}`}
             >
-              {slides}
+              {children}
             </Slide>
           ))
         }

@@ -8,5 +8,5 @@ Release TODO lists for MDXP
   - [X] Documentation: API
   - [ ] Documentation: Guides
   - [ ] Readme
-  - [ ] Change demo to webpack
+  - [X] Change demo to webpack
 

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import React from 'react';
+import {useParams} from 'react-router-dom';
 import useRoot from '../hooks/use-root.js';
 import useMerger from '../hooks/use-merger.js';
 import useKeyboard from '../hooks/use-keyboard.js';
@@ -22,8 +23,9 @@ const getIndex = (slide, slideLength) => {
 };
 
 
-const Slide = ({children, slide, reference, step=0, preview=false, sx={}}) => {
+const Slide = ({children, reference, preview=false, sx={}}) => {
   // Data
+  const {slide, step=0} = useParams();
   const rootContext = useRoot();
   const slideIndex = getIndex(parseInt(slide), rootContext.slideLength);
   const slideElement = React.Children.count(children) == 1 ?

@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import {useSetRoot} from './use-root.js';
 import {
   next,
@@ -23,6 +24,7 @@ const keys = {
 };
 
 const useKeyboard = (target, deck, setDeck) => {
+  const history = useHistory();
   const [root, setRoot] = useSetRoot();
 
   const handleKeyboard = e => {
@@ -36,9 +38,9 @@ const useKeyboard = (target, deck, setDeck) => {
     case keys.up:
     case keys.pageUp:
       if (shiftKey) {
-        previousSlide(root, deck, setDeck);
+        previousSlide(history, root, deck, setDeck);
       } else {
-        previous(root, deck, setDeck);
+        previous(history, root, deck, setDeck);
       }
 
       break;
@@ -47,18 +49,18 @@ const useKeyboard = (target, deck, setDeck) => {
     case keys.down:
     case keys.pageDown:
       if (shiftKey) {
-        nextSlide(root, deck, setDeck);
+        nextSlide(history, root, deck, setDeck);
       } else {
-        next(root, deck, setDeck);
+        next(history, root, deck, setDeck);
       }
 
       break;
 
     case keys.space:
       if (shiftKey) {
-        previous(root, deck, setDeck);
+        previous(history, root, deck, setDeck);
       } else {
-        next(root, deck, setDeck);
+        next(history, root, deck, setDeck);
       }
 
       break;

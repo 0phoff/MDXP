@@ -1,7 +1,7 @@
 export default {
   src: 'packages',
   dest: '/docs',
-  base: '/MDXPresenter',
+  base: '/MDXP',
   title: 'MDXP',
   description: 'Web Slides Made Easy',
   files: '**/*.doc.mdx',

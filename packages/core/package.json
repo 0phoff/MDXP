@@ -1,11 +1,15 @@
 {
   "name": "@MDXP/core",
   "version": "0.0.0",
-  "description": "Web Slides Made Easy",
-  "repository": "https://github.com/0phoff/MDXP",
+  "description": "MDXP Core package",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0phoff/MDXP.git",
+    "directory": "packages/remark"
+  },
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
-  "private": false,
   "source": "src/index.jsx",
   "module": "dist/core.module.js",
   "main": "dist/core.js",

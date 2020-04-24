@@ -1,10 +1,10 @@
 {
   "name": "MDXP",
   "description": "Web Slides Made Easy",
-  "repository": "https://github.com/0phoff/MDXP",
+  "private": true,
+  "repository": "https://github.com/0phoff/MDXP.git",
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
-  "private": true,
   "workspaces": [
     "packages/*",
     "examples/*"
@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "start": "lerna run --parallel start",
-    "build": "lerna run build",
+    "build": "lerna run --scope packages/* build",
     "clean": "lerna run clean",
     "lint": "eslint . --cache --ext js,jsx -f friendly",
     "lint:fix": "eslint . --cache --ext js,jsx -f friendly --fix",

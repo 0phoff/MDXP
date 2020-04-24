@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const remarkEmoji = require('remark-emoji');
+const remarkMath = require('remark-math');
+const rehypeKatex = require('rehype-katex');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -8,9 +11,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/onepage'),
     filename: 'main.js',
     publicPath: '/'
-  },
-  devServer: {
-    historyApiFallback: true
   },
 
   module: {
@@ -24,7 +24,21 @@ module.exports = {
           },
           {
             test: /\.mdx$/,
-            use: ['babel-loader', '@mdx-js/loader']
+            use: [
+              'babel-loader',
+              {
+                loader: '@mdx-js/loader',
+                options: {
+                  remarkPlugins: [
+                    remarkEmoji,
+                    remarkMath
+                  ],
+                  rehypePlugins: [
+                    rehypeKatex
+                  ]
+                }
+              }
+            ]
           },
           {
             test: /\.html$/,
@@ -60,5 +74,9 @@ module.exports = {
       filename: './index.html'
     }),
     new InlineChunkHtmlPlugin(HtmlWebPackPlugin, [/.(js|css)$/])
-  ]
+  ],
+
+  node: {
+    fs: 'empty'
+  }
 };

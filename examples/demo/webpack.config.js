@@ -1,5 +1,8 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const remarkEmoji = require('remark-emoji');
+const remarkMath = require('remark-math');
+const rehypeKatex = require('rehype-katex');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -20,7 +23,21 @@ module.exports = {
           },
           {
             test: /\.mdx$/,
-            use: ['babel-loader', '@mdx-js/loader']
+            use: [
+              'babel-loader',
+              {
+                loader: '@mdx-js/loader',
+                options: {
+                  remarkPlugins: [
+                    remarkEmoji,
+                    remarkMath
+                  ],
+                  rehypePlugins: [
+                    rehypeKatex
+                  ]
+                }
+              }
+            ]
           },
           {
             test: /\.html$/,
@@ -55,5 +72,9 @@ module.exports = {
       template: path.resolve(__dirname, 'src/index.html'),
       filename: './index.html'
     })
-  ]
+  ],
+
+  node: {
+    fs: 'empty'
+  }
 };

@@ -20,6 +20,7 @@
     "clean:onepage": "rm -rf dist/onepage/*"
   },
   "devDependencies": {
+    "@MDXP/rehypex-plugins": "^0.0.0",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
@@ -29,6 +30,7 @@
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.2.0",
+    "mdast-flatten-image-paragraphs": "^1.0.0",
     "react-dev-utils": "^10.2.1",
     "rehype-katex": "^3.0.0",
     "remark-emoji": "^2.1.0",

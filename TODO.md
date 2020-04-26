@@ -9,4 +9,6 @@ Release TODO lists for MDXP
   - [ ] Documentation: Guides
   - [ ] Readme
   - [X] Change demo to webpack
+  - [X] Rehype plugins
+  - [ ] Storage based navigation
 

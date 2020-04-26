@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const remarkEmoji = require('remark-emoji');
 const remarkMath = require('remark-math');
+const remarkFlattenImages = require('mdast-flatten-image-paragraphs');
+const rehypeAutoImport = require('@MDXP/rehypex-plugins/auto-import');
+const rehypeBetterMedia = require('@MDXP/rehypex-plugins/better-media');
 const rehypeKatex = require('rehype-katex');
 
 module.exports = {
@@ -30,10 +33,13 @@ module.exports = {
                 options: {
                   remarkPlugins: [
                     remarkEmoji,
-                    remarkMath
+                    remarkMath,
+                    remarkFlattenImages
                   ],
                   rehypePlugins: [
-                    rehypeKatex
+                    rehypeKatex,
+                    [rehypeBetterMedia, {altVideoMarker: '!video!'}],
+                    rehypeAutoImport
                   ]
                 }
               }

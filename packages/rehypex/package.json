@@ -1,0 +1,21 @@
+{
+  "name": "@MDXP/rehypex-plugins",
+  "version": "0.0.0",
+  "description": "Rehype plugins for MDXHAST",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0phoff/MDXP.git",
+    "directory": "packages/rehypex"
+  },
+  "author": "0phoff <0phoff@users.noreply.github.com>",
+  "license": "MIT",
+  "files": [
+    "auto-import.js",
+    "better-media.js"
+  ],
+  "dependencies": {
+    "unist-util-flat-filter": "^1.0.0",
+    "unist-util-visit": "^2.0.2"
+  }
+}

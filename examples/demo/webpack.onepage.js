@@ -3,6 +3,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const remarkEmoji = require('remark-emoji');
 const remarkMath = require('remark-math');
+const remarkFlattenImages = require('mdast-flatten-image-paragraphs');
+const rehypeAutoImport = require('@MDXP/rehypex-plugins/auto-import');
+const rehypeBetterMedia = require('@MDXP/rehypex-plugins/better-media');
 const rehypeKatex = require('rehype-katex');
 
 module.exports = {
@@ -10,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/onepage'),
     filename: 'main.js',
-    publicPath: '/'
+    publicPath: './'
   },
 
   module: {
@@ -31,10 +34,13 @@ module.exports = {
                 options: {
                   remarkPlugins: [
                     remarkEmoji,
-                    remarkMath
+                    remarkMath,
+                    remarkFlattenImages
                   ],
                   rehypePlugins: [
-                    rehypeKatex
+                    rehypeKatex,
+                    [rehypeBetterMedia, {altVideoMarker: '!video!'}],
+                    rehypeAutoImport
                   ]
                 }
               }

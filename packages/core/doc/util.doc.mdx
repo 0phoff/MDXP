@@ -28,41 +28,33 @@ Base theme object that is always being merged into the given theme, to provide s
 You can overwrite any of its properties by providing your own values in your theme.
 
 ```js
-export const baseTheme = {
+const baseTheme = {
   colors: {
     text: '#000',
-    background: '#FFF',
+    background: '#FFF'
   },
   fonts: {
     body: 'system-ui, sans-serif',
-    monospace: 'Menlo, monospace',
   },
   fontWeights: {
-    body: 400,
+    body: 400
   },
   lineHeights: {
-    body: 1.5,
+    body: 1.5
   },
   styles: {
     root: {
-      fontFamily: 'system-ui, sans-serif',
+      fontFamily: 'system-ui, sans-serif'
     },
     img: {
-      width: '100vw',
-      maxWidth: '100%',
-      height: '100vh',
-      objectFit: 'contain',
-    },
-    code: {
-      fontFamily: 'monospace',
-    },
-    pre: {
-      fontFamily: 'monospace',
+      width: '100%',
+      maxHeight: '100%',
+      objectFit: 'contain'
     },
     Slide: {
       fontFamily: 'body',
-      fontSize: '1.5rem',
-    },
+      fontSize: '1.5rem'
+    }
   }
 };
 ```
@@ -82,44 +74,77 @@ const defaultTheme = {
     primary: '#CCC',
     secondary: '#555',
     accent: '#F9AC00',
-    muted: '#888',
+    muted: '#888'
   },
   fonts: {
     heading: 'inherit',
+    monospace: 'Menlo, monospace'
   },
   fontWeights: {
-    heading: 700,
+    heading: 700
   },
   lineHeights: {
-    heading: 1.125,
+    heading: 1.125
   },
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   text: {
     heading: {
       fontFamily: 'heading',
       fontWeight: 'heading',
       lineHeight: 'heading',
-    },
+      textAlign: 'center'
+    }
   },
   styles: {
     h1: {
       variant: 'text.heading',
-      textTransform: 'uppercase',
+      textTransform: 'uppercase'
     },
     h2: {
-      variant: 'text.heading',
+      variant: 'text.heading'
     },
     h3: {
-      variant: 'text.heading',
+      variant: 'text.heading'
     },
     h4: {
-      variant: 'text.heading',
+      variant: 'text.heading'
     },
     h5: {
-      variant: 'text.heading',
+      variant: 'text.heading'
     },
     h6: {
-      variant: 'text.heading',
+      variant: 'text.heading'
     },
+    code: {
+      fontFamily: 'monospace'
+    },
+    pre: {
+      fontFamily: 'monospace'
+    },
+    table: {
+      fontSize: 'inherit',
+      borderCollapse: 'collapse',
+      borderStyle: 'hidden',
+    },
+    tr : {
+      '& > :first-child': {paddingLeft: 0},
+      '& > :last-child': {paddingRight: 0}
+    },
+    th: {
+      fontWeight: 'bold',
+      borderColor: 'inherit',
+      borderStyle: 'solid',
+      borderWidth: '0 0 2px 0',
+      px: 3,
+      py: 3
+    },
+    td: {
+      borderColor: 'inherit',
+      borderStyle: 'solid',
+      borderWidth: '0 0 1px 0',
+      px: 3,
+      py: 2
+    }
   }
 };
 ```

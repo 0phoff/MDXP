@@ -6,6 +6,7 @@ const remarkMath = require('remark-math');
 const remarkFlattenImages = require('mdast-flatten-image-paragraphs');
 const rehypeAutoImport = require('@MDXP/rehypex-plugins/auto-import');
 const rehypeBetterMedia = require('@MDXP/rehypex-plugins/better-media');
+const rehypeTableAlign = require('@MDXP/rehypex-plugins/table-align');
 const rehypeKatex = require('rehype-katex');
 
 module.exports = {
@@ -39,6 +40,7 @@ module.exports = {
                   ],
                   rehypePlugins: [
                     rehypeKatex,
+                    rehypeTableAlign,
                     [rehypeBetterMedia, {altVideoMarker: '!video!'}],
                     rehypeAutoImport
                   ]

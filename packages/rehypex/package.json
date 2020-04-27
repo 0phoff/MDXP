@@ -12,7 +12,8 @@
   "license": "MIT",
   "files": [
     "auto-import.js",
-    "better-media.js"
+    "better-media.js",
+    "table-align.js"
   ],
   "dependencies": {
     "unist-util-flat-filter": "^1.0.0",

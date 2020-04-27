@@ -37,7 +37,6 @@ export const baseTheme = {
   },
   fonts: {
     body: 'system-ui, sans-serif',
-    monospace: 'Menlo, monospace'
   },
   fontWeights: {
     body: 400
@@ -53,12 +52,6 @@ export const baseTheme = {
       width: '100%',
       maxHeight: '100%',
       objectFit: 'contain'
-    },
-    code: {
-      fontFamily: 'monospace'
-    },
-    pre: {
-      fontFamily: 'monospace'
     },
     Slide: {
       fontFamily: 'body',
@@ -77,7 +70,8 @@ export const defaultTheme = {
     muted: '#888'
   },
   fonts: {
-    heading: 'inherit'
+    heading: 'inherit',
+    monospace: 'Menlo, monospace'
   },
   fontWeights: {
     heading: 700
@@ -85,6 +79,7 @@ export const defaultTheme = {
   lineHeights: {
     heading: 1.125
   },
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   text: {
     heading: {
       fontFamily: 'heading',
@@ -112,6 +107,36 @@ export const defaultTheme = {
     },
     h6: {
       variant: 'text.heading'
+    },
+    code: {
+      fontFamily: 'monospace'
+    },
+    pre: {
+      fontFamily: 'monospace'
+    },
+    table: {
+      fontSize: 'inherit',
+      borderCollapse: 'collapse',
+      borderStyle: 'hidden',
+    },
+    tr : {
+      '& > :first-child': {paddingLeft: 0},
+      '& > :last-child': {paddingRight: 0}
+    },
+    th: {
+      fontWeight: 'bold',
+      borderColor: 'inherit',
+      borderStyle: 'solid',
+      borderWidth: '0 0 2px 0',
+      px: 3,
+      py: 3
+    },
+    td: {
+      borderColor: 'inherit',
+      borderStyle: 'solid',
+      borderWidth: '0 0 1px 0',
+      px: 3,
+      py: 2
     }
   }
 };

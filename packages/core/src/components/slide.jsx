@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom';
 import useRoot from '../hooks/use-root.js';
 import useMerger from '../hooks/use-merger.js';
 import useKeyboard from '../hooks/use-keyboard.js';
+import useStorageNavigation from '../hooks/use-storage-navigation.js';
 
 export const DeckContext = React.createContext(null);
 DeckContext.displayName = 'MDXP/DeckContext';
@@ -37,6 +38,7 @@ const Slide = ({children, reference, preview = false, sx = {}}) => {
   });
 
   useKeyboard(reference, state, setState);
+  useStorageNavigation(state, setState);
 
   return (
     <DeckContext.Provider value={[state, setState]}>

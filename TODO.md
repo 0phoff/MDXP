@@ -6,7 +6,7 @@ Release TODO lists for MDXP
   - [X] Theming: baseTheme, defaultTheme, mergeThemes()
   - [X] Change demo to webpack
   - [X] Rehype plugins
-  - [ ] Storage based navigation
+  - [X] Storage based navigation
   - [X] Check if table column alignment works (broken in MDX-Deck)
   - [ ] @MDXP/components
   - [ ] @MDXP/create-webpack

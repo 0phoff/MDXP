@@ -7,7 +7,8 @@ export default {
   files: '**/*.doc.mdx',
   menu: [
     'Introduction',
-    'Getting Started'
+    'Getting Started',
+    'Examples'
   ],
   themeConfig: {
     showDarkModeSwitch: false,

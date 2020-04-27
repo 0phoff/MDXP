@@ -8,7 +8,6 @@ const rehypeBetterMedia = require('@MDXP/rehypex-plugins/better-media');
 const rehypeTableAlign = require('@MDXP/rehypex-plugins/table-align');
 const rehypeKatex = require('rehype-katex');
 
-
 module.exports = {
   entry: './src/index.jsx',
   output: {
@@ -36,7 +35,7 @@ module.exports = {
                   remarkPlugins: [
                     remarkEmoji,
                     remarkMath,
-                    remarkFlattenImages,
+                    remarkFlattenImages
                   ],
                   rehypePlugins: [
                     rehypeKatex,

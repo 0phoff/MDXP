@@ -36,7 +36,7 @@ export const baseTheme = {
     background: '#FFF'
   },
   fonts: {
-    body: 'system-ui, sans-serif',
+    body: 'system-ui, sans-serif'
   },
   fontWeights: {
     body: 400
@@ -117,9 +117,9 @@ export const defaultTheme = {
     table: {
       fontSize: 'inherit',
       borderCollapse: 'collapse',
-      borderStyle: 'hidden',
+      borderStyle: 'hidden'
     },
-    tr : {
+    tr: {
       '& > :first-child': {paddingLeft: 0},
       '& > :last-child': {paddingRight: 0}
     },

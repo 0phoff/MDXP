@@ -7,7 +7,7 @@ const hastCssMap = {
   width: 'width'
 };
 
-module.exports = () => (tree, file) => {
+module.exports = () => tree => {
   visit(tree, [{type: 'element', tagName: 'th'}, {type: 'element', tagName: 'td'}], node => {
     if (!node.properties) {
       return;
@@ -25,11 +25,12 @@ module.exports = () => (tree, file) => {
       } else if (style.length) {
         style += ' ';
       }
+
       style += css + ': ' + node.properties[hast] + ';';
 
       // Set new style and remove property
-      node.properties.style = style
-      delete node.properties[hast]
+      node.properties.style = style;
+      delete node.properties[hast];
     }
   });
 };

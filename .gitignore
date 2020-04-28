@@ -2,6 +2,8 @@ node_modules
 .cache
 dist
 .docz
-public/.original
 .eslintcache
 yarn-error.log
+
+public/.original
+docs/public/.original

@@ -8,7 +8,9 @@ export default {
   menu: [
     'Introduction',
     'Getting Started',
-    'Examples'
+    'Examples',
+    'core',
+    'rehypex-plugins'
   ],
   themeConfig: {
     showDarkModeSwitch: false,

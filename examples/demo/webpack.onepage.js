@@ -41,8 +41,8 @@ module.exports = {
                   rehypePlugins: [
                     rehypeKatex,
                     rehypeTableAlign,
-                    [rehypeBetterMedia, {altVideoMarker: '!video!'}],
-                    rehypeAutoImport
+                    [rehypeBetterMedia, {videoMarker: '!video!'}],
+                    [rehypeAutoImport, {noImport: '!noimport!'}]
                   ]
                 }
               }

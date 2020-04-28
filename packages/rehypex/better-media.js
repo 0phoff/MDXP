@@ -2,7 +2,7 @@ const visit = require('unist-util-visit');
 
 module.exports = (options = {}) => {
   const videoFile = options.videoTest || /\.(mp4|webm|avi|mpe?g|wmv|ogg)$/i;
-  const videoMarker = options.altVideoMarker || null;
+  const videoMarker = options.videoMarker || null;
   const altSeparator = options.altSeparator || '&&';
   const jsxPropTest = /^{.*}$/;
   const jsxPropTestEqual = /={.*}$/;
@@ -14,8 +14,8 @@ module.exports = (options = {}) => {
       alt = alt || '';
 
       // Tagname
-      if (videoMarker && alt.startsWith(videoMarker)) {
-        alt = alt.slice(videoMarker.length);
+      if (videoMarker && src.startsWith(videoMarker)) {
+        src = src.slice(videoMarker.length);
         newNode.value = '<video ';
       } else if (src.match(videoFile)) {
         newNode.value = '<video ';

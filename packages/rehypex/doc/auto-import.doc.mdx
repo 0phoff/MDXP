@@ -1,0 +1,84 @@
+---
+name: Auto Import
+menu: rehypex-plugins
+route: rehypex-autoimport
+group: API
+---
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
+
+
+# Auto Import
+Auto Import is a Rehype plugin for MDXHAST that modifies JSX nodes to automatically import files that are passed as properties.
+It only works for JSX nodes and thus will not work with other nodes like regular HAST element nodes.
+
+> __NOTE__  
+> In order to automatically import from image nodes as well, you can use the [Better Media](./rehypex-bettermedia) plugin, which transforms image elements to JSX nodes, before using this plugin.
+
+
+### Arguments
+<Arguments>
+{{
+  name: 'test',
+  type: '(value, dir) => bool',
+  default: '(value, dir) => fs.existsSync(path.resolve(dir, value))',
+  desc: 'Function that tells whether the value is a file that should be imported'
+}}
+{{
+  name: 'noImport',
+  type: 'string',
+  default: 'null (not being used)',
+  desc: 'If a property starts with this value, that part of the value is simply stripped and it is not imported. This is useful to provide a way to pass a file path as raw value to a component.'
+}}
+</Arguments>
+
+
+### Usage
+To use this plugin, put it in the `rehypePlugins` option of your MDX-JS loader.  
+In this example we also pass the string _'!noimport!'_ as `noImport` option.
+
+```js
+// Webpack example
+const rehypeAutoImport = require('@mdxp/rehypex-plugins/auto-import');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.mdx$/,
+        use: [
+          'babel-loader',
+          {
+            loader: '@mdx-js/loader',
+            options: {
+              rehypePlugins: [
+                [rehypeAutoImport, {noImport: '!noimport!'}]
+              ]
+            }
+          }
+        ]
+      },
+      ...
+    ]
+  }
+}
+```
+
+
+### Examples
+Once the plugin is setup, you can write the following code:
+```md
+<MyComponent file="./path/to/some/data.json" />
+
+// Gets transformed by the plugin to:
+import AI__path_to_some_data_json from "./path/to/some/data.json"
+
+<MyComponent file={AI__path_to_some_data_json} />
+```
+
+If you do not want to import a certain path and you setup a `noImport` string as shown above, you can use:
+```md
+<MyComponent file="!noimport!./path/to/some/data.json" />
+
+// Gets transformed by the plugin to:
+<MyComponent file="./path/to/some/data.json" />
+```

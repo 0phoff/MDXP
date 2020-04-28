@@ -1,0 +1,102 @@
+---
+name: Better Media
+menu: rehypex-plugins
+route: rehypex-bettermedia
+group: API
+---
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
+
+
+# Better Media
+Auto Import is a Rehype plugin for MDXHAST that transforms HAST img nodes into JSX nodes, performing the following modifications:
+
+- Create an _image_ or _video_ node.
+- Parse _width_, _height_ and/or _style_ properties from the alternate text field.
+- Parse other properties (eg. controls, autoplay, loop) from the alternate text field
+
+
+### Arguments
+<Arguments>
+{{
+  name: 'videoTest',
+  type: 'regex',
+  default: '/\.(mp4|webm|avi|mpe?g|wmv|ogg)$/i',
+  desc: 'Regular expression that is used to test the source of the element, in order to determine whether it should create an image or video node.'
+}}
+{{
+  name: 'videoMarker',
+  type: 'string',
+  default: 'null (not being used)',
+  desc: 'If the source of the video starts with this string, it is considered to be a video, disregarding the `videoTest` regex. This is useful for having videos with online URLs which might not end in _.EXT_'
+}}
+{{
+  name: 'altSeparator',
+  type: 'string',
+  default: '&&',
+  desc: 'Separator used in the alternate text field of the image node, in order to add extra properties'
+}}
+</Arguments>
+
+
+### Usage
+To use this plugin, put it in the `rehypePlugins` option of your MDX-JS loader.  
+In this example we also pass the string _'!video!'_ as `videoMarker` option.
+
+```js
+// Webpack example
+const rehypeBetterMedia = require('@mdxp/rehypex-plugins/better-media');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.mdx$/,
+        use: [
+          'babel-loader',
+          {
+            loader: '@mdx-js/loader',
+            options: {
+              rehypePlugins: [
+                [rehypeBetterMedia, {videoMarker: '!video!'}]
+              ]
+            }
+          }
+        ]
+      },
+      ...
+    ]
+  }
+}
+```
+
+
+### Examples
+Once the plugin is setup, you can write the following code:
+```md
+![logo image](./path/to/logo.png "An image of my logo")
+
+// Gets transformed by the plugin to:
+<img alt="logo image" src="./path/to/logo.png" title="An image of my logo" />
+```
+
+```md
+// Note that style should be defined as a JSX property (double braces)
+![image&&style={{border: '5px solid red'}}&&width='80%'](./path/to/image.jpg)
+
+// Gets transformed by the plugin to:
+<img alt="image" src="./path/to/image.jpg" style={{border: '5px solid red', width: '80%'}} />
+```
+
+```md
+![video&&autostart&&loop](./path/to/video.mp4)
+
+// Gets transformed by the plugin to:
+<video alt="video" src="./path/to/video.mp4" autostart loop />
+```
+
+```md
+![online video&&controls](!video!https://www.thiscoolvideo.com)
+
+// Gets transformed by the plugin to:
+<video alt="online video" src="https://www.thiscoolvideo.com" controls />
+```

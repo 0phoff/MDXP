@@ -12,7 +12,7 @@ Release TODO lists for MDXP
   - [ ] @mdxp/create-webpack
   - [X] Documentation website
   - [X] Documentation: API core
-  - [ ] Documentation: API Rehypex
+  - [X] Documentation: API Rehypex
   - [ ] Documentation: API components
   - [ ] Documentation: Guides
   - [ ] Readme

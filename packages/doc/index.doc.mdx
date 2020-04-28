@@ -4,6 +4,7 @@ route: /
 group: Documentation
 ---
 
+
 <div style={{textAlign:"center"}}>
 
 <img alt="Logo" src="public/logo.svg" width="100%"/>
@@ -31,17 +32,39 @@ With this tool, you can:
 - _Present_ on any computer with a (modern) browser, by using the onepage build mode.
 - _Integrate_ it in any of your favourite web bundlers, static site generators, ...
 
-[Get started with MDXP](./getting-started)
+<div style={{width:'100%', textAlign: 'center'}}>
+<a
+  href='./getting-started'
+  style={{
+    backgroundColor: '#F9AC00',
+    minWidth: '40%',
+    color: 'white',
+    padding: '15px',
+    margin: '10px',
+    display: 'inline-block',
+    borderRadius: '10px',
+    fontSize: '30px',
+    textTransform: 'uppercase',
+  }}
+>
+  Get Started with MDXP
+</a>
+</div>
 
 
 ## Under the hood
+> __NOTE__  
 > This is very much an entry level explanation.
-> If you are a seasoned web developper, all you need to know is that this project consists of a few react libraries to help you build your presentation, which you write using [MDX](https://mdxjs.com/).  
-> This project also has a package with some plugins for transpiling [MDXAST/MDXHAST](https://mdxjs.com/advanced/ast) and a basic template for getting started, which sets up a webpack environment to develop and build your slide deck.
+> If you are a seasoned web developper, all you need to know is that this project consists of a few react packages to help you build your presentation, which you write using [MDX](https://mdxjs.com/).  
+> This project also has a package with some plugins for transpiling [MDXAST/MDXHAST](https://mdxjs.com/advanced/ast) and a basic template for getting started, which sets up a Webpack environment to develop and build your slide deck.
 
 While it is not really necessary to understand all this in order to use MDXP,
 I believe that it is always helpful to understand how your code gets transformed into the end result you see.  
 Have fun creating beautiful presentations!
+
+<div style={{width: '100%', textAlign: 'center'}}>
+  <img alt="Pipeline" src="public/pipeline.svg" width="75%"/>
+</div>
 
 At the very bottom of this tech stack sits [React](http://reactjs.org/), which allows you to _"build encapsulated components, then compose them to make complex UIs"_.
 Because doing this in plain old JavaScript is quite tedious and error-prone, they created their own file format JSX, which allows you to write with an HTML-like syntax inside of JavaScript.
@@ -53,22 +76,26 @@ Babel can also read JSX and transpile it to valid JavaScript, which is the main 
 You can now transpile a JSX file to browser-compatible JavaScript, but what if you want to split your code into multiple files and modules ?
 This is the task of a bundler, like [Webpack](https://webpack.js.org/).
 While bundlers used to only combine different JavaScript files into one minified file, which you could then include in your HTML page, they have since evolved and are now able to do much more!
-With webpack, you can include any file format, as long as you provide a way to process those files to your end bundle.
-This allows us to `import` images and videos, and webpack will process those files according to our pipeline.
+With Webpack, you can include any file format, as long as you provide a way to process those files to your end bundle.
+This allows us to import images and videos, and Webpack will process those files according to our pipeline.
 For videos, we just copy the file to the destination folder (in fact we do this for any file format that we do not know), but if images are small enough, we instead store them as raw data inside our javascript bundle, which means there is no need to copy the images along with your presentation.
 Feel free to look inside your `webpack.config.js` and `webpack.onepage.js` files, if you build your presentation with our template.
 
-Finally, webpack also allows us to setup a pipeline for processing MDX files.
+Finally, Webpack also allows us to setup a pipeline for processing MDX files.
 MDX is a file format which enhances markdown, by allowing you to import and use React components inside of it.
-This works, because the MDX transpiler transforms your MDX code into JSX, which is then transpiled into JavaScript with Babel.  
+This works, because the MDX transpiler transforms your MDX code into JSX, which is then transpiled into JavaScript with Babel.
 The cool thing about the MDX transpiler is that it is build with the [Unified](https://unifiedjs.com/) toolset.
-This allows us to extend the transpiler and add our own features to the MDX format.
-As an example, we use this to transform the image markdown syntax, which you write as `![ALT_TEXT](URL)` into:
+This allows us to extend the transpiler and add our own features to the MDX format.  
+An example where we transform the markdown syntax is with images.
+In order for files to be processed by Webpack, you need to import them and images are no different.
+Because this is not handy when writing markdown, we created a Unified plugin that transforms the image syntax:
 ```jsx
-import imported_image from 'URL';
+![ALT_TEXT](./path/to/image.png)
+
+// This gets transformed automatically to:
+import imported_image from './path/to/image.png';
 ![ALT_TEXT]({imported_image})
 ```
-This is necessary so that your image gets correctly processed by webpack!
 
 
 ## How is this different from MDX-Deck

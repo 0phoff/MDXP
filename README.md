@@ -27,39 +27,6 @@ With this tool, you can:
 TODO
 
 
-### Under the hood
-> This is very much an entry level explanation.
-> If you are a seasoned web developper, all you need to know is that this project consists of a few react libraries to help you build your presentation, which you write using [MDX](https://mdxjs.com/).  
-> This project also has a package with some plugins for transpiling [MDXAST/MDXHAST](https://mdxjs.com/advanced/ast) and a basic template for getting started, which sets up a webpack environment to develop and build your slide deck.
-
-While it is not really necessary to understand all this in order to use MDXP,
-I believe that it is always helpful to understand how your code gets transformed into the end result you see.  
-Have fun creating beautiful presentations! :heart:
-
-At the very bottom of this tech stack sits [React](http://reactjs.org/), which allows you to _"build encapsulated components, then compose them to make complex UIs"_.
-Because doing this in plain old JavaScript is quite tedious and error-prone, they created their own file format JSX, which allows you to write with an HTML-like syntax inside of JavaScript.
-
-Of course, you still need to transpile this JSX to valid JavaScript, in order for the browser to understand your code.
-This is where [Babel](https://babeljs.io/) comes into play. Babel is a javascript transpiler, which allows you to write next-generation JavaScript, with all the new features, and convert it to browser-compatible JavaScript code. 
-Babel can also read JSX and transpile it to valid JavaScript, which is the main reason we use it.
-
-You can now transpile a JSX file to browser-compatible JavaScript, but what if you want to split your code into multiple files and modules ?
-This is the task of a bundler, like [Webpack](https://webpack.js.org/).
-While bundlers used to only combine different JavaScript files into one minified file, which you could then include in your HTML page, they have since evolved and are now able to do much more!
-With webpack, you can include any file format, as long as you provide a way to process those files to your end bundle.
-This allows us to `import` images and videos, and webpack will process those files according to our pipeline.
-For videos, we just copy the file to the destination folder (in fact we do this for any file format that we do not know), but if images are small enough, we instead store them as raw data inside our javascript bundle, which means there is no need to copy the images along with your presentation.
-Feel free to look inside your `webpack.config.js` and `webpack.onepage.js` files, if you build your presentation with our template.
-
-Finally, webpack also allows us to setup a pipeline for processing MDX files.
-MDX is a file format which enhances markdown, by allowing you to import and use React components inside of it.
-This works, because the MDX transpiler transforms your MDX code into JSX, which is then transpiled into JavaScript with Babel.  
-The cool thing about the MDX transpiler is that it is build with the [Unified](https://unifiedjs.com/) toolset.
-This allows us to extend the transpiler and add our own features to the MDX format.
-As an example, we use this to transform the image markdown syntax, which you write as `![ALT_TEXT](URL)` into `import imported_image from 'URL'; ![ALT_TEXT]({imported_image})`.
-This is necessary so that your image gets correctly processed by webpack!
-
-
 ### How is this different from MDX-Deck
 I started using [MDX-Deck](https://github.com/jxnblk/mdx-deck) and immediately loved the concept of writing your presentations with MDX.  
 However, I found one big flaw with it and that is that it builds your presentation as a gatsby website.

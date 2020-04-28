@@ -2,8 +2,8 @@
 
 <img alt="Logo" src="public/logo.svg" width="100%"/>
 
-[![NPM](https://img.shields.io/npm/v/@MDXP/core)](https://www.npmjs.com/package/@MDXP/core)
-![Downloads](https://img.shields.io/npm/dt/@MDXP/core)
+[![NPM](https://img.shields.io/npm/v/@mdxp/core)](https://www.npmjs.com/package/@mdxp/core)
+![Downloads](https://img.shields.io/npm/dt/@mdxp/core)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/0phoff/MDXP/blob/master/LICENSE.md)
 <a href="https://ko-fi.com/D1D31LPHE"><img alt="Ko-Fi" src="https://www.ko-fi.com/img/githubbutton_sm.svg" height="20"></a>
 
@@ -27,10 +27,14 @@ With this tool, you can:
 TODO
 
 
-### How it works
+### Under the hood
 > This is very much an entry level explanation.
 > If you are a seasoned web developper, all you need to know is that this project consists of a few react libraries to help you build your presentation, which you write using [MDX](https://mdxjs.com/).  
 > This project also has a package with some plugins for transpiling [MDXAST/MDXHAST](https://mdxjs.com/advanced/ast) and a basic template for getting started, which sets up a webpack environment to develop and build your slide deck.
+
+While it is not really necessary to understand all this in order to use MDXP,
+I believe that it is always helpful to understand how your code gets transformed into the end result you see.  
+Have fun creating beautiful presentations! :heart:
 
 At the very bottom of this tech stack sits [React](http://reactjs.org/), which allows you to _"build encapsulated components, then compose them to make complex UIs"_.
 Because doing this in plain old JavaScript is quite tedious and error-prone, they created their own file format JSX, which allows you to write with an HTML-like syntax inside of JavaScript.
@@ -53,11 +57,7 @@ This works, because the MDX transpiler transforms your MDX code into JSX, which 
 The cool thing about the MDX transpiler is that it is build with the [Unified](https://unifiedjs.com/) toolset.
 This allows us to extend the transpiler and add our own features to the MDX format.
 As an example, we use this to transform the image markdown syntax, which you write as `![ALT_TEXT](URL)` into `import imported_image from 'URL'; ![ALT_TEXT]({imported_image})`.
-This is necessary, so that your image gets correctly processed by webpack!
-
-While it is not really necessary to understand all this in order to use MDXP,
-I believe that it is always helpful to understand how your code gets transformed into the end result you see.  
-Have fun creating beautiful presentations! :heart:
+This is necessary so that your image gets correctly processed by webpack!
 
 
 ### How is this different from MDX-Deck

@@ -8,8 +8,8 @@ Release TODO lists for MDXP
   - [X] Rehype plugins
   - [X] Storage based navigation
   - [X] Check if table column alignment works (broken in MDX-Deck)
-  - [ ] @MDXP/components
-  - [ ] @MDXP/create-webpack
+  - [ ] @mdxp/components
+  - [ ] @mdxp/create-webpack
   - [X] Documentation website
   - [X] Documentation: API core
   - [ ] Documentation: API Rehypex

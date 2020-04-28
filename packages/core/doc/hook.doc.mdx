@@ -22,7 +22,7 @@ This hook returns the deck context, which is an object with useful information a
 ### Examples
 
 ```jsx
-import {useDeck} from '@MDXP/core'
+import {useDeck} from '@mdxp/core'
 
 const Footer = (props) => {
   const deck = useDeck();
@@ -57,7 +57,7 @@ This hook allows to allocate a certain number of steps for your component.
 ### Examples
 
 ```jsx
-import {useStep} from '@MDXP/core'
+import {useStep} from '@mdxp/core'
 
 const ChangeColor = ({children}) => {
   const colors = ['red', 'green', 'blue'];
@@ -88,7 +88,7 @@ This hooks returns an object with a number of useful navigation functions.
 ### Examples
 
 ```jsx
-import {useNavigation} from '@MDXP/core'
+import {useNavigation} from '@mdxp/core'
 
 const LinkSlide = ({slide, step, text}) => {
   const {navigate} = useNavigation();   // Destructure object to extract only navigate

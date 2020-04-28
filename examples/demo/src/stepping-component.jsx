@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStep} from '@MDXP/core';
+import {useStep} from '@mdxp/core';
 
 const SteppingComponent = ({children, style}) => {
   const colors = ['red', 'green', 'blue'];

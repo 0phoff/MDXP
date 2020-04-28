@@ -13,8 +13,8 @@ export const Param = ({values, name, nameCol="Name", ...props}) => {
           </tr>
         )}
         <Styled.tr>
-          <Styled.th>{nameCol}</Styled.th>
-          <Styled.th>Type</Styled.th>
+          <Styled.th style={{width: '15%'}}>{nameCol}</Styled.th>
+          <Styled.th style={{width: '25%'}}>Type</Styled.th>
           <Styled.th>Description</Styled.th>
         </Styled.tr>
       </thead>

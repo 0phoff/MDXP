@@ -3,9 +3,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const remarkEmoji = require('remark-emoji');
 const remarkMath = require('remark-math');
 const remarkFlattenImages = require('mdast-flatten-image-paragraphs');
-const rehypeAutoImport = require('@MDXP/rehypex-plugins/auto-import');
-const rehypeBetterMedia = require('@MDXP/rehypex-plugins/better-media');
-const rehypeTableAlign = require('@MDXP/rehypex-plugins/table-align');
+const rehypeAutoImport = require('@mdxp/rehypex-plugins/auto-import');
+const rehypeBetterMedia = require('@mdxp/rehypex-plugins/better-media');
+const rehypeTableAlign = require('@mdxp/rehypex-plugins/table-align');
 const rehypeKatex = require('rehype-katex');
 
 module.exports = {

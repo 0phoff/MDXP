@@ -7,9 +7,9 @@ route: /
 
 <img alt="Logo" src="public/logo.svg" width="100%"/>
 
-<a href="https://www.npmjs.com/package/@MDXP/core"><img alt="NPM" src="https://img.shields.io/npm/v/@MDXP/core" /></a>
+<a href="https://www.npmjs.com/package/@mdxp/core"><img alt="NPM" src="https://img.shields.io/npm/v/@mdxp/core" /></a>
 <span>&nbsp;&nbsp;</span>
-<img alt="Downloads" src="https://img.shields.io/npm/dt/@MDXP/core" />
+<img alt="Downloads" src="https://img.shields.io/npm/dt/@mdxp/core" />
 <span>&nbsp;&nbsp;</span>
 <a href="https://github.com/0phoff/MDXP/blob/master/LICENSE.md"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
 <span>&nbsp;&nbsp;</span>
@@ -30,11 +30,17 @@ With this tool, you can:
 - _Present_ on any computer with a (modern) browser, by using the onepage build mode.
 - _Integrate_ it in any of your favourite web bundlers, static site generators, ...
 
+[Get started with MDXP](./getting-started)
 
-## How it works
+
+## Under the hood
 > This is very much an entry level explanation.
 > If you are a seasoned web developper, all you need to know is that this project consists of a few react libraries to help you build your presentation, which you write using [MDX](https://mdxjs.com/).  
 > This project also has a package with some plugins for transpiling [MDXAST/MDXHAST](https://mdxjs.com/advanced/ast) and a basic template for getting started, which sets up a webpack environment to develop and build your slide deck.
+
+While it is not really necessary to understand all this in order to use MDXP,
+I believe that it is always helpful to understand how your code gets transformed into the end result you see.  
+Have fun creating beautiful presentations!
 
 At the very bottom of this tech stack sits [React](http://reactjs.org/), which allows you to _"build encapsulated components, then compose them to make complex UIs"_.
 Because doing this in plain old JavaScript is quite tedious and error-prone, they created their own file format JSX, which allows you to write with an HTML-like syntax inside of JavaScript.
@@ -61,11 +67,7 @@ As an example, we use this to transform the image markdown syntax, which you wri
 import imported_image from 'URL';
 ![ALT_TEXT]({imported_image})
 ```
-This is necessary, so that your image gets correctly processed by webpack!
-
-While it is not really necessary to understand all this in order to use MDXP,
-I believe that it is always helpful to understand how your code gets transformed into the end result you see.  
-Have fun creating beautiful presentations!
+This is necessary so that your image gets correctly processed by webpack!
 
 
 ## How is this different from MDX-Deck

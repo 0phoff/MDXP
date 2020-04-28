@@ -183,7 +183,7 @@ Step.propTypes = {
   /** Whether to step through rows or columns of a table. This property is only used if the component has a single table child. */
   useColumns: PropTypes.bool,
 
-  /** Styles that will be applied to the children (see note below). */
+  /** Styles that will be applied to the children (see note). */
   styles: PropTypes.shape({
     before: PropTypes.object,
     after: PropTypes.object,

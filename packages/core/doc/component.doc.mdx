@@ -3,8 +3,7 @@ name: Components
 menu: MDXP/core
 route: core-components
 ---
-
-import { Props } from 'docz'
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 import Deck from '../src/components/deck.jsx'
 import Step from '../src/components/step.jsx'
 
@@ -13,11 +12,9 @@ import Step from '../src/components/step.jsx'
 This is the main component, which creates the slide deck on your page.
 
 ### Properties
-
-<Props of={Deck} />
+<Arguments of={Deck} />
 
 ### Examples
-
 ```jsx
 import Presentation from 'my-presentation.mdx'
 
@@ -42,8 +39,7 @@ If the child component happens to be a table, it will step through its rows or c
 depending on the `useColumns` property.
 
 ### Properties
-
-<Props of={Step} />
+<Arguments of={Step} />
 
 > __NOTE__  
 > The styles are applied to the children according to the following rules:  
@@ -61,7 +57,6 @@ depending on the `useColumns` property.
 >   4. `styles.current`
 
 ### Examples
-
 ```md
 ---
 

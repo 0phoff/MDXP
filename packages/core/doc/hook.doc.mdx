@@ -3,24 +3,52 @@ name: Hooks
 menu: MDXP/core
 route: core-hooks
 ---
-import {Arg, Return} from 'gatsby-theme-docz/src/components/tables.jsx'
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 
 
 ## useDeck
 This hook returns the deck context, which is an object with useful information about the state of the deck.
 
-<Return nameCol='Key' values={[
-['mode', ['deckModes', '/core-util#deckmodes'], 'The mode that the slide deck is currently displayed as.'],
-['slideLength', 'number > 0', 'Number of slides in the deck.'],
-['slideIndex', 'number ∈ [0, slideLength[', 'Index of the current slide.'],
-['stepLength', 'number > 0', 'Number of steps that the current slide contains.'],
-['stepIndex', 'number ∈ [0, stepLength[', 'Index of the current step.'],
-['rawStepIndex', 'string', 'Raw step value, as seen in the URL.'],
-['preview', 'bool', 'Whether the slide should be rendered in a static preview mode (mainly used for printing to pdf).'],
-]}/>
+### Returns
+<Arguments input={false}>
+{{
+  name: "mode",
+  type: "[deckModes](/core-util#deckmodes)",
+  desc: "The mode that the slide deck is currently displayed as."
+}}
+{{
+  name: 'slideLength',
+  type: 'number > 0',
+  desc: 'Number of slides in the deck.'
+}}
+{{
+  name: 'slideIndex',
+  type: 'number ∈ [0, slideLength[',
+  desc: 'Index of the current slide.'
+}}
+{{
+  name: 'stepLength',
+  type: 'number > 0',
+  desc: 'Number of steps that the current slide contains.'
+}}
+{{
+  name: 'stepIndex',
+  type: 'number ∈ [0, stepLength[',
+  desc: 'Index of the current step.'
+}}
+{{
+  name: 'rawStepIndex',
+  type: 'string',
+  desc: 'Raw step value, as seen in the URL.'
+}}
+{{
+  name: 'preview',
+  type: 'bool',
+  desc: 'Whether the slide should be rendered in a static preview mode (mainly used for printing to pdf).'
+}}
+</Arguments>
 
 ### Examples
-
 ```jsx
 import {useDeck} from '@mdxp/core'
 
@@ -37,25 +65,33 @@ const Footer = (props) => {
 
 ---
 
+
 ## useStep
 This hook allows to allocate a certain number of steps for your component.
 
-<Arg values={[
-['length', 'number > 0', 'The number of steps you need to allocate.']
-]} />
-
-<Return values={[
-['stepIndex', 'number ∈ [-1,length[', 'The current stepIndex your component should follow.'] 
-]} />
-
-
 > __NOTE__  
-> If your component is being used in a [Step](/core-components#Step),
+> If your component is being used in a [Step](/core-components#step),
 > the returned stepIndex might be -1 to indicate that your component has not been "stepped" through yet.
 
+### Arguments
+<Arguments>
+{{
+  name: 'length',
+  type: 'number > 0',
+  desc: 'The number of steps you need to allocate.'
+}}
+</Arguments>
+
+### Returns
+<Arguments input={false}>
+{{
+  name: 'stepIndex',
+  type: 'number ∈ [-1,length[',
+  desc: 'The current stepIndex your component should follow.'
+}}
+</Arguments>
 
 ### Examples
-
 ```jsx
 import {useStep} from '@mdxp/core'
 
@@ -73,20 +109,45 @@ const ChangeColor = ({children}) => {
 
 ---
 
+
 ## useNavigation
 This hooks returns an object with a number of useful navigation functions.
 
-<Return nameCol='Key' values={[
-['next', '() => void', 'Navigate to the next step or slide.'],
-['previous', '() => void', 'Navigate to the previous step or slide.'],
-['nextSlide', '(step=0:number) => void', 'Navigate to the next slide and specified step.'],
-['previousSlide', '(step=0:number) => void', 'Navigate to the previous slide and specified step.'],
-['navigate', '(slide:number, step=0:Integer, replace=false:Boolean) => void', 'Navigate to the specified slide and step, deciding whether to replace history or add a new page to it.'],
-['setMode', '(mode:deckMode) => void', 'Set the display mode the presentation'],
-]} />
+### Returns
+<Arguments input={false}>
+{{
+  name: 'next',
+  type: '() => void',
+  desc: 'Navigate to the next step or slide.'
+}}
+{{
+  name: 'previous',
+  type: '() => void',
+  desc: 'Navigate to the previous step or slide.'
+}}
+{{
+  name: 'nextSlide',
+  type: '(step=0:number) => void',
+  desc: 'Navigate to the next slide and specified step.'
+}}
+{{
+  name: 'previousSlide',
+  type: '(step=0:number) => void',
+  desc: 'Navigate to the previous slide and specified step.'
+}}
+{{
+  name: 'navigate',
+  type: '(slide:number, step=0:Integer, replace=false:Boolean) => void',
+  desc: 'Navigate to the specified slide and step, deciding whether to replace history or add a new page to it.'
+}}
+{{
+  name: 'setMode',
+  type: '(mode:deckMode) => void',
+  desc: 'Set the display mode the presentation'
+}}
+</Arguments>
 
 ### Examples
-
 ```jsx
 import {useNavigation} from '@mdxp/core'
 

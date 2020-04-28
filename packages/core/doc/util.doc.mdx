@@ -3,7 +3,7 @@ name: Util
 menu: MDXP/core
 route: core-util
 ---
-import {Arg, Return} from 'gatsby-theme-docz/src/components/tables.jsx'
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 
 
 ## deckModes
@@ -155,13 +155,30 @@ const defaultTheme = {
 ## mergeThemes
 This function can be used to merge different theme objects together, overwriting with the latest theme given.
 
-<Arg values={[
-['...themes', 'Object', 'The theme objects you want to merge together.']
-]} />
+### Arguments
+<Arguments>
+{{
+  name: '...themes',
+  type: 'Object',
+  desc: 'The theme objects you want to merge together.'
+}}
+</Arguments>
 
-<Return values={[
-['combinedTheme', 'Object', 'New Theme-UI theme object, which is the result of merging all passed themes together.']
-]} />
+### Returns
+<Arguments input={false}>
+{{
+  name: 'combinedTheme',
+  type: 'Object',
+  desc: 'New Theme-UI theme object, which is the result of merging all passed themes together.'
+}}
+</Arguments>
+
+### Examples
+```js
+import {mergeThemes} from '@mdxp/core'
+
+const combinedTheme = mergeThemes(theme1, theme2, theme3)
+```
 
 ---
 
@@ -183,13 +200,23 @@ const MDXPTypes = {
 ## getMDXPType
 This function can be used to retrieve the MDXP type of a component.
 
-<Arg values={[
-['component', 'componentType', 'Component of which you would like to know the MDXP type of.'] 
-]} />
+### Arguments
+<Arguments>
+{{
+  name: 'component',
+  type: 'elementType',
+  desc: 'Component of which you would like to know the MDXP type of.'
+}}
+</Arguments>
 
-<Return values={[
-['type', ['MDXPTypes', '#mdxptypes'], 'Type of the component (default: NONE).']
-]} />
+### Returns
+<Arguments input={false}>
+{{
+  name: 'type',
+  type: '[MDXPTypes](#mdxptypes)',
+  desc: 'Type of the component (default: NONE).'
+}}
+</Arguments>
 
 ---
 
@@ -197,16 +224,25 @@ This function can be used to retrieve the MDXP type of a component.
 ## setMDXPLayoutType
 This is a higher-order component, which turns your component into a MDXP layout component.
 
-<Arg values={[
-['component', 'componentType', 'Component of which you would like to be a layout component.'] 
-]} />
+### Arguments
+<Arguments>
+{{
+  name: 'component',
+  type: 'elementType',
+  desc: 'Component of which you would like to be a layout component.'
+}}
+</Arguments>
 
-<Return values={[
-['component', 'componentType', 'MDXP Layout component of your component']
-]} />
+### Returns
+<Arguments input={false}>
+{{
+  name: 'component',
+  type: 'elementType',
+  desc: 'MDXP Layout component of your component'
+}}
+</Arguments>
 
 ### Examples
-
 ```jsx
 import {setMDXPLayoutType} from '@mdxp/core'
 

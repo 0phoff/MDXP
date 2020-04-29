@@ -6,12 +6,14 @@ Release TODO lists for MDXP
   - [X] Possibility for different modes
   - [X] Steps
   - [X] Keyboard navigation
+  - [X] Storage based navigation
+  - [X] MDXPLayoutType
+  - [X] MDXPGroupType
+  - [X] MDXPWrapperType
   - [X] Theming: GoogleFont, baseTheme, defaultTheme, mergeThemes()
   - [X] Webpack demo
   - [X] Rehype plugins
-  - [X] Storage based navigation
   - [X] Check if table column alignment works (broken in MDX-Deck)
-  - [X] MDXPGroupType
   - [ ] @mdxp/components
   - [ ] @mdxp/create-webpack
   - [X] Documentation website

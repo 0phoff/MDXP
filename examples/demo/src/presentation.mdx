@@ -1,5 +1,5 @@
-import ContextGroup from './context-group.jsx'
-import ContextGroupTester from './context-group-tester.jsx';
+import ContextWrapper from './context-wrapper.jsx'
+import ContextWrapperTester from './context-wrapper-tester.jsx'
 
 # Testing MDX components
 
@@ -70,16 +70,16 @@ $$
 
 ---
 
-<ContextGroup value={['test 1', 'test 2']}>
+<ContextWrapper value={['test 1', 'test 2']}>
 
-# Groups
+# Wrappers
 
-<ContextGroupTester idx={0} />
+<ContextWrapperTester idx={0} />
 
 ---
 
-# Groups
+# Wrappers
 
-<ContextGroupTester idx={1} />
+<ContextWrapperTester idx={1} />
 
-</ContextGroup>
+</ContextWrapper>

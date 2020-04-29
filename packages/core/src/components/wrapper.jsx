@@ -1,52 +1,54 @@
 import React from 'react';
 import DeckMode from './deck-mode.jsx';
-import MDXPTypes, {getMDXPType} from '../util/mdxp-types.jsx';
+import MDXPTypes, {checkMDXPType} from '../util/mdxp-types.jsx';
 
 /** Create slide object */
-const createSlideObject = (elements, context = null) => {
+const createSlideObject = (elements, wrappers = []) => {
   if (Array.isArray(elements)) {
-    return {context, elements};
+    return {wrappers, elements};
   }
 
-  return {context, elements: [elements]};
+  return {wrappers, elements: [elements]};
 };
 
 /** Transform slide object into a valid React Component */
 const createSlideComponent = DefaultLayout => (slideObject, key) => {
-  const {elements, context} = slideObject;
+  const {elements, wrappers} = slideObject;
+  const wrapperHasLayout = wrappers.some(element => checkMDXPType(element, MDXPTypes.LAYOUT));
   let slide;
 
-  if ((elements.length === 1) && (getMDXPType(elements[0]) === MDXPTypes.LAYOUT)) {
+  if (wrapperHasLayout) {
+    slide = elements;
+  } else if ((elements.length === 1) && checkMDXPType(elements[0], MDXPTypes.LAYOUT)) {
     slide = React.cloneElement(elements[0], {key: key});
   } else {
     slide = (<DefaultLayout key={key}>{elements}</DefaultLayout>);
   }
 
-  if (context) {
-    slide = React.cloneElement(context, {key: 'context_' + key}, slide);
-  }
-
-  return slide;
+  return wrappers.reduceRight((children, Component) => {
+    return React.cloneElement(Component, {key: 'wrapper_' + key}, children);
+  }, slide);
 };
 
 /** Split a list of elements into a list of individual slideObjects */
-const splitSlides = (elements, context = null) => {
+const splitSlides = (elements, wrappers = []) => {
   let startIndex = 0;
   return elements.reduce((acc, element, idx) => {
-    if (getMDXPType(element) === MDXPTypes.GROUP) {
+    if (checkMDXPType(element, MDXPTypes.GROUP)) {
       startIndex = idx + 1;
       const children = element.props.children || [];
-      return [...acc, ...splitSlides(children, element)];
+      const newWrappers = checkMDXPType(element, MDXPTypes.WRAPPER) ? [...wrappers, element] : wrappers;
+      return [...acc, ...splitSlides(children, newWrappers)];
     }
 
     if (element.props.mdxType === 'hr') {
-      const newAcc = [...acc, createSlideObject(elements.slice(startIndex, idx), context)];
+      const newAcc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)];
       startIndex = idx + 1;
       return newAcc;
     }
 
     if (idx === elements.length - 1) {
-      return [...acc, createSlideObject(elements.slice(startIndex), context)];
+      return [...acc, createSlideObject(elements.slice(startIndex), wrappers)];
     }
 
     return acc;

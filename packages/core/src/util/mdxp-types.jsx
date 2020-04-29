@@ -1,9 +1,15 @@
 const MDXPTypes = {
-  NONE: 0,
-  LAYOUT: 1,
-  GROUP: 2
+  NONE: 0b0001,
+  LAYOUT: 0b0010,
+  GROUP: 0b0100,
+  WRAPPER: 0b1100
 };
 export default MDXPTypes;
+
+export const setMDXPType = (Component, ...MDXPTypes) => {
+  Component.MDXPType = MDXPTypes.reduce((a, b) => a | b);
+  return Component;
+};
 
 export const getMDXPType = Component => {
   if (Component.hasOwnProperty('props') && Component.props.hasOwnProperty('originalType')) {
@@ -14,11 +20,4 @@ export const getMDXPType = Component => {
   return Component.hasOwnProperty('MDXPType') ? Component.MDXPType : MDXPTypes.NONE;
 };
 
-export const setMDXPType = (Component, MDXPType) => {
-  Component.MDXPType = MDXPType;
-  return Component;
-};
-
-export const setMDXPLayoutType = Component => setMDXPType(Component, MDXPTypes.LAYOUT);
-
-export const setMDXPGroupType = Component => setMDXPType(Component, MDXPTypes.GROUP);
+export const checkMDXPType = (Component, MDXPType) => getMDXPType(Component) & MDXPType;

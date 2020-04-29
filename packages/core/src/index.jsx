@@ -5,9 +5,9 @@ export {default as defaultTheme} from './util/theme.js';
 export {default as deckModes} from './util/deck-modes.js';
 export {
   default as MDXPTypes,
+  setMDXPType,
   getMDXPType,
-  setMDXPLayoutType,
-  setMDXPGroupType
+  checkMDXPType
 } from './util/mdxp-types.jsx';
 
 // HOOKS

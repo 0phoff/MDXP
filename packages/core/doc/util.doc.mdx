@@ -190,9 +190,59 @@ This is the enum object which contains the different types of special MDXP compo
 
 ```js
 const MDXPTypes = {
-  NONE: 0,
-  LAYOUT: 1,
+  NONE:     0b0001,
+  LAYOUT:   0b0010,
+  GROUP:    0b0100,
+  WRAPPER:  0b1100,
 };
+```
+
+---
+
+
+## setMDXPType
+This is a higher-order component, which turns turns your component into a specific [MDXPType](#MDXPTypes).
+
+### Arguments
+<Arguments>
+{{
+  name: 'component',
+  type: 'elementType'
+}}
+{{
+  name: '...MDXPTypes',
+  type: '[MDXPTypes](#mdxptypes)',
+  desc: 'You can pass multiple MDXPTypes to set the component as all of them.'
+}}
+</Arguments>
+
+### Returns
+<Arguments input={false}>
+{{
+  name: 'component',
+  type: 'elementType'
+}}
+</Arguments>
+
+### Examples
+```js
+import {MDXPTypes, setMDXPType} from '@mdxp/core'
+
+const TomatoLayout = ({children, ...props}) => (
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      overflow: 'hidden',
+      backgroundColor: 'tomato',
+      color: 'white'
+    }}
+  >
+    {children}
+  </div>
+);
+
+export default setMDXPType(TomatoLayout, MDXPTypes.LAYOUT);
 ```
 
 ---
@@ -201,12 +251,15 @@ const MDXPTypes = {
 ## getMDXPType
 This function can be used to retrieve the MDXP type of a component.
 
+> __NOTE__  
+> It is recommended to use the [checkMDXPType](#checkMDXPType) to test for component types,
+> instead of using this function, as the internal implementation of MDXPTypes might change between version.
+
 ### Arguments
 <Arguments>
 {{
   name: 'component',
-  type: 'elementType',
-  desc: 'Component of which you would like to know the MDXP type of.'
+  type: 'elementType'
 }}
 </Arguments>
 
@@ -222,82 +275,35 @@ This function can be used to retrieve the MDXP type of a component.
 ---
 
 
-## setMDXPLayoutType
-This is a higher-order component, which turns your component into a MDXP layout component.
+## checkMDXPType
+Check whether a component is of a certain [MDXPType](#MDXPTypes).  
 
 ### Arguments
 <Arguments>
 {{
   name: 'component',
-  type: 'elementType',
-  desc: 'Component of which you would like to be a layout component.'
+  type: 'elementType'
+}}
+{{
+  name: 'type',
+  type: '[MDXPTypes](#mdxptypes)'
 }}
 </Arguments>
 
 ### Returns
 <Arguments input={false}>
 {{
-  name: 'component',
-  type: 'elementType',
-  desc: 'MDXP Layout component of your component'
+  name: 'isOfMDXPType',
+  type: 'bool',
 }}
 </Arguments>
 
 ### Examples
-```jsx
-import {setMDXPLayoutType} from '@mdxp/core'
+```js
+import {MDXPTypes, checkMDXPType} from '@mdxp/core'
+import Component from './component'
 
-const TomatoLayout = ({children, ...props}) => (
-  <div
-    style={{
-      width: '100%',
-      height: '100%',
-      overflow: 'hidden',
-      backgroundColor: 'tomato',
-      color: 'white'
-    }}
-  >
-    {children}
-  </div>
-)
-
-export default setMDXPLayoutType(TomatoLayout);
-```
-
----
-
-
-## setMDXPGroupType
-This is a higher-order component, which turns your component into a MDXP group component.
-
-### Arguments
-<Arguments>
-{{
-  name: 'component',
-  type: 'elementType',
-  desc: 'Component of which you would like to be a group component.'
-}}
-</Arguments>
-
-### Returns
-<Arguments input={false}>
-{{
-  name: 'component',
-  type: 'elementType',
-  desc: 'MDXP Group component of your component'
-}}
-</Arguments>
-
-### Examples
-```jsx
-import {setMDXPGroupType} from '@mdxp/core'
-import {ThemeProvider} from 'theme-ui'
-
-const ThemeGroup = ({theme, children}) => (
-  <ThemeProvider theme={theme}>
-    {children}
-  </ThemeProvider>
-);
-
-export default setMDXPGroupType(ThemeGroup);
+if (checkMDXPType(Component, MDXPTypes.LAYOUT)) {
+  // Component is a layout!
+}
 ```

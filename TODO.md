@@ -2,9 +2,12 @@
 Release TODO lists for MDXP
 
 ## V0.1
-  - [X] GoogleFont
-  - [X] Theming: baseTheme, defaultTheme, mergeThemes()
-  - [X] Change demo to webpack
+  - [X] Basic slide functionality
+  - [X] Possibility for different modes
+  - [X] Steps
+  - [X] Keyboard navigation
+  - [X] Theming: GoogleFont, baseTheme, defaultTheme, mergeThemes()
+  - [X] Webpack demo
   - [X] Rehype plugins
   - [X] Storage based navigation
   - [X] Check if table column alignment works (broken in MDX-Deck)
@@ -16,4 +19,12 @@ Release TODO lists for MDXP
   - [ ] Documentation: API components
   - [ ] Documentation: Guides
   - [ ] Readme
+
+## V1.0
+  - [ ] Presenter mode
+  - [ ] Grid mode
+  - [ ] Notes
+  - [ ] Generate PDF
+  - [ ] Help & Keybindings pop-up
+  - [ ] Custom Video component with different behaviour depending on the mode
 

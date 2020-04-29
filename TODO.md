@@ -11,6 +11,7 @@ Release TODO lists for MDXP
   - [X] Rehype plugins
   - [X] Storage based navigation
   - [X] Check if table column alignment works (broken in MDX-Deck)
+  - [X] MDXPGroupType
   - [ ] @mdxp/components
   - [ ] @mdxp/create-webpack
   - [X] Documentation website

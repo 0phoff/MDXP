@@ -1,3 +1,6 @@
+import ContextGroup from './context-group.jsx'
+import ContextGroupTester from './context-group-tester.jsx';
+
 # Testing MDX components
 
 Does this __bold text__ work  ?  
@@ -65,3 +68,18 @@ $$
 | Cell 2.1   | Cell 2.2     | Cell 2.3    |
 | Cell 3.1   | Cell 3.2     | Cell 3.3    |
 
+---
+
+<ContextGroup value={['test 1', 'test 2']}>
+
+# Groups
+
+<ContextGroupTester idx={0} />
+
+---
+
+# Groups
+
+<ContextGroupTester idx={1} />
+
+</ContextGroup>

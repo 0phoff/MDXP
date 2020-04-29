@@ -1,6 +1,7 @@
 const MDXPTypes = {
   NONE: 0,
-  LAYOUT: 1
+  LAYOUT: 1,
+  GROUP: 2
 };
 export default MDXPTypes;
 
@@ -19,3 +20,5 @@ export const setMDXPType = (Component, MDXPType) => {
 };
 
 export const setMDXPLayoutType = Component => setMDXPType(Component, MDXPTypes.LAYOUT);
+
+export const setMDXPGroupType = Component => setMDXPType(Component, MDXPTypes.GROUP);

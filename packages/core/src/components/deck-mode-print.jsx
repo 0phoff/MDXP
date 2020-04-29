@@ -16,7 +16,7 @@ const PrintMode = ({children}) => {
         {
           children.map((_, i) => (
             <Slide
-              slide={i}
+              slideNum={i}
               preview
               sx={{width: '100vw', height: '100vh'}}
               key={`slide_${i}`}

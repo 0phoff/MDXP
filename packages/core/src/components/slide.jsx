@@ -20,9 +20,9 @@ const getIndex = (slide, slideLength) => {
   return slide;
 };
 
-const Slide = ({children, reference, preview = false, sx = {}}) => {
+const Slide = ({children, reference, slideNum, preview = false, sx = {}}) => {
   // Data
-  const {slide, step = 0} = useParams();
+  const {slide = slideNum, step = 0} = useParams();
   const rootContext = useRoot();
   const slideIndex = getIndex(parseInt(slide), rootContext.slideLength);
   const slideElement = React.Children.count(children) === 1 ?

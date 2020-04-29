@@ -66,17 +66,16 @@ module.exports = {
 
 ### Examples
 Once the plugin is setup, you can write the following code:
-```md
+```jsx
 <MyComponent file="./path/to/some/data.json" />
 
 // Gets transformed by the plugin to:
 import AI__path_to_some_data_json from "./path/to/some/data.json"
-
 <MyComponent file={AI__path_to_some_data_json} />
 ```
 
 If you do not want to import a certain path and you setup a `noImport` string as shown above, you can use:
-```md
+```jsx
 <MyComponent file="!noimport!./path/to/some/data.json" />
 
 // Gets transformed by the plugin to:

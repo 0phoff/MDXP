@@ -72,14 +72,14 @@ module.exports = {
 
 ### Examples
 Once the plugin is setup, you can write the following code:
-```md
+```jsx
 ![logo image](./path/to/logo.png "An image of my logo")
 
 // Gets transformed by the plugin to:
 <img alt="logo image" src="./path/to/logo.png" title="An image of my logo" />
 ```
 
-```md
+```jsx
 // Note that style should be defined as a JSX property (double braces)
 ![image&&style={{border: '5px solid red'}}&&width='80%'](./path/to/image.jpg)
 
@@ -87,14 +87,14 @@ Once the plugin is setup, you can write the following code:
 <img alt="image" src="./path/to/image.jpg" style={{border: '5px solid red', width: '80%'}} />
 ```
 
-```md
-![video&&autostart&&loop](./path/to/video.mp4)
+```jsx
+![video&&autoplay&&loop](./path/to/video.mp4)
 
 // Gets transformed by the plugin to:
-<video alt="video" src="./path/to/video.mp4" autostart loop />
+<video alt="video" src="./path/to/video.mp4" autoplay loop />
 ```
 
-```md
+```jsx
 ![online video&&controls](!video!https://www.thiscoolvideo.com)
 
 // Gets transformed by the plugin to:

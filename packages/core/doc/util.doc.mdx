@@ -263,3 +263,41 @@ const TomatoLayout = ({children, ...props}) => (
 
 export default setMDXPLayoutType(TomatoLayout);
 ```
+
+---
+
+
+## setMDXPGroupType
+This is a higher-order component, which turns your component into a MDXP group component.
+
+### Arguments
+<Arguments>
+{{
+  name: 'component',
+  type: 'elementType',
+  desc: 'Component of which you would like to be a group component.'
+}}
+</Arguments>
+
+### Returns
+<Arguments input={false}>
+{{
+  name: 'component',
+  type: 'elementType',
+  desc: 'MDXP Group component of your component'
+}}
+</Arguments>
+
+### Examples
+```jsx
+import {setMDXPGroupType} from '@mdxp/core'
+import {ThemeProvider} from 'theme-ui'
+
+const ThemeGroup = ({theme, children}) => (
+  <ThemeProvider theme={theme}>
+    {children}
+  </ThemeProvider>
+);
+
+export default setMDXPGroupType(ThemeGroup);
+```

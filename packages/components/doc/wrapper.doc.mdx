@@ -1,0 +1,120 @@
+---
+name: Wrappers
+menu: "@mdxp/components"
+route: components-wrappers
+group: API
+---
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
+import {_ThemeWrapper as ThemeWrapper} from '../src/wrapper/theme-wrapper.jsx'
+import {_InvertWrapper as InvertWrapper} from '../src/wrapper/invert-wrapper.jsx'
+import {_LayoutWrapper as LayoutWrapper} from '../src/wrapper/layout-wrapper.jsx'
+
+
+# Wrapper Components
+This page contains the documentation for all Wrapper Components that the `@mdxp/components` package has to offer.
+
+---
+
+
+## ThemeWrapper
+This component wraps each slide in a `<ThemeProvider />` component, allowing you to make modifications to the global theme.
+Check out [Nested ThemeProviders](https://theme-ui.com/guides/nested-theme-providers) for more information.
+
+### Properties
+<Arguments of={ThemeWrapper} />
+
+### Examples
+```md
+<ThemeWrapper theme={{colors: {background: 'tomato'}}}>
+
+# SLIDE 1
+This slide will have a tomato colored background
+
+I am not sure if it is aesthetically pleasing, but it doesn't have to be.
+After all, this is just a silly example
+
+---
+
+# SLIDE 2
+it will also have this tomato background.  
+Are you seriously still reading this ?
+
+</ThemeWrapper>
+
+# SLIDE 3
+This one will have the default colored background, as it is outside the wrapper
+
+Note that wrappers automatically end a slide, so there is no need for ---, but it doesn't hurt either.
+```
+
+---
+
+
+## InvertWrapper
+This component inverses the `text` and `background` color properties of your theme.
+
+### Properties
+<Arguments of={InvertWrapper} />
+
+### Examples
+```md
+# SLIDE 1
+This is a normal slide, with your default theme applied
+
+---
+
+<InvertWrapper>
+
+# SLIDE 2
+This slide will be inverted!  
+Note that you __CANNOT__ ommit the --- after Slide 1, because those mark the end of that slide!
+
+--- 
+
+# SLIDE 3
+This slide will still be inverted
+
+---
+
+</InvertWrapper>
+
+# SLIDE 4
+This slide is normal again.  
+Note that you __CAN__ ommit the --- after Slide 3, because stopping the wrapper does terminate the slide as well.
+You can however still add it, as is shown here.
+```
+
+---
+
+
+## LayoutWrapper
+This component changes the default layout for all slides inside of it.
+
+### Properties
+<Arguments of={LayoutWrapper} />
+
+### Examples
+```md
+# SLIDE 1
+This slide has the default layout, as provided in your Deck
+
+---
+
+<LayoutWrapper Layout={HeaderLayout}>
+
+# SLIDE 2
+This slide will have the HeaderLayout applied
+
+---
+
+<BlankLayout>
+
+# SLIDE 3
+This slide already has a BlankLayout, thus it will not be wrapped in the HeaderLayout.
+
+</BlankLayout>
+
+</LayoutWrapper>
+
+
+```

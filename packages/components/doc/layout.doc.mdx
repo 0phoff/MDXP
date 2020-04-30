@@ -1,0 +1,118 @@
+---
+name: Layouts
+menu: "@mdxp/components"
+route: components-layout
+group: API
+---
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
+import {_BlankLayout as BlankLayout} from '../src/layout/blank-layout.jsx'
+import {_HeaderLayout as HeaderLayout} from '../src/layout/header-layout.jsx'
+
+
+# Layout Components
+This page contains the documentation for all Layout Components that the `@mdxp/components` package has to offer.
+
+---
+
+
+## BlankLayout
+This is the default layout for MDXP, which is exposed here if you need to explicitely use it.  
+This layout is setup as a div with the following default `sx` style:
+
+```js
+sx = {
+  width: '100%',
+  height: '100%',
+  boxSizing: 'border-box',
+  position: 'relative',
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: 'text',
+  bg: 'background',
+  '& p': {textAlign: 'center'},
+}
+```
+
+### Properties
+<Arguments of={BlankLayout} />
+
+### Examples
+```md
+# SLIDE 1
+This slide will use whathever the default layout is as it's layout
+
+---
+
+<BlankLayout>
+
+# SLIDE 2
+This slide wil have a blank layout.
+
+</BlankLayout>
+
+---
+
+<BlankLayout sx={{color: 'tomato'}}>
+
+# SLIDE 3
+This slide will have a blank layout with a tomato colored text.
+
+</BlankLayout>
+
+---
+
+<BlankLayout sx={{background: 'primary'}}>
+
+# SLIDE 4
+This slide will have a blank layout with your theme's "primary" color as background.
+
+</BlankLayout>
+
+```
+
+---
+
+
+## HeaderLayout
+This layout looks at its first child and if that is an H1-H6 element, places it at the top.
+You can also pass an optional `Footer` element as a property, which will be set at the bottom.
+The rest of the page will be filled with a div that contains the rest of the slide and which is styled like a [BlankLayout](#blanklayout) by default.
+
+### Properties
+<Arguments of={HeaderLayout} />
+
+### Examples
+```md
+# SLIDE 1
+This slide will use whathever the default layout is as it's layout
+
+---
+
+<HeaderLayout>
+
+# SLIDE 2
+This slide will have its title (SLIDE 2) at the top of the page
+
+</HeaderLayout>
+
+---
+
+<HeaderLayout sxHeader={{width: '100%', bg: 'text', color: 'background'}}>
+
+### SLIDE 3
+This slide will have its title at the top of the page,
+in a full-width box with inverted background and foreground color.
+
+</HeaderLayout>
+
+---
+
+<HeaderLayout>
+
+This slide 4 will look like a BlankLayout, because it does not have a title as first element.
+
+</HeaderLayout>
+```

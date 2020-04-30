@@ -36,7 +36,7 @@ const splitSlides = (elements, wrappers = []) => {
   return elements.reduce((acc, element, idx) => {
     if (checkMDXPType(element, MDXPTypes.GROUP)) {
       startIndex = idx + 1;
-      const children = element.props.children || [];
+      const children = React.Children.toArray(element.props.children);
       const newWrappers = checkMDXPType(element, MDXPTypes.WRAPPER) ? [...wrappers, element] : wrappers;
       return [...acc, ...splitSlides(children, newWrappers)];
     }

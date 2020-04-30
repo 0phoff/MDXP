@@ -119,6 +119,7 @@ export const defaultTheme = {
       color: 'accent'
     },
     table: {
+      color: 'text',
       fontSize: 'inherit',
       borderCollapse: 'collapse',
       borderStyle: 'hidden'

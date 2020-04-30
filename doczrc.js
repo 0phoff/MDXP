@@ -9,8 +9,9 @@ export default {
     'Introduction',
     'Getting Started',
     'Examples',
-    'core',
-    'rehypex-plugins'
+    '@mdxp/core',
+    '@mdxp/components',
+    '@mdxp/rehypex-plugins'
   ],
   themeConfig: {
     showDarkModeSwitch: false,

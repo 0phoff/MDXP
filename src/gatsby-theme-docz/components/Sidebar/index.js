@@ -26,7 +26,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
 
   const groupedMenu = menus.reduce((accMenu, menuItem) => {
     let group = menuItem.group;
-    if (!group && menuItem.hasOwnProperty('menu')) {
+    if (!group && Array.isArray(menuItem.menu) && menuItem.menu.length >= 1) {
       group = menuItem.menu[0].group;
     }
 

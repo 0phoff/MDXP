@@ -5,6 +5,8 @@ route: core-util
 group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
+import ObjectProps from 'gatsby-theme-docz/src/components/object-props.jsx'
+import {defaultTheme, baseTheme} from '../src/util/theme.js';
 
 
 ## deckModes
@@ -28,37 +30,7 @@ const deckModes = {
 Base theme object that is always being merged into the given theme, to provide sane defaults for some things.
 You can overwrite any of its properties by providing your own values in your theme.
 
-```js
-const baseTheme = {
-  colors: {
-    text: '#000',
-    background: '#FFF'
-  },
-  fonts: {
-    body: 'system-ui, sans-serif',
-  },
-  fontWeights: {
-    body: 400
-  },
-  lineHeights: {
-    body: 1.5
-  },
-  styles: {
-    root: {
-      fontFamily: 'system-ui, sans-serif'
-    },
-    img: {
-      maxWidth: '100%',
-      maxHeight: '100%',
-      objectFit: 'contain'
-    },
-    Slide: {
-      fontFamily: 'body',
-      fontSize: '1.5rem'
-    }
-  }
-};
-```
+<ObjectProps of={baseTheme} pre="const baseTheme = "/>
 
 ---
 
@@ -67,88 +39,7 @@ const baseTheme = {
 This is the default theme that is used for your presentation,
 if you do not give one to the [Deck](/core-components#deck) component.
 
-```js
-const defaultTheme = {
-  colors: {
-    text: '#000',
-    background: '#FFF',
-    primary: '#CCC',
-    secondary: '#555',
-    accent: '#F9AC00',
-    muted: '#888'
-  },
-  fonts: {
-    heading: 'inherit',
-    monospace: 'Menlo, monospace'
-  },
-  fontWeights: {
-    heading: 700
-  },
-  lineHeights: {
-    heading: 1.125
-  },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  text: {
-    heading: {
-      fontFamily: 'heading',
-      fontWeight: 'heading',
-      lineHeight: 'heading',
-      textAlign: 'center'
-    }
-  },
-  styles: {
-    h1: {
-      variant: 'text.heading',
-      textTransform: 'uppercase'
-    },
-    h2: {
-      variant: 'text.heading'
-    },
-    h3: {
-      variant: 'text.heading'
-    },
-    h4: {
-      variant: 'text.heading'
-    },
-    h5: {
-      variant: 'text.heading'
-    },
-    h6: {
-      variant: 'text.heading'
-    },
-    code: {
-      fontFamily: 'monospace'
-    },
-    pre: {
-      fontFamily: 'monospace'
-    },
-    table: {
-      fontSize: 'inherit',
-      borderCollapse: 'collapse',
-      borderStyle: 'hidden',
-    },
-    tr : {
-      '& > :first-child': {paddingLeft: 0},
-      '& > :last-child': {paddingRight: 0}
-    },
-    th: {
-      fontWeight: 'bold',
-      borderColor: 'inherit',
-      borderStyle: 'solid',
-      borderWidth: '0 0 2px 0',
-      px: 3,
-      py: 3
-    },
-    td: {
-      borderColor: 'inherit',
-      borderStyle: 'solid',
-      borderWidth: '0 0 1px 0',
-      px: 3,
-      py: 2
-    }
-  }
-};
-```
+<ObjectProps of={defaultTheme} pre="const defaultTheme = "/>
 
 ---
 

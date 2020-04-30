@@ -56,6 +56,13 @@ export const baseTheme = {
     Slide: {
       fontFamily: 'body',
       fontSize: '1.5rem'
+    },
+    pre: {
+      fontFamily: 'monospace',
+      overflowX: 'auto',
+      code: {
+        color: 'inherit'
+      }
     }
   }
 };
@@ -91,28 +98,50 @@ export const defaultTheme = {
   styles: {
     h1: {
       variant: 'text.heading',
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
+      marginBlockStart: '0',
+      marginBlockEnd: '0',
+      paddingBlockStart: '0.67em',
+      paddingBlockEnd: '0.67em'
     },
     h2: {
-      variant: 'text.heading'
+      variant: 'text.heading',
+      marginBlockStart: '0',
+      marginBlockEnd: '0',
+      paddingBlockStart: '0.83em',
+      paddingBlockEnd: '0.83em'
     },
     h3: {
-      variant: 'text.heading'
+      variant: 'text.heading',
+      marginBlockStart: '0',
+      marginBlockEnd: '0',
+      paddingBlockStart: '1em',
+      paddingBlockEnd: '1em'
     },
     h4: {
-      variant: 'text.heading'
+      variant: 'text.heading',
+      marginBlockStart: '0',
+      marginBlockEnd: '0',
+      paddingBlockStart: '1.33em',
+      paddingBlockEnd: '1.33em'
     },
     h5: {
-      variant: 'text.heading'
+      variant: 'text.heading',
+      marginBlockStart: '0',
+      marginBlockEnd: '0',
+      paddingBlockStart: '1.67em',
+      paddingBlockEnd: '1.67em'
     },
     h6: {
-      variant: 'text.heading'
+      variant: 'text.heading',
+      marginBlockStart: '0',
+      marginBlockEnd: '0',
+      paddingBlockStart: '2.33em',
+      paddingBlockEnd: '2.33em'
     },
-    code: {
-      fontFamily: 'monospace'
-    },
-    pre: {
-      fontFamily: 'monospace'
+    inlineCode: {
+      fontFamily: 'monospace',
+      color: 'accent'
     },
     table: {
       fontSize: 'inherit',

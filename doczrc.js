@@ -10,7 +10,7 @@ export default {
     'Getting Started',
     'Examples',
     '@mdxp/core',
-    '@mdxp/components',
+    {name: '@mdxp/components', menu: ['Components', 'Layouts', 'Groups', 'Wrappers']},
     '@mdxp/rehypex-plugins'
   ],
   themeConfig: {

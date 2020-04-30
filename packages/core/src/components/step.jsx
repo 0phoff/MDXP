@@ -198,7 +198,9 @@ Step.propTypes = {
   }),
 
   /** Additional props which will be set to a surrounding div. */
-  props: PropTypes.object
+  props: PropTypes.object,
+
+  children: PropTypes.node
 };
 
 export default Step;

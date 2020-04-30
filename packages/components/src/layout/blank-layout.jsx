@@ -31,7 +31,10 @@ BlankLayout.propTypes = {
   sx: PropTypes.object,
 
   /** Extra properties that are set to the layout div. */
-  props: PropTypes.object
+  props: PropTypes.object,
+
+  children: PropTypes.node
 };
 
 export default setMDXPType(BlankLayout, MDXPTypes.LAYOUT);
+export {BlankLayout as _BlankLayout};

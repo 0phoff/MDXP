@@ -82,7 +82,9 @@ Deck.propTypes = {
   components: PropTypes.objectOf(PropTypes.elementType),
 
   /** Additional props which will be passed to the main Router of the Deck. */
-  props: PropTypes.object
+  props: PropTypes.object,
+
+  children: PropTypes.node.isRequired
 };
 
 export default Deck;

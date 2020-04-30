@@ -90,7 +90,10 @@ HeaderLayout.propTypes = {
   sx: PropTypes.object,
 
   /** Extra properties that are set to the layout div. */
-  props: PropTypes.object
+  props: PropTypes.object,
+
+  children: PropTypes.node
 };
 
 export default setMDXPType(HeaderLayout, MDXPTypes.LAYOUT);
+export {HeaderLayout as _HeaderLayout};

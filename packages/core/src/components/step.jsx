@@ -110,12 +110,18 @@ const Step = ({
 }) => {
   const [length, render] = getStepableChildren(children, {useColumns});
   const [_, setStep] = useContext(StepContext);
-  offset = parseInt(offset) || (setStep ? 0 : 1);
+
+  offset = parseInt(offset);
+  if (isNaN(offset)) {
+    offset = (setStep ? 0 : 1);
+  }
+
   const [state, setState] = useHOReducer(Array.from({length}, (_, i) => ({
     start: i + offset,
     length: length + offset,
     innerLength: 1
   })));
+
   const step = useStep(Math.max(...state.map(s => s.length)));
 
   const setNthState = n => newChildState => {

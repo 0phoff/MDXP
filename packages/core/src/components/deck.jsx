@@ -28,12 +28,26 @@ const GoogleFont = ({theme}) => {
   );
 };
 
-const Deck = ({children, theme = defaultTheme, Layout = DefaultLayout, components = {}, ...props}) => {
+const Deck = ({
+  children,
+  theme = defaultTheme,
+  Layout = DefaultLayout,
+  layoutOptions = {},
+  components = {},
+  ...props
+}) => {
+  // Setup theme
   if (Array.isArray(theme)) {
     theme = mergeThemes(baseTheme, ...theme);
   } else {
     theme = mergeThemes(baseTheme, theme);
   }
+
+  // Setup default layout
+  const DefaultLayoutWrapper = props => {
+    props = {...layoutOptions, ...props}; // Shallow merging!
+    return (<Layout {...props} />);
+  };
 
   return (
     <React.Fragment>
@@ -43,9 +57,9 @@ const Deck = ({children, theme = defaultTheme, Layout = DefaultLayout, component
         theme={theme}
         components={{
           ...defaultComponents,
-          DefaultLayout: Layout,
+          DefaultLayout: DefaultLayoutWrapper,
           ...components,
-          wrapper: wrapper(Layout, props)
+          wrapper: wrapper(DefaultLayoutWrapper, props)
         }}
       >
         {children}
@@ -60,6 +74,9 @@ Deck.propTypes = {
 
   /** Component that gets used as a default layout, when a slide is not wrapped inside an own layout component. */
   Layout: PropTypes.elementType,
+
+  /** Options that are passed to the default layout component. */
+  layoutOptions: PropTypes.object,
 
   /** The elements inside this object get passed to MDXProvider and allow you to specify components, so that you do not need to import them in your presentations. */
   components: PropTypes.objectOf(PropTypes.elementType),

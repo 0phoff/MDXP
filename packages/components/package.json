@@ -1,0 +1,43 @@
+{
+  "name": "@mdxp/components",
+  "version": "0.0.0",
+  "description": "Components for MDXP",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0phoff/MDXP.git",
+    "directory": "packages/components"
+  },
+  "author": "0phoff <0phoff@users.noreply.github.com>",
+  "license": "MIT",
+  "source": "src/index.js",
+  "module": "dist/components.module.js",
+  "main": "dist/components.js",
+  "umd:main": "dist/components.umd.js",
+  "jsnext:main": "dist/components.modern.js",
+  "unpkg": "dist/components.umd.js",
+  "exports": {
+    ".": {
+      "browser": "./dist/components.module.js",
+      "umd": "./dist/components.umd.js",
+      "import": "./dist/components.module.js",
+      "require": "./dist/components.js"
+    }
+  },
+  "scripts": {
+    "start": "microbundle watch --no-compress --jsx React.createElement -o dist",
+    "build": "microbundle build --no-compress --jsx React.createElement -o dist",
+    "clean": "rm -rf dist/*"
+  },
+  "peerDependencies": {
+    "@mdxp/core": "^0.0.0",
+    "react": "^16.13.1",
+    "theme-ui": "^0.3.1"
+  },
+  "devDependencies": {
+    "microbundle": "^0.12.0-next.8"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
+}

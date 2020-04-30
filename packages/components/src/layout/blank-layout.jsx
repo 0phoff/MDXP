@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import PropTypes from 'prop-types';
-import MDXPTypes, {setMDXPType} from '../util/mdxp-types.jsx';
+import MDXPTypes, {setMDXPType} from '@mdxp/core';
 
-const DefaultLayout = ({children, sx = {}, ...props}) => (
+const BlankLayout = ({children, sx = {}, ...props}) => (
   <div
     sx={{
       width: '100%',
@@ -26,9 +26,12 @@ const DefaultLayout = ({children, sx = {}, ...props}) => (
   </div>
 );
 
-DefaultLayout.propTypes = {
+BlankLayout.propTypes = {
+  /** Style that gets set to the layout div. This is set as a Theme-UI sx property and can thus accept theme aware values */
   sx: PropTypes.object,
+
+  /** Extra properties that are set to the layout div. */
   props: PropTypes.object
 };
 
-export default setMDXPType(DefaultLayout, MDXPTypes.LAYOUT);
+export default setMDXPType(BlankLayout, MDXPTypes.LAYOUT);

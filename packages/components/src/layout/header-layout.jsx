@@ -8,16 +8,57 @@ import getComponentType from '../util/component-type.js';
 import cloneElement from '../util/clone.js';
 
 const headers = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
+const spacing = {
+  h1: {
+    marginBlockStart: '0',
+    marginBlockEnd: '0',
+    paddingBlockStart: '0.67em',
+    paddingBlockEnd: '0.67em'
+  },
+  h2: {
+    marginBlockStart: '0',
+    marginBlockEnd: '0',
+    paddingBlockStart: '0.83em',
+    paddingBlockEnd: '0.83em'
+  },
+  h3: {
+    marginBlockStart: '0',
+    marginBlockEnd: '0',
+    paddingBlockStart: '1em',
+    paddingBlockEnd: '1em'
+  },
+  h4: {
+    marginBlockStart: '0',
+    marginBlockEnd: '0',
+    paddingBlockStart: '1.33em',
+    paddingBlockEnd: '1.33em'
+  },
+  h5: {
+    marginBlockStart: '0',
+    marginBlockEnd: '0',
+    paddingBlockStart: '1.67em',
+    paddingBlockEnd: '1.67em'
+  },
+  h6: {
+    marginBlockStart: '0',
+    marginBlockEnd: '0',
+    paddingBlockStart: '2.33em',
+    paddingBlockEnd: '2.33em'
+  }
+};
 
 const HeaderLayout = ({children, sx = {}, sxHeader = {}, Footer, ...props}) => {
   children = React.Children.toArray(children);
 
   let header;
-  if ((children.length >= 1) && headers.has(getComponentType(children[0]))) {
-    header = cloneElement(children[0], {
-      sx: {...children[0].props.sx, ...sxHeader}
-    });
-    children = children.slice(1);
+  if (children.length >= 1) {
+    const headerType = getComponentType(children[0]);
+    if (headers.has(getComponentType(children[0]))) {
+      header = cloneElement(children[0], {
+        sx: {...children[0].props.sx, ...spacing[headerType], ...sxHeader}
+      });
+      children = children.slice(1);
+    }
   }
 
   return (

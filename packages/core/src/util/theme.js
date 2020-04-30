@@ -97,47 +97,22 @@ export const defaultTheme = {
   },
   styles: {
     h1: {
-      variant: 'text.heading',
-      textTransform: 'uppercase',
-      marginBlockStart: '0',
-      marginBlockEnd: '0',
-      paddingBlockStart: '0.67em',
-      paddingBlockEnd: '0.67em'
+      variant: 'text.heading'
     },
     h2: {
-      variant: 'text.heading',
-      marginBlockStart: '0',
-      marginBlockEnd: '0',
-      paddingBlockStart: '0.83em',
-      paddingBlockEnd: '0.83em'
+      variant: 'text.heading'
     },
     h3: {
-      variant: 'text.heading',
-      marginBlockStart: '0',
-      marginBlockEnd: '0',
-      paddingBlockStart: '1em',
-      paddingBlockEnd: '1em'
+      variant: 'text.heading'
     },
     h4: {
-      variant: 'text.heading',
-      marginBlockStart: '0',
-      marginBlockEnd: '0',
-      paddingBlockStart: '1.33em',
-      paddingBlockEnd: '1.33em'
+      variant: 'text.heading'
     },
     h5: {
-      variant: 'text.heading',
-      marginBlockStart: '0',
-      marginBlockEnd: '0',
-      paddingBlockStart: '1.67em',
-      paddingBlockEnd: '1.67em'
+      variant: 'text.heading'
     },
     h6: {
-      variant: 'text.heading',
-      marginBlockStart: '0',
-      marginBlockEnd: '0',
-      paddingBlockStart: '2.33em',
-      paddingBlockEnd: '2.33em'
+      variant: 'text.heading'
     },
     inlineCode: {
       fontFamily: 'monospace',

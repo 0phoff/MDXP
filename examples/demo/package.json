@@ -20,11 +20,11 @@
     "clean:onepage": "rm -rf dist/onepage/*"
   },
   "devDependencies": {
-    "@mdxp/rehypex-plugins": "^0.0.0",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@mdx-js/loader": "^1.5.8",
+    "@mdxp/rehypex-plugins": "^0.0.0",
     "@svgr/webpack": "^5.3.1",
     "babel-loader": "^8.1.0",
     "file-loader": "^6.0.0",
@@ -41,8 +41,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "@mdxp/core": "^0.0.0",
     "@mdx-js/react": "^1.5.8",
+    "@mdxp/components": "^0.0.0",
+    "@mdxp/core": "^0.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "theme-ui": "^0.3.1"

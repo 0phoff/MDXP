@@ -81,7 +81,7 @@ const useKeyboard = (target, deck, setDeck) => {
         currentTarget.removeEventListener('keydown', handleKeyboard);
       }
     };
-  }, [root, deck]);
+  }, [root, deck, target]);
 };
 
 export default useKeyboard;

@@ -6,6 +6,7 @@ Release TODO lists for MDXP
   - [X] Possibility for different modes
   - [X] Steps
   - [X] Keyboard navigation
+  - [X] Touch based navigation
   - [X] Storage based navigation
   - [X] MDXPLayoutType
   - [X] MDXPGroupType
@@ -29,5 +30,8 @@ Release TODO lists for MDXP
   - [ ] Notes
   - [ ] Generate PDF
   - [ ] Help & Keybindings pop-up
+  - [ ] Import MDX files (If possible!)
+  - [ ] Animated transitions
   - [ ] Custom Video component with different behaviour depending on the mode
+  - [ ] CodeSurfer component
 

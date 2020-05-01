@@ -49,8 +49,6 @@ export const baseTheme = {
       fontFamily: 'system-ui, sans-serif'
     },
     img: {
-      maxWidth: '100%',
-      maxHeight: '100%',
       objectFit: 'contain'
     },
     Slide: {

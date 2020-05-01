@@ -67,7 +67,9 @@ module.exports = (options = {}) => {
         }
       });
 
-      newNode.value += `style=${styleValue} `;
+      if (styleValue) {
+        newNode.value += `style=${styleValue} `;
+      }
 
       // Props
       Object.entries(props).forEach(([key, value]) => {

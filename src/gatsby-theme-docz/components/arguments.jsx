@@ -17,7 +17,14 @@ export const Arguments = ({children, of: component, input=true}) => {
       const data = {};
       data.defaultValue = child.default ? {computed: true, value: compileMD(child.default).tree[0].props.children} : {};
       data.description = (child.desc || child.description) ? compileMD(child.desc || child.description).tree : null;
-      data.required = input && !child.hasOwnProperty('default');
+      data.required = false;
+      if (input) {
+        if (child.hasOwnProperty('required')) {
+          data.required = child.required;
+        } else if (!child.hasOwnProperty('default')) {
+          data.required = true;
+        }
+      }
       data.type = compileMD(child.type).tree[0].props.children;
 
       return [child.name, data];

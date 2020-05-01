@@ -5,9 +5,143 @@ route: components-components
 group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
+import {Columns, Place, Styling} from '../src/component'
 
 
 # Components
 This page contains the documentation for all regular Components that the `@mdxp/components` package has to offer.
 
 ---
+
+
+## Columns
+This component turns each of his children into a separate column.
+You can set different styling options for the columns, by passing them as properties to this component.
+If you pass an array as a property, each column will get a separate value.  
+Internally, this component is implemented as a surrounding div with the following style:
+```js
+{
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center'
+}
+```
+
+### Properties
+<Arguments of={Columns} />
+
+### Examples
+```md
+# SLIDE 1
+
+<Columns>
+
+1. This slide will have 2 columns
+2. The first one with this numbered list
+
+- And the second column will contain this list
+- Which consists of bullet points
+
+</Columns>
+
+---
+
+# SLIDE 2
+
+<Columns width={['20%','50%','20%']} textAlign="center">
+
+This slide has three columns, each with different widths.
+
+The second column is wider.
+Because `textAlign` is not an array, it gets applied to each column.
+
+The third column is smaller again.
+Note that the remaining 10% of width gets used as whitespace, depending on the justify-content parent property.
+If any child has a flex-grow property, it will grow to fill those last 10%,
+but you can read up on `flex` if you want to better understand this.
+
+</Columns>
+```
+
+---
+
+
+## Place
+This component allows you to absolutely position an element in your slide, effectively taking it outside of the flow of the other elements.  
+If you do pass neither _left_, nor _right_ properties, the element will be centered horizontally and similarly for _top_ and _bottom_.
+Centering happens, by adding a `transform: translate()` CSS property, so beware if you pass your own transform property through _sx_.
+
+> __NOTE__  
+> This component surround its elements with a div, and it is that div that get's placed.  
+> If you use this component to center an image, it is thus important to set your desired width on this element,
+> and set the width of the image to 100%.
+> Otherwise the image will not look centered, as it is the surrounding div that is centered and not the image.
+
+### Properties
+<Arguments of={Place} />
+
+### Example
+```md
+# SLIDE 1
+This paragraph is in the normal flow of the slide
+
+<Place bottom="10px">
+
+This paragraph gets placed in the bottom center.
+
+</Place>
+
+- This list is placed under the first paragraph
+- Just like if the second paragraph was never there
+
+---
+
+# SLIDE 2
+The image below gets placed in the center of the slide and takes 50% of the slide width.
+
+<Place sx={{width: '50%'}}>
+
+![image&&width=100%](./path/to/image.png)
+
+</Place>
+```
+
+---
+
+
+## Styling
+This component applies any property you pass as a custom style to its child.
+It applies the styles using the _sx_ property and thus allows the use of theme values.
+
+> __NOTE__  
+> This component only allows to have a single child element!
+
+### Properties
+<Arguments>
+{{
+  name: 'children',
+  type: 'element',
+  desc: 'Single child that gets styled according to the sx property.'
+}}
+{{
+  name: 'props',
+  type: 'object',
+  required: false,
+  desc: 'Style that gets applied to the child. This is set as a Theme-UI sx property and can thus accept theme aware values.',
+}}
+</Arguments>
+
+### Examples
+```md
+# SLIDE 1
+
+<Styling bg="accent" color="black" width="100%" paddingLeft="25px">
+
+- This list has a background color set to your theme's accent color
+- The foreground color is set to black
+- We also set a width and paddingLeft property.
+
+</Styling>
+```

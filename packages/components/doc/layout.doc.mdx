@@ -7,6 +7,7 @@ group: API
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 import {_BlankLayout as BlankLayout} from '../src/layout/blank-layout.jsx'
 import {_HeaderLayout as HeaderLayout} from '../src/layout/header-layout.jsx'
+import {_NumberLayout as NumberLayout} from '../src/layout/number-layout.jsx'
 
 
 # Layout Components
@@ -42,7 +43,7 @@ sx = {
 ### Examples
 ```md
 # SLIDE 1
-This slide will use whathever the default layout is as it's layout
+This slide will use whathever the default layout is as its layout
 
 ---
 
@@ -87,7 +88,7 @@ The rest of the page will be filled with a div that contains the rest of the sli
 ### Examples
 ```md
 # SLIDE 1
-This slide will use whathever the default layout is as it's layout
+This slide will use whathever the default layout is as its layout
 
 ---
 
@@ -115,4 +116,39 @@ in a full-width box with inverted background and foreground color.
 This slide 4 will look like a BlankLayout, because it does not have a title as first element.
 
 </HeaderLayout>
+```
+
+---
+
+
+## NumberLayout
+This layout renders a [BlankLayout](#blanklayout), but places an extra, absolutely posistioned, element which contains the current slide number.
+The extra element is rendered with a [Place](./components-components#place) component.
+
+### Properties
+<Arguments of={NumberLayout} />
+
+### Examples
+```md
+# SLIDE 1
+This slide will use whathever the default layout is as its layout
+
+---
+
+<NumberLayout>
+
+# SLIDE 2
+This slide will have the number 1 written in the bottom right corner.
+
+</NumberLayout>
+
+---
+
+<NumberLayout offset={1} numberOptions={{bottom: '25px', left: '25px', sx: {color: 'red', fontSize: '50px'}}}>
+
+# SLIDE 3
+This slide will have the number 3 written in the bottom left corner.  
+The number will also be red and have a 50px font-size.
+
+</NumberLayout>
 ```

@@ -89,10 +89,10 @@ HeaderLayout.propTypes = {
   /** Style that gets set to the layout div. This is set as a Theme-UI sx property and can thus accept theme aware values */
   sx: PropTypes.object,
 
-  /** Extra properties that are set to the layout div. */
-  props: PropTypes.object,
+  children: PropTypes.node,
 
-  children: PropTypes.node
+  /** Extra properties that are set to the layout div. */
+  props: PropTypes.object
 };
 
 export default setMDXPType(HeaderLayout, MDXPTypes.LAYOUT);

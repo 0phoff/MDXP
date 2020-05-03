@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ThemeProvider} from 'theme-ui';
+import {ThemeProvider, merge} from 'theme-ui';
 import {Helmet} from 'react-helmet';
 import wrapper from './wrapper.jsx';
-import defaultTheme, {baseTheme, mergeThemes} from '../util/theme.js';
+import {defaultTheme, baseTheme} from '../util/theme.js';
 import DefaultLayout from './default-layout.jsx';
 import defaultComponents from './default-components.js';
 
@@ -38,9 +38,9 @@ const Deck = ({
 }) => {
   // Setup theme
   if (Array.isArray(theme)) {
-    theme = mergeThemes(baseTheme, ...theme);
+    theme = merge(baseTheme, ...theme);
   } else {
-    theme = mergeThemes(baseTheme, theme);
+    theme = merge(baseTheme, theme);
   }
 
   // Setup default layout

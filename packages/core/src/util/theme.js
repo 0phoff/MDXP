@@ -1,35 +1,3 @@
-const isPOJO = o => (
-  (Object(o) === o) && (Object.getPrototypeOf(o) === Object.prototype)
-);
-
-const mergeObjectOrArray = (a, b) => {
-  if (Array.isArray(a) && Array.isArray(b)) {
-    return [...a, ...b];
-  }
-
-  if ((Array.isArray(a) || isPOJO(a)) && (Array.isArray(b) || isPOJO(b))) {
-    return {...a, ...b};
-  }
-
-  return b ? b : a;
-};
-
-export const mergeThemes = (...themes) => (
-  themes.reduce(
-    (accTheme, newTheme) => {
-      const resTheme = {};
-      const keys = new Set([...Object.keys(accTheme), ...Object.keys(newTheme)]);
-
-      keys.forEach(key => {
-        resTheme[key] = mergeObjectOrArray(accTheme[key], newTheme[key]);
-      });
-
-      return resTheme;
-    },
-    {}
-  )
-);
-
 export const baseTheme = {
   colors: {
     text: '#000',

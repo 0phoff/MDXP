@@ -6,22 +6,16 @@ group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 import ObjectProps from 'gatsby-theme-docz/src/components/object-props.jsx'
+import deckModes from '../src/util/deck-modes.js';
 import {defaultTheme, baseTheme} from '../src/util/theme.js';
+import MDXPTypes from '../src/util/mdxp-types.jsx';
 
 
 ## deckModes
 Enum object which contains the different modes for the deck to be in.
 It can be used for with the `setMode()` function from the [useNavigation](/core-hooks#usenavigation) hook.
 
-```js
-const deckModes = {
-  NORMAL:     0,
-  PRESENTER:  1,
-  OVERVIEW:   2,
-  GRID:       3,
-  PRINT:      4,
-}
-```
+<ObjectProps of={deckModes} pre="const deckModes = " exclude="properties" />
 
 ---
 
@@ -44,49 +38,15 @@ if you do not give one to the [Deck](/core-components#deck) component.
 ---
 
 
-## mergeThemes
-This function can be used to merge different theme objects together, overwriting with the latest theme given.
-
-### Arguments
-<Arguments>
-{{
-  name: '...themes',
-  type: 'Object',
-  desc: 'The theme objects you want to merge together.'
-}}
-</Arguments>
-
-### Returns
-<Arguments input={false}>
-{{
-  name: 'combinedTheme',
-  type: 'Object',
-  desc: 'New Theme-UI theme object, which is the result of merging all passed themes together.'
-}}
-</Arguments>
-
-### Examples
-```js
-import {mergeThemes} from '@mdxp/core'
-
-const combinedTheme = mergeThemes(theme1, theme2, theme3)
-```
-
----
-
-
 ## MDXPTypes
 Some components hold a special meaning for the MDXP code and will be handled specially.  
 This is the enum object which contains the different types of special MDXP components.
 
-```js
-const MDXPTypes = {
-  NONE:     0b0001,
-  LAYOUT:   0b0010,
-  GROUP:    0b0100,
-  WRAPPER:  0b1100,
-};
-```
+<ObjectProps
+  of={MDXPTypes}
+  pre="const MDXPTypes = "
+  transform={(obj, prop, res) => '0b' + obj[prop].toString(2).padStart(8, '0')}
+/>
 
 ---
 
@@ -128,6 +88,7 @@ const TomatoLayout = ({children, ...props}) => (
       backgroundColor: 'tomato',
       color: 'white'
     }}
+    {...props}
   >
     {children}
   </div>

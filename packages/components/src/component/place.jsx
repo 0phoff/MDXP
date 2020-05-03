@@ -48,32 +48,28 @@ Place.propTypes = {
   top: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.func,
-    PropTypes.array
+    PropTypes.func
   ]),
 
   /** CSS bottom property for the surrounding div. This is set as a Theme-UI sx property and can thus accept theme aware values. */
   bottom: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.func,
-    PropTypes.array
+    PropTypes.func
   ]),
 
   /** CSS left property for the surrounding div. This is set as a Theme-UI sx property and can thus accept theme aware values. */
   left: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.func,
-    PropTypes.array
+    PropTypes.func
   ]),
 
   /** CSS right property for the surrounding div. This is set as a Theme-UI sx property and can thus accept theme aware values. */
   right: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.func,
-    PropTypes.array
+    PropTypes.func
   ]),
 
   /** Additional styles that get applied to the surrounding div. */

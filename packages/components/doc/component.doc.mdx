@@ -5,11 +5,49 @@ route: components-components
 group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
-import {Columns, Place, Styling} from '../src/component'
+import {Block, Columns, Place, Styling} from '../src/component'
 
 
 # Components
 This page contains the documentation for all regular Components that the `@mdxp/components` package has to offer.
+
+---
+
+
+## Block
+This component will suround it's children with an element, which you can style with theme-aware properties.
+
+### Properties
+<Arguments of={Block} />
+
+### Examples
+```md
+# SLIDE 1
+
+<Block width='50%' bg='accent'>
+
+This block will take 50% of the slide's width and have a background color set to the theme accent color.
+
+Blocks can obviously contain multiple elements and by default group them in a div.
+This component is quite handy in conjunction with columns.
+
+</Block>
+
+---
+
+# SLIDE 2
+
+<Block as="h2" sx={{color: 'red'}}>
+
+Alternatively, you can pass your styles through an sx object property.
+There is no difference between both methods and all properties get merged shallowly, using the object spread syntax.
+
+Here the surrounding element will be an h2 tag.  
+You can also pass custom components, but beware that you need to put them in between braces instead of quotes : {Component}
+
+</Block>
+
+```
 
 ---
 
@@ -74,8 +112,8 @@ If you do pass neither _left_, nor _right_ properties, the element will be cente
 Centering happens, by adding a `transform: translate()` CSS property, so beware if you pass your own transform property through _sx_.
 
 > __NOTE__  
-> This component surround its elements with a div, and it is that div that get's placed.  
-> If you use this component to center an image, it is thus important to set your desired width on this element,
+> This component surround its elements with a div, and it is that div that gets placed.  
+> If you use this component to center eg. an image, it is thus important to set your desired width on this element,
 > and set the width of the image to 100%.
 > Otherwise the image will not look centered, as it is the surrounding div that is centered and not the image.
 
@@ -121,6 +159,11 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 ### Properties
 <Arguments>
 {{
+  name: 'sx',
+  type: 'object',
+  desc: 'You can style the element by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values.'
+}}
+{{
   name: 'children',
   type: 'element',
   desc: 'Single child that gets styled according to the sx property.'
@@ -129,7 +172,7 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
   name: 'props',
   type: 'object',
   required: false,
-  desc: 'Style that gets applied to the child. This is set as a Theme-UI sx property and can thus accept theme aware values.',
+  desc: 'Alternatively, you can also apply styles by adding them as properties straight away.',
 }}
 </Arguments>
 
@@ -142,6 +185,18 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 - This list has a background color set to your theme's accent color
 - The foreground color is set to black
 - We also set a width and paddingLeft property.
+
+</Styling>
+
+---
+
+# SLIDE 2
+
+<Styling sx={{variant: text.emphasis}}>
+
+You can also specify your styles using a more classical approach of defining an `sx` property.
+Styles defined using sx and as regular properties get merged together in a shallow manner (object spread syntax).  
+Here we used the styling tag to style this paragraph with a custom defined `text.emphasis` variant.
 
 </Styling>
 ```

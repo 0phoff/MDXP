@@ -8,6 +8,8 @@ export default {
   menu: [
     'Introduction',
     'Getting Started',
+    'Markdown',
+    'Components',
     'Examples',
     '@mdxp/core',
     {name: '@mdxp/components', menu: ['Components', 'Layouts', 'Groups', 'Wrappers']},

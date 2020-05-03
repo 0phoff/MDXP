@@ -22,6 +22,7 @@ Release TODO lists for MDXP
   - [X] Documentation: API Rehypex
   - [X] Documentation: API components
   - [ ] Documentation: Guides
+  - [ ] Documentation: Examples
   - [ ] Readme
 
 ## V1.0
@@ -33,5 +34,6 @@ Release TODO lists for MDXP
   - [ ] Import MDX files (If possible!)
   - [ ] Animated transitions
   - [ ] Custom Video component with different behaviour depending on the mode
+  - [ ] Check prism-react-renderer
   - [ ] CodeSurfer component
 

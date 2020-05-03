@@ -89,6 +89,9 @@ HeaderLayout.propTypes = {
   /** Style that gets set to the layout div. This is set as a Theme-UI sx property and can thus accept theme aware values */
   sx: PropTypes.object,
 
+  /** Footer component that is displayed at the bottom of the page. */
+  Footer: PropTypes.elementType,
+
   children: PropTypes.node,
 
   /** Extra properties that are set to the layout div. */

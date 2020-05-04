@@ -16,7 +16,7 @@ Release TODO lists for MDXP
   - [X] Rehype plugins
   - [X] Check if table column alignment works (broken in MDX-Deck)
   - [X] @mdxp/components
-  - [ ] @mdxp/create-webpack
+  - [X] @mdxp/create-webpack
   - [X] Documentation website
   - [X] Documentation: API core
   - [X] Documentation: API Rehypex

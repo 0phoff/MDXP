@@ -13,14 +13,13 @@
     "examples/*"
   ],
   "scripts": {
-    "start": "lerna run --parallel start",
-    "build": "lerna run --scope packages/* build",
+    "start": "lerna run --no-private --ignore '@mdxp/{rehypex-plugins,create-webpack}' --parallel start",
+    "build": "lerna run --no-private --ignore '@mdxp/{rehypex-plugins,create-webpack}' build",
     "clean": "lerna run clean",
     "lint": "eslint --cache --ext js,jsx -f friendly",
     "lint:fix": "eslint --cache --ext js,jsx -f friendly --fix",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "docz:serve": "docz serve",
     "docz:clean": "docz clean && rm -rf .docz && rm -rf docs"
   },
   "devDependencies": {

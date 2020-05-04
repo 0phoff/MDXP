@@ -18,5 +18,8 @@
   "dependencies": {
     "unist-util-flat-filter": "^1.0.0",
     "unist-util-visit": "^2.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

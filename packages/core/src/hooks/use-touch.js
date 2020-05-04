@@ -36,9 +36,9 @@ const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
   const onSwipe = ({deltaX: dx, deltaY: dy}) => {
     if (Math.abs(dx) >= Math.abs(dy)) {
       if (dx > 0) {
-        nextSlide(history, root, deck, setDeck);
-      } else if (dx < 0) {
         previousSlide(history, root, deck, setDeck);
+      } else if (dx < 0) {
+        nextSlide(history, root, deck, setDeck);
       }
     }
   };

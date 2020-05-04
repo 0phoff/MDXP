@@ -28,7 +28,7 @@ const getTar = ({
   name
 }) => {
   const url = `https://codeload.github.com/${user}/${repo}/tar.gz/master`
-  const cmd = `curl ${url} | tar -xz -C ${name} --strip=3 ${repo}-master/${path}`
+  const cmd = `curl ${url} | tar -xz -C ${name} --strip=4 ${repo}-master/${path}`
   exec(cmd, { stdio: 'inherit' })
 };
 
@@ -52,13 +52,12 @@ const create = async ({folder, git=false}) => {
   const dirname = path.resolve(folder)
   const name = path.basename(dirname)
   fs.ensureDirSync(name)
-  fs.ensureDirSync(name + '/dir/web')
-  fs.ensureDirSync(name + '/dir/onepage')
+  fs.ensureDirSync(name + '/dist/web')
+  fs.ensureDirSync(name + '/dist/onepage')
 
   // Get template
   log.log('Getting template')
-  const [ user, repo, ...paths ] = opts.template.split('/')
-  getTar(Object.assign({}, opts, {
+  getTar(Object.assign({}, {
     name,
     user: '0phoff',
     repo: 'MDXP',

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs');
+const path = require('path')
 const meow = require('meow');
 const create = require('./util.js');
 const log = require('./log.js');
@@ -48,7 +49,7 @@ if (fs.existsSync(dir) && fs.readdirSync(dir).length !== 0) {
 }
 
 // Create template
-create(folder, cli.flags.git)
+create({folder, git: cli.flags.git})
   .then(res => {
     log.log('Deck initialized')
     process.exit(0)

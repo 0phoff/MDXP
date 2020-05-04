@@ -9,6 +9,7 @@ export {
   getMDXPType,
   checkMDXPType
 } from './util/mdxp-types.jsx';
+export {default as wrapper} from './components/wrapper.jsx';
 
 // HOOKS
 export {default as useDeck} from './hooks/use-deck.js';

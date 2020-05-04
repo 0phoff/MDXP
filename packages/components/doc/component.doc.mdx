@@ -21,7 +21,7 @@ This component will suround it's children with an element, which you can style w
 <Arguments of={Block} />
 
 ### Examples
-```md
+```mdxp
 # SLIDE 1
 
 <Block width='50%' bg='accent'>
@@ -37,12 +37,12 @@ This component is quite handy in conjunction with columns.
 
 # SLIDE 2
 
-<Block as="h2" sx={{color: 'red'}}>
+<Block as="em" sx={{color: 'red'}}>
 
 Alternatively, you can pass your styles through an sx object property.
 There is no difference between both methods and all properties get merged shallowly, using the object spread syntax.
 
-Here the surrounding element will be an h2 tag.  
+Here the surrounding element will be an `em` tag.  
 You can also pass custom components, but beware that you need to put them in between braces instead of quotes : {Component}
 
 </Block>
@@ -71,7 +71,7 @@ Internally, this component is implemented as a surrounding div with the followin
 <Arguments of={Columns} />
 
 ### Examples
-```md
+```mdxp
 # SLIDE 1
 
 <Columns>
@@ -121,7 +121,7 @@ Centering happens, by adding a `transform: translate()` CSS property, so beware 
 <Arguments of={Place} />
 
 ### Example
-```md
+```mdxp
 # SLIDE 1
 This paragraph is in the normal flow of the slide
 
@@ -141,7 +141,8 @@ The image below gets placed in the center of the slide and takes 50% of the slid
 
 <Place sx={{width: '50%'}}>
 
-![image&&width=100%](./path/to/image.png)
+<!-- Note that you can use regular markdown image syntax and set the width through the alt-text -->
+<img width="100%" src="public/logo.svg" />
 
 </Place>
 ```
@@ -177,7 +178,7 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 </Arguments>
 
 ### Examples
-```md
+```mdxp
 # SLIDE 1
 
 <Styling bg="accent" color="black" width="100%" paddingLeft="25px">
@@ -192,11 +193,10 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 
 # SLIDE 2
 
-<Styling sx={{variant: text.emphasis}}>
+<Styling sx={{fontStyle: 'italic'}}>
 
 You can also specify your styles using a more classical approach of defining an `sx` property.
 Styles defined using sx and as regular properties get merged together in a shallow manner (object spread syntax).  
-Here we used the styling tag to style this paragraph with a custom defined `text.emphasis` variant.
 
 </Styling>
 ```

@@ -41,7 +41,7 @@ sx = {
 <Arguments of={BlankLayout} />
 
 ### Examples
-```md
+```mdxp
 # SLIDE 1
 This slide will use whathever the default layout is as its layout
 
@@ -86,7 +86,7 @@ The rest of the page will be filled with a div that contains the rest of the sli
 <Arguments of={HeaderLayout} />
 
 ### Examples
-```md
+```mdxp
 # SLIDE 1
 This slide will use whathever the default layout is as its layout
 
@@ -101,11 +101,13 @@ This slide will have its title (SLIDE 2) at the top of the page
 
 ---
 
-<HeaderLayout sxHeader={{width: '100%', bg: 'text', color: 'background'}}>
+<HeaderLayout sxHeader={{width: '100%', bg: 'text', color: 'background', textAlign: 'center'}}>
 
 ### SLIDE 3
 This slide will have its title at the top of the page,
 in a full-width box with inverted background and foreground color.
+
+Note that the title is smaller, because we used an H3 tag.
 
 </HeaderLayout>
 
@@ -129,7 +131,7 @@ The extra element is rendered with a [Place](./components-components#place) comp
 <Arguments of={NumberLayout} />
 
 ### Examples
-```md
+```mdxp
 # SLIDE 1
 This slide will use whathever the default layout is as its layout
 

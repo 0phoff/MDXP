@@ -183,7 +183,7 @@ const Step = ({
 };
 
 Step.propTypes = {
-  /** The number of elements you want to show at start. */
+  /** The number of elements you want to show at start. Defaults to 0 if used inside another Step component or 1 otherwise. */
   offset: PropTypes.number,
 
   /** Whether to step through rows or columns of a table. This property is only used if the component has a single table child. */

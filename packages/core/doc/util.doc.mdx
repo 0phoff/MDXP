@@ -113,6 +113,12 @@ This function can be used to retrieve the MDXP type of a component.
   name: 'component',
   type: 'elementType'
 }}
+{{
+  name: 'shortCodes',
+  type: 'object',
+  default: '{}',
+  desc: 'Object with all shortCode components that are being used in your Deck. You can `useMDXComponents()` from the _@mdx-js/react_ package in order to get them.'
+}}
 </Arguments>
 
 ### Returns
@@ -139,6 +145,12 @@ Check whether a component is of a certain [MDXPType](#MDXPTypes).
 {{
   name: 'type',
   type: '[MDXPTypes](#mdxptypes)'
+}}
+{{
+  name: 'shortCodes',
+  type: 'object',
+  default: '{}',
+  desc: 'Object with all shortCode components that are being used in your Deck. You can `useMDXComponents()` from the _@mdx-js/react_ package in order to get them.'
 }}
 </Arguments>
 

@@ -58,23 +58,56 @@ depending on the `useColumns` property.
 >   4. `styles.current`
 
 ### Examples
-```md
-# My awesome slide
+```mdxp
+# SLIDE 1
 
-<!-- This will uncover the items from the list one after the other with a nice opacity transition,
-     and will highlight the current item in red. -->
+<Step>
+
+By wrapping your content in a `<Step />`, you can uncover them one by one.
+
+Pretty neat right ?  
+
+</Step>
+
+---
+
+# SLIDE 2
+
+<Step offset={0}>
+
+You can even mix and match different types of elements.  
+Here we show a paragraph.
+
+1. And here is a numbered list.
+2. Damn, all elements show up at once
+3. What could we do to solve this ?
+
+<Step>
+
+- Can we nest `<Step />` components ?
+- Sure we can
+- And if it only has one child, it will step through its children
+- Now that's wicked!
+
+</Step>
+
+</Step>
+
+---
+
+# SLIDE 3
+
 <Step styles={{
   base:     {transition: 'opacity 0.5s ease-in-out'},
   before:   {opacity: 0},
   after:    {opacity: 1},
-  current:  {color: 'red'},
 }}>
 
-- Item 1
-- Item 2
-- Item 3
-- Item 4
-- Item 5
+- We can also apply some basic styling for the different states
+- This can allow for some really modern looking slides
+- People will look in awe at your beatifully crafted slide deck
+- Sadly, this demo runtime makes everything flicker
+- But trust me, this is not the case with real slide decks!
 
 </Step>
 ```

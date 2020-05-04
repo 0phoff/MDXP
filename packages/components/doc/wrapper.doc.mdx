@@ -24,7 +24,7 @@ Check out [Nested ThemeProviders](https://theme-ui.com/guides/nested-theme-provi
 <Arguments of={ThemeWrapper} />
 
 ### Examples
-```md
+```mdxp
 <ThemeWrapper theme={{colors: {background: 'tomato'}}}>
 
 # SLIDE 1
@@ -38,6 +38,8 @@ After all, this is just a silly example
 # SLIDE 2
 it will also have this tomato background.  
 Are you seriously still reading this ?
+
+---
 
 </ThemeWrapper>
 
@@ -57,7 +59,7 @@ This component inverses the `text` and `background` color properties of your the
 <Arguments of={InvertWrapper} />
 
 ### Examples
-```md
+```mdxp
 # SLIDE 1
 This is a normal slide, with your default theme applied
 
@@ -90,11 +92,18 @@ You can however still add it, as is shown here.
 ## LayoutWrapper
 This component changes the default layout for all slides inside of it.
 
+> __NOTE__  
+> In order to use this wrapper, you need to explicitely import the Layout you want to use it with
+> and can't rely on the _components_ property of your `Deck`.
+
 ### Properties
 <Arguments of={LayoutWrapper} />
 
 ### Examples
 ```md
+<!-- Note that we cannot show this example in action, as the MDX runtime does not allow imports -->
+import HeaderLayout from '@mdxp/components'
+
 # SLIDE 1
 This slide has the default layout, as provided in your Deck
 

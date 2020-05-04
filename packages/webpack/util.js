@@ -8,16 +8,7 @@ const log = require('./log.js');
 
 // Code stolen and adapted from Initit
 const install = () => {
-  return new Promise((resolve, reject) => {
-    const child = yon.spawn.sync(['install'], {stdio: 'inherit'});
-    child.on('close', code => {
-      if (code !== 0) {
-        reject();
-        return;
-      }
-      resolve();
-    })
-  })
+  return yon.spawn.sync(['install'], {stdio: 'inherit'});
 };
 
 // Code stolen from Initit
@@ -79,7 +70,7 @@ const create = async ({folder, git=false}) => {
   // Go into dir and install
   log.log('Installing dependencies')
   process.chdir(dirname)
-  const installed = await install()
+  install()
 
   // Init git repo
   if (git) {

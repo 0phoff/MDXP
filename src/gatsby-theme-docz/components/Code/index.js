@@ -64,6 +64,11 @@ const MDXPDemo = ({code, onOuterClick, show=false}) => {
           zIndex: 1
         }}
         onClick={onOuterClick}
+        onKeyDown={e => {
+          if (e.keyCode === 27) {
+            onOuterClick(e);
+          }
+        }}
       >
         <div
           tabIndex={-1}

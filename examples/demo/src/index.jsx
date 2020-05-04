@@ -26,7 +26,10 @@ const Footer = () => {
 };
 
 ReactDOM.render(
-  <Deck Layout={HeaderLayout} layoutOptions={{sxHeader: {width: '100%', bg: 'text', color: 'background'}, Footer}}>
+  <Deck
+    Layout={HeaderLayout}
+    layoutOptions={{sxHeader: {width: '100%', bg: 'text', color: 'background'}, Footer}}
+  >
     <MDXPresentation />
   </Deck>,
   document.getElementById('root')

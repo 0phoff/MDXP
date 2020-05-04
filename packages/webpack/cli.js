@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const meow = require('meow');
 const create = require('./util.js');

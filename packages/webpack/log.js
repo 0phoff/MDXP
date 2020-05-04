@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 
-const error = (..args) => {
+const error = (...args) => {
   console.log(chalk.red('[MDXP ERROR]'), ...args);
 };
 

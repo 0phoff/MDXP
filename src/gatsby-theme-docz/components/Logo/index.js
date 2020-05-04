@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'gatsby';
+import data from '@core/package.json';
 
 export const Logo = () => {
   const [hover, setHover] = useState(false);
@@ -14,12 +15,15 @@ export const Logo = () => {
     {fill: '#f9ac00', fillOpacity: 1};
 
   return (
-    <Link to="/">
-      <div onMouseEnter={() => {
+    <Link to="/" style={{textDecoration: 'none'}}>
+      <div
+        onMouseEnter={() => {
         setHover(true);
-      }} onMouseLeave={() => {
+        }}
+        onMouseLeave={() => {
         setHover(false);
-      }}>
+        }}
+      >
         <svg
           version="1.1"
           viewBox="0 0 33.142164 8.0894299"
@@ -49,6 +53,7 @@ export const Logo = () => {
             />
           </g>
         </svg>
+        <h6 style={{width: '100%', textAlign: 'center', margin: '0', color: 'black', textDecoration: 'none'}}>{'v' + data.version}</h6>
       </div>
     </Link>
   );

@@ -26,8 +26,7 @@ const Slide = ({children, reference, slideNum, preview = false, sx = {}}) => {
   const {slide = slideNum, step = 0} = useParams();
   const rootContext = useRoot();
   const slideIndex = getIndex(parseInt(slide), rootContext.slideLength);
-  const slideElement = React.Children.count(children) === 1 ?
-    React.Children.only(children).props.children[slideIndex] : children[slideIndex];
+  const slideElement = children[slideIndex];
   const [state, setState] = useMerger({
     mode: rootContext.mode,
     slideLength: rootContext.slideLength,

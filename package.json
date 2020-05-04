@@ -20,7 +20,9 @@
     "lint:fix": "eslint --cache --ext js,jsx -f friendly --fix",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "docz:clean": "docz clean && rm -rf .docz && rm -rf docs"
+    "docz:clean": "docz clean && rm -rf .docz && rm -rf docs",
+    "publish": "yarn clean && yarn build && lerna version && lerna publish from-git && yarn publish:docs",
+    "publish:docs": "yarn docz:clean && yarn docz:build && git add docs && echo 'Commit documentation'"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

@@ -1,6 +1,6 @@
 {
   "name": "@mdxp/demo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "MDXP slidedeck which introduces the package",
   "private": true,
   "repository": {
@@ -24,7 +24,7 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@mdx-js/loader": "^1.5.8",
-    "@mdxp/rehypex-plugins": "^0.0.0",
+    "@mdxp/rehypex-plugins": "^0.0.1",
     "@svgr/webpack": "^5.3.1",
     "babel-loader": "^8.1.0",
     "file-loader": "^6.0.0",
@@ -43,8 +43,8 @@
   },
   "dependencies": {
     "@mdx-js/react": "^1.5.8",
-    "@mdxp/components": "^0.0.0",
-    "@mdxp/core": "^0.0.0",
+    "@mdxp/components": "^0.0.1",
+    "@mdxp/core": "^0.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "theme-ui": "^0.3.1"

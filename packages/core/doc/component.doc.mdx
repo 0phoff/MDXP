@@ -45,10 +45,10 @@ depending on the `useColumns` property.
 > __NOTE__  
 > The styles are applied to the children according to the following rules:  
 >
->   1. All children elements get `base` styles.
->   2. Children whose index is greater than the stepIndex (aka they have not been stepped through), get styled with `before`.
->   3. Children whose index is equal to the stepIndex, get styled with `current` if it exists.
->   4. Children whose index is smaller or equal to the stepIndex (aka they have been stepped through), get styled with `after`.
+>   - All children elements get `base` styles.
+>   - Children whose index is greater than the stepIndex (aka they have not been stepped through), get styled with `before`.
+>   - Children whose index is equal to the stepIndex, get styled with `current` if it exists.
+>   - Children whose index is smaller or equal to the stepIndex (aka they have been stepped through), get styled with `after`.
 >
 > When different styles get applied to a child element, they get combined using spread operators, in the following order:
 >
@@ -90,7 +90,6 @@ Here we show a paragraph.
 - Now that's wicked!
 
 </Step>
-
 </Step>
 
 ---

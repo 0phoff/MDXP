@@ -35,10 +35,10 @@ const createSlideComponent = DefaultLayout => (slideObject, key, shortCodeCompon
 const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
   let startIndex = 0;
   return elements.reduce((acc, element, idx) => {
-    if (checkMDXPType(element, MDXPTypes.GROUP, shortCodeComponents)) {
+    if (checkMDXPType(element, MDXPTypes.WRAPPER, shortCodeComponents)) {
       startIndex = idx + 1;
       const children = React.Children.toArray(element.props.children);
-      const newWrappers = checkMDXPType(element, MDXPTypes.WRAPPER, shortCodeComponents) ? [...wrappers, element] : wrappers;
+      const newWrappers = [...wrappers, element];
       return [...acc, ...splitSlides(children, shortCodeComponents, newWrappers)];
     }
 

@@ -1,8 +1,7 @@
 const MDXPTypes = {
-  NONE: 0b0001,
-  LAYOUT: 0b0010,
-  GROUP: 0b0100,
-  WRAPPER: 0b1100
+  NONE:     0b001,
+  LAYOUT:   0b010,
+  WRAPPER:  0b100,
 };
 export default MDXPTypes;
 
@@ -28,4 +27,4 @@ export const getMDXPType = (Component, shortCodes = {}) => {
   return Component.hasOwnProperty('MDXPType') ? Component.MDXPType : MDXPTypes.NONE;
 };
 
-export const checkMDXPType = (Component, MDXPType, shortCodes = {}) => getMDXPType(Component, shortCodes) & MDXPType;
+export const checkMDXPType = (Component, MDXPType, shortCodes = {}) => (getMDXPType(Component, shortCodes) & MDXPType) === MDXPType;

@@ -12,7 +12,7 @@ export default {
     'Components',
     'Examples',
     '@mdxp/core',
-    {name: '@mdxp/components', menu: ['Components', 'Layouts', 'Groups', 'Wrappers']},
+    {name: '@mdxp/components', menu: ['Components', 'Layouts', 'Wrappers']},
     '@mdxp/rehypex-plugins'
   ],
   themeConfig: {

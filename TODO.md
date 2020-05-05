@@ -29,6 +29,7 @@ Release TODO lists for MDXP
   - [ ] Presenter mode
   - [ ] Grid mode
   - [ ] Notes
+  - [ ] Head
   - [ ] Generate PDF
   - [ ] Help & Keybindings pop-up
   - [ ] Import MDX files (If possible!)

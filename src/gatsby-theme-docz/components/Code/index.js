@@ -107,11 +107,21 @@ const MDXPCodeHighlight = ({children}) => {
 
   const show = () => {
     document.prevScroll = document.scrollingElement.scrollTop;
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${document.prevScroll}px`;
+    document.body.style.width = '100%';
+
     window.location.hash = '';
     setShowState(true);
   };
   const hide = () => {
     setShowState(false);
+
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('position');
+    document.body.style.removeProperty('top');
+    document.body.style.removeProperty('width');
     window.scrollTo(0, document.prevScroll);
   };
 

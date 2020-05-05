@@ -4,7 +4,8 @@ export const baseTheme = {
     background: '#FFF'
   },
   fonts: {
-    body: 'system-ui, sans-serif'
+    // Github default font stack
+    body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
   },
   fontWeights: {
     body: 400

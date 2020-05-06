@@ -1,7 +1,9 @@
 import React from 'react';
 import {useMDXComponents} from '@mdx-js/react';
 import DeckMode from './deck-mode.jsx';
-import MDXPTypes, {checkMDXPType} from '../util/mdxp-types.jsx';
+import getComponentType from '../util/component-type.js';
+import MDXPTypes from '../util/mdxp-types.js';
+import {checkMDXPType} from '../util/mdxp-type-util.jsx';
 
 /** Create slide object */
 const createSlideObject = (elements, wrappers = []) => {
@@ -36,13 +38,32 @@ const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
   let startIndex = 0;
   return elements.reduce((acc, element, idx) => {
     if (checkMDXPType(element, MDXPTypes.WRAPPER, shortCodeComponents)) {
+      if (startIndex !== idx) {
+        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)]
+      }
+
       startIndex = idx + 1;
       const children = React.Children.toArray(element.props.children);
       const newWrappers = [...wrappers, element];
       return [...acc, ...splitSlides(children, shortCodeComponents, newWrappers)];
     }
 
-    if (element.props.mdxType === 'hr') {
+    if (checkMDXPType(element, MDXPTypes.GROUP, shortCodeComponents)) {
+      if (startIndex !== idx) {
+        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)]
+      }
+
+      startIndex = idx + 1;
+      const func = element.props.originalType.MDXPGroupFunc;
+      let children = React.Children.toArray(func(element.props));
+      if (children.length === 1 && (children[0].type === React.Fragment)) {
+        children = React.Children.toArray(children[0].props.children);
+      }
+
+      return [...acc, ...splitSlides(children, shortCodeComponents, wrappers)];
+    }
+
+    if (getComponentType(element) === 'hr') {
       const newAcc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)];
       startIndex = idx + 1;
       return newAcc;
@@ -67,6 +88,7 @@ const wrapper = (DefaultLayout, passedProps, components) => {
 
     const slides =
       splitSlides(children, shortCodeComponents)
+        .map((obj) => {console.log(obj); return obj;})
         .filter(slideObject => slideObject.elements.length > 0)
         .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents));
 

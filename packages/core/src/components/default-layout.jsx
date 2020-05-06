@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import PropTypes from 'prop-types';
-import MDXPTypes, {setMDXPType} from '../util/mdxp-types.jsx';
+import MDXPTypes from '../util/mdxp-types.js';
+import {setMDXPType} from '../util/mdxp-type-util.jsx';
 
 const DefaultLayout = ({children, sx = {}, ...props}) => (
   <div

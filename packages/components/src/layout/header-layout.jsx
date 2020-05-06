@@ -2,7 +2,7 @@
 import React from 'react';
 import {jsx} from 'theme-ui';
 import PropTypes from 'prop-types';
-import MDXPTypes, {setMDXPType} from '@mdxp/core';
+import {MDXPTypes, setMDXPType} from '@mdxp/core';
 import BlankLayout from './blank-layout.jsx';
 import getComponentType from '../util/component-type.js';
 import cloneElement from '../util/clone.js';

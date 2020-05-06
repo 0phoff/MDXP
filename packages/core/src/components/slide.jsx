@@ -50,7 +50,7 @@ const Slide = ({children, reference, slideNum, preview = false, sx = {}}) => {
           overflow: 'hidden',
           position: 'relative',
           boxSizing: 'border-box',
-          variant: 'styles.Slide',
+          variant: 'mdxp.slide',
           ...sx
         }}
       >

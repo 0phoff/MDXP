@@ -20,16 +20,18 @@ export const baseTheme = {
     img: {
       objectFit: 'contain'
     },
-    Slide: {
-      fontFamily: 'body',
-      fontSize: '1.5rem'
-    },
     pre: {
       fontFamily: 'monospace',
       overflowX: 'auto',
       code: {
         color: 'inherit'
       }
+    }
+  },
+  mdxp: {
+    slide: {
+      fontFamily: 'body',
+      fontSize: '1.5rem'
     }
   }
 };

@@ -3,6 +3,7 @@
   "description": "Web Slides Made Easy",
   "private": true,
   "repository": "https://github.com/0phoff/MDXP.git",
+  "homepage": "https://0phoff.github.io/MDXP",
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
   "workspaces": [

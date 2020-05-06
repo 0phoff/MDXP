@@ -8,6 +8,7 @@
     "url": "https://github.com/0phoff/MDXP.git",
     "directory": "packages/components"
   },
+  "homepage": "https://0phoff.github.io/MDXP",
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
   "source": "src/index.js",

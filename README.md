@@ -20,11 +20,25 @@ With this tool, you can:
 - _Present_ on any computer with a (modern) browser, by using the onepage build mode.
 - _Integrate_ it in any of your favourite web bundlers, static site generators, ...
 
-[Click here](#) to view a demo built with MDXP or [Click here](https://0phoff.github.io/MDXP) to take a look at the documentation.
+[Click here](#) to view a demo built with MDXP or  
+[Click here](https://0phoff.github.io/MDXP) to take a look at the documentation.
 
 
 ### Gettting started
-TODO
+```bash
+# Initialize presentation project
+npm init @mdxp/webpack -g my_presentation
+cd my_presentation
+
+# Start dev server
+npm run start
+
+# Edit presentation with your favourite editor
+vim src/presentation.mdx
+
+# Build presentation
+npm run build
+```
 
 
 ### How is this different from MDX-Deck

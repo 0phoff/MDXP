@@ -8,8 +8,9 @@ export default {
   menu: [
     'Introduction',
     'Getting Started',
-    'Markdown',
+    'Syntax',
     'Components',
+    'Theming',
     'Examples',
     '@mdxp/core',
     {name: '@mdxp/components', menu: ['Components', 'Layouts', 'Wrappers']},
@@ -17,6 +18,30 @@ export default {
   ],
   themeConfig: {
     showDarkModeSwitch: false,
-    showMarkdownEditButton: false
+    showMarkdownEditButton: false,
+    styles: {
+      ol: {
+        listStyleImage: 'none',
+        listStylePosition: 'outside',
+        padding: 0,
+        margin: 0,
+        marginBottom: 3,
+        marginLeft: 5,
+        '@media screen and (max-width: 920px)': {
+          marginLeft: 4,
+        }
+      },
+      ul: {
+        listStyleImage: 'none',
+        listStylePosition: 'outside',
+        padding: 0,
+        margin: 0,
+        marginBottom: 3,
+        marginLeft: 5,
+        '@media screen and (max-width: 920px)': {
+          marginLeft: 4,
+        }
+      }
+    }
   }
 };

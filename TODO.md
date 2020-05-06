@@ -21,7 +21,7 @@ Release TODO lists for MDXP
   - [X] Documentation: API core
   - [X] Documentation: API Rehypex
   - [X] Documentation: API components
-  - [ ] Documentation: Guides
+  - [X] Documentation: Guides
   - [ ] Documentation: Examples
   - [ ] Readme
 
@@ -36,5 +36,6 @@ Release TODO lists for MDXP
   - [ ] Animated transitions
   - [ ] Custom Video component with different behaviour depending on the mode
   - [ ] Check prism-react-renderer
+  - [ ] Rehypex: allow code-fences to have a filename to get code from
   - [ ] CodeSurfer component
 

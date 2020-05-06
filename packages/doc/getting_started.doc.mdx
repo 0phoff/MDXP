@@ -3,6 +3,93 @@ name: Getting Started
 route: /getting-started
 group: Documentation
 ---
+import CTA from 'gatsby-theme-docz/src/components/cta.jsx'
+
 
 # Getting Started
-TODO : create getting started guide
+Before getting started, make sure you have NPM and Node installed.
+
+## TLDR
+```bash
+# Initialize presentation project
+npm init @mdxp/webpack -g my_presentation
+cd my_presentation
+
+# Start dev server
+npm run start
+
+# Edit presentation with your favourite editor
+vim src/presentation.mdx
+
+# Build presentation
+npm run build
+```
+
+
+## Recommended
+The easiest way to get started with MDXP, is to use our Webpack template.
+To use it, just run the following command:
+
+```bash
+# NPM >= 6.1.0
+npm init @mdxp/webpack -g name
+cd name
+
+# NPM >= 5.2.0
+npx @mdxp/create-webpack -g name
+cd name
+```
+
+> __NOTE__  
+> The `-g` flag enables the initialisation of a git repository. Remove that flag if you do not want a repository.
+
+This command will create a project with your chosen name.
+The project will contain a _src_ directory for your source files and a _dist_ directory where the resulting build will go.
+The _src_ directory already contains a _presentation.mdx_ file, which you can edit to start writing your presentation right away.
+Of course, nothing stops your from also modifying the _index.html_ or _index.jsx_ files to your liking.
+
+The project also comes with a few commands to create your presentation:
+
+- `npm run start` sets up a development server which will rebuild your presentation whenever you make changes.
+- `npm run build:web` will create a build from your presentation, which is optimised for serving online. The resulting build can be found in _dist/web_.
+- `npm run build:onepage` will create a build which is optimised for presenting. Most data will be consolidated into a single _index.html_, with only large images, videos or other data files added separately. You can find this build in the _dist/onepage_ folder and should be able to run your presentation in any (modern) browser by just opening the _index.html_ file.
+- `npm run build` creates both web and onepage versions of your presentation with a single command.
+- `npm run clean:web`, `npm run clean:onepage` and `npm run clean` respectively clean your _dist/web_, _dist/onepage_ or both folders.
+
+If you need to modify or extend the Webpack build pipeline, you can do so by editing the _webpack.config.js_ or _webpack.onepage.js_ files, in order to modify the web or onepage builds.
+
+<CTA url="/guide-syntax">
+Write your presentation
+</CTA>
+
+
+## Manual
+At the end of the day, MDXP is just a react library, so you can get it working with any bundler of your liking.
+While we do recommend to use our Webpack template, some people might prefer to setup their own build pipeline.
+A complete and thorough guide on how to create your own build pipeline is neigh impossible, but here are some guidelines on what you need to get working:
+
+- Include `react`, `react-dom`, `theme-ui` and `@mdxp/core` packages. You will probably also want the `@mdxp/components` package.
+- Process JSX into JavaScript (technically not necessary, but who writes React in pure JavaScript?).
+- Transform MDX into JavaScript. This is necessary as you will write your presentation in that format. Optionally, you can add the plugins from `@mdxp/rehypex-plugins` or others to enhance your markdown syntax.
+- Handle assets (eg. images) somehow. You can place them into a separate folder or have your bundler process them.
+- You need to insert a `Deck` component from `@mdxp/core`, which contains your presentation. Below is a minimal example, written as JSX.
+
+```jsx
+// Note that the main index.html includes this file and has a div with an ID of 'root'
+// If you do not want @mdxp/components, you can remove the import and the 'components' property from <Deck />
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Deck from '@mdxp/core';
+import components from '@mdxp/components';
+import MDXPresentation from './presentation.mdx';
+
+ReactDOM.render(
+  <Deck components={components}>
+    <MDXPresentation />
+  </Deck>,
+  document.getElementById('root')
+);
+```
+
+> __NOTE__  
+> Note that all examples and guides on this website assume you use the template.

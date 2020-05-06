@@ -3,6 +3,207 @@ name: Components
 route: /guide-components
 group: Documentation
 ---
+import CTA from 'gatsby-theme-docz/src/components/cta.jsx'
 
 # React Components
-TODO
+There is nothing inherently special about components for MDXP.
+In fact they are just regular React components and thus learning to write components for MDXP amounts to learning some basic React. 
+
+Because there are already plenty of React tutorials out there, we will just refer to them instead of writing yet another one.
+Below is a list of tutorials which can help you learn enough React, in order to be successful at writing your own MDXP components:
+- [The official react tutorial](https://reactjs.org/docs/hello-world.html)
+- [Functional components and hooks](https://reactjs.org/docs/hooks-intro.html)
+
+While you can create and use components with classes, React is evolving towards a more functional approach with hooks instead.
+This library adopts this new way of authoring components and thus provides hooks for you to use, that give you information about the slide deck.
+It is thus recommended to use functional components over classes.
+
+
+## Themeable Components
+When creating components, it is highly recommended to allow for your component to be themeable with an `sx` property from [Theme-UI][themeui].
+Below we provide a basic starting template for your components, which allows for themeable styling.
+
+```jsx
+/** @jsx jsx */
+import {jsx} from 'theme-ui';
+
+const MyComponent = ({children, sx={}}) => (
+  <div
+    sx={{
+      // Add default styles here
+      bg: 'tomato',
+      ...sx
+    }}
+  >
+  {children}
+  </div>
+);
+
+export default MyComponent;
+```
+
+
+## MDXP Component Types
+While you can simply use any component in your MDXP presentations, there are a few special types of components, that MDXP handles differently.
+You can use the [setMDXPType()](/core-util#setmdxptype) function to create these special MDXP components.
+
+```jsx
+import {MDXPTypes, setMDXPType} from '@mdxp/core';
+
+// Create a regular component
+const MyComponent = ({children}) => {
+  // Do something here
+  return children;
+};
+
+// Export it as a special MDXP component
+// You can enter multiple types, but beware that not all types can be combined
+export default setMDXPType(MyComponent, MDXPTypes.WRAPPER, MDXPTypes.LAYOUT);
+```
+
+We will now discuss each of the different types in detail.
+
+### Layout Components
+MDXP uses layouts in order to change the look and feel of a slide.
+In fact, each slide should consist of a single element, which should be a Layout component.
+If your slide contains multiple elements, or if it is not a layout component, then it will be wrapped with a default layout.
+By default, this is a blank slide, with all elements centered and positioned below one another, but you can change this "default layout" by providing a layout to your [Deck](/core-components#deck).
+
+The `@mdxp/components` package has [a few layouts](/components-layout) readily available for you to use, but let's create our own layout.
+Our layout will be exactly the same as the default layout, except that it will have a tomato colored background.
+In fact, it is quite a pointless layout as you can provide an `sx={{bg: 'tomato'}}` property to the [BlankLayout](/components-layout#blanklayout) in order to achieve the same result,
+but it is a nice example of how to create layouts nonetheless.  
+
+```jsx
+/** @jsx jsx */
+import {jsx} from 'theme-ui';
+import {MDXPTypes, setMDXPType} from '@mdxp/core';
+
+const TomatoLayout = ({children, sx={}}) => (
+  <div
+    sx={{
+      bg: 'tomato',
+      text: 'white',
+      width: '100%',
+      height: '100%',
+      boxSizing: 'border-box',
+      position: 'relative',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      '& p': {textAlign: 'center'},
+      ...sx
+    }}
+  > 
+  {children}
+  </div>
+);
+
+export default setMDXPType(TomatoLayout, MDXPTypes.LAYOUT);
+```
+
+> __NOTE__  
+> Note that our layout follows the guidelines for themeable components, which means you can use this layout and overwrite any `sx` properties by providing your own.
+
+
+### Wrapper Components
+Wrapper components can contain multiple slides and MDXP will reorganize the components so that each slide is wrapped with this component. Conceptually, it looks something like this:
+
+```html
+<!-- You write this in your presentations -->
+<Wrapper>
+  <Slide1 />
+  <Slide2 />
+  <Slide3 />
+</Wrapper>
+
+<!-- Gets transformed to -->
+<Wrapper>
+  <Slide1 />
+</Wrapper>
+<Wrapper>
+  <Slide2 />
+</Wrapper>
+<Wrapper>
+  <Slide3 />
+</Wrapper>
+```
+
+This effectively means that the children which you process inside of a wrapper component are the children of a single slide.
+This allows you to modify slides, change their layout, surround them with a context, etc.
+It is important to note that the wrapper gets cloned for each component and thus each slide has a different instance of the component.
+
+The `@mdxp/components` package has [a few wrappers](/components-wrapper) readily available for you to use, but as an example we will again create our own wrapper.
+In order to stick to our theme of tomatoes, we will create a wrapper that changes the theme text color to _"tomato"_.
+We will do this by wrapping each slide in a `<ThemeProvider />` and providing our own text color. You can read more about nesting ThemeProviders [here](https://theme-ui.com/guides/nested-theme-providers).
+
+```jsx
+import React from 'react';
+import {ThemeProvider} from 'theme-ui';
+import {MDXPTypes, setMDXPType} from '@mdxp/core';
+
+// the "children" property will be a single slide inside of this component
+const TomatoWrapper = ({children}) => (
+  <ThemeProvider theme={{colors: {text: 'tomato'}}}>
+    {children}
+  </ThemeProvider>
+);
+
+export default setMDXPType(ThemeWrapper, MDXPTypes.WRAPPER);
+```
+
+The example above is again quite pointless, as you can already achieve this by using the [ThemeWrapper](/components-wrappers#themewrapper) component, but hopefully shows you how to create your own wrappers.
+
+> __NOTE__  
+> It is very important to remember that your wrapper component gets copied for each and every slide it contains.
+> This means that you can use it to surround slides with a React context,
+> but you cannot use this to modify said context in one slide and use the updated value in another.
+> If you want such behaviour, you can wrap the entire Deck in a context and use that.
+
+
+### Group Components
+As the name implies, group components can also contain multiple slides.
+In fact, group components are a type of higher-order components, which can contain any kind of elements and are allowed to transform their children in any way before returning them.
+
+The best way to think about group components is to consider them to be regular functions, which take children (and potentially other properties) and are allowed to modify their content before the elements are split into separate slides. While you could use this to modify any element inside of it, these components are most useful for adding slides automatically (eg. title slide, question slide, thank you slide, etc).
+
+To complete our tomato theme, we will create a _"TomatoGroup"_ (this could be used as a special section in a presentation).
+When used, it will automatically add a slide with our _"TomatoLayout"_ which will serve as a title for our section.
+Afterwards, it will wrap all it's inner slides in our _"TomatoWrapper"_.
+
+```jsx
+import React from 'react';
+import {MDXPTypes, setMDXPType} from '@mdxp/core';
+import TomatoLayout from './tomato-layout';
+import TomatoWrapper from './tomato-wrapper';
+
+const TomatoGroup = ({children}) => (
+  <React.Fragment>
+    <TomatoLayout>
+      <h1>SPECIAL TOMATO SECTION</h1>
+    </TomatoLayout>
+    <hr />
+
+    <TomatoWrapper>
+      {children}
+    </TomatoWrapper>
+  </React.Fragment>
+);
+```
+
+> __NOTE__  
+> Because we want to return multiple elements in our group, we need to wrap it inside of a `<React.Fragment />`.
+> Sometimes, people use the shorthand notation for fragments which is `<> {...} </>`,
+> but beware that if you use the `/** @jsx jsx */` pragma from [Theme-UI][themeui], this shorthand will not work,
+> unless you also provide a `/** @jsxFrag React.Fragment */` pragma.
+
+
+Now that you know all about custom components, all that remains to learn is building your own theme!
+
+<CTA url="/guide-theming">
+Learn to Theme
+</CTA>
+
+[themeui]: https://theme-ui.com

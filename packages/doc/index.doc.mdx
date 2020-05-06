@@ -3,6 +3,7 @@ name: Introduction
 route: /
 group: Documentation
 ---
+import CTA from 'gatsby-theme-docz/src/components/cta.jsx'
 
 
 <div style={{textAlign:"center"}}>
@@ -32,30 +33,15 @@ With this tool, you can:
 - _Present_ on any computer with a (modern) browser, by using the onepage build mode.
 - _Integrate_ it in any of your favourite web bundlers, static site generators, ...
 
-<div style={{width:'100%', textAlign: 'center'}}>
-<a
-  href='./getting-started'
-  style={{
-    backgroundColor: '#F9AC00',
-    minWidth: '40%',
-    color: 'white',
-    padding: '15px',
-    margin: '10px',
-    display: 'inline-block',
-    borderRadius: '10px',
-    fontSize: '30px',
-    textTransform: 'uppercase',
-  }}
->
-  Get Started with MDXP
-</a>
-</div>
+<CTA url="/getting-started">
+Get Started with MDXP
+</CTA>
 
 
 ## Under the hood
 > __NOTE__  
 > This is very much an entry level explanation.
-> If you are a seasoned web developper, all you need to know is that this project consists of a few react packages to help you build your presentation, which you write using [MDX](https://mdxjs.com/).  
+> If you are a seasoned web developer, all you need to know is that this project consists of a few react packages to help you build your presentation, which you write using [MDX](https://mdxjs.com/).  
 > This project also has a package with some plugins for transpiling [MDXAST/MDXHAST](https://mdxjs.com/advanced/ast) and a basic template for getting started, which sets up a Webpack environment to develop and build your slide deck.
 
 While it is not really necessary to understand all this in order to use MDXP,
@@ -69,7 +55,7 @@ At the very bottom of this tech stack sits [React](http://reactjs.org/), which a
 Because doing this in plain old JavaScript is quite tedious and error-prone, they created their own file format JSX, which allows you to write with an HTML-like syntax inside of JavaScript.
 
 Of course, you still need to transpile this JSX to valid JavaScript, in order for the browser to understand your code.
-This is where [Babel](https://babeljs.io/) comes into play. Babel is a javascript transpiler, which allows you to write next-generation JavaScript, with all the new features, and convert it to browser-compatible JavaScript code. 
+This is where [Babel](https://babeljs.io/) comes into play. Babel is a JavaScript transpiler, which allows you to write next-generation JavaScript, with all the new features, and convert it to browser-compatible JavaScript code. 
 Babel can also read JSX and transpile it to valid JavaScript, which is the main reason we use it.
 
 You can now transpile a JSX file to browser-compatible JavaScript, but what if you want to split your code into multiple files and modules ?
@@ -85,28 +71,18 @@ MDX is a file format which enhances markdown, by allowing you to import and use 
 This works, because the MDX transpiler transforms your MDX code into JSX, which is then transpiled into JavaScript with Babel.
 The cool thing about the MDX transpiler is that it is build with the [Unified](https://unifiedjs.com/) toolset.
 This allows us to extend the transpiler and add our own features to the MDX format.  
-An example where we transform the markdown syntax is with images.
-In order for files to be processed by Webpack, you need to import them and images are no different.
-Because this is not handy when writing markdown, we created a Unified plugin that transforms the image syntax:
-```jsx
-![ALT_TEXT](./path/to/image.png)
-
-// This gets transformed automatically to:
-import imported_image from './path/to/image.png';
-![ALT_TEXT]({imported_image})
-```
 
 
 ## How is this different from MDX-Deck
 I started using [MDX-Deck](https://github.com/jxnblk/mdx-deck) and immediately loved the concept of writing your presentations with MDX.  
-However, I found one big flaw with it and that is that it builds your presentation as a gatsby website.
+However, I found one big flaw with it and that is that it builds your presentation as a Gatsby website.
 
 I have two reasons for disliking this:
 
 1. When presenting at conferences, you are sometimes obliged to present on a given computer and thus it is not feasible to present with a local server on your computer. While you could host your presentation somewhere and just browse to it, that has the downside that you are at the mercy of internet speeds at the conference, which might be a serious issue if you have lots of images and/or videos. The best solution would be to have a single file, like a `.ppt`, that you can just open on any computer. MDXP allows to build your presentation in `onepage` mode, which means you end up with one `index.html` file (+ any videos or huge images), which you can open in any (modern) browser, without the need for a server.
 2. The fact that it uses Gatsby adds a whole layer of complexity. Gatsby is not a small tool and learning to use it takes some time. This also means that the threshold for someone being able to contribute to the project becomes much higher. The core of MDXP is just a react library and thus it is easier to learn and contribute to this repository. If need be, you can still integrate MDXP into a Gatsby project, thus having the best of both worlds.
 
-I would like to expres my gratitude towards the MDX-Deck project and the team behind it!  
+I would like to express my gratitude towards the MDX-Deck project and the team behind it!  
 I took a lot of inspiration and even some code from it, and would not have been able to build MDXP without it.
 
 

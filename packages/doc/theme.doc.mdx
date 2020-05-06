@@ -1,0 +1,39 @@
+---
+name: Theming
+route: /guide-theming
+group: Documentation
+---
+
+# Theming
+MDXP uses [Theme-UI][themeui] for styling, which allows you to modify any part of your presentation in a consistent manner, which ultimately results in having the same look and feel throughout your presentation.
+
+A theme is just a plain old JavaScript object, with some properties that define your styles (`colors`, `fonts`, `fontSizes`, `space`, etc.) and some properties which apply those styles to your html and react components (`styles`).
+We strongly recommend you to go through [Theme-UI][themeui]'s excellent documentation.
+
+
+## Custom Theme
+To enable the use of a custom theme, you can simply pass the object to your [Deck](/core-components#deck).
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Deck from '@mdxp/core';
+import theme from './theme.js';
+import MDXPresentation from './presentation.mdx';
+
+ReactDOM.render(
+  <Deck theme={theme}>
+    <MDXPresentation />
+  </Deck>,
+  document.getElementById('root')
+);
+```
+
+## MDXP Styles
+There are a few properties on your theme object, which get interpreted specially by MDXP.
+
+- `theme.googleFont` : The contents of this property can be a URL or an array of URL's, and MDXP will add the appropriate `<link />` tags to fetch the fonts from [Google Fonts](https://fonts.google.com/).
+- `theme.mdxp.slide` : This style variant gets applied to the `<Slide />` object that surrounds each of your slides. You can use it to set a default Typography for your presentation.
+
+
+[themeui]: https://theme-ui.com

@@ -1,0 +1,258 @@
+---
+name: Syntax
+route: /guide-syntax
+group: Documentation
+---
+import CTA from 'gatsby-theme-docz/src/components/cta.jsx'
+
+
+# Presentation Syntax
+This page explains all there is to know about the syntax you use to write presentations.
+
+
+## Markdown
+You write your presentation using the MDX syntax, which is a superset of Markdown.  
+This means that you can use all the markup features you know and love from markdown like lists, tables, headings, italic text, bold text, etc.
+In order to separate different slides, we use the "Horizontal Rule" html element, which is inserted into Markdown by entering 3 dashes `---` on a single line.
+The following snippet shows 3 different slides, each with some different markup:
+
+```mdxp
+# SLIDE 1
+
+This first slide contains an H1 heading and some paragraphs.
+This paragraph contains _italic_ and __bold__ text.  
+Notice that this sentence, which is part of the paragraph, is on its own line.
+By ending a line with 2 spaces, you can add newline breaks inside of a paragraph.
+
+This is a second paragraph.
+Note that there is much more whitespace, than with regular newlines.
+
+You can press the 'SHOW' button in the top right corner of this block to see a live demo of this example (not available on mobile).  
+In order to step through the slides, you can use the arrow keys or you can touch the slide on the left or right hand sides.  
+Alternatively, you can use SHIFT+arrows or you can swipe to move through the slides, ignoring the steps (more on that later).  
+Press escape or click outside of the slide to close it.
+
+---
+
+### SLIDE 2
+
+This second slide has an H3 tag and 2 lists
+
+- Bullet point list
+- These are often used in presentations
+- But should they ?
+
+1. Numbered lists
+2. There are occasions when these are really useful
+
+---
+
+## SLIDE 3
+
+| Left Align | Middle Align | Right Align |
+|:-----------|:------------:|------------:|
+| data       | data         | data        |
+| data       | data         | data        |
+| data       | data         | data        |
+
+Note that these live demo examples have some minor issues.  
+This markup gets rendered live, which sometimes causes flickering behaviour and the default theme does not get applied either.  
+This can cause some minor differences between the examples you see here and how they render when you run it in a real MDXP slide deck.  
+As an example, this table should have lines between the rows when the default theme is applied.
+```
+
+> __NOTE__  
+> Note that it is important for the "Horizontal Rule" slide separator to have an empty line above.
+> This is because markdown has an alternate syntax for H2 tags, which involves adding dashes underneath text.  
+> We usually add an empty line below the separator as well, as it improves readability and clearly shows slide boundaries, but this is strictly speaking not necessary.
+
+
+## Markdown Extended
+If you use the starter template, we added plugins to extend the default markdown syntax and provide extra features.  
+For example, we added emoji unicode support and also math support through [Katex](https://katex.org/).
+
+> __NOTE__  
+> Note that our live demo runtime does not include these extensions and thus we cannot show them working.  
+> However, you can run these examples yourself and see that they are in fact working!
+
+```md
+# SLIDE 1
+
+This slide contains emojis! :+1: :stuck_out_tongue:
+
+---
+
+# SLIDE 2
+
+In order to use inline math, you surround it with dollar signs: $C_L$.  
+You can also have a math block, which starts and ends with `$$`
+
+$$
+\begin{aligned}
+L &= \frac{1}{2} \rho v^2 S C_L \\
+E &= mc^2
+\end{aligned}
+$$
+```
+
+We also build some plugins specifically for use with MDX.
+You can find more information about each of them in the API documentation of [@mdxp/rehypex-plugins](/rehypex-autoimport),
+but we will explain the main changes here.
+
+Firstly, our plugins allow you to use videos in your presentations, just like you would images.  
+It does this by looking at the file extension and if it ends in one of `[mp4,webm,avi,mpg,mpeg,wmv,ogg]` it will be considered a video instead of an image.
+If your video URL does not end with one of these extensions (eg. a link to an online video), you can force our plugin to consider it as a video, by prepending your URL with `!video!`
+
+Secondly, both images and videos can have extra properties through their "Alternate Text" fields.
+Just write 2 ampersands `&&` after the alternate text and enter your properties (without whitespace).
+
+```md
+# SLIDE 1
+
+Below this paragraph is an image, with its width set to 75%.
+
+![my image&&width='75%'](./path/to/image.png)
+
+---
+
+# SLIDE 2
+
+And now a video, automatically detected through the extension of the file
+
+![my video](./path/to/video.mp4)
+
+---
+
+# SLIDE 3
+
+This is an online video, which does not have the correct extension  
+We force this to render a video by adding !video! to the url
+
+![online video](!video!http://techslides.com/demos/sample-videos/small.flv)
+```
+
+> __NOTE__  
+> You cannot link to Youtube videos like this, because Youtube does not provide the raw video data for people to download.
+> In order to play a Youtube video, you need to use their specific API.
+> There are plenty of React libraries that provide a component, which you can use in your slide deck.
+
+A trained React/Webpack developer might have noticed something weird in the previous example.  
+Indeed, when using Webpack you need to explicitly `import` all files you use, so that Webpack correctly processes them.
+Because it is quite tiresome to do this when writing your presentation, we created a plugin that goes through all JSX tags (also images and videos), and automatically imports any property which is a file.
+You can inhibit this behaviour by prepending `!noimport!` to your property string.
+
+```md
+<Component property="./path/to/valid/file.txt" />
+
+<!-- This gets transformed automatically to: -->
+import AI__path_to_valid_file_txt from './path/to/valid/file.txt'
+
+<Component property={AI__path_to_valid_file_txt} />
+
+---
+
+![alt text](./path/to/image.png)
+
+<!-- This also works for images (and videos): -->
+import AI__path_to_image_png from './path/to/image.png';
+
+![alt text]({AI__path_to_image_png})
+
+---
+
+![alt text](https://raw.githubusercontent.com/0phoff/MDXP/master/public/logo.svg)
+
+<!-- If a property is not a valid file on your system, it does not get imported -->
+![alt text](https://raw.githubusercontent.com/0phoff/MDXP/master/public/logo.svg)
+
+---
+
+<Component property="!noimport!./path/to/valid/file.txt" />
+
+<!-- By prepending !noimport! the property does not get imported: -->
+<Component property="./path/to/valid/file.txt" />
+```
+
+
+## MDX
+Of course, Markdown can only do so much and in order to create truly dynamic slides, [MDX](https://mdxjs.com/) allows you to seamlessly integrate React components into your Markdown files.
+In the example below, we use the `Step` component from this very library, in order to step through our slide elements.
+
+```mdxp
+# SLIDE 1
+
+<Step>
+
+- This slide uses a Component inside of markdown
+- It is this magic recipe that allow you to create magnificent presentations
+- And also add dynamic behaviour to your slide
+
+</Step>
+
+---
+
+# SLIDE 2
+
+<Step useColumns={true}>
+
+| Left Align | Middle Align | Right Align |
+|:-----------|:------------:|------------:|
+| data       | data         | data        |
+| data       | data         | data        |
+| data       | data         | data        |
+
+</Step>
+```
+
+The example above also demonstrates some key points that are necessary to follow, in order to successfully use components with MDX:
+
+- In order to use Markdown syntax inside of a component (or html tag), you need to surround your markdown block with empty lines.
+- If you do not add these empty lines, the content is simply regarded as regular html markup.
+- You should not indent your code, as indentation has a special meaning for markdown and will thus usually not result in what you want to achieve.
+- Just like with React, you can pass properties to components. If your property is a string, you can simply surround it within quotes (like html), but if you want to pass other types like numbers, objects or arrays, you need to surround them with curly braces `{}`.
+
+
+## Styling
+Because MDX allows custom objects inside of properties, we can easily provide basic styles to html elements, by adding a `style` property.  
+However, styling like that makes it rather difficult to provide a consistent look and feel throughout your presentation and thus MDXP uses the [Theme-UI][themeui] CSS-in-JS library, to allow for theme-aware styling.
+By styling your components with an `sx` property instead of `style`, you can give it theme-aware values.
+
+```mdxp
+# SLIDE 1
+
+<div style={{backgroundColor: 'tomato', width: '50%'}}>
+
+This div got styled by passing an object as `style` element.
+
+Note that you need to enter double braces here, because you need them to start the property and to start the object.  
+We also use camelCase instead of the typical css kebab-case.
+
+</div>
+
+---
+
+# SLIDE 2
+
+<Block sx={{bg: 'accent', width: '75%', px: '20px'}}>
+
+This is a Block component from the `@mdxp/components` package.  
+It wraps the content in a div and allows us to style it with a theme-aware `sx` property.
+
+The accent color defaults to the MDXP yellow, which is what you will see here as background.  
+Note that we can use the `bg` (background) and `px` (paddingX) shorthand properties.
+There are many such shorthands and we highly recommend reading the Theme-UI documentation to fully understand how it all works.
+
+</Block>
+```
+
+
+Note that only custom components which were build to work with [Theme-UI][themeui] can accept `sx` themeable styling properties.
+You can thus not use `sx` with regular HTML elements and need to explicitly add support for `sx` in your own custom components.
+Click on the link below to learn how to do that.
+
+<CTA url="/guide-components">
+Create your own components
+</CTA>
+
+
+[themeui]: https://theme-ui.com

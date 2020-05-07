@@ -22,7 +22,7 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:clean": "docz clean && rm -rf .docz && rm -rf docs",
-    "publish": "yarn clean && yarn build && lerna version && lerna publish from-git",
+    "publish": "yarn clean && yarn build && lerna version && lerna publish from-git && yarn publish:docs",
     "publish:docs": "yarn docz:clean && yarn docz:build && echo 'Commit documentation'"
   },
   "devDependencies": {

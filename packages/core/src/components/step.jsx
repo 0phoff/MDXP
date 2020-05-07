@@ -59,9 +59,9 @@ const renderTable = (table, createStyledElement, {useColumns}) => {
   );
 };
 
-const getStepableChildren = (children, {useColumns}) => {
+const getStepableChildren = (children, {useColumns, subChildren}) => {
   const length = React.Children.count(children);
-  if (length > 1 || !children.hasOwnProperty('props')) {
+  if (!subChildren || length > 1 || !children.hasOwnProperty('props')) {
     return [length, renderRegular];
   }
 
@@ -105,10 +105,11 @@ const Step = ({
   children,
   offset = null,
   useColumns = false,
+  subChildren = true,
   styles = {before: {visibility: 'hidden'}, after: {visibility: 'visible'}},
   ...props
 }) => {
-  const [length, render] = getStepableChildren(children, {useColumns});
+  const [length, render] = getStepableChildren(children, {useColumns, subChildren});
   const [_, setStep] = useContext(StepContext);
 
   offset = parseInt(offset);
@@ -145,6 +146,8 @@ const Step = ({
 
   const createStyledElement = (child, i, props) => {
     const startIndex = state[i].start;
+    const endIndex = startIndex + state[i].innerLength;
+
     let style = child.props.style;
     if (startIndex > step) {
       style = {
@@ -152,7 +155,7 @@ const Step = ({
         ...styles.base,
         ...styles.before
       };
-    } else if (startIndex === step) {
+    } else if ((startIndex <= step) && (endIndex > step)) {
       style = {
         ...style,
         ...styles.base,
@@ -188,6 +191,9 @@ Step.propTypes = {
 
   /** Whether to step through rows or columns of a table. This property is only used if the component has a single table child. */
   useColumns: PropTypes.bool,
+
+  /** Whether to step through children when there is only one child element */
+  subChildren: PropTypes.bool,
 
   /** Styles that will be applied to the children (see note). */
   styles: PropTypes.shape({

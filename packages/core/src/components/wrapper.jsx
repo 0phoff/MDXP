@@ -88,7 +88,7 @@ const wrapper = (DefaultLayout, passedProps, components) => {
 
     const slides =
       splitSlides(children, shortCodeComponents)
-        .map((obj) => {console.log(obj); return obj;})
+        //.map((obj) => {console.log(obj); return obj;})
         .filter(slideObject => slideObject.elements.length > 0)
         .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents));
 

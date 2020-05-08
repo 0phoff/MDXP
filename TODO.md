@@ -1,7 +1,7 @@
 # MDXP TODO
 Release TODO lists for MDXP
 
-## V0.1
+## V0.0.4
   - [X] Basic slide functionality
   - [X] Possibility for different modes
   - [X] Steps
@@ -22,20 +22,29 @@ Release TODO lists for MDXP
   - [X] Documentation: API Rehypex
   - [X] Documentation: API components
   - [X] Documentation: Guides
+  - [X] Readme
+
+## V0.1
+  - [ ] Readme: add example link
   - [ ] Documentation: Examples
-  - [ ] Readme
+  - [ ] FIX: Better Media -> props/width/height can be wrapped inside '"
+  - [ ] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)
+  - [ ] FIX: Step.createStyledElement crashes when child has no props (how is that possible ?)
+  - [ ] FIX: sx-aware cloneElement seems broken ?
+  - [ ] Components: Check if worth it to replace Columns with theme-ui Flex/Grid
+  - [ ] Components: AutoStepper component
+  - [ ] Core: Head component
+  - [ ] Core: Check prism-react-renderer
 
 ## V1.0
   - [ ] Presenter mode
   - [ ] Grid mode
   - [ ] Notes
-  - [ ] Head
   - [ ] Generate PDF
   - [ ] Help & Keybindings pop-up
   - [ ] Import MDX files (If possible!)
   - [ ] Animated transitions
-  - [ ] Custom Video component with different behaviour depending on the mode
-  - [ ] Check prism-react-renderer
+  - [ ] Core: Custom Video component with different behaviour depending on the mode
   - [ ] Rehypex: allow code-fences to have a filename to get code from
-  - [ ] CodeSurfer component
+  - [ ] Components: CodeSurfer component
 

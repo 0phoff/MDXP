@@ -1,13 +1,51 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import PropTypes from 'prop-types';
+import cleanSx from '../util/clean-sx.js';
 
-const Block = ({children, as: Element = 'div', sx = {}, ...props}) => (
+const Block = ({
+  children,
+  as: Element = 'div',
+  sx = {},
+  width,
+  height,
+  order,
+  flexGrow,
+  flexShrink,
+  flexBasis,
+  flex,
+  alignSelf,
+  gridColumnStart,
+  gridColumnEnd,
+  gridRowStart,
+  gridRowEnd,
+  gridColumn,
+  gridRow,
+  gridArea,
+  justifySelf,
+  placeSelf
+}) => (
   <Element
-    sx={{
+    sx={cleanSx({
+      width,
+      height,
+      order,
+      flexGrow,
+      flexShrink,
+      flexBasis,
+      flex,
+      alignSelf,
+      gridColumnStart,
+      gridColumnEnd,
+      gridRowStart,
+      gridRowEnd,
+      gridColumn,
+      gridRow,
+      gridArea,
+      justifySelf,
+      placeSelf,
       ...sx,
-      ...props
-    }}
+    })}
   >
     {children}
   </Element>
@@ -21,10 +59,23 @@ Block.propTypes = {
   sx: PropTypes.object,
 
   children: PropTypes.node,
-
-  /** Alternatively, you can also apply styles by adding them as properties straight away. */
-  props: PropTypes.object
-
+  width: PropTypes.string,
+  height: PropTypes.string,
+  order: PropTypes.string,
+  flexGrow: PropTypes.string,
+  flexShrink: PropTypes.string,
+  flexBasis: PropTypes.string,
+  flex: PropTypes.string,
+  alignSelf: PropTypes.string,
+  gridColumnStart: PropTypes.string,
+  gridColumnEnd: PropTypes.string,
+  gridRowStart: PropTypes.string,
+  gridRowEnd: PropTypes.string,
+  gridColumn: PropTypes.string,
+  gridRow: PropTypes.string,
+  gridArea: PropTypes.string,
+  justifySelf: PropTypes.string,
+  placeSelf: PropTypes.string,
 };
 
 export default Block;

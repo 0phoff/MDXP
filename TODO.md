@@ -28,11 +28,11 @@ Release TODO lists for MDXP
   - [ ] Readme: add example link
   - [ ] Documentation: Examples
   - [X] FIX: Better Media -> props/width/height can be wrapped inside '"
-  - [ ] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)
+  - [X] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)
   - [ ] FIX: Step.createStyledElement crashes when child has no props (how is that possible ?)
   - [ ] FIX: sx-aware cloneElement seems broken ?
-  - [ ] Components: Check if worth it to replace Columns with theme-ui Flex/Grid
-  - [ ] Components: AutoStepper component
+  - [X] Components: Check if worth it to replace Columns with theme-ui Flex/Grid
+  - [X] Components: AutoStepper component
   - [ ] Core: Head component
   - [ ] Core: Check prism-react-renderer
 

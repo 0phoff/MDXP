@@ -5,7 +5,7 @@ route: components-components
 group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
-import {Block, Columns, Place, Styling} from '../src/component'
+import {AutoStepper, Block, Flex, Grid, Place, Styling} from '../src/component'
 
 
 # Components
@@ -14,8 +14,63 @@ This page contains the documentation for all regular Components that the `@mdxp/
 ---
 
 
+## AutoStepper
+This component does not render anything, but can be used to automatically step through your slide.
+It is best used as a direct child of your slide and should not be nested inside other components.
+
+> __NOTE__  
+> By setting the `end` value to 0, you will automatically step through your deck until you reach the next slide.
+
+### Properties
+<Arguments>
+{{
+  name: 'start',
+  type: 'number',
+  desc: 'Fist stepIndex for the AutoStepper.',
+  default: '0'
+}}
+{{
+  name: 'end',
+  type: 'number',
+  desc: 'Last stepIndex for the AutoStepper. If you pass 0 or a negative number, it starts to count from the end.',
+  default: '-1'
+}}
+{{
+  name: 'time',
+  type: 'number',
+  desc: 'Time in milliseconds it should wait before automatically stepping.',
+  default: '1000'
+}}
+</Arguments>
+
+### Examples
+```mdxp
+# SLIDE 1
+
+<Step>
+
+- Step through the slide to show this first bullet point
+- Afterwards, this slide will automatically step through the remaining bullet points
+- Every 1500ms a new bullet shows
+- item 4
+- item 5
+
+</Step>
+<AutoStepper start={1} time={1500} />
+
+---
+```
+
+---
+
+
 ## Block
-This component will suround it's children with an element, which you can style with theme-aware properties.
+This component will suround its children with an element, which you can style with theme-aware properties.  
+Besides that, it also allows to set any of the CSS properties for children of either 'flex' or 'grid' layouts, by setting it as a property of the component, instead of setting it through the `sx` property.
+This allows it to be more easily used in conjunction with the [Flex](#flex) and [Grid](#grid) components.
+
+> __NOTE__  
+> You can also set the CSS width and height of this component through properties on the object.
 
 ### Properties
 <Arguments of={Block} />
@@ -24,9 +79,9 @@ This component will suround it's children with an element, which you can style w
 ```mdxp
 # SLIDE 1
 
-<Block width='50%' bg='accent'>
+<Block width="50%" sx={{bg: 'accent'}}>
 
-This block will take 50% of the slide's width and have a background color set to the theme accent color.
+This block will take 50% of the surrounding width and have a background color set to the theme accent color.
 
 Blocks can obviously contain multiple elements and by default group them in a div.
 This component is quite handy in conjunction with columns.
@@ -39,9 +94,6 @@ This component is quite handy in conjunction with columns.
 
 <Block as="em" sx={{color: 'red'}}>
 
-Alternatively, you can pass your styles through an sx object property.
-There is no difference between both methods and all properties get merged shallowly, using the object spread syntax.
-
 Here the surrounding element will be an `em` tag.  
 You can also pass custom components, but beware that you need to put them in between braces instead of quotes : {Component}
 
@@ -52,55 +104,84 @@ You can also pass custom components, but beware that you need to put them in bet
 ---
 
 
-## Columns
-This component turns each of his children into a separate column.
-You can set different styling options for the columns, by passing them as properties to this component.
-If you pass an array as a property, each column will get a separate value.  
-Internally, this component is implemented as a surrounding div with the following style:
-```js
-{
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
-  alignItems: 'center'
-}
-```
+## Flex
+This element is a [Block](#block) component, but it has its display property set to 'flex' by default and allows to set any flex-related CSS properties as values on the item itself, without needing to wrap it in an `sx` prop.
+
+> __NOTE__  
+> If you do not know what `display: flex` does, it is highly recommended to read [this flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox).
+> Flexbox is a super handy tool to quickly create one-dimensional layouts and control how your elements are placed.
 
 ### Properties
-<Arguments of={Columns} />
+<Arguments of={Flex} />
 
 ### Examples
 ```mdxp
 # SLIDE 1
 
-<Columns>
+<Flex justifyContent="space-around" alignItems="center" height="100%">
 
-1. This slide will have 2 columns
-2. The first one with this numbered list
+<Block sx={{bg: 'red'}} height="50px" flexGrow="1" />
+<Block sx={{bg: 'tomato'}} flexGrow="2">
 
-- And the second column will contain this list
-- Which consists of bullet points
+These blocks will grow to fill the space! 
 
-</Columns>
+</Block>
+<Block sx={{bg: 'red'}} height="50px" flexGrow="1" />
+
+</Flex>
+```
 
 ---
 
-# SLIDE 2
 
-<Columns width={['20%','50%','20%']} textAlign="center">
+## Grid
+This element is a [Block](#block) component, but it has its display property set to 'grid' by default and allows to set any grid-related CSS properties as values on the item itself, without needing to wrap it in an `sx` prop.
 
-This slide has three columns, each with different widths.
+> __NOTE__  
+> If you do not know what `display: grid` does, it is highly recommended to read [this CSS grid guide](https://css-tricks.com/snippets/css/complete-guide-grid).
+> Grid is the two-dimensional counterpart of the flexbox layout, but there are various other minor differences between both.
+> This [guide](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout#Grid_and_flexbox) does a good job at comparing both layout methods.
 
-The second column is wider.
-Because `textAlign` is not an array, it gets applied to each column.
+### Properties
+<Arguments of={Grid} />
 
-The third column is smaller again.
-Note that the remaining 10% of width gets used as whitespace, depending on the justify-content parent property.
-If any child has a flex-grow property, it will grow to fill those last 10%,
-but you can read up on `flex` if you want to better understand this.
+### Examples
+```mdxp
+<Grid
+  gridTemplateColumns="1fr 3fr 1fr"
+  gridTemplateRows="20% auto 5%"
+  gridTemplateAreas={['header header header', 'main main sidebar', '. footer .']}
+  gridGap='10px'
+>
 
-</Columns>
+<Block gridArea="header" sx={{bg: 'red', textAlign: 'center'}}>
+
+## SLIDE 1
+
+</Block>
+
+<Block gridArea="main" sx={{bg: 'tomato'}}>
+
+- Your main content goes here
+- lovely layout
+
+</Block>
+
+<Block gridArea="sidebar" sx={{bg: 'green'}}>
+
+Sidebar
+
+</Block>
+
+<Block gridArea="footer" sx={{bg: 'red'}}>
+ 
+Footer 
+
+</Block>
+
+</Grid>
+
+---
 ```
 
 ---
@@ -162,18 +243,13 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 {{
   name: 'sx',
   type: 'object',
-  desc: 'You can style the element by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values.'
+  desc: 'You can style the element by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values.',
+  default: '{}'
 }}
 {{
   name: 'children',
   type: 'element',
   desc: 'Single child that gets styled according to the sx property.'
-}}
-{{
-  name: 'props',
-  type: 'object',
-  required: false,
-  desc: 'Alternatively, you can also apply styles by adding them as properties straight away.',
 }}
 </Arguments>
 
@@ -181,7 +257,7 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 ```mdxp
 # SLIDE 1
 
-<Styling bg="accent" color="black" width="100%" paddingLeft="50px">
+<Styling sx={{bg: 'accent', color: 'black', width: '100%', paddingLeft:'50px', listStyleType: 'square'}}>
 
 - This list has a background color set to your theme's accent color
 - The foreground color is set to black
@@ -190,13 +266,4 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 </Styling>
 
 ---
-
-# SLIDE 2
-
-<Styling sx={{fontStyle: 'italic'}}>
-
-You can also specify your styles using a more classical approach of defining an `sx` property.
-Styles defined using sx and as regular properties get merged together in a shallow manner (object spread syntax).  
-
-</Styling>
 ```

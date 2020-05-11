@@ -13,8 +13,10 @@ import {
   ThemeWrapper
 } from './wrapper';
 import {
+  AutoStepper,
   Block,
-  Columns,
+  Flex,
+  Grid,
   Place,
   Styling
 } from './component';
@@ -29,8 +31,10 @@ export default {
   LayoutWrapper,
   ThemeWrapper,
 
+  AutoStepper,
   Block,
-  Columns,
+  Flex,
+  Grid,
   Place,
   Styling
 };

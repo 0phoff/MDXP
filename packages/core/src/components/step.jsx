@@ -148,7 +148,7 @@ const Step = ({
     const startIndex = state[i].start;
     const endIndex = startIndex + state[i].innerLength;
 
-    let style = child.props.style;
+    let style = child.hasOwnProperty('props') ? child.props.style : undefined;
     if (startIndex > step) {
       style = {
         ...style,
@@ -171,11 +171,19 @@ const Step = ({
     }
 
     const childProps = {...props, style};
-    return (
-      <StepContext.Provider value={[state[i], setNthState(i)]}>
-        {React.cloneElement(child, childProps)}
-      </StepContext.Provider>
-    );
+    if (child instanceof String) {
+      return (
+        <StepContext.Provider value={[state[i], setNthState(i)]}>
+          <p {...childProps}>{child}</p>
+        </StepContext.Provider>
+      );
+    } else {
+      return (
+        <StepContext.Provider value={[state[i], setNthState(i)]}>
+          {React.cloneElement(child, childProps)}
+        </StepContext.Provider>
+      );
+    }
   };
 
   return (

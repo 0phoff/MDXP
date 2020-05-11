@@ -103,6 +103,7 @@ const getStepableChildren = (children, {useColumns, subChildren}) => {
 
 const Step = ({
   children,
+  as: Element = 'div',
   offset = null,
   useColumns = false,
   subChildren = true,
@@ -187,13 +188,16 @@ const Step = ({
   };
 
   return (
-    <div {...props}>
+    <Element {...props}>
       {render(children, createStyledElement, {useColumns})}
-    </div>
+    </Element>
   );
 };
 
 Step.propTypes = {
+  /** Type of the surrounding styled block. */
+  as: PropTypes.elementType,
+
   /** The number of elements you want to show at start. Defaults to 0 if used inside another Step component or 1 otherwise. */
   offset: PropTypes.number,
 

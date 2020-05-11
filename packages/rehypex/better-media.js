@@ -40,10 +40,13 @@ module.exports = (options = {}) => {
 
         altProps.forEach(prop => {
           if (prop.match(/^(width|height)=/)) {
-            const [propName, propValue] = prop.split('=');
+            let [propName, propValue] = prop.split('=');
+            if (propValue.match(/^['"].*['"]$/)) {
+              propValue = propValue.slice(1, -1)
+            }
             style[propName] = propValue;
           } else if (prop.match(/^style=/)) {
-            const propValue = prop.split('=')[1];
+            let propValue = prop.split('=')[1];
             styleValue = propValue;
           } else if (prop.match(jsxPropTestEqual)) {
             const [propName, propValue] = prop.split('=');

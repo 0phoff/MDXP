@@ -27,7 +27,7 @@ Release TODO lists for MDXP
 ## V0.1
   - [ ] Readme: add example link
   - [ ] Documentation: Examples
-  - [ ] FIX: Better Media -> props/width/height can be wrapped inside '"
+  - [X] FIX: Better Media -> props/width/height can be wrapped inside '"
   - [ ] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)
   - [ ] FIX: Step.createStyledElement crashes when child has no props (how is that possible ?)
   - [ ] FIX: sx-aware cloneElement seems broken ?

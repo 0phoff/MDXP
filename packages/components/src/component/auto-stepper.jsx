@@ -6,7 +6,9 @@ const AutoStepper = ({start=0, end=-1, time=1000}) => {
   const {stepIndex, stepLength} = useDeck();
   const {next} = useNavigation();
 
-  start, end, time = parseInt(start), parseInt(end), parseInt(time);
+  start = parseInt(start);
+  end = parseInt(end);
+  time = parseInt(time);
   if (end <= 0) {
     end = stepLength + end;
   }
@@ -28,13 +30,13 @@ const AutoStepper = ({start=0, end=-1, time=1000}) => {
 
 AutoStepper.propTypes = {
   /** Fist stepIndex for the AutoStepper. */
-  start: PropTypes.number,
+  start: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
   /** Last stepIndex for the AutoStepper. If you pass 0 or a negative number, it starts to count from the end. */
-  end: PropTypes.number,
+  end: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
   /** Time in milliseconds it should wait before automatically stepping. */
-  time: PropTypes.number,
+  time: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default AutoStepper;

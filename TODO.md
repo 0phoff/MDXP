@@ -27,17 +27,18 @@ Release TODO lists for MDXP
 ## V0.1
   - [X] Readme: add example link
   - [X] Documentation: Examples
-  - [X] FIX: Better Media -> props/width/height can be wrapped inside '"
-  - [X] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)
-  - [X] FIX: Step.createStyledElement crashes when child has no props (how is that possible ?)
-  - [ ] ~~FIX: sx-aware cloneElement seems broken ?~~
-  - [X] FIX: Allow 'as' property to refer to shortCodeComponents
+  - [X] Documentation: Add explanation to Main demo example
   - [X] Components: Check if worth it to replace Columns with theme-ui Flex/Grid
   - [X] Components: AutoStepper component
   - [ ] Core: Head component
   - [ ] Core: Check prism-react-renderer
   - [ ] Core: Separate keyboard and touch targets
   - [X] Webpack: Webpack configs (copy from demo)
+  - [X] FIX: Better Media -> props/width/height can be wrapped inside '"
+  - [X] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)
+  - [X] FIX: Step.createStyledElement crashes when child has no props (how is that possible ?)
+  - [ ] ~~FIX: sx-aware cloneElement seems broken ?~~
+  - [X] FIX: Allow 'as' property to refer to shortCodeComponents
 
 ## V1.0
   - [ ] Presenter mode

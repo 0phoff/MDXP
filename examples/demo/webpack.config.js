@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const remarkEmoji = require('remark-emoji');
 const remarkMath = require('remark-math');
@@ -8,12 +9,14 @@ const rehypeBetterMedia = require('@mdxp/rehypex-plugins/better-media');
 const rehypeTableAlign = require('@mdxp/rehypex-plugins/table-align');
 const rehypeKatex = require('rehype-katex');
 
+const ASSET_PATH = process.env.ASSET_PATH || '/';
+
 module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist/web'),
     filename: 'main.js',
-    publicPath: './'
+    publicPath: ASSET_PATH
   },
 
   module: {
@@ -87,6 +90,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
       filename: './index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
     })
   ],
 

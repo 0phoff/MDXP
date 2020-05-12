@@ -10,6 +10,7 @@ import {ReactComponent as Logo} from '../assets/logo-text.svg';
 // Our footer is in this case just "Floating" above
 const MDXPHeaderLayout = ({children, showSlideNum=true, sx={}}) => {
   const {slideIndex} = useDeck();
+  console.log('MDXPHeaderLayout');
 
   return (
     <HeaderLayout

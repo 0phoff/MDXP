@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "yon build:web && yon build:onepage",
-    "build:web": "webpack --mode production",
+    "build:web": "cross-env ASSET_PATH=./ webpack --mode production",
     "build:onepage": "webpack --config webpack.onepage.js --mode production && rm -f dist/onepage/*.js && rm -f dist/onepage/*.css",
     "clean": "rm -rf dist/**/*",
     "clean:web": "rm -rf dist/web/*",
@@ -21,6 +21,7 @@
     "@mdxp/rehypex-plugins": "^0.0.3",
     "@svgr/webpack": "^5.3.1",
     "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.2.0",

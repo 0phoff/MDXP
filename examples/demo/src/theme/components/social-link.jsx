@@ -7,6 +7,8 @@ const SocialLink = ({logo: Logo, href, sx={}}) => (
     target="_blank"
     sx={{
       height: '100px',
+      width: 'auto',
+      mx: 1,
       '& .hover': {
         fill: t => t.colors.MDXPGray1
       },

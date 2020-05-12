@@ -40,15 +40,15 @@ Flex.propTypes = {
   sx: PropTypes.object,
 
   children: PropTypes.node,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.any,
+  height: PropTypes.any,
   display: PropTypes.oneOf(['flex', 'inline-flex']),
-  flexDirection: PropTypes.string,
-  flexWrap: PropTypes.string,
-  flexFlow: PropTypes.string,
-  justifyContent: PropTypes.string,
-  alignItems: PropTypes.string,
-  alignContent: PropTypes.string,
+  flexDirection: PropTypes.any,
+  flexWrap: PropTypes.any,
+  flexFlow: PropTypes.any,
+  justifyContent: PropTypes.any,
+  alignItems: PropTypes.any,
+  alignContent: PropTypes.any,
 
   /** Extra properties that are passed to the underlying [Block](#block) component. */
   props: PropTypes.object

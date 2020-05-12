@@ -28,7 +28,8 @@ const Block = ({
   gridRow,
   gridArea,
   justifySelf,
-  placeSelf
+  placeSelf,
+  ...props
 }) => {
   const {shortCodeComponents} = useRoot();
   Element = getAsComponent(Element, shortCodeComponents);
@@ -58,6 +59,7 @@ const Block = ({
         placeSelf,
         ...sx,
       })}
+      {...props}
     >
       {children}
     </Element>
@@ -72,31 +74,34 @@ Block.propTypes = {
   sx: PropTypes.object,
 
   children: PropTypes.node,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  bg: PropTypes.string,
+  width: PropTypes.any,
+  height: PropTypes.any,
+  bg: PropTypes.any,
 
   /** You can also use the `p`, `px`, `py`, `pt`, `pb`, `pl`, `pr` shortcuts. */
-  padding: PropTypes.string,
+  padding: PropTypes.any,
 
   /** You can also use the `m`, `mx`, `my`, `mt`, `mb`, `ml`, `mr` shortcuts. */
-  margin: PropTypes.string,
+  margin: PropTypes.any,
 
-  order: PropTypes.string,
-  flexGrow: PropTypes.string,
-  flexShrink: PropTypes.string,
-  flexBasis: PropTypes.string,
-  flex: PropTypes.string,
-  alignSelf: PropTypes.string,
-  gridColumnStart: PropTypes.string,
-  gridColumnEnd: PropTypes.string,
-  gridRowStart: PropTypes.string,
-  gridRowEnd: PropTypes.string,
-  gridColumn: PropTypes.string,
-  gridRow: PropTypes.string,
-  gridArea: PropTypes.string,
-  justifySelf: PropTypes.string,
-  placeSelf: PropTypes.string,
+  order: PropTypes.any,
+  flexGrow: PropTypes.any,
+  flexShrink: PropTypes.any,
+  flexBasis: PropTypes.any,
+  flex: PropTypes.any,
+  alignSelf: PropTypes.any,
+  gridColumnStart: PropTypes.any,
+  gridColumnEnd: PropTypes.any,
+  gridRowStart: PropTypes.any,
+  gridRowEnd: PropTypes.any,
+  gridColumn: PropTypes.any,
+  gridRow: PropTypes.any,
+  gridArea: PropTypes.any,
+  justifySelf: PropTypes.any,
+  placeSelf: PropTypes.any,
+
+  /** Extra properties that are added to the element. */
+  props: PropTypes.object,
 };
 
 export default Block;

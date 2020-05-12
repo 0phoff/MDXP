@@ -74,9 +74,9 @@ Grid.propTypes = {
 
   children: PropTypes.node,
   display: PropTypes.oneOf(['grid', 'inline-grid']),
-  grid: PropTypes.string,
-  gridTemplateColumns: PropTypes.string,
-  gridTemplateRows: PropTypes.string,
+  grid: PropTypes.any,
+  gridTemplateColumns: PropTypes.any,
+  gridTemplateRows: PropTypes.any,
 
   /** If you give an array of strings, they will be considered as different rows and thus joined by surrounding each item within double quotes. */
   gridTemplateAreas: PropTypes.oneOfType([
@@ -84,19 +84,19 @@ Grid.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
 
-  gridTemplate: PropTypes.string,
-  gridColumnGap: PropTypes.string,
-  gridRowGap: PropTypes.string,
-  gridGap: PropTypes.string,
-  justifyItems: PropTypes.string,
-  alignItems: PropTypes.string,
-  placeItems: PropTypes.string,
-  justifyContent: PropTypes.string,
-  alignContent: PropTypes.string,
-  placeContent: PropTypes.string,
-  gridAutoColumns: PropTypes.string,
-  gridAutoRows: PropTypes.string,
-  gridAutoFlow: PropTypes.string,
+  gridTemplate: PropTypes.any,
+  gridColumnGap: PropTypes.any,
+  gridRowGap: PropTypes.any,
+  gridGap: PropTypes.any,
+  justifyItems: PropTypes.any,
+  alignItems: PropTypes.any,
+  placeItems: PropTypes.any,
+  justifyContent: PropTypes.any,
+  alignContent: PropTypes.any,
+  placeContent: PropTypes.any,
+  gridAutoColumns: PropTypes.any,
+  gridAutoRows: PropTypes.any,
+  gridAutoFlow: PropTypes.any,
 
   /** Extra properties that are passed to the underlying [Block](#block) component. */
   props: PropTypes.object

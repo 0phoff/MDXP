@@ -193,10 +193,10 @@ If you do pass neither _left_, nor _right_ properties, the element will be cente
 Centering happens, by adding a `transform: translate()` CSS property, so beware if you pass your own transform property through _sx_.
 
 > __NOTE__  
-> This component surround its elements with a div, and it is that div that gets placed.  
+> This component surround its elements with an element, and it is that element that gets placed.  
 > If you use this component to center eg. an image, it is thus important to set your desired width on this element,
 > and set the width of the image to 100%.
-> Otherwise the image will not look centered, as it is the surrounding div that is centered and not the image.
+> Otherwise the image will not look centered, as it is the surrounding element that is centered and not the image.
 
 ### Properties
 <Arguments of={Place} />
@@ -243,13 +243,19 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 {{
   name: 'sx',
   type: 'object',
-  desc: 'You can style the element by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values.',
-  default: '{}'
+  default: '{}',
+  desc: 'You can style the element by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values.'
 }}
 {{
   name: 'children',
   type: 'element',
   desc: 'Single child that gets styled according to the sx property.'
+}}
+{{
+  name: 'props',
+  type: 'object',
+  required: false,
+  desc: 'Extra properties that get added to the child element.'
 }}
 </Arguments>
 

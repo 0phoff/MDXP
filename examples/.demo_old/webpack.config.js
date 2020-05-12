@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const remarkEmoji = require('remark-emoji');
 const remarkMath = require('remark-math');
 const remarkFlattenImages = require('mdast-flatten-image-paragraphs');
@@ -12,9 +11,9 @@ const rehypeKatex = require('rehype-katex');
 module.exports = {
   entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'dist/onepage'),
+    path: path.resolve(__dirname, 'dist/web'),
     filename: 'main.js',
-    publicPath: './'
+    publicPath: '/'
   },
 
   module: {
@@ -54,7 +53,7 @@ module.exports = {
           },
           {
             test: /\.svg$/,
-            use: ['@svgr/webpack', 'url-loader']
+            use: ['@svgr/webpack']
           },
           {
             test: /\.(png|jpe?g|gif|bmp|webp)$/i,
@@ -62,7 +61,7 @@ module.exports = {
               {
                 loader: 'url-loader',
                 options: {
-                  limit: 10485760 // 10 Mb limit -> aim is to present and have single file if possible
+                  limit: 8192
                 }
               }
             ]
@@ -80,8 +79,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
       filename: './index.html'
-    }),
-    new InlineChunkHtmlPlugin(HtmlWebPackPlugin, [/.(js|css)$/])
+    })
   ],
 
   node: {

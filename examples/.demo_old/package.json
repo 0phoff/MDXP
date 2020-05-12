@@ -1,8 +1,14 @@
 {
-  "name": "MDXP",
-  "version": "0.0.1",
+  "name": "@mdxp/demo",
+  "version": "0.0.4",
+  "description": "MDXP slidedeck which introduces the package",
   "private": true,
-  "description": "MDXP Main Presentation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0phoff/MDXP.git",
+    "directory": "examples/demo"
+  },
+  "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",

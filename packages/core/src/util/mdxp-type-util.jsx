@@ -23,7 +23,14 @@ export const getMDXPType = (Component, shortCodes = {}) => {
         const scComponent = shortCodes[Component.props.mdxType];
         return '__emotion_base' in scComponent ? getMDXPType(scComponent.__emotion_base, shortCodes) : getMDXPType(scComponent, shortCodes);
       }
-      return MDXPTypes.NONE;
+    }
+
+    // Shortcode component 2
+    if (Component.props.hasOwnProperty('mdxType')) {
+      if (Component.props.mdxType in shortCodes) {
+        const scComponent = shortCodes[Component.props.mdxType];
+        return '__emotion_base' in scComponent ? getMDXPType(scComponent.__emotion_base, shortCodes) : getMDXPType(scComponent, shortCodes);
+      }
     }
 
     // Imported component

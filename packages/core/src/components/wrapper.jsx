@@ -90,7 +90,9 @@ const wrapper = (DefaultLayout, passedProps, components) => {
       splitSlides(children, shortCodeComponents)
         //.map((obj) => {console.log(obj); return obj;})
         .filter(slideObject => slideObject.elements.length > 0)
-        .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents));
+        .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents))
+        //.map((obj) => {console.log(obj); return obj;})
+      ;
 
     return (
       <DeckMode {...passedProps}>

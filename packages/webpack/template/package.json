@@ -15,7 +15,7 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@mdx-js/loader": "^1.5.8",
-    "@mdxp/rehypex-plugins": "^0.0.2",
+    "@mdxp/rehypex-plugins": "^0.0.3",
     "@svgr/webpack": "^5.3.1",
     "babel-loader": "^8.1.0",
     "file-loader": "^6.0.0",
@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@mdx-js/react": "^1.5.8",
-    "@mdxp/components": "^0.0.3",
-    "@mdxp/core": "^0.0.4",
+    "@mdxp/components": "^0.0.4",
+    "@mdxp/core": "^0.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "theme-ui": "^0.3.1"

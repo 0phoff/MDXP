@@ -36,7 +36,7 @@ Release TODO lists for MDXP
   - [X] Components: AutoStepper component
   - [ ] Core: Head component
   - [ ] Core: Check prism-react-renderer
-  - [ ] Webpack: Webpack configs (copy from demo)
+  - [X] Webpack: Webpack configs (copy from demo)
 
 ## V1.0
   - [ ] Presenter mode

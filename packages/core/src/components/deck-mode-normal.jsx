@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import {Switch, Route, Redirect, useRouteMatch} from 'react-router-dom';
+import {useMDXComponents} from '@mdx-js/react';
 import Slide from './slide.jsx';
 import RootContext from '../util/root-context.js';
 import useMerger from '../hooks/use-merger.js';
@@ -10,10 +11,12 @@ const NormalMode = ({children, target, basepath}) => {
   const element = useRef(null);
   const reference = target ? target : element;
   const {path, url} = useRouteMatch();
+  const shortCodeComponents = useMDXComponents();
   const [state, setState] = useMerger({
     basepath,
     mode: deckModes.NORMAL,
-    slideLength: children.length
+    slideLength: children.length,
+    shortCodeComponents
   });
 
   return (

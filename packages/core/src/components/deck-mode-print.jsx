@@ -1,13 +1,17 @@
 import React from 'react';
+import {useMDXComponents} from '@mdx-js/react';
 import Slide from './slide.jsx';
 import RootContext from '../util/root-context.js';
 import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 
+
 const PrintMode = ({children}) => {
+  const shortCodeComponents = useMDXComponents();
   const [state, setState] = useMerger({
     slideLength: children.length,
-    mode: deckModes.PRINT
+    mode: deckModes.PRINT,
+    shortCodeComponents,
   });
 
   return (

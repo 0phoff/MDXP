@@ -29,6 +29,8 @@ const Grid = ({
 }) => {
   if (Array.isArray(gridTemplateAreas)) {
     gridTemplateAreas = '"' + gridTemplateAreas.join('" "') + '"';
+  } else if (gridTemplateAreas && !gridTemplateAreas.match(/^['"].*['"]$/)) {
+    gridTemplateAreas = '"' + gridTemplateAreas + '"';
   }
 
   return (

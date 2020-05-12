@@ -11,6 +11,7 @@ export {
 } from './util/mdxp-type-util.jsx';
 
 // HOOKS
+export {default as useRoot} from './hooks/use-root.js';
 export {default as useDeck} from './hooks/use-deck.js';
 export {default as useStep} from './hooks/use-step.js';
 export {default as useNavigation} from './hooks/use-navigation.js';

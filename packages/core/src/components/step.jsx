@@ -1,8 +1,10 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
+import useRoot from '../hooks/use-root.js';
 import useStep from '../hooks/use-step.js';
 import useHOReducer from '../hooks/use-ho-reducer.js';
 import getComponentType from '../util/component-type.js';
+import getAsComponent from '../util/get-as-component.js';
 
 export const StepContext = React.createContext([{start: 0, length: 1, innerLength: 1}]);
 StepContext.displayName = 'MDXP/StepContext';
@@ -112,6 +114,8 @@ const Step = ({
 }) => {
   const [length, render] = getStepableChildren(children, {useColumns, subChildren});
   const [_, setStep] = useContext(StepContext);
+  const {shortCodeComponents} = useRoot();
+  Element = getAsComponent(Element, shortCodeComponents);
 
   offset = parseInt(offset);
   if (isNaN(offset)) {
@@ -172,7 +176,7 @@ const Step = ({
     }
 
     const childProps = {...props, style};
-    if (child instanceof String) {
+    if ((typeof(child) === 'string') || (child instanceof String)) {
       return (
         <StepContext.Provider value={[state[i], setNthState(i)]}>
           <p {...childProps}>{child}</p>
@@ -195,7 +199,7 @@ const Step = ({
 };
 
 Step.propTypes = {
-  /** Type of the surrounding styled block. */
+  /** Type of the surrounding styled block. HTML elements will be styled using theme-ui's `Styled.*` components. If you passed any components to your [Deck](#deck), you can access them by writing their name as a string. */
   as: PropTypes.elementType,
 
   /** The number of elements you want to show at start. Defaults to 0 if used inside another Step component or 1 otherwise. */

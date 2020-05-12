@@ -31,10 +31,12 @@ Release TODO lists for MDXP
   - [X] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)
   - [X] FIX: Step.createStyledElement crashes when child has no props (how is that possible ?)
   - [ ] FIX: sx-aware cloneElement seems broken ?
+  - [X] FIX: Allow 'as' property to refer to shortCodeComponents
   - [X] Components: Check if worth it to replace Columns with theme-ui Flex/Grid
   - [X] Components: AutoStepper component
   - [ ] Core: Head component
   - [ ] Core: Check prism-react-renderer
+  - [ ] Webpack: Webpack configs (copy from demo)
 
 ## V1.0
   - [ ] Presenter mode

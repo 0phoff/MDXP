@@ -2,7 +2,7 @@ import React from 'react';
 import {HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 import deckModes from '../util/deck-modes.js';
 
-const DeckMode = ({children, target, ...props}) => {
+const DeckMode = ({children, keyboardTarget, touchTarget, ...props}) => {
   const basepath = props.basepath ? props.basepath : '';
   const slides = React.Children.toArray(children);
 
@@ -13,7 +13,13 @@ const DeckMode = ({children, target, ...props}) => {
         {
           deckModes.properties.map(({Component, name, path}) => (
             <Route path={`/${path}`} key={name}>
-              <Component basepath={basepath} target={target}>{slides}</Component>
+              <Component
+                basepath={basepath}
+                keyboardTarget={keyboardTarget}
+                touchTarget={touchTarget}
+              >
+                {slides}
+              </Component>
             </Route>
           ))
         }

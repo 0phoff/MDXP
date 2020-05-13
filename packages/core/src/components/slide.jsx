@@ -21,7 +21,14 @@ const getIndex = (slide, slideLength) => {
   return slide;
 };
 
-const Slide = ({children, reference, slideNum, preview = false, sx = {}}) => {
+const Slide = ({
+  children,
+  keyboardReference,
+  touchReference,
+  slideNum,
+  preview = false,
+  sx = {}
+}) => {
   // Data
   const {slide = slideNum, step = 0} = useParams();
   const rootContext = useRoot();
@@ -37,8 +44,8 @@ const Slide = ({children, reference, slideNum, preview = false, sx = {}}) => {
     preview
   });
 
-  useKeyboard(reference, state, setState);
-  useTouch(reference, state, setState);
+  useKeyboard(keyboardReference, state, setState);
+  useTouch(touchReference, state, setState, 25);
   useStorageNavigation(state, setState);
 
   return (

@@ -32,7 +32,7 @@ Release TODO lists for MDXP
   - [X] Components: AutoStepper component
   - [ ] Core: Head component
   - [ ] Core: Check prism-react-renderer
-  - [ ] Core: Separate keyboard and touch targets
+  - [X] Core: Separate keyboard and touch targets
   - [X] Webpack: Webpack configs (copy from demo)
   - [X] FIX: Better Media -> props/width/height can be wrapped inside '"
   - [X] FIX: @mdxp/components -> properties shouldn't all be placed inside `sx` (breaks with classNames/Styles)

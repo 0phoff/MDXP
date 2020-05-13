@@ -45,7 +45,7 @@ const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
 
   const onTouchStart = e => {
     const {clientX: x = 0, clientY: y = 0} = e.touches[0];
-    const [relX, relY] = getRelativeCoord(x, y, e.target.getBoundingClientRect());
+    const [relX, relY] = getRelativeCoord(x, y, e.currentTarget.getBoundingClientRect());
     state.touchMove = false;
     state.x = x;
     state.y = y;
@@ -59,7 +59,7 @@ const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
 
   const onTouchEnd = e => {
     const {clientX: x = 0, clientY: y = 0} = e.changedTouches[0];
-    const [relX, relY] = getRelativeCoord(x, y, e.target.getBoundingClientRect());
+    const [relX, relY] = getRelativeCoord(x, y, e.currentTarget.getBoundingClientRect());
     const deltaX = x - state.x;
     const deltaY = y - state.y;
 
@@ -79,6 +79,11 @@ const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
         relDeltaY: relY - state.relY
       });
     } else {
+      const targetType = e.target.tagName.toLowerCase();
+      if (['button', 'a', 'canvas', 'video'].includes(targetType)) {
+        return;
+      }
+
       onTap({
         x,
         y,

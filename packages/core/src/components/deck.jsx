@@ -34,7 +34,8 @@ const Deck = ({
   Layout = DefaultLayout,
   layoutOptions = {},
   components = {},
-  target,
+  keyboardTarget,
+  touchTarget,
   ...props
 }) => {
   // Setup theme
@@ -60,7 +61,7 @@ const Deck = ({
           ...defaultComponents,
           DefaultLayout: DefaultLayoutWrapper,
           ...components,
-          wrapper: wrapper(DefaultLayoutWrapper, {...props, target})
+          wrapper: wrapper(DefaultLayoutWrapper, {...props, keyboardTarget, touchTarget})
         }}
       >
         {children}
@@ -82,8 +83,14 @@ Deck.propTypes = {
   /** The elements inside this object get passed to MDXProvider and allow you to specify components, so that you do not need to import them in your presentations. */
   components: PropTypes.objectOf(PropTypes.elementType),
 
-  /** Target for all keyboard and touch event handlers. Defaults to the surrounding div. */
-  target: PropTypes.oneOfType([
+  /** Target for all keyboard event handlers. Defaults to the surrounding div. */
+  keyboardTarget: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({current: PropTypes.any})
+  ]),
+
+  /** Target for all touch event handlers. Defaults to the surrounding div. */
+  touchTarget: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({current: PropTypes.any})
   ]),

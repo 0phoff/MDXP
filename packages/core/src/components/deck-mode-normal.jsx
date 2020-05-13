@@ -6,10 +6,11 @@ import RootContext from '../util/root-context.js';
 import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 
-const NormalMode = ({children, target, basepath}) => {
+const NormalMode = ({children, keyboardTarget, touchTarget, basepath}) => {
   // Data
   const element = useRef(null);
-  const reference = target ? target : element;
+  const keyboardReference = keyboardTarget || element;
+  const touchReference = touchTarget || element;
   const {path, url} = useRouteMatch();
   const shortCodeComponents = useMDXComponents();
   const [state, setState] = useMerger({
@@ -26,7 +27,7 @@ const NormalMode = ({children, target, basepath}) => {
           <Redirect exact from={path} to={`${url}/0/0`}/>
 
           <Route path={`${path}/:slide/:step`}>
-            <Slide reference={reference}>
+            <Slide keyboardReference={keyboardReference} touchReference={touchReference}>
               {children}
             </Slide>
           </Route>

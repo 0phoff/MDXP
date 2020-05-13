@@ -79,11 +79,17 @@ const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
         relDeltaY: relY - state.relY
       });
     } else {
-      const targetType = e.target.tagName.toLowerCase();
-      if (['button', 'a', 'canvas', 'video'].includes(targetType)) {
-        return;
+      // Skip onTap if element is one of following:
+      const skipElements = new Set(['button', 'a', 'canvas', 'video']);
+      let target = e.target;
+      while (target.tagName.toLowerCase() !== 'body') {
+        if (skipElements.has(target.tagName.toLowerCase())) {
+          return;
+        }
+        target = target.parentNode;
       }
 
+      // Generate onTap
       onTap({
         x,
         y,

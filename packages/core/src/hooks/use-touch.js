@@ -64,6 +64,14 @@ const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
     const deltaY = y - state.y;
 
     if (state.touchMove && ((Math.abs(deltaX) >= deltaThreshold) || (Math.abs(deltaY) >= deltaThreshold))) {
+      let target = e.target;
+      while (target.tagName.toLowerCase() !== 'body') {
+        if ((target.scrollWidth > target.clientWidth) || (target.scrollHeight > target.clientHeight)) {
+          return;
+        }
+        target = target.parentNode;
+      }
+
       onSwipe({
         startX: state.x,
         startY: state.y,

@@ -16,7 +16,7 @@ ReactDOM.render(
       Layout={themeComponents.MDXPHeaderLayout}
       layoutOptions={{showSlideNum: false}}
       theme={theme}
-      target={window}
+      keyboardTarget={window}
     >
       <MDXPresentation />
     </Deck>

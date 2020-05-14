@@ -4,10 +4,11 @@ route: /getting-started
 group: Documentation
 ---
 import CTA from 'gatsby-theme-docz/src/components/cta.jsx'
+import CenterImage from 'gatsby-theme-docz/src/components/center-image.jsx'
 
 
 # Getting Started
-Before getting started, make sure you have NPM and Node installed.
+Before getting started, make sure you have [Node and NPM installed](https://nodejs.org).
 
 ## TLDR
 ```bash
@@ -18,26 +19,28 @@ cd my_presentation
 # Start dev server
 npm run start
 
-# Edit presentation with your favourite editor
+# Edit presentation with your favourite editor, the browser will automatically refresh when you save
 vim src/presentation.mdx
 
-# Build presentation
+# Build presentation once you're happy with the end result
 npm run build
 ```
 
 
 ## Recommended
-The easiest way to get started with MDXP, is to use our Webpack template.
+The easiest and recommended way to get started with MDXP is to use our Webpack template.
+Webpack allows to bundle all your source files and combine them into an output, which you can display in the browser.
+You can read more about how everything works [here](/#under-the-hood).  
 To use it, just run the following command:
 
 ```bash
 # NPM >= 6.1.0
-npm init @mdxp/webpack -g name
-cd name
+npm init @mdxp/webpack -g my_presentation
+cd my_presentation
 
 # NPM >= 5.2.0
-npx @mdxp/create-webpack -g name
-cd name
+npx @mdxp/create-webpack -g my_presentation
+cd my_presentation
 ```
 
 > __NOTE__  
@@ -47,6 +50,8 @@ This command will create a project with your chosen name.
 The project will contain a _src_ directory for your source files and a _dist_ directory where the resulting build will go.
 The _src_ directory already contains a _presentation.mdx_ file, which you can edit to start writing your presentation right away.
 Of course, nothing stops your from also modifying the _index.html_ or _index.jsx_ files to your liking.
+
+<CenterImage alt="Directory Structure" src="public/directory_tree.svg" />
 
 The project also comes with a few commands to create your presentation:
 
@@ -66,7 +71,7 @@ Write your presentation
 ## Manual
 At the end of the day, MDXP is just a react library, so you can get it working with any bundler of your liking.
 While we do recommend to use our Webpack template, some people might prefer to setup their own build pipeline.
-A complete and thorough guide on how to create your own build pipeline is neigh impossible, but here are some guidelines on what you need to get working:
+A complete and thorough guide on how to create your own build pipeline is nigh impossible, but here are some guidelines on what you need to get working:
 
 - Include `react`, `react-dom`, `theme-ui` and `@mdxp/core` packages. You will probably also want the `@mdxp/components` package.
 - Process JSX into JavaScript (technically not necessary, but who writes React in pure JavaScript?).

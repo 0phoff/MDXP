@@ -31,7 +31,7 @@ Release TODO lists for MDXP
   - [X] Components: Check if worth it to replace Columns with theme-ui Flex/Grid
   - [X] Components: AutoStepper component
   - [X] Core: Head component
-  - [ ] Core: Check prism-react-renderer
+  - [ ] ~~Core: Check prism-react-renderer~~ Not adding this by default, theme-ui/prism is easy to use for users
   - [X] Core: Separate keyboard and touch targets
   - [X] Webpack: Webpack configs (copy from demo)
   - [X] FIX: Better Media -> props/width/height can be wrapped inside '"

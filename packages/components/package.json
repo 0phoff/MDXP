@@ -31,7 +31,7 @@
     "clean": "rm -rf dist/*"
   },
   "peerDependencies": {
-    "@mdxp/core": "^0.0.0",
+    "@mdxp/core": "^0.1.0",
     "react": "^16.13.1",
     "theme-ui": "^0.3.1"
   },

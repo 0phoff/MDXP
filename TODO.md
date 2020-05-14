@@ -30,7 +30,7 @@ Release TODO lists for MDXP
   - [X] Documentation: Add explanation to Main demo example
   - [X] Components: Check if worth it to replace Columns with theme-ui Flex/Grid
   - [X] Components: AutoStepper component
-  - [ ] Core: Head component
+  - [X] Core: Head component
   - [ ] Core: Check prism-react-renderer
   - [X] Core: Separate keyboard and touch targets
   - [X] Webpack: Webpack configs (copy from demo)
@@ -41,14 +41,14 @@ Release TODO lists for MDXP
   - [X] FIX: Allow 'as' property to refer to shortCodeComponents
 
 ## V1.0
-  - [ ] Presenter mode
-  - [ ] Grid mode
-  - [ ] Notes
-  - [ ] Generate PDF
-  - [ ] Help & Keybindings pop-up
-  - [ ] Import MDX files (If possible!)
-  - [ ] Animated transitions
+  - [ ] Core: Presenter mode
+  - [ ] Core: Grid mode
+  - [ ] Core: Notes
+  - [ ] Core: Help & Keybindings pop-up
   - [ ] Core: Custom Video component with different behaviour depending on the mode
+  - [ ] Core: Import MDX files (If possible!)
   - [ ] Rehypex: allow code-fences to have a filename to get code from
   - [ ] Components: CodeSurfer component
+  - [ ] Webpack: Generate PDF
+  - [ ] Animated transitions
 

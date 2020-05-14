@@ -14,6 +14,19 @@ const createSlideObject = (elements, wrappers = []) => {
   return {wrappers, elements: [elements]};
 };
 
+/** Remove Extract component types from slides */
+const removeExtractComponents = (extractList, shortCodeComponents) => slideObject => {
+  const elements = slideObject.elements.reduce((acc, element) => {
+    if (checkMDXPType(element, MDXPTypes.EXTRACT, shortCodeComponents)) {
+      extractList.push(element);
+      return acc;
+    }
+    return [...acc, element];
+  }, []);
+
+  return {wrappers: slideObject.wrappers, elements};
+};
+
 /** Transform slide object into a valid React Component */
 const createSlideComponent = DefaultLayout => (slideObject, key, shortCodeComponents) => {
   const {elements, wrappers} = slideObject;
@@ -86,18 +99,25 @@ const wrapper = (DefaultLayout, passedProps, components) => {
     const shortCodeComponents = components || mdxComponents;
     const children = React.Children.toArray(props.children);
 
+    const extracted = [];
+    const extractor = removeExtractComponents(extracted, shortCodeComponents);
+
     const slides =
       splitSlides(children, shortCodeComponents)
         //.map((obj) => {console.log(obj); return obj;})
+        .map(extractor)
         .filter(slideObject => slideObject.elements.length > 0)
         .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents))
         //.map((obj) => {console.log(obj); return obj;})
       ;
 
     return (
-      <DeckMode {...passedProps}>
-        {slides}
-      </DeckMode>
+      <React.Fragment>
+        {extracted}
+        <DeckMode {...passedProps}>
+          {slides}
+        </DeckMode>
+      </React.Fragment>
     );
   };
 };

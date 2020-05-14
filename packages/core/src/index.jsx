@@ -18,5 +18,6 @@ export {default as useNavigation} from './hooks/use-navigation.js';
 
 // COMPONENTS
 export {default as Deck} from './components/deck.jsx';
+export {default as Head} from './components/head.jsx';
 export {default as Step} from './components/step.jsx';
 export {default as wrapper} from './components/wrapper.jsx';

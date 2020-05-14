@@ -6,6 +6,7 @@ group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 import Deck from '../src/components/deck.jsx'
+import Head from '../src/components/head.jsx'
 import Step from '../src/components/step.jsx'
 
 
@@ -26,6 +27,30 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+---
+
+
+## Head
+This component allows you to set metadata of your presentation inside of your MDX file.
+It uses [React-Helmet](https://github.com/nfl/react-helmet) in order to insert your tags at runtime.
+
+> __NOTE:__  
+> This component needs to be a direct child of your slide and cannot be nested inside other components.
+> At runtime, all the Head components get filtered out of your slides and placed at the top of the presentation.
+
+### Properties
+<Arguments>
+{{
+  name: 'children',
+  type: 'node',
+  required: false,
+  desc: 'Valid elements that can be set in the HTML Head section through react-helmet.'
+}}
+</Arguments>
+
+### Examples
+TODO
 
 ---
 

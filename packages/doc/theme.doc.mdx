@@ -32,8 +32,12 @@ ReactDOM.render(
 ## MDXP Styles
 There are a few properties on your theme object, which get interpreted specially by MDXP.
 
-- `theme.googleFont` : The contents of this property can be a URL or an array of URL's, and MDXP will add the appropriate `<link />` tags to fetch the fonts from [Google Fonts](https://fonts.google.com/).
-- `theme.mdxp.slide` : This style variant gets applied to the `<Slide />` object that surrounds each of your slides. You can use it to set a default Typography for your presentation.
+- `theme.googleFont`      : The contents of this property can be a URL or an array of URL's, and MDXP will add the appropriate `<link />` tags to fetch the fonts from [Google Fonts](https://fonts.google.com/).
+- `theme.mdxp.slide`      : This style variant gets applied to the `<Slide />` object that surrounds each of your slides. You can use it to set a default Typography for your presentation.
+- `theme.mdxp.block.*`    : You can create custom variants in this object and use them with the `variant` property of the [Block](/components-components#block) component.
+- `theme.mdxp.flex.*`     : You can create custom variants in this object and use them with the `variant` property of the [Flex](/components-components#flex) component.
+- `theme.mdxp.grid.*`     : You can create custom variants in this object and use them with the `variant` property of the [Grid](/components-components#grid) component.
+- `theme.mdxp.styling.*`  : You can create custom variants in this object and use them with the `variant` property of the [Styling](/components-components#styling) component.
 
 
 ## Syntax Highlighting

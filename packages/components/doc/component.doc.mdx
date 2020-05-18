@@ -66,11 +66,11 @@ It is best used as a direct child of your slide and should not be nested inside 
 
 ## Block
 This component will suround its children with an element, which you can style with theme-aware properties.  
-Besides that, it also allows to set any of the CSS properties for children of either 'flex' or 'grid' layouts, by setting it as a property of the component, instead of setting it through the `sx` property.
+Besides that, it also allows to set some CSS properties, like the ones needed for children of either 'flex' or 'grid' layouts, by setting it as a property of the component instead of setting it through the `sx` property.
 This allows it to be more easily used in conjunction with the [Flex](#flex) and [Grid](#grid) components.
 
 > __NOTE__  
-> You can also set the CSS width and height of this component through properties on the object.
+> You can setup variants of this component with predefined styles, by defining them inside of `theme.mdxp.block`.
 
 ### Properties
 <Arguments of={Block} />
@@ -111,6 +111,9 @@ This element is a [Block](#block) component, but it has its display property set
 > If you do not know what `display: flex` does, it is highly recommended to read [this flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox).
 > Flexbox is a super handy tool to quickly create one-dimensional layouts and control how your elements are placed.
 
+> __NOTE__  
+> You can setup variants of this component with predefined styles, by defining them inside of `theme.mdxp.flex`.
+
 ### Properties
 <Arguments of={Flex} />
 
@@ -141,6 +144,9 @@ This element is a [Block](#block) component, but it has its display property set
 > If you do not know what `display: grid` does, it is highly recommended to read [this CSS grid guide](https://css-tricks.com/snippets/css/complete-guide-grid).
 > Grid is the two-dimensional counterpart of the flexbox layout, but there are various other minor differences between both.
 > This [guide](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout#Grid_and_flexbox) does a good job at comparing both layout methods.
+
+> __NOTE__  
+> You can setup variants of this component with predefined styles, by defining them inside of `theme.mdxp.grid`.
 
 ### Properties
 <Arguments of={Grid} />
@@ -238,8 +244,16 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
 > __NOTE__  
 > This component only allows to have a single child element!
 
+> __NOTE__  
+> You can setup variants of this component with predefined styles, by defining them inside of `theme.mdxp.styling`.
+
 ### Properties
 <Arguments>
+{{
+  name: 'children',
+  type: 'element',
+  desc: 'Single child that gets styled according to the sx property.'
+}}
 {{
   name: 'sx',
   type: 'object',
@@ -247,9 +261,10 @@ It applies the styles using the _sx_ property and thus allows the use of theme v
   desc: 'You can style the element by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values.'
 }}
 {{
-  name: 'children',
-  type: 'element',
-  desc: 'Single child that gets styled according to the sx property.'
+  name: 'variant',
+  type: 'string',
+  required: false,
+  desc: "Variant from 'mdxp.styling.'"
 }}
 {{
   name: 'props',

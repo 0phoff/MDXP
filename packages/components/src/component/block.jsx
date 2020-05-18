@@ -9,6 +9,7 @@ const Block = ({
   children,
   as: Element = 'div',
   sx = {},
+  variant,
   width,
   height,
   bg,
@@ -34,9 +35,14 @@ const Block = ({
   const {shortCodeComponents} = useRoot();
   Element = getAsComponent(Element, shortCodeComponents);
 
+  if ((typeof variant === 'string' || variant instanceof String)) {
+    variant = 'mdxp.block.' + variant;
+  }
+
   return (
     <Element
       sx={cleanSx({
+        variant,
         width,
         height,
         bg,
@@ -72,8 +78,10 @@ Block.propTypes = {
 
   /** You can style the block by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values. */
   sx: PropTypes.object,
-
   children: PropTypes.node,
+
+  /** Variant from 'mdxp.block.' */
+  variant: PropTypes.string,
   width: PropTypes.any,
   height: PropTypes.any,
   bg: PropTypes.any,

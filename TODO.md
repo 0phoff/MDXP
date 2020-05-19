@@ -40,15 +40,18 @@ Release TODO lists for MDXP
   - [ ] ~~FIX: sx-aware cloneElement seems broken ?~~
   - [X] FIX: Allow 'as' property to refer to shortCodeComponents
 
-## V1.0
+## V0.2
   - [ ] Core: Presenter mode
-  - [ ] Core: Grid mode
   - [ ] Core: Notes
+  - [X] Components: variants
+  - [ ] Webpack: Generate PDF
+
+## V1.0
+  - [ ] Core: Grid mode
   - [ ] Core: Help & Keybindings pop-up
   - [ ] Core: Custom Video component with different behaviour depending on the mode
   - [ ] Core: Import MDX files (If possible!)
   - [ ] Rehypex: allow code-fences to have a filename to get code from
   - [ ] Components: CodeSurfer component
-  - [ ] Webpack: Generate PDF
   - [ ] Animated transitions
 

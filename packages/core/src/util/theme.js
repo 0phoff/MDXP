@@ -32,7 +32,15 @@ export const baseTheme = {
     slide: {
       fontFamily: 'body',
       fontSize: '1.5rem'
-    }
+    },
+    presenter: {
+      fontSize: '1.5rem',
+      background: 'black',
+      color: 'white',
+    },
+    notes: {
+      
+    },
   }
 };
 

@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import {useSetRoot} from './use-root.js';
+import {useSetDeck} from './use-deck.js';
 import {
   next,
   nextSlide,
@@ -23,9 +24,10 @@ const keys = {
   pageDown: 34
 };
 
-const useKeyboard = (target, deck, setDeck) => {
+const useKeyboard = (target, enabled = true) => {
   const history = useHistory();
   const [root, _setRoot] = useSetRoot();
+  const [deck, setDeck] = useSetDeck();
 
   const handleKeyboard = e => {
     const {metaKey, ctrlKey, shiftKey, _altKey} = e;
@@ -71,17 +73,19 @@ const useKeyboard = (target, deck, setDeck) => {
   };
 
   useEffect(() => {
-    const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
-    if (currentTarget) {
-      currentTarget.addEventListener('keydown', handleKeyboard);
-    }
-
-    return () => {
+    if (enabled) {
+      const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
       if (currentTarget) {
-        currentTarget.removeEventListener('keydown', handleKeyboard);
+        currentTarget.addEventListener('keydown', handleKeyboard);
       }
-    };
-  }, [root, deck, target]);
+
+      return () => {
+        if (currentTarget) {
+          currentTarget.removeEventListener('keydown', handleKeyboard);
+        }
+      };
+    }
+  }, [root, deck, target, enabled]);
 };
 
 export default useKeyboard;

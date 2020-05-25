@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {DeckContext} from '../components/slide.jsx';
+import {DeckContext} from '../components/deck-state.jsx';
 
 export const useDeck = () => useContext(DeckContext)[0];
 export default useDeck;

@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import {useSetRoot} from './use-root.js';
+import {useSetDeck} from './use-deck.js';
 import {
   next,
   nextSlide,
@@ -14,9 +15,10 @@ const getRelativeCoord = (x, y, rect) => [
   (y - rect.top) / (rect.bottom - rect.top)
 ];
 
-const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
+const useTouch = (target, deltaThreshold = 15, enabled = true) => {
   const history = useHistory();
   const [root, _setRoot] = useSetRoot();
+  const [deck, setDeck] = useSetDeck();
   const state = {
     touchMove: false,
     x: 0,
@@ -108,21 +110,23 @@ const useTouch = (target, deck, setDeck, deltaThreshold = 10) => {
   };
 
   useEffect(() => {
-    const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
-    if (currentTarget) {
-      currentTarget.addEventListener('touchstart', onTouchStart);
-      currentTarget.addEventListener('touchmove', onTouchMove);
-      currentTarget.addEventListener('touchend', onTouchEnd);
-    }
-
-    return () => {
+    if (enabled) {
+      const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
       if (currentTarget) {
-        currentTarget.removeEventListener('touchstart', onTouchStart);
-        currentTarget.removeEventListener('touchmove', onTouchMove);
-        currentTarget.removeEventListener('touchend', onTouchEnd);
+        currentTarget.addEventListener('touchstart', onTouchStart);
+        currentTarget.addEventListener('touchmove', onTouchMove);
+        currentTarget.addEventListener('touchend', onTouchEnd);
       }
-    };
-  }, [root, deck, target]);
+
+      return () => {
+        if (currentTarget) {
+          currentTarget.removeEventListener('touchstart', onTouchStart);
+          currentTarget.removeEventListener('touchmove', onTouchMove);
+          currentTarget.removeEventListener('touchend', onTouchEnd);
+        }
+      };
+    }
+  }, [root, deck, target, enabled]);
 };
 
 export default useTouch;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useDeck, useNavigation} from '@mdxp/core';
 
 const AutoStepper = ({start=0, end=-1, time=1000}) => {
-  const {stepIndex, stepLength} = useDeck();
+  const {stepIndex, stepLength, preview} = useDeck();
   const {next} = useNavigation();
 
   start = parseInt(start);
@@ -14,14 +14,16 @@ const AutoStepper = ({start=0, end=-1, time=1000}) => {
   }
 
   useEffect(() => {
-    if ((stepIndex >= start) && (stepIndex < end)) {
-      const timer = setTimeout(() => {
-        if ((stepIndex >= start) && (stepIndex <= end)) {
-          next();
-        }
-      }, time);
+    if (!preview && document.hasFocus()) {
+      if ((stepIndex >= start) && (stepIndex < end)) {
+        const timer = setTimeout(() => {
+          if ((stepIndex >= start) && (stepIndex <= end)) {
+            next();
+          }
+        }, time);
 
-      return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
+      }
     }
   });
 

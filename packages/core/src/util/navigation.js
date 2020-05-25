@@ -2,13 +2,17 @@ import deckModes from './deck-modes.js';
 
 export const navigate = (history, root, deck, setDeckContext, slide, step = 0, replace = false) => {
   const {mode} = root;
-  const {slideIndex, stepLength} = deck;
+  const {slideIndex, slideLength, stepLength} = deck;
   const modepath = deckModes.properties[mode].path;
 
   const newDeckContext = {
     slideIndex: slide,
     rawStepIndex: step
   };
+  if (slide < 0) {
+    newDeckContext.slideIndex = slideLength + slide;
+  }
+
   if (slide === slideIndex) {
     if (step >= stepLength) {
       newDeckContext.stepIndex = stepLength - 1;
@@ -44,7 +48,7 @@ export const next = (history, root, deck, setDeckContext) => {
 export const nextSlide = (history, root, deck, setDeckContext, step = 0) => {
   const {slideIndex, slideLength} = deck;
 
-  if (slideIndex < slideLength - 1) {
+  if (slideIndex < slideLength - 2) {
     navigate(history, root, deck, setDeckContext, slideIndex + 1, step);
   }
 };

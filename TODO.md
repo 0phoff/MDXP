@@ -41,7 +41,7 @@ Release TODO lists for MDXP
   - [X] FIX: Allow 'as' property to refer to shortCodeComponents
 
 ## V0.2
-  - [ ] Core: Presenter mode
+  - [X] Core: Presenter mode
   - [ ] Core: Notes
   - [X] Components: variants
   - [ ] Webpack: Generate PDF

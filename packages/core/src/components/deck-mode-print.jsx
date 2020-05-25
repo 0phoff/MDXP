@@ -2,6 +2,7 @@ import React from 'react';
 import {useMDXComponents} from '@mdx-js/react';
 import Slide from './slide.jsx';
 import RootContext from '../util/root-context.js';
+import DeckState from './deck-state.jsx';
 import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 
@@ -19,14 +20,11 @@ const PrintMode = ({children}) => {
       <div>
         {
           children.map((_, i) => (
-            <Slide
-              slideNum={i}
-              preview
-              sx={{width: '100vw', height: '100vh'}}
-              key={`slide_${i}`}
-            >
-              {children}
-            </Slide>
+            <DeckState slide={i} step={0} preview={true} key={`slide_${i}`}>
+              <Slide sx={{width: '100vw', height: '100vh'}}>
+                {children}
+              </Slide>
+            </DeckState>
           ))
         }
       </div>

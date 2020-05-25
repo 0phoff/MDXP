@@ -2,13 +2,14 @@ import React, {useRef} from 'react';
 import {Switch, Route, Redirect, useRouteMatch} from 'react-router-dom';
 import {useMDXComponents} from '@mdx-js/react';
 import Slide from './slide.jsx';
+import DeckState from './deck-state.jsx';
 import RootContext from '../util/root-context.js';
 import useMerger from '../hooks/use-merger.js';
 import deckModes from '../util/deck-modes.js';
 
 const NormalMode = ({children, keyboardTarget, touchTarget, basepath}) => {
   // Data
-  const element = useRef(null);
+  const element = useRef();
   const keyboardReference = keyboardTarget || element;
   const touchReference = touchTarget || element;
   const {path, url} = useRouteMatch();
@@ -27,9 +28,11 @@ const NormalMode = ({children, keyboardTarget, touchTarget, basepath}) => {
           <Redirect exact from={path} to={`${url}/0/0`}/>
 
           <Route path={`${path}/:slide/:step`}>
-            <Slide keyboardReference={keyboardReference} touchReference={touchReference}>
-              {children}
-            </Slide>
+            <DeckState>
+              <Slide keyboardReference={keyboardReference} touchReference={touchReference}>
+                {children}
+              </Slide>
+            </DeckState>
           </Route>
         </Switch>
       </div>

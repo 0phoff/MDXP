@@ -2,7 +2,7 @@ import React from 'react';
 import {HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 import deckModes from '../util/deck-modes.js';
 
-const DeckMode = ({children, keyboardTarget, touchTarget, ...props}) => {
+const DeckMode = ({children, extracted, keyboardTarget, touchTarget, ...props}) => {
   const basepath = props.basepath ? props.basepath : '';
   const slides = React.Children.toArray(children);
 
@@ -17,6 +17,7 @@ const DeckMode = ({children, keyboardTarget, touchTarget, ...props}) => {
                 basepath={basepath}
                 keyboardTarget={keyboardTarget}
                 touchTarget={touchTarget}
+                extracted={extracted}
               >
                 {slides}
               </Component>

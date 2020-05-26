@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import {useEffect, useLayoutEffect, useState} from 'react';
 import {jsx, useThemeUI} from 'theme-ui';
+import useRoot from '../hooks/use-root.js';
 import useDeck from '../hooks/use-deck.js';
 import useNavigation from '../hooks/use-navigation.js';
 import DeckState from './deck-state.jsx';
+
 
 export const PreviewDeckState = ({children}) => {
   const deck = useDeck();
@@ -18,6 +20,7 @@ export const PreviewDeckState = ({children}) => {
     </DeckState>
   );
 };
+
 
 export const Navigation = ({sx={}, ...props}) => {
   const {theme} = useThemeUI();
@@ -106,7 +109,6 @@ const toHMS = s => {
   return [h, m, s % 60];
 };
 
-
 export const Time = ({sx={}, ...props}) => {
   const {theme} = useThemeUI();
   const color = theme?.mdxp?.presenter?.color || 'white';
@@ -184,6 +186,20 @@ export const Time = ({sx={}, ...props}) => {
           </svg>
         </button>
       </div>
+    </div>
+  );
+};
+
+
+export const Notes = ({sx={}, ...props}) => {
+  const {extracted} = useRoot();
+  const {slideIndex} = useDeck();
+  return (
+    <div
+      sx={sx}
+      {...props}
+    >
+      {extracted[slideIndex].note}
     </div>
   );
 };

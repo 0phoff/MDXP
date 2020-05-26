@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import React, {useEffect} from 'react';
+import useRoot from '../hooks/use-root';
 import useDeck from '../hooks/use-deck.js';
 import useMerger from '../hooks/use-merger.js';
 import useKeyboard from '../hooks/use-keyboard.js';
@@ -21,19 +22,21 @@ const Slide = ({
   useStorageNavigation(!deck.preview);
 
   return (
-    <div
-      sx={{
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-        position: 'relative',
-        boxSizing: 'border-box',
-        variant: 'mdxp.slide',
-        ...sx
-      }}
-    >
-      {slideElement}
-    </div>
+    <React.Fragment>
+      <div
+        sx={{
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
+          position: 'relative',
+          boxSizing: 'border-box',
+          variant: 'mdxp.slide',
+          ...sx
+        }}
+      >
+        {slideElement}
+      </div>
+    </React.Fragment>
   );
 };
 

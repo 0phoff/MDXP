@@ -42,7 +42,7 @@ Release TODO lists for MDXP
 
 ## V0.2
   - [X] Core: Presenter mode
-  - [ ] Core: Notes
+  - [X] Core: Notes
   - [X] Components: variants
   - [ ] Webpack: Generate PDF
 

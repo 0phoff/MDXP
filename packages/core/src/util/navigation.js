@@ -48,7 +48,7 @@ export const next = (history, root, deck, setDeckContext) => {
 export const nextSlide = (history, root, deck, setDeckContext, step = 0) => {
   const {slideIndex, slideLength} = deck;
 
-  if (slideIndex < slideLength - 2) {
+  if (slideIndex < slideLength - 1) {
     navigate(history, root, deck, setDeckContext, slideIndex + 1, step);
   }
 };

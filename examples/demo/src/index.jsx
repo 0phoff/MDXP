@@ -3,6 +3,7 @@ import {jsx} from 'theme-ui';
 import ReactDOM from 'react-dom';
 import Deck from '@mdxp/core';
 import components from '@mdxp/components';
+import './index.css';
 
 import ZoomBox from './zoom-box.jsx';
 import theme from './theme/theme.js';

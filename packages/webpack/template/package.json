@@ -3,9 +3,10 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "yon build:web && yon build:onepage",
+    "build": "yon build:web && yon build:pdf",
     "build:web": "cross-env ASSET_PATH=./ webpack --mode production",
     "build:onepage": "webpack --config webpack.onepage.js --mode production && rm -f dist/onepage/*.js && rm -f dist/onepage/*.css",
+    "build:pdf": "yon build:onepage && pdf -u ./dist/onepage/index.html ./dist/presentation.pdf",
     "clean": "rm -rf dist/**/*",
     "clean:web": "rm -rf dist/web/*",
     "clean:onepage": "rm -rf dist/onepage/*"
@@ -15,6 +16,7 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@mdx-js/loader": "^1.5.8",
+    "@mdxp/pdf": "^0.1.0",
     "@mdxp/rehypex-plugins": "^0.1.0",
     "@svgr/webpack": "^5.3.1",
     "babel-loader": "^8.1.0",

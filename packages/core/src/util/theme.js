@@ -10,9 +10,6 @@ export const baseTheme = {
   fontWeights: {
     body: 400
   },
-  lineHeights: {
-    body: 1.5
-  },
   styles: {
     root: {
       fontFamily: 'system-ui, sans-serif'
@@ -35,11 +32,11 @@ export const baseTheme = {
     },
     presenter: {
       fontSize: '1.5rem',
-      background: 'black',
       color: 'white',
     },
-    notes: {
-      
+    note: {
+      fontSize: '1.5rem',
+      color: 'white',
     },
   }
 };

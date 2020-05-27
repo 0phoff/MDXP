@@ -36,7 +36,6 @@ const PresenterMode = ({children, keyboardTarget, touchTarget, basepath, extract
                   gridTemplateColumns: '2fr 5fr 3fr',
                   gridTemplateRows: '3fr 4fr 1fr 1fr 1fr',
                   gridTemplateAreas: '"slide slide preview" "slide slide notes" "navigation navigation notes" ". . notes" "time time notes"',
-                  variant: 'mdxp.presenter'
                 }}
               >
                 <Zoom sizeReference={element} sx={{gridArea: 'slide'}}>

@@ -32,6 +32,7 @@ export const Navigation = ({sx={}, ...props}) => {
   return (
     <div
       sx={{
+        variant: 'mdxp.presenter',
         display: 'flex',
         width: '100%',
         height: '100%',
@@ -140,6 +141,7 @@ export const Time = ({sx={}, ...props}) => {
   return (
     <div
       sx={{
+        variant: 'mdxp.presenter',
         width: '100%',
         height: '100%',
         display: 'flex',
@@ -196,7 +198,10 @@ export const Notes = ({sx={}, ...props}) => {
   const {slideIndex} = useDeck();
   return (
     <div
-      sx={sx}
+      sx={{
+        variant: 'mdxp.note',
+        ...sx
+      }}
       {...props}
     >
       {extracted[slideIndex].note}

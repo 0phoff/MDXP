@@ -15,7 +15,7 @@ const getRelativeCoord = (x, y, rect) => [
   (y - rect.top) / (rect.bottom - rect.top)
 ];
 
-const useTouch = (target, deltaThreshold = 15, enabled = true) => {
+const useTouch = (target, deltaThreshold = 15) => {
   const history = useHistory();
   const [root, _setRoot] = useSetRoot();
   const [deck, setDeck] = useSetDeck();
@@ -110,23 +110,21 @@ const useTouch = (target, deltaThreshold = 15, enabled = true) => {
   };
 
   useEffect(() => {
-    if (enabled) {
-      const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
-      if (currentTarget) {
-        currentTarget.addEventListener('touchstart', onTouchStart);
-        currentTarget.addEventListener('touchmove', onTouchMove);
-        currentTarget.addEventListener('touchend', onTouchEnd);
-      }
-
-      return () => {
-        if (currentTarget) {
-          currentTarget.removeEventListener('touchstart', onTouchStart);
-          currentTarget.removeEventListener('touchmove', onTouchMove);
-          currentTarget.removeEventListener('touchend', onTouchEnd);
-        }
-      };
+    const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
+    if (currentTarget) {
+      currentTarget.addEventListener('touchstart', onTouchStart);
+      currentTarget.addEventListener('touchmove', onTouchMove);
+      currentTarget.addEventListener('touchend', onTouchEnd);
     }
-  }, [root, deck, target, enabled]);
+    
+    return () => {
+      if (currentTarget) {
+        currentTarget.removeEventListener('touchstart', onTouchStart);
+        currentTarget.removeEventListener('touchmove', onTouchMove);
+        currentTarget.removeEventListener('touchend', onTouchEnd);
+      }
+    };
+  }, [root, deck, target]);
 };
 
 export default useTouch;

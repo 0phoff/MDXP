@@ -1,6 +1,6 @@
 import {useHistory} from 'react-router-dom';
-import {useSetRoot} from './use-root.js';
-import {useSetDeck} from './use-deck.js';
+import useRoot from './use-root.js';
+import useDeck from './use-deck.js';
 import {
   next,
   nextSlide,
@@ -12,27 +12,27 @@ import {
 
 const useNavigation = () => {
   const history = useHistory();
-  const [root, setRoot] = useSetRoot();
-  const [deck, setDeck] = useSetDeck();
+  const root = useRoot();
+  const deck = useDeck();
 
   return {
     next: () => {
-      next(history, root, deck, setDeck);
+      next(history, root, deck);
     },
     previous: () => {
-      previous(history, root, deck, setDeck);
+      previous(history, root, deck);
     },
     nextSlide: (step = 0) => {
-      nextSlide(history, root, deck, setDeck, step);
+      nextSlide(history, root, deck, step);
     },
     previousSlide: (step = 0) => {
-      previousSlide(history, root, deck, setDeck, step);
+      previousSlide(history, root, deck, step);
     },
-    navigate: (slide, step = 0, replace = false) => {
-      navigate(history, root, deck, setDeck, slide, step, replace);
+    navigate: (slide, step = 0, mode, replace = false) => {
+      navigate(history, root, {mode, slide, step, replace});
     },
     setMode: mode => {
-      setMode(history, root, deck, setRoot, mode);
+      setMode(history, root, deck, mode);
     }
   };
 };

@@ -1,35 +1,28 @@
 import React, {useRef} from 'react';
-import {Switch, Route, Redirect, useRouteMatch} from 'react-router-dom';
+import Routing from './routing.jsx';
 import DeckState from './deck-state.jsx';
-import RootState from './root-state.jsx';
-import Slide from './slide.jsx';
 import Extracted from './extracted.jsx';
+import Slide from './slide.jsx';
+import Navigation from './navigation.jsx';
+import useSetMode from '../hooks/use-set-mode.js';
 import deckModes from '../util/deck-modes.js';
 
 const NormalMode = ({children, keyboardTarget, touchTarget, basepath, extracted}) => {
-  // Data
   const element = useRef();
   const keyboardReference = keyboardTarget || element;
   const touchReference = touchTarget || element;
-  const {path, url} = useRouteMatch();
+  useSetMode(deckModes.NORMAL);
 
   return (
-    <RootState mode={deckModes.NORMAL} basepath={basepath} extracted={extracted} slideLength={children.length}>
-      <div ref={element} tabIndex={-1} onMouseDown={e => e.preventDefault()} style={{width: '100%', height: '100%'}}>
-        <Switch>
-          <Redirect exact from={path} to={`${url}/0/0`}/>
-
-          <Route path={`${path}/:slide/:step`}>
-            <DeckState>
-              <Extracted />
-              <Slide keyboardReference={keyboardReference} touchReference={touchReference}>
-                {children}
-              </Slide>
-            </DeckState>
-          </Route>
-        </Switch>
-      </div>
-    </RootState>
+    <div ref={element} tabIndex={-1} onMouseDown={e => e.preventDefault()} style={{width: '100%', height: '100%'}}>
+      <Routing>
+        <DeckState>
+          <Extracted />
+          <Slide>{children}</Slide>
+          <Navigation keyboardReference={keyboardReference} touchReference={touchReference} />
+        </DeckState>
+      </Routing>
+    </div>
   );
 };
 

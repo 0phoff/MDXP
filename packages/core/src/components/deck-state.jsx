@@ -33,10 +33,18 @@ const DeckState = ({children, slide, step, preview=false}) => {
   });
 
   useLayoutEffect(() => {
-    if (((slide !== undefined) || (step !== undefined)) && ((slideIndex !== state.slideIndex) || (step !== state.rawStepIndex))) {
-      setState({slideIndex, rawStepIndex: step});
+    if (slideIndex !== state.slideIndex) {
+      setState({slideIndex, rawStepIndex: stepNum, stepIndex: 0, stepLength: 1});
+    } else if ((stepNum !== state.rawStepIndex)) {
+      setState({rawStepIndex: stepNum});
     }
-  }, [slide, step]);
+  }, [slideIndex, stepNum]);
+
+  useLayoutEffect(() => {
+    if (rootContext.mode !== state.mode) {
+      setState({mode: rootContext.mode});
+    }
+  }, [rootContext.mode])
 
   return (
     <DeckContext.Provider value={[state, setState]}>

@@ -7,7 +7,7 @@ import {navigate} from '../util/navigation.js';
 const navigationKey = 'MDXP_index';
 const separator = '|';
 
-const useStorageNavigation = (enabled = true) => {
+const useStorageNavigation = () => {
   const [focus, setFocus] = useState(document.hasFocus());
   const history = useHistory();
   const root = useRoot();
@@ -17,39 +17,37 @@ const useStorageNavigation = (enabled = true) => {
 
   // Setup localStorage event listeners
   useEffect(() => {
-    if (enabled) { 
-      const handleLocalStorage = e => {
-        if (e.key === navigationKey) {
-          const [slide, step] = e.newValue.split(separator).map(val => parseInt(val));
-          if (isNaN(slide) || isNaN(step)) {
-            return;
-          }
-
-          navigate(history, root, deck, setDeck, slide, step, slide === deck.slideIndex);
+    const handleLocalStorage = e => {
+      if (e.key === navigationKey) {
+        const [slide, step] = e.newValue.split(separator).map(val => parseInt(val));
+        if (isNaN(slide) || isNaN(step)) {
+          return;
         }
-      };
-
-      if (!focus) {
-        window.addEventListener('storage', handleLocalStorage);
+    
+        navigate(history, root, deck, setDeck, slide, step, slide === deck.slideIndex);
       }
-
-      window.addEventListener('focus', handleFocus);
-      window.addEventListener('blur', handleBlur);
-
-      return () => {
-        window.removeEventListener('storage', handleLocalStorage);
-        window.removeEventListener('focus', handleFocus);
-        window.removeEventListener('blur', handleBlur);
-      };
+    };
+    
+    if (!focus) {
+      window.addEventListener('storage', handleLocalStorage);
     }
-  }, [focus, deck, root, enabled]);
+    
+    window.addEventListener('focus', handleFocus);
+    window.addEventListener('blur', handleBlur);
+    
+    return () => {
+      window.removeEventListener('storage', handleLocalStorage);
+      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener('blur', handleBlur);
+    };
+  }, [focus, deck, root]);
 
   // Set localStorage
   useEffect(() => {
-    if (enabled && focus) {
+    if (focus) {
       localStorage.setItem(navigationKey, `${deck.slideIndex} ${separator} ${deck.stepIndex}`);
     }
-  }, [enabled, focus, deck.slideIndex, deck.stepIndex]);
+  }, [focus, deck.slideIndex, deck.stepIndex]);
 };
 
 export default useStorageNavigation;

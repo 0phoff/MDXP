@@ -7,12 +7,13 @@ const isNumber = value => (value !== null) && !isNaN(value);
 
 const Zoom = ({
   children,
-  width = 1,
-  height = 1,
+  width,
+  height,
   aspectRatio,
   sizeReference,
   alignX = 'left',
   alignY = 'top',
+  scaleOn = 'both',
   maxWidth,
   maxHeight,
   sx={},
@@ -25,6 +26,13 @@ const Zoom = ({
     let targetWidth = width;
     let targetHeight = height;
     if (sizeReference && sizeReference.current) {
+      if (!isNumber(targetWidth)) {
+        targetWidth = 1;
+      }
+      if (!isNumber(targetHeight)) {
+        targetHeight = 1;
+      }
+
       targetWidth *= sizeReference.current.offsetWidth;
       if (isNumber(aspectRatio)) {
         targetHeight = targetWidth / aspectRatio;
@@ -53,15 +61,28 @@ const Zoom = ({
     }
     
     if (wrapperElement.current && scaleElement.current) {
+      scaleElement.current.style.width = `${targetWidth}px`;
+      scaleElement.current.style.height = `${targetHeight}px`;
+
       if (
         (!isNumber(maxWidth) && !isNumber(maxHeight)) ||
         (isNumber(maxWidth) && (wrapperElement.current.offsetWidth <= maxWidth)) ||
         (isNumber(maxHeight) && (wrapperElement.current.offsetHeight <= maxHeight))
       ) {
-        const scale = Math.min( 
-          (wrapperElement.current.offsetWidth) / targetWidth, 
-          (wrapperElement.current.offsetHeight) / targetHeight
-        );
+        
+        let scale;
+        if (scaleOn === 'width') {
+          scale = (wrapperElement.current.offsetWidth) / targetWidth;
+          wrapperElement.current.style.height = `${targetHeight * scale}px`
+        } else if (scaleOn === 'height') {
+          scale = (wrapperElement.current.offsetHeight) / targetHeight;
+          wrapperElement.current.style.width = `${targetWidth * scale}px`
+        } else {
+          scale = Math.min( 
+            (wrapperElement.current.offsetWidth) / targetWidth, 
+            (wrapperElement.current.offsetHeight) / targetHeight
+          );
+        }
 
         let offsetX = 0;
         switch(alignX) {
@@ -85,8 +106,6 @@ const Zoom = ({
             break;
         }
 
-        scaleElement.current.style.width = `${targetWidth}px`;
-        scaleElement.current.style.height = `${targetHeight}px`;
         scaleElement.current.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`
       }
     }
@@ -94,16 +113,14 @@ const Zoom = ({
 
   useEffect(() => {
     updateScale();
-    wrapperElement.current.addEventListener('resize', updateScale);
-    return () => wrapperElement.current.removeEventListener('resize', updateScale);
-  }, [sizeReference.current, width, height, aspectRatio, alignX, alignY, maxWidth, maxHeight]);
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, [sizeReference, width, height, aspectRatio, alignX, alignY, scaleOn, maxWidth, maxHeight]);
 
   return (
     <div
       ref={wrapperElement}
       sx={{
-        width: '100%',
-        height: '100%',
         overflow: 'hidden',
         ...sx
       }}

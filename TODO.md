@@ -42,7 +42,7 @@ Release TODO lists for MDXP
 
 ## V0.2
   - [X] Core: Presenter mode
-  - [ ] Core: Grid mode
+  - [X] Core: Grid mode
   - [X] Core: Notes
   - [ ] Core: Help & Keybindings pop-up
   - [X] Components: variants

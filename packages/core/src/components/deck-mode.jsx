@@ -1,5 +1,6 @@
 import React from 'react';
 import {HashRouter, Switch, Route, Redirect} from 'react-router-dom';
+import RootState from './root-state.jsx';
 import deckModes from '../util/deck-modes.js';
 
 const DeckMode = ({children, extracted, keyboardTarget, touchTarget, ...props}) => {
@@ -8,23 +9,25 @@ const DeckMode = ({children, extracted, keyboardTarget, touchTarget, ...props}) 
 
   return (
     <HashRouter {...props}>
-      <Switch>
-        <Redirect exact from="/" to={deckModes.properties[deckModes.NORMAL].path} />
-        {
-          deckModes.properties.map(({Component, name, path}) => (
-            <Route path={`/${path}`} key={name}>
-              <Component
-                basepath={basepath}
-                keyboardTarget={keyboardTarget}
-                touchTarget={touchTarget}
-                extracted={extracted}
-              >
-                {slides}
-              </Component>
-            </Route>
-          ))
-        }
-      </Switch>
+      <RootState mode={deckModes.NORMAL} basepath={basepath} extracted={extracted} slideLength={slides.length}>
+        <Switch>
+          <Redirect exact from="/" to={deckModes.properties[deckModes.NORMAL].path} />
+          {
+            deckModes.properties.map(({Component, name, path}) => (
+              <Route path={`/${path}`} key={name}>
+                <Component
+                  basepath={basepath}
+                  keyboardTarget={keyboardTarget}
+                  touchTarget={touchTarget}
+                  extracted={extracted}
+                >
+                  {slides}
+                </Component>
+              </Route>
+            ))
+          }
+        </Switch>
+      </RootState>
     </HashRouter>
   );
 };

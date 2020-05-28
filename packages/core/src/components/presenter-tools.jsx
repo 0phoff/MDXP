@@ -5,6 +5,7 @@ import useRoot from '../hooks/use-root.js';
 import useDeck from '../hooks/use-deck.js';
 import useNavigation from '../hooks/use-navigation.js';
 import DeckState from './deck-state.jsx';
+import deckModes from '../util/deck-modes.js';
 
 
 export const PreviewDeckState = ({children}) => {
@@ -22,7 +23,7 @@ export const PreviewDeckState = ({children}) => {
 };
 
 
-export const Navigation = ({sx={}, ...props}) => {
+export const NavigationButtons = ({sx={}, ...props}) => {
   const {theme} = useThemeUI();
   const color = theme?.mdxp?.presenter?.color || 'white';
 
@@ -54,39 +55,69 @@ export const Navigation = ({sx={}, ...props}) => {
       }}
       {...props}
     >
-      <button onClick={() => navigate(0, 0, true)} onMouseDown={e => e.preventDefault()}>
-        <svg height="100%" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <button onClick={() => navigate(0, 0, deckModes.PRESENTER)} onMouseDown={e => e.preventDefault()}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          sx={{height:"100%", width:"auto"}}
+          width="66px" height="66px" viewBox="0 0 66 66"
+          fill="none"
+        >
           <circle r="30.5" transform="matrix(-1 0 0 1 33 33)" stroke={color} strokeWidth="5"/>
           <path d="M33.2078 32.8312l12.3094-6.7115v-5.8898L27.0637 30.3735v4.9789l18.4535 10.1648v-5.911l-12.3094-6.775zM20.2299 45.5172h4.0459V20.2299h-4.0459v25.2873z" fill={color}/>
         </svg>
       </button>
       <button onClick={() => previousSlide()} onMouseDown={e => e.preventDefault()}>
-        <svg height="100%" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          sx={{height:"100%", width:"auto"}}
+          width="66px" height="66px" viewBox="0 0 66 66"
+          fill="none"
+        >
           <circle r="30.5" transform="matrix(-1 0 0 1 33 33)" stroke={color} strokeWidth="5"/>
           <path d="M40.5412 32.8312l12.3094-6.7115v-5.8898L34.3971 30.3735v4.9789l18.4535 10.1648v-5.911l-12.3094-6.775zM20.3113 32.8312l12.3094-6.7115v-5.8898L14.1672 30.3735v4.9789l18.4535 10.1648v-5.911l-12.3094-6.775z" fill={color}/>
         </svg>
       </button>
       <button onClick={() => previous()} onMouseDown={e => e.preventDefault()}>
-        <svg height="100%" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          sx={{height:"100%", width:"auto"}}
+          width="66px" height="66px" viewBox="0 0 66 66"
+          fill="none"
+        >
           <circle r="30.125" transform="matrix(-1 0 0 1 32.625 32.625)" stroke={color} strokeWidth="5"/>
           <path d="M29.0805 32.4581L41.25 25.8229V20L23.0062 30.0284v4.9223L41.25 45v-5.8439l-12.1695-6.698z" fill={color} />
         </svg>
       </button>
       <span>{deck.slideIndex+1} / {deck.slideLength}</span>
       <button onClick={() => next()} onMouseDown={e => e.preventDefault()}>
-        <svg height="100%" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          sx={{height:"100%", width:"auto"}}
+          width="66px" height="66px" viewBox="0 0 66 66"
+          fill="none"
+        >
           <circle cx="32.625" cy="32.625" r="30.125" stroke={color} strokeWidth="5"/>
           <path d="M36.1695 32.4581L24 25.8229V20l18.2438 10.0284v4.9223L24 45v-5.8439l12.1695-6.698z" fill={color} />
         </svg>
       </button>
       <button onClick={() => nextSlide()} onMouseDown={e => e.preventDefault()}>
-        <svg height="100%" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          sx={{height:"100%", width:"auto"}}
+          width="66px" height="66px" viewBox="0 0 66 66"
+          fill="none"
+        >
           <circle cx="32.625" cy="32.625" r="30.125" stroke={color} strokeWidth="5"/>
           <path d="M26.1695 32.4581L14 25.8229V20l18.2438 10.0284v4.9223L14 45v-5.8439l12.1695-6.698zm20 0L34 25.8229V20l18.2438 10.0284v4.9223L34 45v-5.8439l12.1695-6.698z" fill={color} />
         </svg>
       </button>
-      <button onClick={() => navigate(-1, -1, true)} onMouseDown={e => e.preventDefault()}>
-        <svg height="100%" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <button onClick={() => navigate(-1, -1, deckModes.PRESENTER)} onMouseDown={e => e.preventDefault()}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          sx={{height:"100%", width:"auto"}}
+          width="66px" height="66px" viewBox="0 0 66 66"
+          fill="none"
+        >
           <circle cx="32.625" cy="32.625" r="30.125" stroke={color} strokeWidth="5"/>
           <path d="M32.1695 32.4581L20 25.8229V20l18.2438 10.0284v4.9223L20 45v-5.8439l12.1695-6.698zM45 45h-4V20h4v25z" fill={color} />
         </svg>

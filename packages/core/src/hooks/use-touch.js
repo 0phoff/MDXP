@@ -1,24 +1,15 @@
 import {useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
-import {useSetRoot} from './use-root.js';
-import {useSetDeck} from './use-deck.js';
-import {
-  next,
-  nextSlide,
-  previous,
-  previousSlide,
-  setMode as _setMode
-} from '../util/navigation.js';
+import useRoot from './use-root.js';
+import useNavigation from './use-navigation';
 
 const getRelativeCoord = (x, y, rect) => [
   (x - rect.left) / (rect.right - rect.left),
   (y - rect.top) / (rect.bottom - rect.top)
 ];
 
-const useTouch = (target, deltaThreshold = 15) => {
-  const history = useHistory();
-  const [root, _setRoot] = useSetRoot();
-  const [deck, setDeck] = useSetDeck();
+const useTouch = (target, deltaThreshold = 15, slideNav=true, modeNav=true) => {
+  const {mode} = useRoot();
+  const {next, nextSlide, previous, previousSlide, setMode} = useNavigation();
   const state = {
     touchMove: false,
     x: 0,
@@ -28,19 +19,31 @@ const useTouch = (target, deltaThreshold = 15) => {
   };
 
   const onTap = ({relX: x}) => {
-    if (x >= 0.5) {
-      next(history, root, deck, setDeck);
-    } else {
-      previous(history, root, deck, setDeck);
+    if (slideNav) {
+      if (x >= 0.5) {
+        next();
+      } else {
+        previous();
+      }
     }
   };
 
   const onSwipe = ({deltaX: dx, deltaY: dy}) => {
     if (Math.abs(dx) >= Math.abs(dy)) {
-      if (dx > 0) {
-        previousSlide(history, root, deck, setDeck);
-      } else if (dx < 0) {
-        nextSlide(history, root, deck, setDeck);
+      if (slideNav) {
+        if (dx > 0) {
+          previousSlide();
+        } else if (dx < 0) {
+          nextSlide();
+        }
+      }
+    } else if (modeNav) {
+      if (dy > 0) {
+        const newMode = (mode === 0) ? 2 : mode - 1;
+        setMode(newMode);
+      } else {
+        const newMode = (mode === 2) ? 0 : mode + 1;
+        setMode(newMode);
       }
     }
   };
@@ -68,7 +71,11 @@ const useTouch = (target, deltaThreshold = 15) => {
     if (state.touchMove && ((Math.abs(deltaX) >= deltaThreshold) || (Math.abs(deltaY) >= deltaThreshold))) {
       let target = e.target;
       while (target.tagName.toLowerCase() !== 'body') {
-        if ((target.scrollWidth > target.clientWidth) || (target.scrollHeight > target.clientHeight)) {
+        const {overflowX, overflowY} = getComputedStyle(target);
+        if (
+          (((overflowX === 'scroll') || (overflowX === 'auto')) && (target.scrollWidth > target.clientWidth)) ||
+          (((overflowY === 'scroll') || (overflowY === 'auto')) && (target.scrollHeight > target.clientHeight))
+        ) {
           return;
         }
         target = target.parentNode;
@@ -124,7 +131,7 @@ const useTouch = (target, deltaThreshold = 15) => {
         currentTarget.removeEventListener('touchend', onTouchEnd);
       }
     };
-  }, [root, deck, target]);
+  }, [target, slideNav, modeNav, mode, next, nextSlide, previous, previousSlide, setMode]);
 };
 
 export default useTouch;

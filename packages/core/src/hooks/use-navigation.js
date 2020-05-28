@@ -28,7 +28,7 @@ const useNavigation = () => {
     previousSlide: (step = 0) => {
       previousSlide(history, root, deck, step);
     },
-    navigate: (slide, step = 0, mode, replace = false) => {
+    navigate: ({slide, step = 0, mode, replace = false}) => {
       navigate(history, root, {mode, slide, step, replace});
     },
     setMode: mode => {

@@ -18,7 +18,7 @@ const GridItem = ({children, element, slide}) => {
   const clickHandler = e => {
     e.preventDefault();
     const step = e.shiftKey ? -1 : 0;
-    navigate(slide, step, root.previousMode);
+    navigate({slide, step, mode: root.previousMode});
   };
 
   return (
@@ -77,7 +77,12 @@ const GridMode = ({children, keyboardTarget, touchTarget, basepath, extracted}) 
             ))
           }
         </div>
-        <Navigation keyboardReference={keyboardReference} touchReference={touchReference} />
+        <Navigation
+          keyboardReference={keyboardReference}
+          touchReference={touchReference}
+          slideNav={false}
+          storageNav={false}
+        />
       </DeckState>
     </Routing>
   );

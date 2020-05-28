@@ -57,6 +57,6 @@ export const setMode = (history, root, deck, mode) => {
     return;
   }
 
-  const {slideIndex, stepIndex} = deck;
-  navigate(history, root, {mode, slide: slideIndex, step: stepIndex});
+  const {slideIndex, rawStepIndex} = deck;
+  navigate(history, root, {mode, slide: slideIndex, step: rawStepIndex});
 };

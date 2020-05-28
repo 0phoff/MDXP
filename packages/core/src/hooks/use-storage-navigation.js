@@ -1,17 +1,16 @@
 import {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import {useRoot} from './use-root.js';
-import {useSetDeck} from './use-deck.js';
-import {navigate} from '../util/navigation.js';
+import useRoot from './use-root.js';
+import useDeck from './use-deck.js';
+import useNavigation from './use-navigation.js';
 
 const navigationKey = 'MDXP_index';
 const separator = '|';
 
-const useStorageNavigation = () => {
+const useStorageNavigation = (setStorage=true) => {
+  const deck = useDeck();
+  const {navigate} = useNavigation();
   const [focus, setFocus] = useState(document.hasFocus());
-  const history = useHistory();
-  const root = useRoot();
-  const [deck, setDeck] = useSetDeck();
   const handleFocus = () => setFocus(true);
   const handleBlur = () => setFocus(false);
 
@@ -24,14 +23,13 @@ const useStorageNavigation = () => {
           return;
         }
     
-        navigate(history, root, deck, setDeck, slide, step, slide === deck.slideIndex);
+        navigate({slide, step, replace: slide === deck.slideIndex});
       }
     };
     
     if (!focus) {
       window.addEventListener('storage', handleLocalStorage);
     }
-    
     window.addEventListener('focus', handleFocus);
     window.addEventListener('blur', handleBlur);
     
@@ -44,10 +42,10 @@ const useStorageNavigation = () => {
 
   // Set localStorage
   useEffect(() => {
-    if (focus) {
+    if (focus && setStorage) {
       localStorage.setItem(navigationKey, `${deck.slideIndex} ${separator} ${deck.stepIndex}`);
     }
-  }, [focus, deck.slideIndex, deck.stepIndex]);
+  }, [setStorage, focus, deck.slideIndex, deck.stepIndex]);
 };
 
 export default useStorageNavigation;

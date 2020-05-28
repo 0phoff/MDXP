@@ -55,7 +55,10 @@ export const NavigationButtons = ({sx={}, ...props}) => {
       }}
       {...props}
     >
-      <button onClick={() => navigate(0, 0, deckModes.PRESENTER)} onMouseDown={e => e.preventDefault()}>
+      <button
+        onClick={() => navigate({slide: 0, step: 0, mode: deckModes.PRESENTER})}
+        onMouseDown={e => e.preventDefault()}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           sx={{height:"100%", width:"auto"}}
@@ -111,7 +114,10 @@ export const NavigationButtons = ({sx={}, ...props}) => {
           <path d="M26.1695 32.4581L14 25.8229V20l18.2438 10.0284v4.9223L14 45v-5.8439l12.1695-6.698zm20 0L34 25.8229V20l18.2438 10.0284v4.9223L34 45v-5.8439l12.1695-6.698z" fill={color} />
         </svg>
       </button>
-      <button onClick={() => navigate(-1, -1, deckModes.PRESENTER)} onMouseDown={e => e.preventDefault()}>
+      <button
+        onClick={() => navigate({slide: -1, step: -1, mode: deckModes.PRESENTER})}
+        onMouseDown={e => e.preventDefault()}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           sx={{height:"100%", width:"auto"}}

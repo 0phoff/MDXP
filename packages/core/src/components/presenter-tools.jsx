@@ -147,7 +147,7 @@ const toHMS = s => {
   return [h, m, s % 60];
 };
 
-export const Time = ({sx={}, ...props}) => {
+export const Time = ({sx={}, keyboardTarget, ...props}) => {
   const {theme} = useThemeUI();
   const color = theme?.mdxp?.presenter?.color || 'white';
 
@@ -174,6 +174,38 @@ export const Time = ({sx={}, ...props}) => {
       return () => clearInterval(timerUpdate);
     }
   }, [play]);
+
+  const handleKeyboard = e => {
+    const {metaKey, ctrlKey, altKey} = e;
+    if (metaKey || ctrlKey) {
+      return;
+    }
+
+    if (altKey) {
+      switch (e.keyCode) {
+        case 83: // s
+          setPlay(s => !s);
+          return;
+        case 82: // r
+          setPlay(false);
+          setTimer(0);
+          return;
+      }
+    }
+  };
+
+  useEffect(() => {
+    const currentTarget = (keyboardTarget && keyboardTarget.hasOwnProperty('current')) ? keyboardTarget.current : keyboardTarget;
+    if (currentTarget) {
+      currentTarget.addEventListener('keydown', handleKeyboard);
+    }
+
+    return () => {
+      if (currentTarget) {
+        currentTarget.removeEventListener('keydown', handleKeyboard);
+      }
+    };
+  }, [keyboardTarget]);
 
   return (
     <div

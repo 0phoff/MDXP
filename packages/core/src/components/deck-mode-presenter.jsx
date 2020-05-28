@@ -45,7 +45,7 @@ const PresenterMode = ({children, keyboardTarget, touchTarget, basepath, extract
             </Zoom>
 
             <NavigationButtons sx={{gridArea: 'navigation'}} />
-            <Time sx={{gridArea: 'time'}} />
+            <Time keyboardTarget={keyboardReference} sx={{gridArea: 'time'}} />
             <Notes sx={{gridArea: 'notes'}} />
           </DivSx>
           <Navigation keyboardReference={keyboardReference} touchReference={touchReference} />

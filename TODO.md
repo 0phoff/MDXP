@@ -42,13 +42,14 @@ Release TODO lists for MDXP
 
 ## V0.2
   - [X] Core: Presenter mode
+  - [ ] Core: Grid mode
   - [X] Core: Notes
+  - [ ] Core: Help & Keybindings pop-up
   - [X] Components: variants
-  - [ ] Webpack: Generate PDF
+  - [X] Webpack: Generate PDF
+  - [ ] Update docs
 
 ## V1.0
-  - [ ] Core: Grid mode
-  - [ ] Core: Help & Keybindings pop-up
   - [ ] Core: Custom Video component with different behaviour depending on the mode
   - [ ] Core: Import MDX files (If possible!)
   - [ ] Rehypex: allow code-fences to have a filename to get code from

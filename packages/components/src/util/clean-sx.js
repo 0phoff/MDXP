@@ -5,7 +5,7 @@ const cleanSx = sx => {
     }
 
     return acc;
-  }, {});  
+  }, {});
 };
 
 export default cleanSx;

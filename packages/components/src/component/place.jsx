@@ -28,6 +28,7 @@ const Place = ({
     bottom = 'auto';
     centerY = true;
   }
+
   if (!left && !right) {
     left = '50%';
     right = 'auto';

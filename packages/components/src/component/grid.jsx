@@ -35,10 +35,11 @@ const Grid = ({
   let variantValue = {};
   if ((typeof variant === 'string' || variant instanceof String)) {
     variant = 'mdxp.grid.' + variant;
-    variantValue = variant.split('.').reduce((acc, val => acc?.[val]), theme) || {};
+    variantValue = variant.split('.').reduce((acc, val) => acc?.[val], theme) || {};
   }
+
   if (sx.variant && (typeof sx.variant === 'string' || sx.variant instanceof String)) {
-    variantValue = sx.variant.split('.').reduce((acc, val => acc?.[val]), theme) || {};
+    variantValue = sx.variant.split('.').reduce((acc, val) => acc?.[val], theme) || {};
   }
 
   // Default values
@@ -76,7 +77,7 @@ const Grid = ({
         gridAutoColumns,
         gridAutoRows,
         gridAutoFlow,
-        ...sx,
+        ...sx
       }}
       {...props}
     >
@@ -108,7 +109,7 @@ Grid.propTypes = {
   /** If you give an array of strings, they will be considered as different rows and thus joined by surrounding each item within double quotes. */
   gridTemplateAreas: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.string)
   ]),
 
   gridTemplate: PropTypes.any,

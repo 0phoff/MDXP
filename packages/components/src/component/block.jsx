@@ -63,7 +63,7 @@ const Block = ({
         gridArea,
         justifySelf,
         placeSelf,
-        ...sx,
+        ...sx
       })}
       {...props}
     >
@@ -109,7 +109,7 @@ Block.propTypes = {
   placeSelf: PropTypes.any,
 
   /** Extra properties that are added to the element. */
-  props: PropTypes.object,
+  props: PropTypes.object
 };
 
 export default Block;

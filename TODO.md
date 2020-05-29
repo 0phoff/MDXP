@@ -48,6 +48,7 @@ Release TODO lists for MDXP
   - [X] Components: variants
   - [X] Webpack: Generate PDF
   - [ ] Update docs
+  - [ ] Update demo
 
 ## V1.0
   - [ ] Core: Custom Video component with different behaviour depending on the mode

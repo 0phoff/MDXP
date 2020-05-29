@@ -31,11 +31,12 @@ const GridItem = ({children, element, slide}) => {
           width: '256px',
           m: '5px',
           outline: (slide === deck.slideIndex) ? t => `5px solid ${t.colors.primary}` : 'none',
-          userSelect: 'none'
+          userSelect: 'none',
+          cursor: 'hand'
         }}
         onClick={clickHandler}
       >
-        <Slide>{children}</Slide>
+        <Slide sx={{pointerEvents: 'none'}}>{children}</Slide>
       </Zoom>
     </DeckState>
   );

@@ -4,21 +4,20 @@ import useNavigation from './use-navigation.js';
 import deckModes from '../util/deck-modes.js';
 
 const keys = {
-  right: 39,
+  esc: 27,
+  space: 32,
   left: 37,
   up: 38,
+  right: 39,
   down: 40,
-  space: 32,
   g: 71,
+  h: 72,
   n: 78,
   o: 79,
   p: 80,
-  esc: 27,
-  pageUp: 33,
-  pageDown: 34
 };
 
-const useKeyboard = (target, slideNav=true, modeNav=true) => {
+const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
   const root = useRoot();
   const {next, nextSlide, previous, previousSlide, setMode} = useNavigation();
 
@@ -92,6 +91,10 @@ const useKeyboard = (target, slideNav=true, modeNav=true) => {
       default:
         break;
       }
+    }
+
+    if (altKey && e.keyCode === keys.h) {
+      setHelp(s => !s);
     }
   };
 

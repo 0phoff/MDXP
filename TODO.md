@@ -44,7 +44,7 @@ Release TODO lists for MDXP
   - [X] Core: Presenter mode
   - [X] Core: Grid mode
   - [X] Core: Notes
-  - [ ] Core: Help & Keybindings pop-up
+  - [X] Core: Help & Keybindings pop-up
   - [X] Components: variants
   - [X] Webpack: Generate PDF
   - [ ] Update docs

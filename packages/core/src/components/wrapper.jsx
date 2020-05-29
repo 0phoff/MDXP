@@ -20,7 +20,7 @@ const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
   return elements.reduce((acc, element, idx) => {
     if (checkMDXPType(element, MDXPTypes.WRAPPER, shortCodeComponents)) {
       if (startIndex !== idx) {
-        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)]
+        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)];
       }
 
       startIndex = idx + 1;
@@ -31,7 +31,7 @@ const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
 
     if (checkMDXPType(element, MDXPTypes.GROUP, shortCodeComponents)) {
       if (startIndex !== idx) {
-        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)]
+        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)];
       }
 
       startIndex = idx + 1;
@@ -64,15 +64,17 @@ const extractComponents = (extractList, shortCodeComponents) => slideObject => {
   let elements;
 
   if ((slideObject.elements.length === 1) && checkMDXPType(slideObject.elements[0], MDXPTypes.LAYOUT, shortCodeComponents)) {
-    const children = React.Children.toArray(slideObject.elements[0].props?.children).reduce((acc,  element) => {
+    const children = React.Children.toArray(slideObject.elements[0].props?.children).reduce((acc, element) => {
       if (checkMDXPType(element, MDXPTypes.EXTRACT, shortCodeComponents)) {
         if (checkMDXPType(element, MDXPTypes.NOTE, shortCodeComponents)) {
           extracted.note.push(element);
         } else {
           extracted.extract.push(element);
         }
+
         return acc;
       }
+
       return [...acc, element];
     }, []);
     elements = [React.cloneElement(slideObject.elements[0], {}, ...children)];
@@ -84,8 +86,10 @@ const extractComponents = (extractList, shortCodeComponents) => slideObject => {
         } else {
           extracted.extract.push(element);
         }
+
         return acc;
       }
+
       return [...acc, element];
     }, []);
   }
@@ -128,12 +132,8 @@ const wrapper = (DefaultLayout, passedProps, components) => {
     const slides =
       splitSlides(children, shortCodeComponents)
         .filter(slideObject => slideObject.elements.length > 0)
-        //.map((obj) => {console.log(obj); return obj;})
         .map(extractor)
-        //.map((obj) => {console.log(obj); return obj;})
-        .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents))
-        //.map((obj) => {console.log(obj); return obj;})
-      ;
+        .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents));
 
     return (
       <DeckMode extracted={extracted} {...passedProps}>

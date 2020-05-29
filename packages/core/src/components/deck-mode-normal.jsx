@@ -9,12 +9,10 @@ import deckModes from '../util/deck-modes.js';
 
 const NormalMode = ({
   children,
-  basepath,
-  extracted,
   keyboardTarget,
   touchTarget,
   slideNavigation,
-  modeNavigation,
+  modeNavigation
 }) => {
   const element = useRef();
   const keyboardReference = keyboardTarget || element;

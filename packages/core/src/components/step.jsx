@@ -176,19 +176,19 @@ const Step = ({
     }
 
     const childProps = {...props, style};
-    if ((typeof(child) === 'string') || (child instanceof String)) {
+    if ((typeof (child) === 'string') || (child instanceof String)) {
       return (
         <StepContext.Provider value={[state[i], setNthState(i)]}>
           <p {...childProps}>{child}</p>
         </StepContext.Provider>
       );
-    } else {
-      return (
-        <StepContext.Provider value={[state[i], setNthState(i)]}>
-          {React.cloneElement(child, childProps)}
-        </StepContext.Provider>
-      );
     }
+
+    return (
+      <StepContext.Provider value={[state[i], setNthState(i)]}>
+        {React.cloneElement(child, childProps)}
+      </StepContext.Provider>
+    );
   };
 
   return (

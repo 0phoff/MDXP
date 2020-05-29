@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import useRoot from '../hooks/use-root.js';
 import useDeck from '../hooks/use-deck.js';
 

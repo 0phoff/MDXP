@@ -36,8 +36,8 @@ const Deck = ({
   components = {},
   keyboardTarget,
   touchTarget,
-  slideNavigation=true,
-  modeNavigation=true,
+  slideNavigation = true,
+  modeNavigation = true,
   ...props
 }) => {
   // Setup theme

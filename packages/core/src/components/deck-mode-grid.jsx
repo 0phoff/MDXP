@@ -7,7 +7,7 @@ import Slide from './slide.jsx';
 import Navigation from './navigation.jsx';
 import useDeck from '../hooks/use-deck.js';
 import useRoot from '../hooks/use-root.js';
-import useNavigation from '../hooks/use-navigation.js'
+import useNavigation from '../hooks/use-navigation.js';
 import useSetMode from '../hooks/use-set-mode.js';
 import deckModes from '../util/deck-modes.js';
 
@@ -26,7 +26,7 @@ const GridItem = ({children, element, slide}) => {
       <Extracted />
       <Zoom
         sizeReference={element}
-        alignX='center' scaleOn='width'
+        alignX="center" scaleOn="width"
         sx={{
           width: '256px',
           m: '5px',
@@ -42,15 +42,11 @@ const GridItem = ({children, element, slide}) => {
   );
 };
 
-
 const GridMode = ({
   children,
-  basepath,
-  extracted,
   keyboardTarget,
   touchTarget,
-  slideNavigation,
-  modeNavigation,
+  modeNavigation
 }) => {
   const element = useRef();
   const keyboardReference = keyboardTarget || element;
@@ -71,7 +67,7 @@ const GridMode = ({
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
             alignContent: 'flex-start',
-            overflowX: 'hidden',
+            overflowX: 'hidden'
           }}
         >
           {

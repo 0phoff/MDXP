@@ -1,9 +1,8 @@
-import React from 'react';
 import useDeck from '../hooks/use-deck.js';
 import MDXPTypes from '../util/mdxp-types.js';
 import {setMDXPType} from '../util/mdxp-type-util.jsx';
 
-const Note = ({children, start=0, end=0}) => {
+const Note = ({children, start = 0, end = 0}) => {
   const {stepIndex, stepLength} = useDeck();
 
   start = parseInt(start);
@@ -19,9 +18,8 @@ const Note = ({children, start=0, end=0}) => {
   if ((stepIndex >= start) && (stepIndex < end)) {
     return children;
   }
-  else {
-    return null;
-  }
+
+  return null;
 };
 
 export default setMDXPType(Note, MDXPTypes.NOTE);

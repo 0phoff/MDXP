@@ -7,7 +7,7 @@ const getRelativeCoord = (x, y, rect) => [
   (y - rect.top) / (rect.bottom - rect.top)
 ];
 
-const useTouch = (target, deltaThreshold = 15, slideNav=true, modeNav=true) => {
+const useTouch = (target, deltaThreshold = 15, slideNav = true, modeNav = true) => {
   const {mode} = useRoot();
   const {next, nextSlide, previous, previousSlide, setMode} = useNavigation();
   const state = {
@@ -78,6 +78,7 @@ const useTouch = (target, deltaThreshold = 15, slideNav=true, modeNav=true) => {
         ) {
           return;
         }
+
         target = target.parentNode;
       }
 
@@ -103,6 +104,7 @@ const useTouch = (target, deltaThreshold = 15, slideNav=true, modeNav=true) => {
         if (skipElements.has(target.tagName.toLowerCase())) {
           return;
         }
+
         target = target.parentNode;
       }
 
@@ -123,7 +125,7 @@ const useTouch = (target, deltaThreshold = 15, slideNav=true, modeNav=true) => {
       currentTarget.addEventListener('touchmove', onTouchMove);
       currentTarget.addEventListener('touchend', onTouchEnd);
     }
-    
+
     return () => {
       if (currentTarget) {
         currentTarget.removeEventListener('touchstart', onTouchStart);

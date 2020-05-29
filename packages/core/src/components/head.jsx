@@ -6,12 +6,12 @@ import {setMDXPType} from '../util/mdxp-type-util.jsx';
 
 const Head = ({children}) => {
   children = React.Children.toArray(children)
-    .filter((child) => child.hasOwnProperty('props'))
+    .filter(child => child.hasOwnProperty('props'))
     .map((child, i) => {
-      const {originalType, mdxType, parentName, ...childProps} = child.props;
+      const {originalType, _mdxType, _parentName, ...childProps} = child.props;
       return React.createElement(originalType, {
-          key: i,
-          ...childProps,
+        key: i,
+        ...childProps
       });
     });
 

@@ -32,12 +32,12 @@ export const baseTheme = {
     },
     presenter: {
       fontSize: '1.5rem',
-      color: 'white',
+      color: 'white'
     },
     note: {
       fontSize: '1.5rem',
-      color: 'white',
-    },
+      color: 'white'
+    }
   }
 };
 

@@ -5,9 +5,8 @@ import useKeyboard from '../hooks/use-keyboard.js';
 import useTouch from '../hooks/use-touch.js';
 import useStorageNavigation from '../hooks/use-storage-navigation.js';
 
-
 const keyBindings = {
-  'Global': {
+  Global: {
     'Next Step': {
       keys: ['Right Arrow', 'Space', 'Tap Right Side'],
       type: 'slide'
@@ -22,7 +21,7 @@ const keyBindings = {
     },
     'Previous Slide': {
       keys: ['Shift + Left Arrow', 'Swipe Right'],
-      type : 'slide'
+      type: 'slide'
     },
     'Toggle Normal Mode': {
       keys: ['Alt + N'],
@@ -41,8 +40,8 @@ const keyBindings = {
       type: 'mode'
     },
     'Toggle Help': {
-      keys: ['Alt + H'],
-    },
+      keys: ['Alt + H']
+    }
   },
 
   'Presenter Mode': {
@@ -53,7 +52,7 @@ const keyBindings = {
     'Reset Timer': {
       keys: ['Alt + R'],
       type: 'mode'
-    },
+    }
   },
 
   'Grid Mode': {
@@ -64,52 +63,49 @@ const keyBindings = {
     'End of Slide': {
       keys: ['Shift + Click'],
       type: 'mode'
-    },
-  },
+    }
+  }
 };
 
 const filterKeyBindings = (slide, mode) => {
   return Object.fromEntries(
     Object.entries(keyBindings)
-    .map(([modeGroup, keys]) => {
-      const newKeys = Object.fromEntries(
-        Object.entries(keys)
-        .reduce((acc, [action, data]) => {
-          switch (data.type) {
-            case 'slide':
-              if (slide) {
-                return [...acc, [action, data]];
-              } else {
+      .map(([modeGroup, keys]) => {
+        const newKeys = Object.fromEntries(
+          Object.entries(keys)
+            .reduce((acc, [action, data]) => {
+              switch (data.type) {
+              case 'slide':
+                if (slide) {
+                  return [...acc, [action, data]];
+                }
+
                 return acc;
-              }
-              break;
 
-            case 'mode':
-              if (mode) {
-                return [...acc, [action, data]];
-              } else {
+              case 'mode':
+                if (mode) {
+                  return [...acc, [action, data]];
+                }
+
                 return acc;
+
+              default:
+                return [...acc, [action, data]];
               }
-              break;
-
-            default:
-              return [...acc, [action, data]];
-
-          } 
-        }, [])
-      );
-      return [modeGroup, newKeys];
-    })
-    .filter(([modeGroup, keys]) => Object.keys(keys).length)
+            }, [])
+        );
+        return [modeGroup, newKeys];
+      })
+      .filter(([_, keys]) => Object.keys(keys).length)
   );
-}
+};
 
 const Navigation = ({
   keyboardReference,
   touchReference,
-  slideNavigation=true,
-  modeNavigation=true,
-  storageNavigation=true
+  slideNavigation = true,
+  modeNavigation = true,
+  storageNavigation = true
 }) => {
   const filteredKeyBindings = filterKeyBindings(slideNavigation, modeNavigation);
   const [help, setHelp] = useState(false);
@@ -145,20 +141,20 @@ const Navigation = ({
             textTransform: 'uppercase',
             fontWeight: 'bold',
             width: '100%',
-            textAlign: 'center',
+            textAlign: 'center'
           },
           '& h2': {
             fontSize: '1.1em',
             lineHeight: '120%',
             textTransform: 'uppercase',
             fontWeight: 'normal',
-            mt: '0px',
+            mt: '0px'
           },
           '& hr': {
             borderTop: '2px solid white',
             height: '0px',
             width: '100%',
-            my: '30px',
+            my: '30px'
           }
         }}
       >
@@ -167,7 +163,7 @@ const Navigation = ({
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            p: '0px',
+            p: '0px'
           }}
         >
           {
@@ -208,9 +204,9 @@ const Navigation = ({
         </div>
       </div>
     );
-  } else {
-    return null;
   }
+
+  return null;
 };
 
 export default Navigation;

@@ -5,7 +5,7 @@ import Slide from './slide.jsx';
 import useSetMode from '../hooks/use-set-mode.js';
 import deckModes from '../util/deck-modes.js';
 
-const PrintMode = ({children, basepath, extracted}) => {
+const PrintMode = ({children}) => {
   useSetMode(deckModes.PRINT);
 
   return children.map((_, i) => (
@@ -15,7 +15,7 @@ const PrintMode = ({children, basepath, extracted}) => {
         {children}
       </Slide>
     </DeckState>
-  ))
+  ));
 };
 
 export default PrintMode;

@@ -10,21 +10,18 @@ import {PreviewDeckState, NavigationButtons, Time, Notes} from './presenter-tool
 import useSetMode from '../hooks/use-set-mode.js';
 import deckModes from '../util/deck-modes.js';
 
-
 const PresenterMode = ({
   children,
-  basepath,
-  extracted,
   keyboardTarget,
   touchTarget,
   slideNavigation,
-  modeNavigation,
+  modeNavigation
 }) => {
   const element = useRef();
   const keyboardReference = keyboardTarget || element;
   const touchReference = touchTarget || element;
   useSetMode(deckModes.PRESENTER);
-  
+
   return (
     <div ref={element} tabIndex={-1} onMouseDown={e => e.preventDefault()} style={{width: '100%', height: '100%'}}>
       <Routing>
@@ -39,14 +36,14 @@ const PresenterMode = ({
               gridGap: '10px',
               gridTemplateColumns: '2fr 5fr 3fr',
               gridTemplateRows: '3fr 4fr 1fr 1fr 1fr',
-              gridTemplateAreas: '"slide slide preview" "slide slide notes" "navigation navigation notes" ". . notes" "time time notes"',
+              gridTemplateAreas: '"slide slide preview" "slide slide notes" "navigation navigation notes" ". . notes" "time time notes"'
             }}
           >
             <Zoom sizeReference={element} sx={{gridArea: 'slide'}}>
               <Slide>{children}</Slide>
             </Zoom>
 
-            <Zoom sizeReference={element} sx={{gridArea: 'preview'}} alignX='right'>
+            <Zoom sizeReference={element} sx={{gridArea: 'preview'}} alignX="right">
               <PreviewDeckState>
                 <Slide sx={{userSelect: 'none', pointerEvents: 'none'}}>{children}</Slide>
               </PreviewDeckState>

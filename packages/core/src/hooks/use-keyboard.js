@@ -14,10 +14,10 @@ const keys = {
   h: 72,
   n: 78,
   o: 79,
-  p: 80,
+  p: 80
 };
 
-const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
+const useKeyboard = (target, slideNav = true, modeNav = true, setHelp = null) => {
   const root = useRoot();
   const {next, nextSlide, previous, previousSlide, setMode} = useNavigation();
 
@@ -31,32 +31,37 @@ const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
       if (altKey) {
         switch (e.keyCode) {
         case keys.g:
-            if (root.mode === deckModes.GRID) {
-              setMode(root.previousMode);
-            } else {
-              setMode(deckModes.GRID);
-            }
-            return;
+          if (root.mode === deckModes.GRID) {
+            setMode(root.previousMode);
+          } else {
+            setMode(deckModes.GRID);
+          }
+
+          return;
 
         case keys.n:
-            if (root.mode === deckModes.NORMAL) {
-              setMode(root.previousMode);
-            } else {
-              setMode(deckModes.NORMAL);
-            }
-            return;
+          if (root.mode === deckModes.NORMAL) {
+            setMode(root.previousMode);
+          } else {
+            setMode(deckModes.NORMAL);
+          }
+
+          return;
 
         case keys.p:
-            if (root.mode === deckModes.PRESENTER) {
-              setMode(root.previousMode);
-            } else {
-              setMode(deckModes.PRESENTER);
-            }
-            return;
-          
+          if (root.mode === deckModes.PRESENTER) {
+            setMode(root.previousMode);
+          } else {
+            setMode(deckModes.PRESENTER);
+          }
+
+          return;
+
+        default:
+          break;
         }
-      } 
-    } 
+      }
+    }
 
     if (slideNav) {
       switch (e.keyCode) {
@@ -68,6 +73,7 @@ const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
         } else {
           previous();
         }
+
         return;
 
       case keys.right:
@@ -78,6 +84,7 @@ const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
         } else {
           next();
         }
+
         return;
 
       case keys.space:
@@ -86,6 +93,7 @@ const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
         } else {
           next();
         }
+
         return;
 
       default:
@@ -103,7 +111,7 @@ const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
     if (currentTarget) {
       currentTarget.addEventListener('keydown', handleKeyboard);
     }
-    
+
     return () => {
       if (currentTarget) {
         currentTarget.removeEventListener('keydown', handleKeyboard);

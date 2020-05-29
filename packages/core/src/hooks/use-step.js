@@ -20,16 +20,16 @@ const useStep = length => {
         stepLength: totalLength,
         stepIndex
       };
-    } else {
-      let stepIndex = state.rawStepIndex;
-      if (stepIndex >= state.stepLength) {
-        stepIndex = state.stepLength - 1;
-      } else if (stepIndex < 0) {
-        stepIndex = Math.max(0, totalLength + stepIndex);
-      }
-
-      return {stepIndex}
     }
+
+    let stepIndex = state.rawStepIndex;
+    if (stepIndex >= state.stepLength) {
+      stepIndex = state.stepLength - 1;
+    } else if (stepIndex < 0) {
+      stepIndex = Math.max(0, totalLength + stepIndex);
+    }
+
+    return {stepIndex};
   };
 
   useEffect(() => {

@@ -6,7 +6,7 @@ export const navigate = (
   {mode, slide, step = 0, replace = false}
 ) => {
   mode = (mode === undefined) ? root.mode : mode;
-  const modepath = deckModes.properties[mode]?.path || deckModes.properties[deckModes.NORMAL].path;
+  const modepath = deckModes.properties[mode]?.path ?? deckModes.properties[deckModes.NORMAL].path;
 
   if (replace) {
     history.replace(`/${modepath}/${slide}/${step}`);

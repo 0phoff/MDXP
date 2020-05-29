@@ -16,7 +16,7 @@ const getIndex = (slide, slideLength) => {
   return slide;
 };
 
-const DeckState = ({children, slide, step, preview=false}) => {
+const DeckState = ({children, slide, step, preview = false}) => {
   const params = useParams();
   const rootContext = useRoot();
   const slideNum = (slide !== undefined) ? parseInt(slide) || 0 : parseInt(params.slide) || 0;
@@ -44,7 +44,7 @@ const DeckState = ({children, slide, step, preview=false}) => {
     if (rootContext.mode !== state.mode) {
       setState({mode: rootContext.mode});
     }
-  }, [rootContext.mode])
+  }, [rootContext.mode]);
 
   return (
     <DeckContext.Provider value={[state, setState]}>

@@ -8,8 +8,8 @@ const DeckMode = ({
   extracted,
   keyboardTarget,
   touchTarget,
-  slideNavigation=true,
-  modeNavigation=true,
+  slideNavigation = true,
+  modeNavigation = true,
   ...props
 }) => {
   const basepath = props.basepath ? props.basepath : '';
@@ -24,10 +24,8 @@ const DeckMode = ({
             deckModes.properties.map(({Component, name, path}) => (
               <Route path={`/${path}`} key={name}>
                 <Component
-                  basepath={basepath}
                   keyboardTarget={keyboardTarget}
                   touchTarget={touchTarget}
-                  extracted={extracted}
                   slideNavigation={slideNavigation}
                   modeNavigation={modeNavigation}
                 >

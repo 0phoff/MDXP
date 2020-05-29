@@ -40,7 +40,7 @@ const PresenterMode = ({children, keyboardTarget, touchTarget, basepath, extract
 
             <Zoom sizeReference={element} sx={{gridArea: 'preview'}} alignX='right'>
               <PreviewDeckState>
-                <Slide>{children}</Slide>
+                <Slide sx={{userSelect: 'none', pointerEvents: 'none'}}>{children}</Slide>
               </PreviewDeckState>
             </Zoom>
 

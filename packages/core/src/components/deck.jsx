@@ -36,6 +36,8 @@ const Deck = ({
   components = {},
   keyboardTarget,
   touchTarget,
+  slideNavigation=true,
+  modeNavigation=true,
   ...props
 }) => {
   // Setup theme
@@ -61,7 +63,10 @@ const Deck = ({
           ...defaultComponents,
           DefaultLayout: DefaultLayoutWrapper,
           ...components,
-          wrapper: wrapper(DefaultLayoutWrapper, {...props, keyboardTarget, touchTarget})
+          wrapper: wrapper(
+            DefaultLayoutWrapper,
+            {...props, keyboardTarget, touchTarget, slideNavigation, modeNavigation}
+          )
         }}
       >
         {children}
@@ -94,6 +99,12 @@ Deck.propTypes = {
     PropTypes.func,
     PropTypes.shape({current: PropTypes.any})
   ]),
+
+  /** Whether or not you want to be able to navigate through the slides with the keyboard and touch actions. */
+  slideNavigation: PropTypes.bool,
+
+  /** Whether or not you want to be able to change modes with the keyboard and touch actions. */
+  modeNavigation: PropTypes.bool,
 
   /** Additional props which will be passed to the main Router of the Deck. */
   props: PropTypes.object,

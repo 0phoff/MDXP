@@ -8,35 +8,115 @@ import useStorageNavigation from '../hooks/use-storage-navigation.js';
 
 const keyBindings = {
   'Global': {
-    'Next Step': ['Right Arrow', 'Space', 'Tap Right Side'],
-    'Previous Step': ['Left Arrow', 'Shift + Space', 'Tap Left Side'],
-    'Next Slide': ['Shift + Right Arrow', 'Swipe Left'],
-    'Previous Slide': ['Shift + Left Arrow', 'Swipe Right'],
-    'Toggle Normal Mode': ['Alt + N'],
-    'Toggle Presenter Mode': ['Alt + P'],
-    'Toggle Grid Mode': ['Alt + G'],
-    'Cycle Modes': ['Swipe Up', 'Swipe Down'],
-    'Toggle Help': ['Alt + H'],
+    'Next Step': {
+      keys: ['Right Arrow', 'Space', 'Tap Right Side'],
+      type: 'slide'
+    },
+    'Previous Step': {
+      keys: ['Left Arrow', 'Shift + Space', 'Tap Left Side'],
+      type: 'slide'
+    },
+    'Next Slide': {
+      keys: ['Shift + Right Arrow', 'Swipe Left'],
+      type: 'slide'
+    },
+    'Previous Slide': {
+      keys: ['Shift + Left Arrow', 'Swipe Right'],
+      type : 'slide'
+    },
+    'Toggle Normal Mode': {
+      keys: ['Alt + N'],
+      type: 'mode'
+    },
+    'Toggle Presenter Mode': {
+      keys: ['Alt + P'],
+      type: 'mode'
+    },
+    'Toggle Grid Mode': {
+      keys: ['Alt + G'],
+      type: 'mode'
+    },
+    'Cycle Modes': {
+      keys: ['Swipe Up', 'Swipe Down'],
+      type: 'mode'
+    },
+    'Toggle Help': {
+      keys: ['Alt + H'],
+    },
   },
 
   'Presenter Mode': {
-    'Toggle Timer': ['Alt + T'],
-    'Reset Timer': ['Alt + R'],
+    'Toggle Timer': {
+      keys: ['Alt + T'],
+      type: 'mode'
+    },
+    'Reset Timer': {
+      keys: ['Alt + R'],
+      type: 'mode'
+    },
   },
 
   'Grid Mode': {
-    'Start of Slide': ['Click'],
-    'End of Slide': ['Shift + Click'],
+    'Start of Slide': {
+      keys: ['Click'],
+      type: 'mode'
+    },
+    'End of Slide': {
+      keys: ['Shift + Click'],
+      type: 'mode'
+    },
   },
 };
 
+const filterKeyBindings = (slide, mode) => {
+  return Object.fromEntries(
+    Object.entries(keyBindings)
+    .map(([modeGroup, keys]) => {
+      const newKeys = Object.fromEntries(
+        Object.entries(keys)
+        .reduce((acc, [action, data]) => {
+          switch (data.type) {
+            case 'slide':
+              if (slide) {
+                return [...acc, [action, data]];
+              } else {
+                return acc;
+              }
+              break;
 
-const Navigation = ({keyboardReference, touchReference, slideNav=true, modeNav=true, storageNav=true}) => {
+            case 'mode':
+              if (mode) {
+                return [...acc, [action, data]];
+              } else {
+                return acc;
+              }
+              break;
+
+            default:
+              return [...acc, [action, data]];
+
+          } 
+        }, [])
+      );
+      return [modeGroup, newKeys];
+    })
+    .filter(([modeGroup, keys]) => Object.keys(keys).length)
+  );
+}
+
+const Navigation = ({
+  keyboardReference,
+  touchReference,
+  slideNavigation=true,
+  modeNavigation=true,
+  storageNavigation=true
+}) => {
+  const filteredKeyBindings = filterKeyBindings(slideNavigation, modeNavigation);
   const [help, setHelp] = useState(false);
-  useKeyboard(keyboardReference, slideNav, modeNav, setHelp);
-  useTouch(touchReference, 15, slideNav, modeNav);
-  useStorageNavigation(storageNav);
-  
+  useKeyboard(keyboardReference, slideNavigation, modeNavigation, setHelp);
+  useTouch(touchReference, 15, slideNavigation, modeNavigation);
+  useStorageNavigation(storageNavigation);
+
   if (help) {
     return (
       <div
@@ -72,6 +152,7 @@ const Navigation = ({keyboardReference, touchReference, slideNav=true, modeNav=t
             lineHeight: '120%',
             textTransform: 'uppercase',
             fontWeight: 'normal',
+            mt: '0px',
           },
           '& hr': {
             borderTop: '2px solid white',
@@ -90,7 +171,7 @@ const Navigation = ({keyboardReference, touchReference, slideNav=true, modeNav=t
           }}
         >
           {
-            Object.entries(keyBindings).map(([mode, bindings], i) => (
+            Object.entries(filteredKeyBindings).map(([mode, keys], i) => (
               <React.Fragment key={`mode_${i}`}>
                 <div>
                   <h2>{mode}</h2>
@@ -102,15 +183,15 @@ const Navigation = ({keyboardReference, touchReference, slideNav=true, modeNav=t
                     }}
                   >
                     {
-                      Object.entries(bindings).map(([action, keys], ii) => (
+                      Object.entries(keys).map(([action, data], ii) => (
                         <div sx={{display: 'flex'}} key={`binding_${i}_${ii}`}>
                           <div sx={{width: '55%'}}>{action}</div>
                           <div sx={{width: '45%', fontWeight: '300', textAlign: 'right'}}>
                             {
-                              keys.map((k, iii) => (
+                              data.keys.map((k, iii) => (
                                 <React.Fragment key={`key_${i}_${ii}_${iii}`}>
                                   <span>{k}</span>
-                                  {(iii !== (keys.length - 1)) && <br />}
+                                  {(iii !== (data.keys.length - 1)) && <br />}
                                 </React.Fragment>
                               ))
                             }
@@ -120,7 +201,7 @@ const Navigation = ({keyboardReference, touchReference, slideNav=true, modeNav=t
                     }
                   </div>
                 </div>
-                {(i !== (Object.keys(keyBindings).length - 1)) && <hr />}
+                {(i !== (Object.keys(filteredKeyBindings).length - 1)) && <hr />}
               </React.Fragment>
             ))
           }

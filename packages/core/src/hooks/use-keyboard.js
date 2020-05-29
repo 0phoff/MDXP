@@ -93,7 +93,7 @@ const useKeyboard = (target, slideNav=true, modeNav=true, setHelp) => {
       }
     }
 
-    if (altKey && e.keyCode === keys.h) {
+    if (altKey && e.keyCode === keys.h && setHelp) {
       setHelp(s => !s);
     }
   };

@@ -43,7 +43,15 @@ const GridItem = ({children, element, slide}) => {
 };
 
 
-const GridMode = ({children, keyboardTarget, touchTarget, basepath, extracted}) => {
+const GridMode = ({
+  children,
+  basepath,
+  extracted,
+  keyboardTarget,
+  touchTarget,
+  slideNavigation,
+  modeNavigation,
+}) => {
   const element = useRef();
   const keyboardReference = keyboardTarget || element;
   const touchReference = touchTarget || element;
@@ -81,8 +89,9 @@ const GridMode = ({children, keyboardTarget, touchTarget, basepath, extracted}) 
         <Navigation
           keyboardReference={keyboardReference}
           touchReference={touchReference}
-          slideNav={false}
-          storageNav={false}
+          slideNavigation={false}
+          modeNavigation={modeNavigation}
+          storageNavigation={false}
         />
       </DeckState>
     </Routing>

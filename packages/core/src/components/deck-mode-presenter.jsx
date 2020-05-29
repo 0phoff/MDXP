@@ -11,7 +11,15 @@ import useSetMode from '../hooks/use-set-mode.js';
 import deckModes from '../util/deck-modes.js';
 
 
-const PresenterMode = ({children, keyboardTarget, touchTarget, basepath, extracted}) => {
+const PresenterMode = ({
+  children,
+  basepath,
+  extracted,
+  keyboardTarget,
+  touchTarget,
+  slideNavigation,
+  modeNavigation,
+}) => {
   const element = useRef();
   const keyboardReference = keyboardTarget || element;
   const touchReference = touchTarget || element;
@@ -48,7 +56,12 @@ const PresenterMode = ({children, keyboardTarget, touchTarget, basepath, extract
             <Time keyboardTarget={keyboardReference} sx={{gridArea: 'time'}} />
             <Notes sx={{gridArea: 'notes'}} />
           </DivSx>
-          <Navigation keyboardReference={keyboardReference} touchReference={touchReference} />
+          <Navigation
+            keyboardReference={keyboardReference}
+            touchReference={touchReference}
+            slideNavigation={slideNavigation}
+            modeNavigation={modeNavigation}
+          />
         </DeckState>
       </Routing>
     </div>

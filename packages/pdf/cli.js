@@ -4,11 +4,10 @@ const meow = require('meow');
 const puppeteer = require('puppeteer');
 const log = require('./log.js');
 
-
 async function createPDF(url, path, width, height) {
   const browser = await puppeteer.launch({
     args: ['--font-render-hinting=medium'],
-    defaultViewport: {width, height},
+    defaultViewport: {width, height}
   });
   const page = await browser.newPage();
 
@@ -19,7 +18,6 @@ async function createPDF(url, path, width, height) {
   // Close
   await browser.close();
 }
-
 
 const cli = meow(`
   Usage
@@ -36,51 +34,53 @@ const cli = meow(`
     $ pdf -u http://localhost:8080 presentation.pdf
     $ pdf -u ./dist/onepage/index.html -w 800 -h 600 presentation.pdf
 `,
-  {
-    flags: {
-      help: {
-        type: 'boolean',
-        alias: 'h',
-      },
-      version: {
-        type: 'boolean',
-        alias: 'v',
-      },
-      url: {
-        type: 'string',
-        alias: 'u',
-        isRequired: true,
-      },
-      width: {
-        type: 'number',
-        alias: 'w',
-        default: 1920,
-      },
-      height: {
-        type: 'number',
-        alias: 'h',
-        default: 1080,
-      }
+{
+  flags: {
+    help: {
+      type: 'boolean',
+      alias: 'h'
+    },
+    version: {
+      type: 'boolean',
+      alias: 'v'
+    },
+    url: {
+      type: 'string',
+      alias: 'u',
+      isRequired: true
+    },
+    width: {
+      type: 'number',
+      alias: 'w',
+      default: 1920
+    },
+    height: {
+      type: 'number',
+      alias: 'h',
+      default: 1080
     }
   }
-)
+}
+);
 
 // Get data
-const [pdf] = cli.input
-if (!pdf) {cli.showHelp(0);}
-const pdfPath = path.resolve(pdf)
-const {url, width, height} = cli.flags
-const urlPath = (url.startsWith('http') ? url : 'file://' + path.resolve(url)) + '#/print';
+const [pdf] = cli.input;
+if (!pdf) {
+  cli.showHelp(0);
+}
 
+const pdfPath = path.resolve(pdf);
+const {url, width, height} = cli.flags;
+const urlPath = (url.startsWith('http') ? url : 'file://' + path.resolve(url)) + '#/print';
 
 // Create PDF
 createPDF(urlPath, pdfPath, width, height)
-  .then(res => {
-    log.log(`PDF Created [${pdf}]`)
-    process.exit(0)
+  .then(_ => {
+    log.log(`PDF Created [${pdf}]`);
+    process.exit(0);
   })
   .catch(err => {
-    log.error('PDF Failed')
-    log.error(err)
-    process.exit(1)
+    log.error('PDF Failed');
+    log.error(err);
+    process.exit(1);
   });

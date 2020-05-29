@@ -42,8 +42,9 @@ module.exports = (options = {}) => {
           if (prop.match(/^(width|height)=/)) {
             let [propName, propValue] = prop.split('=');
             if (propValue.match(/^['"].*['"]$/)) {
-              propValue = propValue.slice(1, -1)
+              propValue = propValue.slice(1, -1);
             }
+
             style[propName] = propValue;
           } else if (prop.match(/^style=/)) {
             let propValue = prop.split('=')[1];

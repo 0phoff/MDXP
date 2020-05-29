@@ -96,7 +96,7 @@ module.exports = {
       filename: './index.html'
     }),
     new webpack.DefinePlugin({
-      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
+      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
     })
   ],
 

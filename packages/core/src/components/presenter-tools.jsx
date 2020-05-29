@@ -183,7 +183,7 @@ export const Time = ({sx={}, keyboardTarget, ...props}) => {
 
     if (altKey) {
       switch (e.keyCode) {
-        case 83: // s
+        case 84: // t
           setPlay(s => !s);
           return;
         case 82: // r

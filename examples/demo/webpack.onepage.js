@@ -24,12 +24,42 @@ module.exports = {
           {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            use: ['babel-loader']
+            use: [
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-env',
+                      {
+                        modules: false,
+                        targets: 'last 2 versions, not dead, not ie <= 11'
+                      }
+                    ],
+                    '@babel/preset-react'
+                  ]
+                }
+              }
+            ]
           },
           {
             test: /\.mdx$/,
             use: [
-              'babel-loader',
+              {
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-env',
+                      {
+                        modules: false,
+                        targets: 'last 2 versions, not dead, not ie <= 11'
+                      }
+                    ],
+                    '@babel/preset-react'
+                  ]
+                }
+              },
               {
                 loader: '@mdx-js/loader',
                 options: {

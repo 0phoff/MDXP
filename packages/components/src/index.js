@@ -17,6 +17,7 @@ import {
   Block,
   Flex,
   Grid,
+  Head,
   Place,
   Styling
 } from './component';
@@ -35,6 +36,7 @@ export default {
   Block,
   Flex,
   Grid,
+  Head,
   Place,
   Styling
 };

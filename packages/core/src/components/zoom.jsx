@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import {useEffect, useRef} from 'react';
+import PropTypes from 'prop-types';
 import {jsx} from 'theme-ui';
 
 const isNumber = value => (value !== null) && !isNaN(value);
@@ -117,6 +118,47 @@ const Zoom = ({
       </div>
     </div>
   );
+};
+
+
+Zoom.propTypes = {
+  /** Target width for the inner content. */
+  width: PropTypes.number,
+
+  /** Target width for the inner content. */
+  height: PropTypes.number,
+
+  /** Instead of giving a width and height, one can give a width and aspectRatio or height and aspectRatio. */
+  aspectRatio: PropTypes.number,
+
+  /** If given, the target width/height is multiplied with this element's size. */
+  sizeReference: PropTypes.oneOfType([
+    PropTypes.func, 
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  ]),
+
+  /** How to align the inner content. */
+  alignX: PropTypes.oneOf(['left', 'center', 'right']),
+
+  /** How to align the inner content. */
+  alignY: PropTypes.oneOf(['top', 'center', 'bottom']),
+
+  /** Whether to only consider the width/height when deciding whether to scale the content. */
+  scaleOn: PropTypes.oneOf(['width', 'height', 'both']),
+
+  /** If defined, the wrapper width must be smaller than this number for the scaling to take effect. */
+  maxWidth: PropTypes.number,
+
+  /** If defined, the wrapper height must be smaller than this number for the scaling to take effect. */
+  maxHeight: PropTypes.number,
+
+  /** You can style the surrounding div by giving an sx property. This is set as a Theme-UI sx property and can thus accept theme aware values. */
+  sx: PropTypes.object,
+
+  /** Additional props which will be set to a surrounding div. */
+  props: PropTypes.object,
+
+  children: PropTypes.node
 };
 
 export default Zoom;

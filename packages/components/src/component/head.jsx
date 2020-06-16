@@ -27,7 +27,7 @@ const Head = ({
 };
 
 Head.propTypes = {
-  /** Valid elements that can be set in the HTML Head section through react-helmet. */
+  /** Valid elements that can be set in the HTML Head section. */
   children: PropTypes.node,
 
   /** Optional length that tells for how many slides this Head should be rendered. */

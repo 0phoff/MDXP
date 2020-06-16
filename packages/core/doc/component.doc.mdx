@@ -7,6 +7,7 @@ group: API
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 import Deck from '../src/components/deck.jsx'
 import Step from '../src/components/step.jsx'
+import Zoom from '../src/components/zoom.jsx'
 
 
 ## Deck
@@ -25,43 +26,6 @@ ReactDOM.render(
   </Deck>,
   document.getElementById('root')
 );
-```
-
----
-
-
-## Head
-This component allows you to set metadata of your presentation inside of your MDX file.
-It uses [React-Helmet](https://github.com/nfl/react-helmet) in order to insert your tags at runtime.
-
-> __NOTE:__  
-> This component needs to be a direct child of your slide and cannot be nested inside other components.
-> At runtime, all the Head components get filtered out of your slides and placed at the top of the presentation.
-
-### Properties
-<Arguments>
-{{
-  name: 'children',
-  type: 'node',
-  required: false,
-  desc: 'Valid elements that can be set in the HTML Head section through react-helmet.'
-}}
-</Arguments>
-
-### Examples
-```md
-<Head>
-<title>My Awesome Presentation</tite>
-<meta name="description" content="This is my awesome web based presentation" />
-<meta name="author" content="0phoff" />
-<meta name="keywords" content="Presentations, Slides, Deck, React, Web, HTML, CSS, JavaScript" />
-</Head>
-
-# SLIDE 1
-
-Content
-
----
 ```
 
 ---
@@ -147,3 +111,15 @@ Here we show a paragraph.
 
 </Step>
 ```
+
+---
+
+
+## Zoom
+Zoom the content inside of it to a fixed aspect ratio with css scaling.
+
+This component has not much to do with presentations, but is used throughout the core codebase and might be useful to use.  
+One of its use cases is to wrap your presentation, so that you keep the same look of your presentation on small displays.
+
+### Properties
+<Arguments of={Zoom} />

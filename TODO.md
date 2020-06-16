@@ -48,7 +48,7 @@ Release TODO lists for MDXP
   - [X] Components: variants
   - [X] Webpack: Generate PDF
   - [ ] Update docs
-  - [ ] Update demo
+  - [X] Update demo
   - [X] Replace react-helmet with ReactDOM.createPortal
 
 ## V1.0

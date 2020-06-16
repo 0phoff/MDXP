@@ -1,11 +1,5 @@
 import {Counter} from './counter.jsx'
 
-<Head>
-<meta name="description" content="MDXP Demo" />
-<meta name="keywords" content="Presentations, Slides, Deck, React, Web, HTML, CSS, JavaScript" />
-<meta name="author" content="0phoff" />
-</Head>
-
 <BlankLayout sx={{variant: 'gradient.dark', color: 'MDXPGray6'}}>
 <Block sx={{variant: 'text.subtitle', '& p': {my: '10%'}}}>
 <Step styles={{
@@ -40,7 +34,8 @@ Web Based Slides too Complicated ?
 <Popup>
 
 Use the left and right arrow keys to navigate through this slide deck.  
-On touch devices, you can tap the left and right hand side of the slides.
+On touch devices, you can tap the left and right hand side of the slides.  
+Press `ALT+H` for more keybindings.
 
 </Popup>
 <AutoStepper start="1" end="-2" time="3000" />
@@ -56,7 +51,7 @@ On touch devices, you can tap the left and right hand side of the slides.
 # MDX Presenter
 
 <Grid
-  gridTemplateColumns={["20% auto 10% 10%", "15% auto 10% 5%"]}
+  gridTemplateColumns={["15% auto 10% 5%", "20% auto 10% 10%", "15% auto 10% 5%"]}
   gridTemplateRows="100%"
   gridTemplateAreas=". main logos ."
 >
@@ -109,7 +104,7 @@ as='Flex' gridArea="logos" flexFlow="column nowrap" justifyContent="space-evenly
 
 <Note>
 
-- MDXP also supprts notes!
+- MDXP also supports notes!
 - Never ever forget what you were meant to say.
 
 </Note>

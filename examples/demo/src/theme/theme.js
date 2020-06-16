@@ -59,38 +59,37 @@ export default {
     muted: '#828282',
   },
 
-  breakpoints: ['1150px', '1500px'],
+  breakpoints: ['0px', '1150px', '1500px'],
 
   /* Style Variants */
   text: {
     main: {
       fontFamily: 'body',
-      fontSize: ['xsmall', 'small', 'base'],
       lineHeight: 'default',
+      fontSize: ['base', 'xsmall', 'small', 'base']
     },
 
     mono: {
       fontFamily: 'mono',
-      fontSize: ['xxsmall', 'xxsmall', 'xsmall'],
       lineHeight: 'mono',
+      fontSize: ['xsmall', 'xxsmall', 'xxsmall', 'xsmall']
     },
 
     title: {
       fontFamily: 'body',
-      fontSize: ['xlarge', 'xxlarge'],
       lineHeight: 'title',
       textTransform: 'uppercase',
       fontWeight: 'default',
+      fontSize: ['xxlarge', 'xlarge', 'xxlarge'],
     },
 
     subtitle: {
       fontFamily: 'body',
-      fontSize: ['large', 'xlarge'],
       lineHeight: 'title',
       fontWeight: 'light',
       textTransform: 'lowercase',
       fontVariant: 'small-caps',
-
+      fontSize: ['xlarge', 'large', 'xlarge'],
     }
   },
 
@@ -139,7 +138,7 @@ export default {
 
   mdxp: {
     slide: {
-      variant: 'text.main'
+      variant: 'text.main',
     }
   }
 };

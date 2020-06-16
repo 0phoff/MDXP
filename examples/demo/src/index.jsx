@@ -1,17 +1,21 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 import ReactDOM from 'react-dom';
-import Deck from '@mdxp/core';
+import Deck, {Zoom} from '@mdxp/core';
 import components from '@mdxp/components';
-import './index.css';
 
-import ZoomBox from './zoom-box.jsx';
 import theme from './theme/theme.js';
 import themeComponents  from './theme/theme-components.js';
+
+import './index.css';
 import MDXPresentation from './presentation.mdx';
 
 ReactDOM.render(
-  <ZoomBox>
+  <Zoom
+    maxWidth={1000}
+    width={1000}
+    aspectRatio={16/9}
+  >
     <Deck
       components={{...components, ...themeComponents}}
       Layout={themeComponents.MDXPHeaderLayout}
@@ -21,6 +25,6 @@ ReactDOM.render(
     >
       <MDXPresentation />
     </Deck>
-  </ZoomBox>,
+  </Zoom>,
   document.getElementById('root')
 );

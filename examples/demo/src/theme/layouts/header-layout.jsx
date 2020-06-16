@@ -27,7 +27,7 @@ const MDXPHeaderLayout = ({children, showSlideNum=true, sx={}}) => {
       <Place bottom='0' sx={{width: '100%', zIndex: 1}}>
         <Logo
           sx={{
-            height: [t => t.fontSizes.small, t => t.fontSizes.large],
+            height: [t => t.fontSizes.large, t => t.fontSizes.small, t => t.fontSizes.large, t => t.fontSizes.large],
             position: 'absolute',
             bottom: 0,
             ml: 2,
@@ -42,7 +42,7 @@ const MDXPHeaderLayout = ({children, showSlideNum=true, sx={}}) => {
           <div
             sx={{
               variant: 'text.subtitle',
-              fontSize: ['small', 'large'],
+              fontSize: ['large', 'small', 'large', 'large'],
               lineHeight: 'default',
               float: 'right',
               lineHeight: '100%',

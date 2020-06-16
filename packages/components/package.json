@@ -25,6 +25,7 @@
       "require": "./dist/components.js"
     }
   },
+  "sideEffects": false,
   "scripts": {
     "start": "microbundle watch --jsx React.createElement --no-compress -o dist",
     "build": "microbundle build --jsx React.createElement --no-compress -o dist",

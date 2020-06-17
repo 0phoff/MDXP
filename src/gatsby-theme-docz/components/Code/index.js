@@ -88,7 +88,11 @@ const MDXPDemo = ({code, onOuterClick, show=false}) => {
               components={{
                 ...mdxpComponents,
                 Step,
-                wrapper: wrapper(mdxpComponents.BlankLayout, {target: ref}, mdxpComponents)
+                wrapper: wrapper(
+                  mdxpComponents.BlankLayout,
+                  {keyboardTarget: ref, modeNavigation: false},
+                  mdxpComponents
+                )
               }}
             >
               {code}

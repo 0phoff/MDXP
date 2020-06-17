@@ -47,7 +47,7 @@ Release TODO lists for MDXP
   - [X] Core: Help & Keybindings pop-up
   - [X] Components: variants
   - [X] Webpack: Generate PDF
-  - [ ] Update docs
+  - [X] Update docs
   - [X] Update demo
   - [X] Replace react-helmet with ReactDOM.createPortal
 

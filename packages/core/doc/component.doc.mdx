@@ -6,6 +6,7 @@ group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 import Deck from '../src/components/deck.jsx'
+import Note from '../src/components/note.jsx'
 import Step from '../src/components/step.jsx'
 import Zoom from '../src/components/zoom.jsx'
 
@@ -26,6 +27,74 @@ ReactDOM.render(
   </Deck>,
   document.getElementById('root')
 );
+```
+
+---
+
+
+## Note
+This component can be used to add notes to certain slides, which can be used in presenter mode.
+
+### Properties
+<Arguments>
+{{
+  name: 'start',
+  type: 'number',
+  desc: 'On which stepIndex to show this note.',
+  default: '0'
+}}
+{{
+  name: 'end',
+  type: 'number',
+  desc: 'Until which stepIndex to show this note. If the number is smaller or equal to zero, we start counting backwards from the last step of the slide.',
+  default: '0'
+}}
+{{
+  name: 'children',
+  type: 'node',
+  required: false,
+}}
+</Arguments>
+
+### Examples
+```md
+# SLIDE 1
+
+This is the first slide.
+
+<Note>
+
+These are notes that are only shown in presenter mode.  
+They can help you not to forget what you need to say.
+
+- You can also use markdown syntax inside of here!
+- This will work as __intended__
+
+</Note>
+
+---
+
+# SLIDE 2
+
+<Step>
+
+- This slide contains 3 steps
+- Step 2
+- Step 3
+
+</Step>
+
+<Note end="-1">
+
+This note will be removed for the last step of this slide.
+
+</Note>
+
+<Note start="1">
+
+This note will only show with the second step.
+
+</Note>
 ```
 
 ---

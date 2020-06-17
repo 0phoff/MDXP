@@ -120,7 +120,6 @@ const Zoom = ({
   );
 };
 
-
 Zoom.propTypes = {
   /** Target width for the inner content. */
   width: PropTypes.number,
@@ -134,7 +133,7 @@ Zoom.propTypes = {
   /** If given, the target width/height is multiplied with this element's size. */
   sizeReference: PropTypes.oneOfType([
     PropTypes.func, 
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+    PropTypes.shape({current: PropTypes.any})
   ]),
 
   /** How to align the inner content. */

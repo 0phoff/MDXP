@@ -13,7 +13,7 @@ export default {
     'Theming',
     'Examples',
     '@mdxp/core',
-    {name: '@mdxp/components', menu: ['Components', 'Layouts', 'Wrappers']},
+    {name: '@mdxp/components', menu: ['Components', 'Extract', 'Layouts', 'Wrappers']},
     '@mdxp/rehypex-plugins'
   ],
   themeConfig: {

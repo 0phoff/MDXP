@@ -205,7 +205,7 @@ Extract components are taken outside of the slides and rendered separately for e
 They get a `slideIndex` argument with the current slide index and a `slide` argument with the index of slide on which the component was declared.  
 This allows you to design components which could render something or perform an action on multiple slides.
 
-An example of an extract component is the [Head](/components-components#head) component of this package.  
+An example of an extract component is the [Head](/components-extract#head) component of this package.  
 This component can render elements inside of the HTML head by using ReactDOM.createPortal.  
 However, if we define metadata in the first slide of our presentation, we want this data to be there for all slides and not only for that first slide. This is why the extract components can be used, as these components will be rendered on each slide.
 

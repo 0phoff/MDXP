@@ -11,6 +11,7 @@ export default {
     'Syntax',
     'Components',
     'Theming',
+    'Present',
     'Examples',
     '@mdxp/core',
     {name: '@mdxp/components', menu: ['Components', 'Extract', 'Layouts', 'Wrappers']},

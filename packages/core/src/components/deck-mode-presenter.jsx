@@ -39,11 +39,11 @@ const PresenterMode = ({
               gridTemplateAreas: '"slide slide preview" "slide slide notes" "navigation navigation notes" ". . notes" "time time notes"'
             }}
           >
-            <Zoom sizeReference={element} sx={{gridArea: 'slide'}}>
+            <Zoom sizeReference={element} sx={{overflow: 'hidden', gridArea: 'slide'}}>
               <Slide>{children}</Slide>
             </Zoom>
 
-            <Zoom sizeReference={element} sx={{gridArea: 'preview'}} alignX="right">
+            <Zoom sizeReference={element} sx={{overflow: 'hidden', gridArea: 'preview'}} alignX="right">
               <PreviewDeckState>
                 <Slide sx={{userSelect: 'none', pointerEvents: 'none'}}>{children}</Slide>
               </PreviewDeckState>

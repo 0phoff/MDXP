@@ -99,10 +99,7 @@ const Zoom = ({
   return (
     <div
       ref={wrapperElement}
-      sx={{
-        overflow: 'hidden',
-        ...sx
-      }}
+      sx={sx}
       {...props}
     >
       <div

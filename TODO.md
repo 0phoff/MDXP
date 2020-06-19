@@ -54,9 +54,10 @@ Release TODO lists for MDXP
   - [X] FIX Readme errors on npmjs
 
 ## V1.0
-  - [ ] Core: Custom Video component with different behaviour depending on the mode
   - [ ] Core: Import MDX files (If possible!)
-  - [ ] Rehypex: allow code-fences to have a filename to get code from
+  - [ ] Components: Custom Video component
   - [ ] Components: CodeSurfer component
-  - [ ] Animated transitions
+  - [ ] Rehypex: allow code-fences to have a filename to get code from
+  - [ ] Webpack: Remove proptypes in production mode _(https://bit.ly/3hIJUbb)_
+  - [ ] _[optional]_ Animated transitions
 

@@ -1,1 +1,25 @@
-../../README.md
+<div align="center">
+
+<img alt="Logo" src="https://raw.githubusercontent.com/0phoff/MDXP/master/public/logo.svg" width="100%"/>
+
+[![NPM](https://img.shields.io/npm/v/@mdxp/core)](https://www.npmjs.com/package/@mdxp/core)
+![Downloads](https://img.shields.io/npm/dt/@mdxp/core)
+[![Size](https://img.shields.io/bundlephobia/minzip/@mdxp/core)](https://bundlephobia.com/result?p=@mdxp/core)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/0phoff/MDXP/blob/master/LICENSE.md)
+<a href="https://ko-fi.com/D1D31LPHE"><img alt="Ko-Fi" src="https://www.ko-fi.com/img/githubbutton_sm.svg" height="20"></a>
+
+_Web Slides Made Easy_
+
+</div>
+
+MDX Presenter allows you to create slides easily with React and MDX.  
+With this tool, you can:
+
+- _Write_ your presentations in Markdown.
+- _Use_ React components, or even build your own.
+- _Create_ a consistent look and feel with Theme-UI.
+- _Present_ on any computer with a (modern) browser, by using the onepage build mode.
+- _Integrate_ it in any of your favourite web bundlers, static site generators, ...
+
+[Click here](https://0phoff.github.io/MDXP/examples/demo) to view a demo built with MDXP or  
+[Click here](https://0phoff.github.io/MDXP) to take a look at the documentation.

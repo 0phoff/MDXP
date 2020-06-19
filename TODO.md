@@ -51,7 +51,7 @@ Release TODO lists for MDXP
   - [X] Update docs
   - [X] Update demo
   - [X] Replace react-helmet with ReactDOM.createPortal
-  - [ ] FIX Readme errors on npmjs
+  - [X] FIX Readme errors on npmjs
 
 ## V1.0
   - [ ] Core: Custom Video component with different behaviour depending on the mode

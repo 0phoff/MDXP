@@ -11,6 +11,7 @@ const Styling = ({
   if ((typeof variant === 'string' || variant instanceof String)) {
     variant = 'mdxp.styling.' + variant;
   }
+
   const child = React.Children.only(children);
   return cloneElement(child, {sx: {...child.props.sx, variant, ...sx}, ...props});
 };

@@ -1,6 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const WebpackBar = require('webpackbar');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const remarkEmoji = require('remark-emoji');
 const remarkMath = require('remark-math');
 const remarkFlattenImages = require('mdast-flatten-image-paragraphs');
@@ -9,15 +12,68 @@ const rehypeBetterMedia = require('@mdxp/rehypex-plugins/better-media');
 const rehypeTableAlign = require('@mdxp/rehypex-plugins/table-align');
 const rehypeKatex = require('rehype-katex');
 
-const ASSET_PATH = process.env.ASSET_PATH || '/';
+// Variables
+const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
+const ANALYZE = Boolean(process.env.ANALYZE) || false;
+const MDXP_MODE = process.env.MDXP_MODE.toLowerCase() || 'web';
 
+// Mode Config
+let cfg = null;
+if (MDXP_MODE === 'onepage') {
+  cfg = {
+    output: {
+      path: path.resolve(__dirname, 'dist/onepage'),
+      filename: 'main.js',
+      publicPath: './'
+    },
+    babel: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {modules: false}
+        ],
+        '@babel/preset-react'
+      ]
+    },
+    inlineImageLimit: 10485760,
+    plugins: [
+      new InlineChunkHtmlPlugin(HtmlWebPackPlugin, [/.(js|css)$/])
+    ],
+  };
+} else {
+  cfg = {
+    output: {
+      path: path.resolve(__dirname, 'dist/web'),
+      filename: 'main.js',
+      publicPath: PUBLIC_PATH,
+    },
+    babel: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {modules: false}
+        ],
+        '@babel/preset-react'
+      ]
+    },
+    inlineImageLimit: 8192,
+    plugins: [],
+  };
+}
+
+if (ANALYZE) {
+  cfg.plugins.push(
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
+    })
+  );
+}
+
+// Main Config
 module.exports = {
   entry: './src/index.jsx',
-  output: {
-    path: path.resolve(__dirname, 'dist/web'),
-    filename: 'main.js',
-    publicPath: ASSET_PATH
-  },
+  output: cfg.output,
 
   module: {
     rules: [
@@ -26,12 +82,20 @@ module.exports = {
           {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            use: ['babel-loader']
+            use: [
+              {
+                loader: 'babel-loader',
+                options: cfg.babel
+              }
+            ]
           },
           {
             test: /\.mdx$/,
             use: [
-              'babel-loader',
+              {
+                loader: 'babel-loader',
+                options: cfg.babel
+              },
               {
                 loader: '@mdx-js/loader',
                 options: {
@@ -55,6 +119,10 @@ module.exports = {
             use: ['html-loader']
           },
           {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
+          },
+          {
             test: /\.svg$/,
             use: [
               {
@@ -72,7 +140,7 @@ module.exports = {
               {
                 loader: 'url-loader',
                 options: {
-                  limit: 8192
+                  limit: cfg.inlineImageLimit
                 }
               }
             ]
@@ -87,15 +155,21 @@ module.exports = {
   },
 
   plugins: [
+    new WebpackBar(),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
       filename: './index.html'
     }),
     new webpack.DefinePlugin({
-      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-    })
+      'process.env.PUBLIC_PATH': JSON.stringify(PUBLIC_PATH)
+    }),
+    ...cfg.plugins
   ],
 
+  devServer: {
+    noInfo: true,
+    stats: 'minimal'
+  },
   node: {
     fs: 'empty'
   }

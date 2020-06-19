@@ -10,9 +10,6 @@ export const baseTheme = {
   fontWeights: {
     body: 400
   },
-  lineHeights: {
-    body: 1.5
-  },
   styles: {
     root: {
       fontFamily: 'system-ui, sans-serif'
@@ -32,6 +29,14 @@ export const baseTheme = {
     slide: {
       fontFamily: 'body',
       fontSize: '1.5rem'
+    },
+    presenter: {
+      fontSize: '1.5rem',
+      color: 'white'
+    },
+    note: {
+      fontSize: '1.5rem',
+      color: 'white'
     }
   }
 };

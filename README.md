@@ -4,6 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/@mdxp/core)](https://www.npmjs.com/package/@mdxp/core)
 ![Downloads](https://img.shields.io/npm/dt/@mdxp/core)
+[![Size](https://img.shields.io/bundlephobia/minzip/@mdxp/core)](https://bundlephobia.com/result?p=@mdxp/core)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/0phoff/MDXP/blob/master/LICENSE.md)
 <a href="https://ko-fi.com/D1D31LPHE"><img alt="Ko-Fi" src="https://www.ko-fi.com/img/githubbutton_sm.svg" height="20"></a>
 

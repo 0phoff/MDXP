@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
 const meow = require('meow');
 const create = require('./util.js');
 const log = require('./log.js');
-
 
 const cli = meow(`
   Usage
@@ -16,33 +15,33 @@ const cli = meow(`
     --help, -h    Show help
     --version, -v Show version
 `,
-  {
-    booleanDefault: undefined,
-    flags: {
-      help: {
-        type: 'boolean',
-        alias: 'h',
-      },
-      version: {
-        type: 'boolean',
-        alias: 'v',
-      },
-      git: {
-        type: 'boolean',
-        alias: 'g'
-      }
+{
+  booleanDefault: undefined,
+  flags: {
+    help: {
+      type: 'boolean',
+      alias: 'h'
+    },
+    version: {
+      type: 'boolean',
+      alias: 'v'
+    },
+    git: {
+      type: 'boolean',
+      alias: 'g'
     }
   }
-)
+}
+);
 
 // Extract folder
-const [folder] = cli.input
+const [folder] = cli.input;
 if (!folder) {
   cli.showHelp(0);
 }
 
 // Check if folder empty
-const dir = path.resolve(folder)
+const dir = path.resolve(folder);
 if (fs.existsSync(dir) && fs.readdirSync(dir).length !== 0) {
   log.error('Folder not empty!');
   process.exit(1);
@@ -50,12 +49,12 @@ if (fs.existsSync(dir) && fs.readdirSync(dir).length !== 0) {
 
 // Create template
 create({folder, git: cli.flags.git})
-  .then(res => {
-    log.log('Deck initialized')
-    process.exit(0)
+  .then(_ => {
+    log.log('Deck initialized');
+    process.exit(0);
   })
   .catch(err => {
-    log.error('Deck initialisation failed')
-    log.error(err)
-    process.exit(1)
-  })
+    log.error('Deck initialisation failed');
+    log.error(err);
+    process.exit(1);
+  });

@@ -1,30 +1,29 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {ThemeProvider, merge} from 'theme-ui';
-import {Helmet} from 'react-helmet';
 import wrapper from './wrapper.jsx';
 import {defaultTheme, baseTheme} from '../util/theme.js';
 import DefaultLayout from './default-layout.jsx';
 import defaultComponents from './default-components.js';
 
 const GoogleFont = ({theme}) => {
-  if (!theme.googleFont) {
+  const {googleFont} = theme;
+
+  if (!googleFont) {
     return false;
   }
 
-  const {googleFont} = theme;
   if (Array.isArray(googleFont)) {
-    return (
-      <Helmet>
-        {googleFont.map((font, i) => (<link rel="stylesheet" href={font} key={i} />))}
-      </Helmet>
-    );
+      return (
+        <React.Fragment>
+          {googleFont.map((font, i) => (<link rel="stylesheet" href={font} key={i} />))}
+        </React.Fragment>
+      );
   }
 
   return (
-    <Helmet>
-      <link rel="stylesheet" href={googleFont} />
-    </Helmet>
+    <link rel="stylesheet" href={googleFont} />
   );
 };
 
@@ -36,6 +35,8 @@ const Deck = ({
   components = {},
   keyboardTarget,
   touchTarget,
+  slideNavigation = true,
+  modeNavigation = true,
   ...props
 }) => {
   // Setup theme
@@ -53,7 +54,7 @@ const Deck = ({
 
   return (
     <React.Fragment>
-      <GoogleFont theme={theme} />
+      {ReactDOM.createPortal((<GoogleFont theme={theme} />), document.head)}
 
       <ThemeProvider
         theme={theme}
@@ -61,7 +62,10 @@ const Deck = ({
           ...defaultComponents,
           DefaultLayout: DefaultLayoutWrapper,
           ...components,
-          wrapper: wrapper(DefaultLayoutWrapper, {...props, keyboardTarget, touchTarget})
+          wrapper: wrapper(
+            DefaultLayoutWrapper,
+            {...props, keyboardTarget, touchTarget, slideNavigation, modeNavigation}
+          )
         }}
       >
         {children}
@@ -94,6 +98,12 @@ Deck.propTypes = {
     PropTypes.func,
     PropTypes.shape({current: PropTypes.any})
   ]),
+
+  /** Whether or not you want to be able to navigate through the slides with the keyboard and touch actions. */
+  slideNavigation: PropTypes.bool,
+
+  /** Whether or not you want to be able to change modes with the keyboard and touch actions. */
+  modeNavigation: PropTypes.bool,
 
   /** Additional props which will be passed to the main Router of the Deck. */
   props: PropTypes.object,

@@ -14,45 +14,13 @@ const createSlideObject = (elements, wrappers = []) => {
   return {wrappers, elements: [elements]};
 };
 
-/** Remove Extract component types from slides */
-const removeExtractComponents = (extractList, shortCodeComponents) => slideObject => {
-  const elements = slideObject.elements.reduce((acc, element) => {
-    if (checkMDXPType(element, MDXPTypes.EXTRACT, shortCodeComponents)) {
-      extractList.push(element);
-      return acc;
-    }
-    return [...acc, element];
-  }, []);
-
-  return {wrappers: slideObject.wrappers, elements};
-};
-
-/** Transform slide object into a valid React Component */
-const createSlideComponent = DefaultLayout => (slideObject, key, shortCodeComponents) => {
-  const {elements, wrappers} = slideObject;
-  const wrapperHasLayout = wrappers.some(element => checkMDXPType(element, MDXPTypes.LAYOUT, shortCodeComponents));
-  let slide;
-
-  if (wrapperHasLayout) {
-    slide = elements;
-  } else if ((elements.length === 1) && checkMDXPType(elements[0], MDXPTypes.LAYOUT, shortCodeComponents)) {
-    slide = React.cloneElement(elements[0], {key: key});
-  } else {
-    slide = (<DefaultLayout key={key}>{elements}</DefaultLayout>);
-  }
-
-  return wrappers.reduceRight((children, Component) => {
-    return React.cloneElement(Component, {key: 'wrapper_' + key}, children);
-  }, slide);
-};
-
 /** Split a list of elements into a list of individual slideObjects */
 const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
   let startIndex = 0;
   return elements.reduce((acc, element, idx) => {
     if (checkMDXPType(element, MDXPTypes.WRAPPER, shortCodeComponents)) {
       if (startIndex !== idx) {
-        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)]
+        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)];
       }
 
       startIndex = idx + 1;
@@ -63,7 +31,7 @@ const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
 
     if (checkMDXPType(element, MDXPTypes.GROUP, shortCodeComponents)) {
       if (startIndex !== idx) {
-        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)]
+        acc = [...acc, createSlideObject(elements.slice(startIndex, idx), wrappers)];
       }
 
       startIndex = idx + 1;
@@ -90,6 +58,65 @@ const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
   }, []);
 };
 
+/** Remove Extract component types from slides */
+const extractComponents = (extractList, shortCodeComponents) => slideObject => {
+  const extracted = {note: [], extract: []};
+  let elements;
+
+  if ((slideObject.elements.length === 1) && checkMDXPType(slideObject.elements[0], MDXPTypes.LAYOUT, shortCodeComponents)) {
+    const children = React.Children.toArray(slideObject.elements[0].props?.children).reduce((acc, element) => {
+      if (checkMDXPType(element, MDXPTypes.EXTRACT, shortCodeComponents)) {
+        if (checkMDXPType(element, MDXPTypes.NOTE, shortCodeComponents)) {
+          extracted.note.push(element);
+        } else {
+          extracted.extract.push(element);
+        }
+
+        return acc;
+      }
+
+      return [...acc, element];
+    }, []);
+    elements = [React.cloneElement(slideObject.elements[0], {}, ...children)];
+  } else {
+    elements = slideObject.elements.reduce((acc, element) => {
+      if (checkMDXPType(element, MDXPTypes.EXTRACT, shortCodeComponents)) {
+        if (checkMDXPType(element, MDXPTypes.NOTE, shortCodeComponents)) {
+          extracted.note.push(element);
+        } else {
+          extracted.extract.push(element);
+        }
+
+        return acc;
+      }
+
+      return [...acc, element];
+    }, []);
+  }
+
+  extractList.push(extracted);
+  return {wrappers: slideObject.wrappers, elements};
+};
+
+/** Transform slide object into a valid React Component */
+const createSlideComponent = DefaultLayout => (slideObject, key, shortCodeComponents) => {
+  const {elements, wrappers} = slideObject;
+  const wrapperHasLayout = wrappers.some(element => checkMDXPType(element, MDXPTypes.LAYOUT, shortCodeComponents));
+  let slide;
+
+  if (wrapperHasLayout) {
+    slide = elements;
+  } else if ((elements.length === 1) && checkMDXPType(elements[0], MDXPTypes.LAYOUT, shortCodeComponents)) {
+    slide = React.cloneElement(elements[0], {key: key});
+  } else {
+    slide = (<DefaultLayout key={key}>{elements}</DefaultLayout>);
+  }
+
+  return wrappers.reduceRight((children, Component) => {
+    return React.cloneElement(Component, {key: 'wrapper_' + key}, children);
+  }, slide);
+};
+
 /** Higher-order Wrapper component creator */
 const wrapper = (DefaultLayout, passedProps, components) => {
   const slideCreator = createSlideComponent(DefaultLayout);
@@ -100,24 +127,18 @@ const wrapper = (DefaultLayout, passedProps, components) => {
     const children = React.Children.toArray(props.children);
 
     const extracted = [];
-    const extractor = removeExtractComponents(extracted, shortCodeComponents);
+    const extractor = extractComponents(extracted, shortCodeComponents);
 
     const slides =
       splitSlides(children, shortCodeComponents)
-        //.map((obj) => {console.log(obj); return obj;})
-        .map(extractor)
         .filter(slideObject => slideObject.elements.length > 0)
-        .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents))
-        //.map((obj) => {console.log(obj); return obj;})
-      ;
+        .map(extractor)
+        .map((slideObject, idx) => slideCreator(slideObject, `layout_${idx}`, shortCodeComponents));
 
     return (
-      <React.Fragment>
-        {extracted}
-        <DeckMode {...passedProps}>
-          {slides}
-        </DeckMode>
-      </React.Fragment>
+      <DeckMode extracted={extracted} {...passedProps}>
+        {slides}
+      </DeckMode>
     );
   };
 };

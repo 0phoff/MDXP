@@ -41,14 +41,19 @@ Release TODO lists for MDXP
   - [X] FIX: Allow 'as' property to refer to shortCodeComponents
 
 ## V0.2
-  - [ ] Core: Presenter mode
-  - [ ] Core: Notes
+  - [X] Core: Presenter mode
+  - [X] Core: Grid mode
+  - [X] Core: Notes
+  - [X] Core: Help & Keybindings pop-up
   - [X] Components: variants
-  - [ ] Webpack: Generate PDF
+  - [X] Webpack: Generate PDF
+  - [X] Webpack: rework webpack pipeline
+  - [X] Update docs
+  - [X] Update demo
+  - [X] Replace react-helmet with ReactDOM.createPortal
+  - [X] FIX Readme errors on npmjs
 
 ## V1.0
-  - [ ] Core: Grid mode
-  - [ ] Core: Help & Keybindings pop-up
   - [ ] Core: Custom Video component with different behaviour depending on the mode
   - [ ] Core: Import MDX files (If possible!)
   - [ ] Rehypex: allow code-fences to have a filename to get code from

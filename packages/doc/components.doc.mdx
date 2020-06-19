@@ -200,6 +200,58 @@ const TomatoGroup = ({children}) => (
 > unless you also provide a `/** @jsxFrag React.Fragment */` pragma.
 
 
+### Extract Components
+Extract components are taken outside of the slides and rendered separately for each slide.
+They get a `slideIndex` argument with the current slide index and a `slide` argument with the index of slide on which the component was declared.  
+This allows you to design components which could render something or perform an action on multiple slides.
+
+An example of an extract component is the [Head](/components-extract#head) component of this package.  
+This component can render elements inside of the HTML head by using ReactDOM.createPortal.  
+However, if we define metadata in the first slide of our presentation, we want this data to be there for all slides and not only for that first slide. This is why the extract components can be used, as these components will be rendered on each slide.
+
+```jsx
+import React from 'react';
+import {MDXPTypes, setMDXPType} from '@mdxp/core';
+
+const TomatoExtract = ({slideIndex, slide, children}) => {
+  // Render something based on slideIndex and slide.
+  return null;
+};
+
+export default setMDXPType(TomatoExtract, MDXPTypes.EXTRACT);
+
+
+/*
+ * Usage:
+ * <TomatoExtract>
+ * Content goes here. Note that slideIndex and slide get added automatically by MDXP
+ * </TomatoExtract>
+ */
+
+
+```
+
+### Note Components
+Note component types can be used to tell MDXP that a certain component is a note, which should only be rendered in presenter mode. 
+While the default [Note](/core-components#note) component is usually sufficient, there might be use cases where you want to create your own note components.
+
+```jsx
+import React from 'react';
+import {MDXPTypes, setMDXPType} from '@mdxp/core';
+
+const TomatoNotes = ({children}) => {
+  return (
+    <div style={{color: 'tomato'}}>
+      {children}
+    </div>
+  );
+};
+
+export default setMDXPType(TomatoNotes, MDXPTypes.NOTE);
+```
+
+---
+
 Now that you know all about custom components, all that remains to learn is building your own theme!
 
 <CTA url="/guide-theming">
@@ -207,3 +259,4 @@ Learn to Theme
 </CTA>
 
 [themeui]: https://theme-ui.com
+

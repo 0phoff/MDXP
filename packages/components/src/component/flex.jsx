@@ -24,10 +24,11 @@ const Flex = ({
   let variantValue = {};
   if ((typeof variant === 'string' || variant instanceof String)) {
     variant = 'mdxp.flex.' + variant;
-    variantValue = variant.split('.').reduce((acc, val => acc?.[val]), theme) || {};
+    variantValue = variant.split('.').reduce((acc, val) => acc?.[val], theme) || {};
   }
+
   if (sx.variant && (typeof sx.variant === 'string' || sx.variant instanceof String)) {
-    variantValue = sx.variant.split('.').reduce((acc, val => acc?.[val]), theme) || {};
+    variantValue = sx.variant.split('.').reduce((acc, val) => acc?.[val], theme) || {};
   }
 
   // Default values

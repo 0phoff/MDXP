@@ -6,8 +6,9 @@ group: API
 ---
 import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
 import Deck from '../src/components/deck.jsx'
-import Head from '../src/components/head.jsx'
+import Note from '../src/components/note.jsx'
 import Step from '../src/components/step.jsx'
+import Zoom from '../src/components/zoom.jsx'
 
 
 ## Deck
@@ -31,38 +32,69 @@ ReactDOM.render(
 ---
 
 
-## Head
-This component allows you to set metadata of your presentation inside of your MDX file.
-It uses [React-Helmet](https://github.com/nfl/react-helmet) in order to insert your tags at runtime.
-
-> __NOTE:__  
-> This component needs to be a direct child of your slide and cannot be nested inside other components.
-> At runtime, all the Head components get filtered out of your slides and placed at the top of the presentation.
+## Note
+This component can be used to add notes to certain slides, which can be used in presenter mode.
 
 ### Properties
 <Arguments>
 {{
+  name: 'start',
+  type: 'number',
+  desc: 'On which stepIndex to show this note.',
+  default: '0'
+}}
+{{
+  name: 'end',
+  type: 'number',
+  desc: 'Until which stepIndex to show this note. If the number is smaller or equal to zero, we start counting backwards from the last step of the slide.',
+  default: '0'
+}}
+{{
   name: 'children',
   type: 'node',
   required: false,
-  desc: 'Valid elements that can be set in the HTML Head section through react-helmet.'
 }}
 </Arguments>
 
 ### Examples
 ```md
-<Head>
-<title>My Awesome Presentation</tite>
-<meta name="description" content="This is my awesome web based presentation" />
-<meta name="author" content="0phoff" />
-<meta name="keywords" content="Presentations, Slides, Deck, React, Web, HTML, CSS, JavaScript" />
-</Head>
-
 # SLIDE 1
 
-Content
+This is the first slide.
+
+<Note>
+
+These are notes that are only shown in presenter mode.  
+They can help you not to forget what you need to say.
+
+- You can also use markdown syntax inside of here!
+- This will work as __intended__
+
+</Note>
 
 ---
+
+# SLIDE 2
+
+<Step>
+
+- This slide contains 3 steps
+- Step 2
+- Step 3
+
+</Step>
+
+<Note end="-1">
+
+This note will be removed for the last step of this slide.
+
+</Note>
+
+<Note start="1">
+
+This note will only show with the second step.
+
+</Note>
 ```
 
 ---
@@ -148,3 +180,15 @@ Here we show a paragraph.
 
 </Step>
 ```
+
+---
+
+
+## Zoom
+Zoom the content inside of it to a fixed aspect ratio with css scaling.
+
+This component has not much to do with presentations, but is used throughout the core codebase and might be useful to use.  
+One of its use cases is to wrap your presentation, so that you keep the same look of your presentation on small displays.
+
+### Properties
+<Arguments of={Zoom} />

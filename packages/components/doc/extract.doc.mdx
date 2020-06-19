@@ -1,0 +1,56 @@
+---
+name: Extract
+menu: "@mdxp/components"
+route: components-extract
+group: API
+---
+import Arguments from 'gatsby-theme-docz/src/components/arguments.jsx'
+import {Head} from '../src/extract'
+
+
+# Extract Components
+This page contains the documentation for all Extract Components that the `@mdxp/components` package has to offer.
+
+---
+
+
+## Head
+This component allows you to set metadata of your presentation inside of your MDX file.
+It uses `ReactDom.createPortal` in order to insert your tags at runtime.
+
+> __NOTE__  
+> You cannot use this component to overwrite existing tags like `<title>` if they already exist on the page, as valid HTML only allows for one such tag in the HTML head.
+> If you need such behaviour, you can create your own extract component that uses eg. [react-helmet](https://github.com/nfl/react-helmet), but as it is quite a big dependency, we decided to create this "dumber" version instead.
+
+
+### Properties
+<Arguments>
+{{
+  name: 'length',
+  type: 'number',
+  required: false,
+  desc: 'Optional length that tells for how many slides this Head should be rendered.'
+}}
+{{
+  name: 'children',
+  type: 'node',
+  required: false,
+  desc: 'Valid elements that can be set in the HTML Head section.'
+}}
+</Arguments>
+
+### Examples
+```md
+<Head>
+<title>My Awesome Presentation</tite>
+<meta name="description" content="This is my awesome web based presentation" />
+<meta name="author" content="0phoff" />
+<meta name="keywords" content="Presentations, Slides, Deck, React, Web, HTML, CSS, JavaScript" />
+</Head>
+
+# SLIDE 1
+
+Content
+
+---
+```

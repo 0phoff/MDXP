@@ -11,9 +11,10 @@ export default {
     'Syntax',
     'Components',
     'Theming',
+    'Present',
     'Examples',
     '@mdxp/core',
-    {name: '@mdxp/components', menu: ['Components', 'Layouts', 'Wrappers']},
+    {name: '@mdxp/components', menu: ['Components', 'Extract', 'Layouts', 'Wrappers']},
     '@mdxp/rehypex-plugins'
   ],
   themeConfig: {

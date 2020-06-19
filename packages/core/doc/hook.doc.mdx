@@ -138,8 +138,8 @@ This hooks returns an object with a number of useful navigation functions.
 }}
 {{
   name: 'navigate',
-  type: '(slide:number, step=0:Integer, replace=false:Boolean) => void',
-  desc: 'Navigate to the specified slide and step, deciding whether to replace history or add a new page to it.'
+  type: '(slide:number, step=0:Integer, mode=currentMode:deckMode, replace=false:Boolean) => void',
+  desc: 'Navigate to the specified slide and step (and mode), deciding whether to replace history or add a new page to it.'
 }}
 {{
   name: 'setMode',

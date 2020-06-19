@@ -1,12 +1,18 @@
 import MDXPTypes from './mdxp-types.js';
-import createGroup from '../components/group.jsx';
 
+const createGroup = func => {
+  const Group = ({children}) => children;
+  Group.MDXPType = MDXPTypes.GROUP;
+  Group.MDXPGroupFunc = func;
+  return Group;
+};
 
 export const setMDXPType = (Component, ...types) => {
   if (types.includes(MDXPTypes.GROUP)) {
     if (types.length > 1) {
-      throw 'Cannot be MDXP Group type together with other types';
+      throw new Error('Cannot be MDXP Group type together with other types');
     }
+
     return createGroup(Component);
   }
 

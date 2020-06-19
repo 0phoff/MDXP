@@ -1,72 +1,108 @@
 import {useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
-import {useSetRoot} from './use-root.js';
-import {
-  next,
-  nextSlide,
-  previous,
-  previousSlide,
-  setMode as _setMode
-} from '../util/navigation.js';
+import useRoot from './use-root.js';
+import useNavigation from './use-navigation.js';
+import deckModes from '../util/deck-modes.js';
 
 const keys = {
-  right: 39,
+  esc: 27,
+  space: 32,
   left: 37,
   up: 38,
+  right: 39,
   down: 40,
-  space: 32,
-  p: 80,
-  o: 79,
   g: 71,
-  esc: 27,
-  pageUp: 33,
-  pageDown: 34
+  h: 72,
+  n: 78,
+  o: 79,
+  p: 80
 };
 
-const useKeyboard = (target, deck, setDeck) => {
-  const history = useHistory();
-  const [root, _setRoot] = useSetRoot();
+const useKeyboard = (target, slideNav = true, modeNav = true, setHelp = null) => {
+  const root = useRoot();
+  const {next, nextSlide, previous, previousSlide, setMode} = useNavigation();
 
   const handleKeyboard = e => {
-    const {metaKey, ctrlKey, shiftKey, _altKey} = e;
+    const {metaKey, ctrlKey, shiftKey, altKey} = e;
     if (metaKey || ctrlKey) {
       return;
     }
 
-    switch (e.keyCode) {
-    case keys.left:
-    case keys.up:
-    case keys.pageUp:
-      if (shiftKey) {
-        previousSlide(history, root, deck, setDeck);
-      } else {
-        previous(history, root, deck, setDeck);
+    if (modeNav) {
+      if (altKey) {
+        switch (e.keyCode) {
+        case keys.g:
+          if (root.mode === deckModes.GRID) {
+            setMode(root.previousMode);
+          } else {
+            setMode(deckModes.GRID);
+          }
+
+          return;
+
+        case keys.n:
+          if (root.mode === deckModes.NORMAL) {
+            setMode(root.previousMode);
+          } else {
+            setMode(deckModes.NORMAL);
+          }
+
+          return;
+
+        case keys.p:
+          if (root.mode === deckModes.PRESENTER) {
+            setMode(root.previousMode);
+          } else {
+            setMode(deckModes.PRESENTER);
+          }
+
+          return;
+
+        default:
+          break;
+        }
       }
+    }
 
-      break;
+    if (slideNav) {
+      switch (e.keyCode) {
+      case keys.left:
+      case keys.up:
+      case keys.pageUp:
+        if (shiftKey) {
+          previousSlide();
+        } else {
+          previous();
+        }
 
-    case keys.right:
-    case keys.down:
-    case keys.pageDown:
-      if (shiftKey) {
-        nextSlide(history, root, deck, setDeck);
-      } else {
-        next(history, root, deck, setDeck);
+        return;
+
+      case keys.right:
+      case keys.down:
+      case keys.pageDown:
+        if (shiftKey) {
+          nextSlide();
+        } else {
+          next();
+        }
+
+        return;
+
+      case keys.space:
+        if (shiftKey) {
+          previous();
+        } else {
+          next();
+        }
+
+        return;
+
+      default:
+        break;
       }
+    }
 
-      break;
-
-    case keys.space:
-      if (shiftKey) {
-        previous(history, root, deck, setDeck);
-      } else {
-        next(history, root, deck, setDeck);
-      }
-
-      break;
-
-    default:
-      break;
+    if (altKey && e.keyCode === keys.h && setHelp) {
+      setHelp(s => !s);
     }
   };
 
@@ -81,7 +117,7 @@ const useKeyboard = (target, deck, setDeck) => {
         currentTarget.removeEventListener('keydown', handleKeyboard);
       }
     };
-  }, [root, deck, target]);
+  }, [root, target, slideNav, modeNav, next, nextSlide, previous, previousSlide, setMode]);
 };
 
 export default useKeyboard;

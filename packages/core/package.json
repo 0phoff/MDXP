@@ -25,14 +25,16 @@
       "require": "./dist/core.js"
     }
   },
+  "sideEffects": false,
   "scripts": {
-    "start": "microbundle watch --no-compress --jsx React.createElement -o dist",
-    "build": "microbundle build --no-compress --jsx React.createElement -o dist",
+    "start": "microbundle watch --jsx React.createElement --no-compress -o dist",
+    "build": "microbundle build --jsx React.createElement --no-compress -o dist",
     "clean": "rm -rf dist/*"
   },
   "peerDependencies": {
     "@mdx-js/react": "^1.5.8",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "theme-ui": "^0.3.1"
   },
   "devDependencies": {
@@ -40,7 +42,6 @@
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react-helmet": "^6.0.0",
     "react-router-dom": "^5.1.2"
   },
   "publishConfig": {

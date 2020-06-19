@@ -31,8 +31,8 @@ const MDXPSideLayout = ({children, split=1, showSlideNum=true}) => {
           px='2'
           sx={{
             '& h2': {
-              marginBlockStart: ['0.3em', '0.83em', '0.83em'],
-              marginBlockEnd: ['0.3em', '0.83em', '0.83em'],
+              marginBlockStart: ['0.83em', '0.3em', '0.83em', '0.83em'],
+              marginBlockEnd: ['0.83em', '0.3em', '0.83em', '0.83em'],
             },
             '& *:first-child': {
               mt: 1
@@ -55,7 +55,7 @@ const MDXPSideLayout = ({children, split=1, showSlideNum=true}) => {
       <Place bottom='0' sx={{width: '100%', zIndex: 1}}>
         <Styling
           sx={{
-            height: [t => t.fontSizes.small, t => t.fontSizes.large],
+            height: [t => t.fontSizes.large, t => t.fontSizes.small, t => t.fontSizes.large, t => t.fontSizes.large],
             position: 'absolute',
             bottom: 0,
             ml: 2,
@@ -72,7 +72,7 @@ const MDXPSideLayout = ({children, split=1, showSlideNum=true}) => {
           <Block
             sx={{
               variant: 'text.subtitle',
-              fontSize: ['small', 'large'],
+              fontSize: ['large', 'large', 'small', 'large'],
               float: 'right',
               lineHeight: '100%',
               mr: 2,

@@ -1,8 +1,9 @@
 const MDXPTypes = {
-  NONE:     0b00001,
-  LAYOUT:   0b00010,
-  WRAPPER:  0b00100,
-  GROUP:    0b01000,
-  EXTRACT:  0b10000,
+  NONE: 0b000001,
+  LAYOUT: 0b000010,
+  WRAPPER: 0b000100,
+  GROUP: 0b001000,
+  EXTRACT: 0b010000,
+  NOTE: 0b110000
 };
 export default MDXPTypes;

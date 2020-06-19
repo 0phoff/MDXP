@@ -55,13 +55,22 @@ Of course, nothing stops your from also modifying the _index.html_ or _index.jsx
 
 The project also comes with a few commands to create your presentation:
 
-- `npm run start` sets up a development server which will rebuild your presentation whenever you make changes.
-- `npm run build:web` will create a build from your presentation, which is optimised for serving online. The resulting build can be found in _dist/web_.
-- `npm run build:onepage` will create a build which is optimised for presenting. Most data will be consolidated into a single _index.html_, with only large images, videos or other data files added separately. You can find this build in the _dist/onepage_ folder and should be able to run your presentation in any (modern) browser by just opening the _index.html_ file.
-- `npm run build` creates both web and onepage versions of your presentation with a single command.
-- `npm run clean:web`, `npm run clean:onepage` and `npm run clean` respectively clean your _dist/web_, _dist/onepage_ or both folders.
+- `npm run start`  
+  This sets up a development server which will rebuild your presentation whenever you make changes.
+- `npm run build:web`  
+  This will create a build from your presentation, which is optimised for serving online. The resulting build can be found in _dist/web_.
+- `npm run build:onepage`  
+  This will create a build which is optimised for presenting. Most data will be consolidated into a single _index.html_, with only large images, videos or other data files added separately. You can find this build in the _dist/onepage_ folder and should be able to run your presentation in any (modern) browser by just opening the _index.html_ file.
+- `npm run build:pdf`  
+  This will create a pdf from your presentation, which you can find in _dist/presentation.pdf_. Note that you first need to run `npm run build:onepage`, as the pdf is generated from this build.
+- `npm run build`  
+  This command creates both web, onepage and pdf versions of your presentation with a single command.
+- `npm run clean:web`, `npm run clean:onepage`, `npm run clean:pdf` and `npm run clean`  
+  These commands clean up the various files of the different build commands.
+- `npm run analyze:web`  
+  This will analyze the javascript bundle file of your web bundle with webpack-bundle-analyzer. Note that you first need to run `npm run build:web` to generate the bundle and statistics file.
 
-If you need to modify or extend the Webpack build pipeline, you can do so by editing the _webpack.config.js_ or _webpack.onepage.js_ files, in order to modify the web or onepage builds.
+If you need to modify or extend the Webpack build pipeline, you can do so by editing the _webpack.config.js_ file.
 
 <CTA url="/guide-syntax">
 Write your presentation

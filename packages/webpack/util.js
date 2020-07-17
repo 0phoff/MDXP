@@ -41,14 +41,14 @@ const create = async ({folder, git = false}) => {
   // Create dirs
   const dirname = path.resolve(folder);
   const name = path.basename(dirname);
-  fs.ensureDirSync(name);
-  fs.ensureDirSync(name + '/dist/web');
-  fs.ensureDirSync(name + '/dist/onepage');
+  fs.ensureDirSync(dirname);
+  fs.ensureDirSync(dirname + '/dist/web');
+  fs.ensureDirSync(dirname + '/dist/onepage');
 
   // Get template
   log.log('Getting template');
   getTar(Object.assign({}, {
-    name,
+    dirname,
     user: '0phoff',
     repo: 'MDXP',
     path: 'packages/webpack/template'

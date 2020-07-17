@@ -48,7 +48,7 @@ const create = async ({folder, git = false}) => {
   // Get template
   log.log('Getting template');
   getTar(Object.assign({}, {
-    dirname,
+    name: dirname,
     user: '0phoff',
     repo: 'MDXP',
     path: 'packages/webpack/template'

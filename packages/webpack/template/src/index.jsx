@@ -2,7 +2,7 @@
 import {jsx} from 'theme-ui';
 import ReactDOM from 'react-dom';
 import Deck from '@mdxp/core';
-import components from '@mdxp/components';
+import * as components from '@mdxp/components';
 import MDXPresentation from './presentation.mdx';
 
 ReactDOM.render(

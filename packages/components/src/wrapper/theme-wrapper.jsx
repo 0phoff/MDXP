@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import {ThemeProvider} from 'theme-ui';
 import {MDXPTypes, setMDXPType} from '@mdxp/core';
 
-const ThemeWrapper = ({theme, children}) => (
-  <ThemeProvider theme={theme}>
+const ThemeWrapper = ({newTheme, children}) => (
+  <ThemeProvider theme={newTheme}>
     {children}
   </ThemeProvider>
 );
 
 ThemeWrapper.propTypes = {
   /** New theme that gets merged into the existing theme. Use a functional theme to avoid deep merging the themes. */
-  theme: PropTypes.oneOfType([
+  newTheme: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.func
   ]).isRequired,

@@ -9,7 +9,7 @@ import {
   wrapper,
   Step
 } from '@mdxp/core';
-import mdxpComponents from '@mdxp/components';
+import * as mdxpComponents from '@mdxp/components';
 
 const CodeHighlight = ({children, language, className: outerClassName}) => {
   const theme = useConfig().themeConfig.prism.light;

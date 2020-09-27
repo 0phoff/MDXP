@@ -53,7 +53,7 @@ const HeaderLayout = ({children, sx = {}, sxHeader = {}, Footer, ...props}) => {
   let header;
   if (children.length >= 1) {
     const headerType = getComponentType(children[0]);
-    if (headers.has(getComponentType(children[0]))) {
+    if (headers.has(headerType)) {
       header = cloneElement(children[0], {
         sx: {...children[0].props.sx, ...spacing[headerType], ...sxHeader}
       });

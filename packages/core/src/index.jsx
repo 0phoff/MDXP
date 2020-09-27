@@ -3,6 +3,7 @@ export {default} from './components/deck.jsx';
 // UTIL
 export {default as defaultTheme} from './util/theme.js';
 export {default as deckModes} from './util/deck-modes.js';
+export {default as getComponentType} from './util/component-type.js';
 export {default as MDXPTypes} from './util/mdxp-types.js';
 export {
   setMDXPType,

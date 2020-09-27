@@ -15,7 +15,7 @@ const rehypeKatex = require('rehype-katex');
 // Variables
 const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
 const ANALYZE = Boolean(process.env.ANALYZE) || false;
-const MDXP_MODE = process.env.MDXP_MODE.toLowerCase() || 'web';
+const MDXP_MODE = (process.env.MDXP_MODE || 'web').toLowerCase();
 
 // Mode Config
 let cfg = null;

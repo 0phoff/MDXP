@@ -15,9 +15,9 @@
     "create-webpack": "cli.js"
   },
   "dependencies": {
-    "chalk": "^4.0.0",
-    "fs-extra": "^9.0.0",
-    "meow": "^6.1.1",
+    "chalk": "^4.1.0",
+    "fs-extra": "^9.0.1",
+    "meow": "^7.1.1",
     "yarn-or-npm": "^3.0.1"
   },
   "publishConfig": {

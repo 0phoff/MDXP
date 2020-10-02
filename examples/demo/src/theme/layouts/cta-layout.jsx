@@ -11,16 +11,16 @@ import {ReactComponent as Website} from '../assets/social-website.svg';
 const MDXPCtaLayout = () => (
   <BlankLayout
     sx={{
-      variant: 'gradient.yellow',
+      variant: 'gradient.yellow'
     }}
   >
     <Grid
       width="100%" height="38%"
       px="3" mt="-100px"
-      gridTemplateColumns={["2fr 1fr", "4fr 3fr", "2fr 1fr"]}
+      gridTemplateColumns={['2fr 1fr', '4fr 3fr', '2fr 1fr']}
       gridTemplateRows="5fr 2fr"
-      gridTemplateAreas={["cta logo", "buttons logo"]}
-      gridGap={["100px", "25px", "50px", "100px"]}
+      gridTemplateAreas={['cta logo', 'buttons logo']}
+      gridGap={['100px', '25px', '50px', '100px']}
     >
       <Block
         gridArea="cta"

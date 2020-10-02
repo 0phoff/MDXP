@@ -31,6 +31,6 @@ Note.propTypes = {
   end: PropTypes.number,
 
   children: PropTypes.node
-}
+};
 
 export default setMDXPType(Note, MDXPTypes.NOTE);

@@ -15,11 +15,11 @@ const GoogleFont = ({theme}) => {
   }
 
   if (Array.isArray(googleFont)) {
-      return (
-        <React.Fragment>
-          {googleFont.map((font, i) => (<link rel="stylesheet" href={font} key={i} />))}
-        </React.Fragment>
-      );
+    return (
+      <React.Fragment>
+        {googleFont.map((font, i) => (<link rel="stylesheet" href={font} key={i} />))}
+      </React.Fragment>
+    );
   }
 
   return (

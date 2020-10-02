@@ -11,7 +11,7 @@ const Extracted = () => {
       {
         extracted.map((slideExtracted, idx) => (
           slideExtracted.extract.map(e => (
-            React.cloneElement(e, {slideIndex, slide:idx})
+            React.cloneElement(e, {slideIndex, slide: idx})
           ))
         ))
       }

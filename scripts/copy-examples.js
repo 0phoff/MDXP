@@ -9,7 +9,6 @@ const copyExampleToBuild = (source, destination) => {
     });
 };
 
-
 async function copyExamples() {
   const examples = [
     ['./examples/demo/dist/web', './docs/examples/demo']

@@ -129,7 +129,7 @@ Zoom.propTypes = {
 
   /** If given, the target width/height is multiplied with this element's size. */
   sizeReference: PropTypes.oneOfType([
-    PropTypes.func, 
+    PropTypes.func,
     PropTypes.shape({current: PropTypes.any})
   ]),
 

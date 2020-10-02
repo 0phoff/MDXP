@@ -1,35 +1,34 @@
 export default {
   googleFont: 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;1,400&display=swap',
 
-
   /* Style Definitions */
   fonts: {
     body: 'Roboto, sans-serif',
-    mono: '"Roboto Mono", monospace',
+    mono: '"Roboto Mono", monospace'
   },
 
   fontSizes: {
-    xxsmall:    '1.2rem',
-    xsmall:     '1.5rem',   // 24px
-    small:      '1.8rem',   // 28.8px
-    base:       '2.25rem',  // 36px
-    large:      '3rem',     // 48px
-    xlarge:     '4.5rem',   // 72px
-    xxlarge:    '6rem',     // 96px
-    xxxlarge:   '10rem',    // 160px
+    xxsmall: '1.2rem',
+    xsmall: '1.5rem', // 24px
+    small: '1.8rem', // 28.8px
+    base: '2.25rem', // 36px
+    large: '3rem', // 48px
+    xlarge: '4.5rem', // 72px
+    xxlarge: '6rem', // 96px
+    xxxlarge: '10rem' // 160px
   },
 
   fontWeights: {
     default: '400',
     light: '300',
-    strong: '500',
+    strong: '500'
   },
 
   lineHeights: {
     default: '150%',
     mono: '160%',
     title: '140%',
-    small: '100%',
+    small: '100%'
   },
 
   space: [0, 10, 25, 50, 75, 100, 150, 250],
@@ -56,7 +55,7 @@ export default {
     secondary: '#F26419',
     accent: '#33658A',
     highlight: '#FFAC00',
-    muted: '#828282',
+    muted: '#828282'
   },
 
   breakpoints: ['0px', '1150px', '1500px'],
@@ -80,7 +79,7 @@ export default {
       lineHeight: 'title',
       textTransform: 'uppercase',
       fontWeight: 'default',
-      fontSize: ['xxlarge', 'xlarge', 'xxlarge'],
+      fontSize: ['xxlarge', 'xlarge', 'xxlarge']
     },
 
     subtitle: {
@@ -89,7 +88,7 @@ export default {
       fontWeight: 'light',
       textTransform: 'lowercase',
       fontVariant: 'small-caps',
-      fontSize: ['xlarge', 'large', 'xlarge'],
+      fontSize: ['xlarge', 'large', 'xlarge']
     }
   },
 
@@ -102,12 +101,11 @@ export default {
     },
     yellow: {
       background: t => `linear-gradient(270deg, ${t.colors.MDXPYellow} 0%, ${t.colors.MDXPOrange} 250%)`
-    },
+    }
   },
 
-
   /* Style Applications */
-  styles : {
+  styles: {
     root: {
       bg: 'black'
     },
@@ -138,7 +136,7 @@ export default {
 
   mdxp: {
     slide: {
-      variant: 'text.main',
+      variant: 'text.main'
     }
   }
 };

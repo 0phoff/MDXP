@@ -29,7 +29,7 @@ export default {
         marginBottom: 3,
         marginLeft: 5,
         '@media screen and (max-width: 920px)': {
-          marginLeft: 4,
+          marginLeft: 4
         }
       },
       ul: {
@@ -40,7 +40,7 @@ export default {
         marginBottom: 3,
         marginLeft: 5,
         '@media screen and (max-width: 920px)': {
-          marginLeft: 4,
+          marginLeft: 4
         }
       }
     }

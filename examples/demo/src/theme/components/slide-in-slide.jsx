@@ -1,18 +1,17 @@
 /** @jsx jsx */
 import {useRef, useLayoutEffect} from 'react';
 import {jsx} from 'theme-ui';
-import {BlankLayout} from '@mdxp/components';
 
 const updateScale = (wrapper, element) => () => {
-  const scale = Math.min( 
-    (wrapper.offsetWidth) / element.offsetWidth, 
-    (wrapper.offsetHeight) / element.offsetHeight 
+  const scale = Math.min(
+    (wrapper.offsetWidth) / element.offsetWidth,
+    (wrapper.offsetHeight) / element.offsetHeight
   );
 
-  element.style = `transform: scale(${scale})`
+  element.style = `transform: scale(${scale})`;
 };
 
-const SlideInSlide = ({children, sx={}}) => {
+const SlideInSlide = ({children, sx = {}}) => {
   const wrapper = useRef();
   const scaleElement = useRef();
 

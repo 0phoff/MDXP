@@ -9,7 +9,7 @@ const Head = ({
   length,
   children
 }) => {
-  if ((slideIndex < slide) || (length !== undefined && (slide+length <= slideIndex))) {
+  if ((slideIndex < slide) || (length !== undefined && (slide + length <= slideIndex))) {
     return null;
   }
 
@@ -31,7 +31,7 @@ Head.propTypes = {
   children: PropTypes.node,
 
   /** Optional length that tells for how many slides this Head should be rendered. */
-  length: PropTypes.number,
+  length: PropTypes.number
 };
 
 export default setMDXPType(Head, MDXPTypes.EXTRACT);

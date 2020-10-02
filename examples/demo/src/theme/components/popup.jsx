@@ -6,7 +6,7 @@ import {Place} from '@mdxp/components';
 
 // Pop-up message that comes after Xms of inactivity on a certain step.
 // USE SPARINGLY as it is quite annoying
-const Popup = ({children, time=5000, step=0}) => {
+const Popup = ({children, time = 5000, step = 0}) => {
   const {stepIndex, mode} = useDeck();
   const [showPopup, setPopup] = useState(false);
   const style = (showPopup && (step === stepIndex) && (mode === deckModes.NORMAL)) ? {
@@ -24,6 +24,7 @@ const Popup = ({children, time=5000, step=0}) => {
       const timer = setTimeout(() => setPopup(true), time);
       return () => clearTimeout(timer);
     }
+
     setPopup(false);
   });
 
@@ -32,7 +33,7 @@ const Popup = ({children, time=5000, step=0}) => {
       bottom="15px"
       sx={{
         ...style,
-        bg: t => t.colors.MDXPYellow.slice(0, -1) + '22' + ')',
+        bg: t => t.colors.MDXPYellow.slice(0, -1) + '22)',
         padding: 2,
         paddingLeft: t => t.space[3] - t.space[1],
         borderLeftWidth: t => t.space[1],
@@ -41,7 +42,7 @@ const Popup = ({children, time=5000, step=0}) => {
         borderRadius: '10px',
         '& p': {my: 0},
         fontSize: 'xsmall',
-        lineHeight: '140%',
+        lineHeight: '140%'
       }}
     >
       {children}

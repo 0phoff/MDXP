@@ -1,7 +1,7 @@
 import React from 'react';
 import {Block} from '@mdxp/components';
 
-const Card = ({children, sx={}, ...props}) => (
+const Card = ({children, sx = {}, ...props}) => (
   <Block
     sx={{
       p: 2,

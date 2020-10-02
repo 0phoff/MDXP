@@ -38,14 +38,14 @@ if (MDXP_MODE === 'onepage') {
     inlineImageLimit: 10485760,
     plugins: [
       new InlineChunkHtmlPlugin(HtmlWebPackPlugin, [/.(js|css)$/])
-    ],
+    ]
   };
 } else {
   cfg = {
     output: {
       path: path.resolve(__dirname, 'dist/web'),
       filename: 'main.js',
-      publicPath: PUBLIC_PATH,
+      publicPath: PUBLIC_PATH
     },
     babel: {
       presets: [
@@ -57,7 +57,7 @@ if (MDXP_MODE === 'onepage') {
       ]
     },
     inlineImageLimit: 8192,
-    plugins: [],
+    plugins: []
   };
 }
 
@@ -65,7 +65,7 @@ if (ANALYZE) {
   cfg.plugins.push(
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
-      generateStatsFile: true,
+      generateStatsFile: true
     })
   );
 }

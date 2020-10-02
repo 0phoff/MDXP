@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import {jsx} from 'theme-ui';
 
-const SocialLink = ({logo: Logo, href, sx={}}) => (
+const SocialLink = ({logo: Logo, href, sx = {}}) => (
   <a
     href={href}
     target="_blank"
+    rel="noreferrer"
     sx={{
       height: '100px',
       width: 'auto',

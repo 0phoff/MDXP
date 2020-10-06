@@ -110,6 +110,7 @@ const useKeyboard = (target, slideNav = true, modeNav = true, setHelp = null) =>
     const currentTarget = (target && target.hasOwnProperty('current')) ? target.current : target;
     if (currentTarget) {
       currentTarget.addEventListener('keydown', handleKeyboard);
+      currentTarget.focus();
     }
 
     return () => {

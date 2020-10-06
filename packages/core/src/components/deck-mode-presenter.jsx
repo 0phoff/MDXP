@@ -23,7 +23,7 @@ const PresenterMode = ({
   useSetMode(deckModes.PRESENTER);
 
   return (
-    <div ref={element} tabIndex={-1} onMouseDown={e => e.preventDefault()} style={{width: '100%', height: '100%'}}>
+    <div ref={element} tabIndex="-1" style={{width: '100%', height: '100%'}}>
       <Routing>
         <DeckState>
           <Extracted />

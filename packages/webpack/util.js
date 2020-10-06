@@ -5,6 +5,7 @@ const exec = require('child_process').execSync;
 const yon = require('yarn-or-npm');
 const fs = require('fs-extra');
 const log = require('./log.js');
+const pkg = require('./package.json');
 
 // Code stolen and adapted from Initit
 const install = () => {
@@ -18,8 +19,8 @@ const getTar = ({
   path = '',
   name
 }) => {
-  const url = `https://codeload.github.com/${user}/${repo}/tar.gz/master`;
-  const cmd = `curl ${url} | tar -xz -C ${name} --strip=4 ${repo}-master/${path}`;
+  const url = `https://codeload.github.com/${user}/${repo}/tar.gz/@mdxp/create-webpack@${pkg.version}`;
+  const cmd = `curl ${url} | tar -xz -C ${name} --strip=4 ${repo}--mdxp-create-webpack-${pkg.version}/${path}`;
   exec(cmd, {stdio: 'inherit'});
 };
 

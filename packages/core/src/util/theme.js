@@ -12,6 +12,7 @@ export const baseTheme = {
   },
   styles: {
     root: {
+      bg: 'black',
       fontFamily: 'system-ui, sans-serif'
     },
     img: {

@@ -20,6 +20,8 @@ const Slide = ({
           overflow: 'hidden',
           position: 'relative',
           boxSizing: 'border-box',
+          color: 'text',
+          bg: 'background',
           variant: 'mdxp.slide',
           ...sx
         }}

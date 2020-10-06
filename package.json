@@ -24,8 +24,8 @@
     "docz:build": "docz build && yarn docz:examples",
     "docz:clean": "docz clean && rm -rf .docz && rm -rf docs",
     "docz:examples": "yarn examples:build && node ./scripts/copy-examples.js",
-    "publish": "yarn clean && yarn build && lerna version && lerna publish from-git && yarn publish:docs",
-    "publish:docs": "yarn docz:clean && yarn docz:build && echo 'Commit documentation'"
+    "pub": "yarn clean && yarn build && lerna version && lerna publish from-git && yarn publish:docs",
+    "pub:docs": "yarn docz:clean && yarn docz:build && echo 'Commit documentation'"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

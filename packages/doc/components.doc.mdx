@@ -151,7 +151,7 @@ const TomatoWrapper = ({children}) => (
   </ThemeProvider>
 );
 
-export default setMDXPType(ThemeWrapper, MDXPTypes.WRAPPER);
+export default setMDXPType(TomatoWrapper, MDXPTypes.WRAPPER);
 ```
 
 The example above is again quite pointless, as you can already achieve this by using the [ThemeWrapper](/components-wrappers#themewrapper) component, but hopefully shows you how to create your own wrappers.
@@ -191,6 +191,8 @@ const TomatoGroup = ({children}) => (
     </TomatoWrapper>
   </React.Fragment>
 );
+
+export default setMDXPType(TomatoGroup, MDXPTypes.GROUP);
 ```
 
 > __NOTE__  

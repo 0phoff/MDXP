@@ -3,7 +3,7 @@ import {useMDXComponents} from '@mdx-js/react';
 import DeckMode from './deck-mode.jsx';
 import getComponentType from '../util/component-type.js';
 import MDXPTypes from '../util/mdxp-types.js';
-import {checkMDXPType} from '../util/mdxp-type-util.jsx';
+import {checkMDXPType, getMDXPGroupFunc} from '../util/mdxp-type-util.jsx';
 
 /** Create slide object */
 const createSlideObject = (elements, wrappers = []) => {
@@ -35,7 +35,7 @@ const splitSlides = (elements, shortCodeComponents, wrappers = []) => {
       }
 
       startIndex = idx + 1;
-      const func = element.props.originalType.MDXPGroupFunc;
+      const func = getMDXPGroupFunc(element, shortCodeComponents);
       let children = React.Children.toArray(func(element.props));
       if (children.length === 1 && (children[0].type === React.Fragment)) {
         children = React.Children.toArray(children[0].props.children);

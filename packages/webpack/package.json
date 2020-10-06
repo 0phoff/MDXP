@@ -1,6 +1,6 @@
 {
   "name": "@mdxp/create-webpack",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Init template for MDXP with Webpack",
   "private": false,
   "repository": {

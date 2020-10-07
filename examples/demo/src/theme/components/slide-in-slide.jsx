@@ -1,28 +1,21 @@
 /** @jsx jsx */
 import {useRef, useLayoutEffect} from 'react';
 import {jsx} from 'theme-ui';
-
-const updateScale = (wrapper, element) => () => {
-  const scale = Math.min(
-    (wrapper.offsetWidth) / element.offsetWidth,
-    (wrapper.offsetHeight) / element.offsetHeight
-  );
-
-  element.style = `transform: scale(${scale})`;
-};
+import {useResizeObserver} from '@mdxp/core';
 
 const SlideInSlide = ({children, sx = {}}) => {
-  const wrapper = useRef();
+  const [wrapper, wrapperWidth, wrapperHeight] = useResizeObserver();
   const scaleElement = useRef();
 
   useLayoutEffect(() => {
-    if (wrapper.current && scaleElement.current) {
-      const updater = updateScale(wrapper.current, scaleElement.current);
-      updater();
-      window.addEventListener('resize', updater);
-      return () => window.removeEventListener('resize', updater);
+    if (wrapperWidth && wrapperHeight && scaleElement.current) {
+      const scale = Math.min(
+        wrapperWidth / scaleElement.current.offsetWidth,
+        wrapperHeight / scaleElement.current.offsetHeight
+      );
+      scaleElement.current.style = `transform: scale(${scale})`;
     }
-  }, [wrapper, scaleElement]);
+  }, [wrapperWidth, wrapperHeight, scaleElement]);
 
   return (
     <div

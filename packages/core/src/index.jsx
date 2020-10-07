@@ -16,6 +16,7 @@ export {default as useRoot} from './hooks/use-root.js';
 export {default as useDeck} from './hooks/use-deck.js';
 export {default as useStep} from './hooks/use-step.js';
 export {default as useNavigation} from './hooks/use-navigation.js';
+export {default as useResizeObserver} from './hooks/use-resize-observer.js';
 
 // COMPONENTS
 export {default as Deck} from './components/deck.jsx';

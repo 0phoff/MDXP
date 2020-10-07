@@ -2,6 +2,7 @@
 import {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {jsx} from 'theme-ui';
+import useResizeObserver from '../hooks/use-resize-observer.js';
 
 const isNumber = value => (value !== null) && !isNaN(value);
 
@@ -39,44 +40,41 @@ const Zoom = ({
   sx = {},
   ...props
 }) => {
-  const wrapperElement = useRef();
   const scaleElement = useRef();
+  const [wrapperElement, wrapperWidth, wrapperHeight] = useResizeObserver();
 
-  const updateScale = () => {
-    if (wrapperElement.current && scaleElement.current) {
+  useEffect(() => {
+    if (wrapperWidth && wrapperHeight && scaleElement.current) {
       if (
         (!isNumber(maxWidth) && !isNumber(maxHeight)) ||
-        (isNumber(maxWidth) && (wrapperElement.current.offsetWidth <= maxWidth)) ||
-        (isNumber(maxHeight) && (wrapperElement.current.offsetHeight <= maxHeight))
+        (isNumber(maxWidth) && (wrapperWidth <= maxWidth)) ||
+        (isNumber(maxHeight) && (wrapperHeight <= maxHeight))
       ) {
         const [targetWidth, targetHeight] = getTargetSize(sizeReference, width, height, aspectRatio);
 
         let scale;
         if (scaleOn === 'width') {
-          scale = (wrapperElement.current.offsetWidth) / targetWidth;
-          wrapperElement.current.style.height = `${targetHeight * scale}px`;
+          scale = wrapperWidth / targetWidth;
+          // WrapperElement.current.style.height = `${targetHeight * scale}px`;
         } else if (scaleOn === 'height') {
-          scale = (wrapperElement.current.offsetHeight) / targetHeight;
-          wrapperElement.current.style.width = `${targetWidth * scale}px`;
+          scale = wrapperHeight / targetHeight;
+          // WrapperElement.current.style.width = `${targetWidth * scale}px`;
         } else {
-          scale = Math.min(
-            (wrapperElement.current.offsetWidth) / targetWidth,
-            (wrapperElement.current.offsetHeight) / targetHeight
-          );
+          scale = Math.min(wrapperWidth / targetWidth, wrapperHeight / targetHeight);
         }
 
         let offsetX = 0;
         if (alignX === 'center') {
-          offsetX = Math.max(0, wrapperElement.current.offsetWidth - (scale * targetWidth)) / 2;
+          offsetX = Math.max(0, wrapperWidth - (scale * targetWidth)) / 2;
         } else if (alignX === 'right') {
-          offsetX = Math.max(0, wrapperElement.current.offsetWidth - (scale * targetWidth));
+          offsetX = Math.max(0, wrapperWidth - (scale * targetWidth));
         }
 
         let offsetY = 0;
         if (alignY === 'center') {
-          offsetY = Math.max(0, wrapperElement.current.offsetHeight - (scale * targetHeight)) / 2;
+          offsetY = Math.max(0, wrapperHeight - (scale * targetHeight)) / 2;
         } else if (alignY === 'bottom') {
-          offsetY = Math.max(0, wrapperElement.current.offsetHeight - (scale * targetHeight));
+          offsetY = Math.max(0, wrapperHeight - (scale * targetHeight));
         }
 
         scaleElement.current.style.width = `${targetWidth}px`;
@@ -88,13 +86,7 @@ const Zoom = ({
         scaleElement.current.style.transform = null;
       }
     }
-  };
-
-  useEffect(() => {
-    updateScale();
-    window.addEventListener('resize', updateScale);
-    return () => window.removeEventListener('resize', updateScale);
-  }, [sizeReference, width, height, aspectRatio, alignX, alignY, scaleOn, maxWidth, maxHeight]);
+  }, [wrapperWidth, wrapperHeight]);
 
   return (
     <div

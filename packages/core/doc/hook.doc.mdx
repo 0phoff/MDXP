@@ -162,3 +162,48 @@ const LinkSlide = ({slide, step, text}) => {
   );
 }
 ```
+
+---
+
+
+## useResizeObserver
+This hooks allows you to get the width and height of a certain HTML element and update your code when it changes.  
+This component has not much to do with presentations, but is used throughout the core codebase and might be useful to use.  
+
+> __NOTE__  
+> This hook was taken from [Tobias Lindström](https://tobbelindstrom.com/blog/resize-observer-hook) and adapted to the needs of this project.
+
+### Returns
+<Arguments input={false}>
+{{
+  name: 'ref',
+  type: 'Function │ { "current": "any" }',
+  desc: 'Reference to set on an HTML element in your component.'
+}}
+{{
+  name: 'width',
+  type: 'number | undefined',
+  desc: 'Width of your element in pixels.'
+}}
+{{
+  name: 'height',
+  type: 'number | undefined',
+  desc: 'Height of your element in pixels.'
+}}
+</Arguments>
+
+
+### Examples
+```jsx
+import {useResizeObserver} from '@mdxp/core'
+
+const ShowDimensions = () => {
+  const [ref, width=0, height=0] = useResizeObserver();   // Give default width and height values
+
+  return (
+    <div ref={ref} style={{width: '100%', height: '100%'}}>
+      This div has the following dimensions: {width} X {height} pixels
+    </div>
+  );
+}
+```

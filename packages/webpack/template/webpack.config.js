@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const remarkCodeImport = require('remark-code-import');
 const remarkEmoji = require('remark-emoji');
 const remarkMath = require('remark-math');
 const remarkFlattenImages = require('mdast-flatten-image-paragraphs');
@@ -100,6 +101,7 @@ module.exports = {
                 loader: '@mdx-js/loader',
                 options: {
                   remarkPlugins: [
+                    remarkCodeImport,
                     remarkEmoji,
                     remarkMath,
                     remarkFlattenImages

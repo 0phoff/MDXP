@@ -37,6 +37,7 @@
     "html-webpack-plugin": "^4.5.0",
     "mdast-flatten-image-paragraphs": "^1.0.0",
     "react-dev-utils": "^10.2.1",
+    "remark-code-import": "^0.2.0",
     "rehype-katex": "^4.0.0",
     "remark-emoji": "^2.1.0",
     "remark-math": "^3.0.1",

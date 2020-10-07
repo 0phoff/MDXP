@@ -124,20 +124,8 @@ more information about the state of the slide deck.
 
 <Card bg='MDXPGray5'>
 
-```jsx
-import React, {useState} from 'react';
+```jsx file=./counter-simplified.jsx
 
-export const Counter = () => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-    <p>{count}</p>
-    <button onClick={() => setCount(count - 1)}>-</button>
-    <button onClick={() => setCount(count + 1)}>+</button>
-    </div>
-  );
-};
 ```
 
 </Card>

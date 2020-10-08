@@ -6,13 +6,15 @@
   "homepage": "https://0phoff.github.io/MDXP",
   "author": "0phoff <0phoff@users.noreply.github.com>",
   "license": "MIT",
-  "workspaces": [
-    "packages/*",
-    "examples/*"
-  ],
-  "nohoist": [
-    "examples/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "examples/*"
+    ],
+    "nohoist": [
+      "docz/**"
+    ]
+  },
   "scripts": {
     "start": "lerna run --no-private --ignore '@mdxp/{rehypex-plugins,create-webpack}' --parallel start",
     "build": "lerna run --no-private --ignore '@mdxp/{rehypex-plugins,create-webpack}' build",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@mdx-js/react": "^1.5.8",
     "@mdx-js/runtime": "^1.6.18",
     "babel-eslint": "^10.1.0",
     "docz": "^2.3.1",
@@ -44,7 +47,8 @@
     "lint-staged": "^10.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "stringify-object": "^3.3.0"
+    "stringify-object": "^3.3.0",
+    "theme-ui": "^0.3.1"
   },
   "husky": {
     "hooks": {

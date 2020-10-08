@@ -12,7 +12,8 @@
       "examples/*"
     ],
     "nohoist": [
-      "docz/**"
+      "docz/**/eslint",
+      "docz/**/eslint/**"
     ]
   },
   "scripts": {
@@ -27,7 +28,7 @@
     "docz:clean": "docz clean && rm -rf .docz && rm -rf docs",
     "docz:examples": "yarn examples:build && node ./scripts/copy-examples.js",
     "pub": "yarn clean && yarn build && lerna version && lerna publish from-git && yarn pub:docs",
-    "pub:docs": "yarn docz:clean && yarn docz:build && echo -e '\n!!!!!Commit documentation\n!!!!!'"
+    "pub:docs": "yarn docz:clean && yarn docz:build && echo -e '!!!!!\nCommit documentation\n!!!!!'"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

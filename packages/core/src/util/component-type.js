@@ -1,5 +1,9 @@
 const getComponentType = Component => {
   if (Component.hasOwnProperty('props') && Component.props.hasOwnProperty('originalType')) {
+    if (Component.props.hasOwnProperty('mdxType')) {
+      return Component.props.mdxType;
+    }
+
     return Component.props.originalType;
   }
 

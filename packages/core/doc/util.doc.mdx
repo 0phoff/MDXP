@@ -171,3 +171,35 @@ if (checkMDXPType(Component, MDXPTypes.LAYOUT)) {
   // Component is a layout!
 }
 ```
+
+---
+
+
+## getComponentType
+This function can be used to retrieve the type of your component, regardless of whether it is a shortCodeComponent or not.
+
+### Arguments
+<Arguments>
+{{
+  name: 'Component',
+  type: 'elementType'
+}}
+</Arguments>
+
+### Returns
+<Arguments input={false}>
+{{
+  name: 'type',
+  type: 'elementType | null',
+  desc: 'Type of the component (null if unkown).'
+}}
+</Arguments>
+
+### Examples
+```js
+import {getComponentType} from '@mdxp/core'
+
+if (getComponentType(Element).name === 'MyComponent') {
+  // Element is of type MyComponent
+}
+```

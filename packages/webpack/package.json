@@ -17,7 +17,9 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "fs-extra": "^9.0.1",
+    "gunzip-maybe": "^1.4.2",
     "meow": "^7.1.1",
+    "tar-fs": "^2.1.1",
     "yarn-or-npm": "^3.0.1"
   },
   "publishConfig": {

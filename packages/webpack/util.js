@@ -6,6 +6,9 @@ const yon = require('yarn-or-npm');
 const fs = require('fs-extra');
 const log = require('./log.js');
 const pkg = require('./package.json');
+const https = require('https');
+const gunzip = require('gunzip-maybe');
+const tar = require('tar-fs');
 
 // Code stolen and adapted from Initit
 const install = () => {
@@ -13,15 +16,39 @@ const install = () => {
 };
 
 // Code stolen from Initit
-const getTar = ({
+// Modified to work on Windows as in
+// https://github.com/pomber/create-code-surfer-deck/blob/master/initit.js
+const getTar = async ({
   user,
   repo,
   path = '',
   name
 }) => {
   const url = `https://codeload.github.com/${user}/${repo}/tar.gz/@mdxp/create-webpack@${pkg.version}`;
-  const cmd = `curl ${url} | tar -xz -C ${name} --strip=4 ${repo}--mdxp-create-webpack-${pkg.version}/${path}`;
-  exec(cmd, {stdio: 'inherit'});
+
+  const extractTar = tar.extract(name, {
+    map: header => {
+      const prefix = `${repo}--mdxp-create-webpack-${pkg.version}/${path}`;
+
+      if (header.name.startsWith(prefix)) {
+        return Object.assign({}, header, {
+          name: header.name.substr(prefix.length)
+        });
+      }
+
+      return header;
+    }
+  });
+
+  return new Promise((resolve, reject) => {
+    https.get(
+      url,
+      response => response.pipe(gunzip()).pipe(extractTar)
+    );
+
+    extractTar.on('error', reject);
+    extractTar.on('finish', resolve);
+  });
 };
 
 // Code stolen from Initit
@@ -48,7 +75,7 @@ const create = async ({folder, git = false}) => {
 
   // Get template
   log.log('Getting template');
-  getTar(Object.assign({}, {
+  await getTar(Object.assign({}, {
     name: dirname,
     user: '0phoff',
     repo: 'MDXP',

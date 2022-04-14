@@ -26,6 +26,15 @@ With this tool, you can:
 
 
 ### Gettting started
+
+The easiest and recommended way to get started with MDXP is to use our Webpack template. Webpack allows to bundle all your source files and combine them into an output, which you can display in the browser. First, you'll want to install it like so:
+
+```bash
+npm i -g @mdxp/create-webpack
+```
+
+You should then be able to run the commands below to start and run a presentation.
+
 ```bash
 # Initialize presentation project
 npm init @mdxp/webpack -g my_presentation
